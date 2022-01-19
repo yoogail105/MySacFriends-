@@ -14,10 +14,17 @@ class AuthVerificationCodeView: UIView {
     let mainLabel: UILabel = {
         let label = UILabel()
         label.text = "인증번호가 문자로 전송되었어요."
-        label.numberOfLines = 0
         label.font = UIFont().Display1_R20
         label.textAlignment = .center
         label.textColor = .black
+        return label
+    }()
+    
+    let subLabel: UILabel = {
+       let label = UILabel()
+        label.text = "최대 소모 20초"
+        label.textAlignment = .center
+        label.font = UIFont().Title2_R16
         return label
     }()
     
@@ -27,16 +34,18 @@ class AuthVerificationCodeView: UIView {
         textField.keyboardType = .numberPad
         textField.textColor = .black
         textField.borderStyle = .none
-        
         return textField
     }()
     
-    let verifyButton: UIButton = {
-       let button = UIButton()
-        button.setTitle("인증하고 시작하기", for: .normal)
-        button.tintColor = .white
-        button.backgroundColor = UIColor.grayColor(.gray6)
-        button.layer.cornerRadius = 10
+    let reSendButton: BaseButton = {
+        let button = BaseButton()
+        button.buttonMode(.fill, title: "재전송")
+        return button
+    }()
+    
+    let verifyButton: BaseButton = {
+       let button = BaseButton()
+        button.buttonMode(.disable, title: "인증하고 시작하기")
         return button
     }()
 

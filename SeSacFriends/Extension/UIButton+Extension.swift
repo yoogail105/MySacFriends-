@@ -19,39 +19,42 @@ enum CustomButton: String {
 
 extension UIButton {
     
-    func inactive(title: String) {
-        self.setTitle(title, for: .normal)
-        self.tintColor = .black
-        self.backgroundColor = .white
-        self.layer.borderWidth = 1
-        self.layer.borderColor = UIColor.grayColor(.gray4).cgColor
+    func buttonMode(_ mode: CustomButton, title: String) {
+        
+        switch mode {
+        case .inactive:
+            setTitle(title, for: .normal)
+            tintColor = .black
+            backgroundColor = .white
+            layer.borderWidth = 1
+            layer.borderColor = UIColor.grayColor(.gray4).cgColor
+            
+            
+        case .fill:
+            setTitle(title, for: .normal)
+            tintColor = .white
+            backgroundColor = UIColor.brandColor(.green)
+            
+        case .outline:
+            setTitle(title, for: .normal)
+            tintColor = UIColor.brandColor(.green)
+            backgroundColor = .white
+            layer.borderWidth = 1
+            layer.borderColor = UIColor.brandColor(.green).cgColor
+            
+        case .cancel:
+            setTitle(title, for: .normal)
+            tintColor = .black
+            backgroundColor = UIColor.grayColor(.gray2)
+            
+        case .disable:
+            setTitle(title, for: .normal)
+            tintColor = .white
+            backgroundColor = UIColor.grayColor(.gray6)
+        }
     }
     
-    func fill(title: String) {
-        self.setTitle(title, for: .normal)
-        self.tintColor = .white
-        self.backgroundColor = UIColor.brandColor(.green)
-    }
     
-    func outline(title: String) {
-        self.setTitle(title, for: .normal)
-        self.tintColor = UIColor.brandColor(.green)
-        self.backgroundColor = .white
-        self.layer.borderWidth = 1
-        self.layer.borderColor = UIColor.brandColor(.green).cgColor
-    }
-    
-    func cancel(title: String) {
-        self.setTitle(title, for: .normal)
-        self.tintColor = .black
-        self.backgroundColor = UIColor.grayColor(.gray2)
-    }
-    
-    func disable(title: String) {
-        self.setTitle(title, for: .normal)
-        self.tintColor = .white
-        self.backgroundColor = UIColor.grayColor(.gray6)
-    }
 }
 
 
@@ -67,6 +70,23 @@ class BaseButton: UIButton {
         }
 
         func configuration() {
+            layer.cornerRadius = 8
+            clipsToBounds = true
+            
+        }
+}
+
+class IconButton: BaseButton {
+    override init(frame: CGRect) {
+            super.init(frame: frame)
+            configuration()
+        }
+
+        required init?(coder aDecoder: NSCoder) {
+            super.init(coder: aDecoder)
+        }
+
+    override func configuration() {
             layer.cornerRadius = 8
             clipsToBounds = true
             

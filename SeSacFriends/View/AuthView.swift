@@ -33,7 +33,7 @@ class AuthView: UIView {
     
     let verifyButton: BaseButton = {
        let button = BaseButton()
-        button.disable(title: "인증 문자 받기")
+        button.buttonMode(.disable, title: "인증 번호 받기")
         return button
     }()
 
