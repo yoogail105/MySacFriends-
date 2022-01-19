@@ -31,6 +31,14 @@ class SignInViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        for family in UIFont.familyNames {
+            print(family)
+            
+            for names in UIFont.fontNames(forFamilyName: family) {
+                print("== \(names)")
+            }
+        }
+        
 //        mainView.verifyButton.addTarget(self, action: #selector(sendVerifyNumberButtonClicked), for: .touchUpInside)
 //
 //        mainView.verifyButton.addTarget(self, action: #selector(verifyButtonClicked), for: .touchUpInside)
