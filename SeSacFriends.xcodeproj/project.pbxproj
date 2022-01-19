@@ -8,10 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		234E5FA427978FE700F5D2BB /* AuthVerificationCodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 234E5FA327978FE700F5D2BB /* AuthVerificationCodeView.swift */; };
+		234E5FA627987EE900F5D2BB /* UIButton+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 234E5FA527987EE900F5D2BB /* UIButton+Extension.swift */; };
 		2389E1AE27967A8C00BE68E3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2389E1AD27967A8C00BE68E3 /* GoogleService-Info.plist */; };
 		2389E1B027967B1200BE68E3 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2389E1AF27967B1200BE68E3 /* MainViewController.swift */; };
 		2389E1B227967B9900BE68E3 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2389E1B127967B9900BE68E3 /* Color.swift */; };
-		2389E1C42796862A00BE68E3 /* Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2389E1C32796862A00BE68E3 /* Font.swift */; };
+		2389E1C42796862A00BE68E3 /* UIFont+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2389E1C32796862A00BE68E3 /* UIFont+Extension.swift */; };
 		2389E1C5279686F700BE68E3 /* NotoSansCJKkr-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 2389E1C2279685CA00BE68E3 /* NotoSansCJKkr-Medium.otf */; };
 		2389E1C6279686F900BE68E3 /* NotoSansCJKkr-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 2389E1C0279685A200BE68E3 /* NotoSansCJKkr-Regular.otf */; };
 		2389E1C8279697E200BE68E3 /* UITextField+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2389E1C7279697E200BE68E3 /* UITextField+Extension.swift */; };
@@ -38,13 +39,14 @@
 
 /* Begin PBXFileReference section */
 		234E5FA327978FE700F5D2BB /* AuthVerificationCodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthVerificationCodeView.swift; sourceTree = "<group>"; };
+		234E5FA527987EE900F5D2BB /* UIButton+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extension.swift"; sourceTree = "<group>"; };
 		2389E1AC27967A3A00BE68E3 /* SeSacFriends.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SeSacFriends.entitlements; sourceTree = "<group>"; };
 		2389E1AD27967A8C00BE68E3 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		2389E1AF27967B1200BE68E3 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		2389E1B127967B9900BE68E3 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		2389E1C0279685A200BE68E3 /* NotoSansCJKkr-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansCJKkr-Regular.otf"; sourceTree = "<group>"; };
 		2389E1C2279685CA00BE68E3 /* NotoSansCJKkr-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansCJKkr-Medium.otf"; sourceTree = "<group>"; };
-		2389E1C32796862A00BE68E3 /* Font.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Font.swift; sourceTree = "<group>"; };
+		2389E1C32796862A00BE68E3 /* UIFont+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Extension.swift"; sourceTree = "<group>"; };
 		2389E1C7279697E200BE68E3 /* UITextField+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Extension.swift"; sourceTree = "<group>"; };
 		2389E1D22796A29F00BE68E3 /* AuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
 		2389E1D42796A2AD00BE68E3 /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
@@ -93,10 +95,11 @@
 			isa = PBXGroup;
 			children = (
 				2389E1B127967B9900BE68E3 /* Color.swift */,
-				2389E1C32796862A00BE68E3 /* Font.swift */,
+				2389E1C32796862A00BE68E3 /* UIFont+Extension.swift */,
 				239960402796572C001C8EA4 /* String+Extension.swift */,
 				2389E1C7279697E200BE68E3 /* UITextField+Extension.swift */,
 				2389E1DA2796B6FF00BE68E3 /* UserDefaults+Extension.swift */,
+				234E5FA527987EE900F5D2BB /* UIButton+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -248,12 +251,13 @@
 				2389E1D72796A31800BE68E3 /* BaseViewController.swift in Sources */,
 				2389E1B027967B1200BE68E3 /* MainViewController.swift in Sources */,
 				239960412796572C001C8EA4 /* String+Extension.swift in Sources */,
+				234E5FA627987EE900F5D2BB /* UIButton+Extension.swift in Sources */,
 				2399604327965741001C8EA4 /* AuthView.swift in Sources */,
 				234E5FA427978FE700F5D2BB /* AuthVerificationCodeView.swift in Sources */,
 				2399604527965760001C8EA4 /* SignInViewController.swift in Sources */,
 				23996031279656EB001C8EA4 /* ViewController.swift in Sources */,
 				2389E1DB2796B6FF00BE68E3 /* UserDefaults+Extension.swift in Sources */,
-				2389E1C42796862A00BE68E3 /* Font.swift in Sources */,
+				2389E1C42796862A00BE68E3 /* UIFont+Extension.swift in Sources */,
 				2389E1B227967B9900BE68E3 /* Color.swift in Sources */,
 				2389E1DE2796D8C800BE68E3 /* SignUpViewController.swift in Sources */,
 				2389E1D32796A29F00BE68E3 /* AuthViewModel.swift in Sources */,

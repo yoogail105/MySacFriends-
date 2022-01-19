@@ -15,7 +15,7 @@ class AuthVerificationCodeView: UIView {
         let label = UILabel()
         label.text = "인증번호가 문자로 전송되었어요."
         label.numberOfLines = 0
-        label.font = UIFont(name: AppFont.regular.rawValue, size: 20)
+        label.font = UIFont().Display1_R20
         label.textAlignment = .center
         label.textColor = .black
         return label

@@ -15,7 +15,7 @@ class AuthView: UIView {
         let label = UILabel()
         label.text = "새싹 서비스 이용을 위해\n 휴대폰 번호를 입력해 주세요."
         label.numberOfLines = 0
-        label.font = UIFont(name: AppFont.regular.rawValue, size: 20)
+        label.font = UIFont().Display1_R20
         label.textAlignment = .center
         label.textColor = .black
         return label
@@ -31,12 +31,9 @@ class AuthView: UIView {
         return textField
     }()
     
-    let verifyButton: UIButton = {
-       let button = UIButton()
-        button.setTitle("인증 문자 받기", for: .normal)
-        button.tintColor = .white
-        button.backgroundColor = UIColor.grayColor(.gray6)
-        button.layer.cornerRadius = 10
+    let verifyButton: BaseButton = {
+       let button = BaseButton()
+        button.disable(title: "인증 문자 받기")
         return button
     }()
 
