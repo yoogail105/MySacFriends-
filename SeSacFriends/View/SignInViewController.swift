@@ -82,7 +82,7 @@ class SignInViewController: BaseViewController {
     
     
     @objc func sendVerifyNumberButtonClicked() {
-        viewModel.postVerificationCode { _ in
+        viewModel.postVerificationCode {
             let vc = SignUpViewController()
             
             self.navigationController?.pushViewController(vc, animated: true)

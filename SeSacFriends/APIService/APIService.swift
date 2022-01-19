@@ -18,22 +18,19 @@ enum APIError: Error {
 
 class APIService {
     
-    static func sendVerificationCode(phoneNumber: String) {
+    static func sendVerificationCode(phoneNumber: String, completion: @escaping () -> Void ) {
         
         PhoneAuthProvider.provider()
             .verifyPhoneNumber(phoneNumber.phoneNumberFormat(), uiDelegate: nil) { verificationID, error in
                 if let error = error {
                     print("authError:", error.localizedDescription)
-                    //                self.showMessagePrompt(error.localizedDescription)
+                         // self.showMessagePrompt(error.localizedDescription)
                     return
                 }
-                
-                // Sign in using the verificationID and the code sent to the user
-                // ... completion Code ... =>
                 Auth.auth().languageCode = "kr"
-                //UserDefaults에 저장하기
                 UserDefaults.standard.authVerificationID = verificationID!
                 print("인증아이디는 \(verificationID)")
+                completion()
             }
     }
     

@@ -16,8 +16,11 @@ class AuthViewModel {
         return phoneNumberObserver.map { $0.validatePhoneNumber() }
     }
     
-    func postVerificationCode(completion: @escaping (APIError?) -> Void)  { //결과
-        APIService.sendVerificationCode(phoneNumber: phoneNumberObserver.value)
+    func postVerificationCode(completion: @escaping () -> Void)  { //결과
+        APIService.sendVerificationCode(phoneNumber: phoneNumberObserver.value) {
+            print("인증번호발송완료")
+        }
+        completion()
             
         
     }
