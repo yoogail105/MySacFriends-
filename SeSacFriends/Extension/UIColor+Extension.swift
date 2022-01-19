@@ -1,5 +1,5 @@
 //
-//  Color.swift
+//  UIColor+Extension.swiftb
 //  SeSacFriends
 //
 //  Created by 성민주민주 on 2022/01/18.
