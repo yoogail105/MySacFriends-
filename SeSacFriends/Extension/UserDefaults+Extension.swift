@@ -10,6 +10,7 @@ import Foundation
 extension UserDefaults {
     private enum UserDefaultsKeys: String, CaseIterable {
         case authVerificationID
+        case phoneNumber
       
 
     }
@@ -23,5 +24,10 @@ extension UserDefaults {
     var authVerificationID: String {
         get { string(forKey: UserDefaultsKeys.authVerificationID.rawValue) ?? ""}
         set { setValue(newValue, forKey: UserDefaultsKeys.authVerificationID.rawValue)}
+    }
+    
+    var phoneNumber: String {
+        get { string(forKey: UserDefaultsKeys.phoneNumber.rawValue) ?? ""}
+        set { setValue(newValue, forKey: UserDefaultsKeys.phoneNumber.rawValue)}
     }
 }

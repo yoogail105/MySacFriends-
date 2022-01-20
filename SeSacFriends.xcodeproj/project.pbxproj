@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2308B0242799D83D004145E2 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2308B0232799D83D004145E2 /* UIViewController+Extension.swift */; };
+		2308B0262799DEBF004145E2 /* ToastMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2308B0252799DEBF004145E2 /* ToastMessage.swift */; };
 		234E5FA427978FE700F5D2BB /* AuthVerificationCodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 234E5FA327978FE700F5D2BB /* AuthVerificationCodeView.swift */; };
 		234E5FA627987EE900F5D2BB /* UIButton+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 234E5FA527987EE900F5D2BB /* UIButton+Extension.swift */; };
 		234E5FAA27988F8D00F5D2BB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 234E5FA927988F8D00F5D2BB /* GoogleService-Info.plist */; };
@@ -40,6 +41,7 @@
 
 /* Begin PBXFileReference section */
 		2308B0232799D83D004145E2 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
+		2308B0252799DEBF004145E2 /* ToastMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastMessage.swift; sourceTree = "<group>"; };
 		234E5FA327978FE700F5D2BB /* AuthVerificationCodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthVerificationCodeView.swift; sourceTree = "<group>"; };
 		234E5FA527987EE900F5D2BB /* UIButton+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extension.swift"; sourceTree = "<group>"; };
 		234E5FA927988F8D00F5D2BB /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -103,6 +105,7 @@
 				2389E1DA2796B6FF00BE68E3 /* UserDefaults+Extension.swift */,
 				234E5FA527987EE900F5D2BB /* UIButton+Extension.swift */,
 				2308B0232799D83D004145E2 /* UIViewController+Extension.swift */,
+				2308B0252799DEBF004145E2 /* ToastMessage.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -265,6 +268,7 @@
 				2389E1B227967B9900BE68E3 /* UIColor+Extension.swift in Sources */,
 				2389E1DE2796D8C800BE68E3 /* SignUpViewController.swift in Sources */,
 				2389E1D32796A29F00BE68E3 /* AuthViewModel.swift in Sources */,
+				2308B0262799DEBF004145E2 /* ToastMessage.swift in Sources */,
 				2399602D279656EB001C8EA4 /* AppDelegate.swift in Sources */,
 				2399602F279656EB001C8EA4 /* SceneDelegate.swift in Sources */,
 				2389E1D52796A2AD00BE68E3 /* APIService.swift in Sources */,
@@ -426,6 +430,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -455,6 +460,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

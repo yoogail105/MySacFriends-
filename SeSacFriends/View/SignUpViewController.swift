@@ -40,6 +40,14 @@ class SignUpViewController: BaseViewController {
             .bind(to: mainView.verifyButton.rx.backgroundColor)
             .disposed(by: disposeBag)
         
+        mainView.reSendButton.rx.tap
+            .bind {
+                self.viewModel.rePostVerificationCode {
+                    self.showToast(message: "인증번호를 보냈습니다.")
+                }
+            }
+            .disposed(by: disposeBag)
+        
             
     }
     

@@ -19,6 +19,16 @@ extension UIViewController {
         }
     }
     
+    func showToastWithAction(message: String, action: @escaping () -> Void ) {
+        let toast = UIAlertController(title: nil, message: message, preferredStyle: .alert)
+        
+        self.present(toast, animated: true)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            self.dismiss(animated: true, completion: action )
+        }
+    }
+    
+    
     
     func showToastAndPop(message: String) {
         

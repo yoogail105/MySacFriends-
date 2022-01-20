@@ -69,6 +69,7 @@ class AuthViewController: BaseViewController {
             .filter{$0}
             .subscribe(onNext: { _ in
                 self.sendVerifyNumberButtonClicked()
+                
             })
             .disposed(by: disposeBag)
         
@@ -95,14 +96,17 @@ class AuthViewController: BaseViewController {
 //
         
         func sendVerifyNumberButtonClicked() {
-            
-            viewModel.postVerificationCode {
-                let vc = SignUpViewController()
-                
-                self.navigationController?.pushViewController(vc, animated: true)
-                print("화면 옮기기")
+            showToastWithAction(message: "전화 번호 인증 시작") {
+                self.viewModel.postVerificationCode {
+                    
+                    let vc = SignUpViewController()
+                    
+                    self.navigationController?.pushViewController(vc, animated: true)
+                    print("화면 옮기기")
+                }
             }
             
+                        
         }
         
         @objc func verifyButtonClicked() {
