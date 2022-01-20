@@ -16,7 +16,7 @@ extension String {
     }
     
     func validatePhoneNumber() -> Bool {
-        let phoneNumberRegex = "^01[0-1, 7][0-9]{7,8}$"
+        let phoneNumberRegex = "^01([0-9])([0-9]{3,4})([0-9]{4})$"
         let predicate = NSPredicate(format:"SELF MATCHES %@", phoneNumberRegex)
         return predicate.evaluate(with: self)
     }
@@ -33,5 +33,12 @@ extension String {
         return predicate.evaluate(with: self)
     }
     
+    func isValidCertificationCode() -> Bool {
+        let certificationCodeRegex = "^[0-9]{6}$"
+        let predicate = NSPredicate(format: "SELF MATCHES %@", certificationCodeRegex)
+        return predicate.evaluate(with: self)
+    }
+    
+
     
 }

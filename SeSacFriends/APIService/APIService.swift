@@ -20,6 +20,7 @@ class APIService {
     
     static func sendVerificationCode(phoneNumber: String, completion: @escaping () -> Void ) {
         
+        
         PhoneAuthProvider.provider()
             .verifyPhoneNumber(phoneNumber.phoneNumberFormat(), uiDelegate: nil) { verificationID, error in
                 if let error = error {

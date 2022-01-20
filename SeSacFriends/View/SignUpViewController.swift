@@ -32,7 +32,12 @@ class SignUpViewController: BaseViewController {
         
         mainView.numberTextField.rx.text
             .orEmpty
-            .bind(to: viewModel.phoneNumberObserver)
+            .bind(to: viewModel.certificationCodeObserver)
+            .disposed(by: disposeBag)
+        
+        viewModel.isValidCertificationCode
+            .map { $0 ? UIColor.brandColor(.green) : UIColor.grayColor(.gray6)}
+            .bind(to: mainView.verifyButton.rx.backgroundColor)
             .disposed(by: disposeBag)
         
             

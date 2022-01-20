@@ -25,6 +25,7 @@ class AuthVerificationCodeView: UIView {
         label.text = "최대 소모 20초"
         label.textAlignment = .center
         label.font = UIFont().Title2_R16
+        label.textColor = UIColor.grayColor(.gray7)
         return label
     }()
     
@@ -37,11 +38,21 @@ class AuthVerificationCodeView: UIView {
         return textField
     }()
     
+    let timerLabel: UILabel = {
+       let label = UILabel()
+        label.text = "01:00"
+        label.textColor = UIColor.brandColor(.green)
+        label.font = UIFont().Title3_M14
+        return label
+    }()
+    
     let reSendButton: BaseButton = {
         let button = BaseButton()
         button.buttonMode(.fill, title: "재전송")
+        button.titleLabel?.font = UIFont().Body3_R14
         return button
     }()
+    
     
     let verifyButton: BaseButton = {
        let button = BaseButton()
@@ -63,12 +74,12 @@ class AuthVerificationCodeView: UIView {
     
     func configuration() {
         self.backgroundColor = .white
-       // numberTextField.underLine()
+        numberTextField.underLine()
     }
     
     func constraints() {
         [
-            mainLabel, numberTextField, verifyButton
+            mainLabel, subLabel, timerLabel, numberTextField, reSendButton, verifyButton
         ].forEach {
             addSubview($0)
         }
@@ -77,6 +88,11 @@ class AuthVerificationCodeView: UIView {
             $0.centerX.equalToSuperview()
             $0.bottom.equalTo(numberTextField.snp.top).offset(-77)
             
+        }
+        
+        subLabel.snp.makeConstraints {
+            $0.centerX.equalToSuperview()
+            $0.top.equalTo(mainLabel.snp.bottom).offset(-8)
         }
         
         verifyButton.snp.makeConstraints {
@@ -93,7 +109,18 @@ class AuthVerificationCodeView: UIView {
             $0.height.equalTo(48)
         }
         
+        reSendButton.snp.makeConstraints {
+            $0.leading.equalTo(numberTextField.snp.trailing).offset(8)
+            $0.trailing.equalToSuperview().offset(-16)
+            $0.centerY.equalTo(numberTextField)
+            $0.height.equalTo(40)
+            $0.width.equalTo(72)
+        }
         
+        timerLabel.snp.makeConstraints {
+            $0.trailing.equalTo(reSendButton.snp.leading).offset(-20)
+            $0.centerY.equalTo(numberTextField)
+        }
     }
 }
 

@@ -10,11 +10,21 @@ import RxSwift
 import RxRelay
 
 class AuthViewModel {
+    
+    var buttonMod = BehaviorRelay<String>(value: "false")
+    
     var phoneNumberObserver = BehaviorRelay<String>(value: "")
+    var certificationCodeObserver = BehaviorRelay<String>(value: "")
     
     var isValidPhoneNumber: Observable<Bool> {
         return phoneNumberObserver.map { $0.validatePhoneNumber() }
     }
+    
+    var isValidCertificationCode: Observable<Bool> {
+        return certificationCodeObserver.map { $0.isValidCertificationCode()}
+     }
+    
+    
     
     func postVerificationCode(completion: @escaping () -> Void)  { //결과
         APIService.sendVerificationCode(phoneNumber: phoneNumberObserver.value) {
@@ -28,7 +38,6 @@ class AuthViewModel {
     func checkVerificationCode(completion: @escaping (APIError?) -> Void) {
         APIService.checkVerificationCode(verificationCode: phoneNumberObserver.value)
     }
-    
     
 }
 
