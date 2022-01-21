@@ -72,7 +72,6 @@ class BaseButton: UIButton {
         func configuration() {
             layer.cornerRadius = 8
             clipsToBounds = true
-            
         }
 }
 

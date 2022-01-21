@@ -26,25 +26,17 @@ class AuthViewModel {
     
     
     
-    func postVerificationCode(completion: @escaping () -> Void)  { //결과
-        APIService.sendVerificationCode(phoneNumber: phoneNumberObserver.value) {
-            UserDefaults.standard.phoneNumber = self.phoneNumberObserver.value
+    func postVerificationCode(completion: @escaping () -> Void)  {
+        let phoneNumber = UserDefaults.standard.phoneNumber
+        
+        APIService.sendVerificationCode(phoneNumber: phoneNumber) {
             print("인증번호발송완료")
+
         }
         completion()
-            
-        
+
     }
-    //request아닌가?
-    func rePostVerificationCode(completion: @escaping () -> Void)  { //결과
-        APIService.sendVerificationCode(phoneNumber: UserDefaults.standard.phoneNumber) {
-            
-            print("인증번호발송완료")
-        }
-        completion()
-            
-        
-    }
+    
     
     func checkVerificationCode(completion: @escaping (APIError?) -> Void) {
         APIService.checkVerificationCode(verificationCode: phoneNumberObserver.value)

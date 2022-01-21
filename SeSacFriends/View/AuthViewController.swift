@@ -66,16 +66,15 @@ class AuthViewController: BaseViewController {
         
         mainView.verifyButton.rx.tap
             .withLatestFrom(viewModel.isValidPhoneNumber)
-            .filter{$0}
+            .filter{ $0 }
             .subscribe(onNext: { _ in
                 self.sendVerifyNumberButtonClicked()
-                
             })
             .disposed(by: disposeBag)
         
         mainView.verifyButton.rx.tap
             .withLatestFrom(viewModel.isValidPhoneNumber)
-            .filter{!$0}
+            .filter{ !$0 }
             .subscribe(onNext: { _ in
                 self.showToast(message: "잘못된 전화번호 형식입니다")
             })
@@ -96,11 +95,10 @@ class AuthViewController: BaseViewController {
 //
         
         func sendVerifyNumberButtonClicked() {
+            UserDefaults.standard.phoneNumber = viewModel.phoneNumberObserver.value
             showToastWithAction(message: "전화 번호 인증 시작") {
                 self.viewModel.postVerificationCode {
-                    
                     let vc = SignUpViewController()
-                    
                     self.navigationController?.pushViewController(vc, animated: true)
                     print("화면 옮기기")
                 }

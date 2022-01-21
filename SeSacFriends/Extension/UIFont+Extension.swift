@@ -14,6 +14,10 @@ enum AppFont: String {
 
 
 extension UIFont {
+    
+    var onboardingFont: UIFont {
+        return UIFont(name: AppFont.NotoSansCJKkrMedium.rawValue, size: 24)!
+    }
     var Display1_R20: UIFont {
         return UIFont(name: AppFont.NotoSansCJKkrRegular.rawValue, size: 20)!
     }

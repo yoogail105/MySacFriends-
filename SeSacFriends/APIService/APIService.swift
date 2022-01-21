@@ -39,14 +39,14 @@ class APIService {
                     }
                     return
                 }
-                Auth.auth().languageCode = "kr"
-                Auth.auth().settings?.isAppVerificationDisabledForTesting = true
+                
                 UserDefaults.standard.authVerificationID = verificationID!
-                print("인증아이디는 \(verificationID)")
+                //print("인증아이디는 \(verificationString(describing: ID)"))
                 completion()
             }
         
     }
+    
     
     static func checkVerificationCode(verificationCode: String) {
         let verificationID = UserDefaults.standard.authVerificationID

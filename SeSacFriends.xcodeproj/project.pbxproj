@@ -9,6 +9,13 @@
 /* Begin PBXBuildFile section */
 		2308B0242799D83D004145E2 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2308B0232799D83D004145E2 /* UIViewController+Extension.swift */; };
 		2308B0262799DEBF004145E2 /* ToastMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2308B0252799DEBF004145E2 /* ToastMessage.swift */; };
+		234CEC012799F76B00983E20 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 234CEC002799F76B00983E20 /* OnboardingView.swift */; };
+		234CEC032799F7F600983E20 /* OnboardingImages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 234CEC022799F7F600983E20 /* OnboardingImages.swift */; };
+		234CEC052799FAC300983E20 /* BaseUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 234CEC042799FAC300983E20 /* BaseUIView.swift */; };
+		234CEC07279AA73800983E20 /* ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 234CEC06279AA73800983E20 /* ex.swift */; };
+		234CEC09279AAD3A00983E20 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 234CEC08279AAD3A00983E20 /* OnboardingViewController.swift */; };
+		234CEC0B279AB3D500983E20 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 234CEC0A279AB3D500983E20 /* UIView+Extension.swift */; };
+		234CEC0D279AF61500983E20 /* PageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 234CEC0C279AF61500983E20 /* PageViewController.swift */; };
 		234E5FA427978FE700F5D2BB /* AuthVerificationCodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 234E5FA327978FE700F5D2BB /* AuthVerificationCodeView.swift */; };
 		234E5FA627987EE900F5D2BB /* UIButton+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 234E5FA527987EE900F5D2BB /* UIButton+Extension.swift */; };
 		234E5FAA27988F8D00F5D2BB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 234E5FA927988F8D00F5D2BB /* GoogleService-Info.plist */; };
@@ -29,7 +36,6 @@
 		2399602D279656EB001C8EA4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2399602C279656EB001C8EA4 /* AppDelegate.swift */; };
 		2399602F279656EB001C8EA4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2399602E279656EB001C8EA4 /* SceneDelegate.swift */; };
 		23996031279656EB001C8EA4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23996030279656EB001C8EA4 /* ViewController.swift */; };
-		23996034279656EB001C8EA4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 23996032279656EB001C8EA4 /* Main.storyboard */; };
 		23996036279656EC001C8EA4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 23996035279656EC001C8EA4 /* Assets.xcassets */; };
 		23996039279656EC001C8EA4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 23996037279656EC001C8EA4 /* LaunchScreen.storyboard */; };
 		239960412796572C001C8EA4 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 239960402796572C001C8EA4 /* String+Extension.swift */; };
@@ -42,6 +48,13 @@
 /* Begin PBXFileReference section */
 		2308B0232799D83D004145E2 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 		2308B0252799DEBF004145E2 /* ToastMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastMessage.swift; sourceTree = "<group>"; };
+		234CEC002799F76B00983E20 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
+		234CEC022799F7F600983E20 /* OnboardingImages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingImages.swift; sourceTree = "<group>"; };
+		234CEC042799FAC300983E20 /* BaseUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseUIView.swift; sourceTree = "<group>"; };
+		234CEC06279AA73800983E20 /* ex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ex.swift; sourceTree = "<group>"; };
+		234CEC08279AAD3A00983E20 /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
+		234CEC0A279AB3D500983E20 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
+		234CEC0C279AF61500983E20 /* PageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageViewController.swift; sourceTree = "<group>"; };
 		234E5FA327978FE700F5D2BB /* AuthVerificationCodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthVerificationCodeView.swift; sourceTree = "<group>"; };
 		234E5FA527987EE900F5D2BB /* UIButton+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extension.swift"; sourceTree = "<group>"; };
 		234E5FA927988F8D00F5D2BB /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -61,7 +74,6 @@
 		2399602C279656EB001C8EA4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2399602E279656EB001C8EA4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		23996030279656EB001C8EA4 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		23996033279656EB001C8EA4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		23996035279656EC001C8EA4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		23996038279656EC001C8EA4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2399603A279656EC001C8EA4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -86,6 +98,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		234CEBFF2799F75500983E20 /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				234CEC002799F76B00983E20 /* OnboardingView.swift */,
+				234CEC08279AAD3A00983E20 /* OnboardingViewController.swift */,
+				234CEC0C279AF61500983E20 /* PageViewController.swift */,
+				234CEC022799F7F600983E20 /* OnboardingImages.swift */,
+			);
+			path = Onboarding;
+			sourceTree = "<group>";
+		};
 		2389E1C1279685A800BE68E3 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
@@ -105,6 +128,7 @@
 				2389E1DA2796B6FF00BE68E3 /* UserDefaults+Extension.swift */,
 				234E5FA527987EE900F5D2BB /* UIButton+Extension.swift */,
 				2308B0232799D83D004145E2 /* UIViewController+Extension.swift */,
+				234CEC0A279AB3D500983E20 /* UIView+Extension.swift */,
 				2308B0252799DEBF004145E2 /* ToastMessage.swift */,
 			);
 			path = Extension;
@@ -114,6 +138,7 @@
 			isa = PBXGroup;
 			children = (
 				2399604227965741001C8EA4 /* AuthView.swift */,
+				234CEC042799FAC300983E20 /* BaseUIView.swift */,
 				234E5FA327978FE700F5D2BB /* AuthVerificationCodeView.swift */,
 				2399604427965760001C8EA4 /* AuthViewController.swift */,
 				2389E1DD2796D8C800BE68E3 /* SignUpViewController.swift */,
@@ -128,6 +153,7 @@
 			isa = PBXGroup;
 			children = (
 				2389E1D42796A2AD00BE68E3 /* APIService.swift */,
+				234CEC06279AA73800983E20 /* ex.swift */,
 			);
 			path = APIService;
 			sourceTree = "<group>";
@@ -158,9 +184,9 @@
 				2399602E279656EB001C8EA4 /* SceneDelegate.swift */,
 				23996030279656EB001C8EA4 /* ViewController.swift */,
 				2389E1DC2796C81800BE68E3 /* APIService */,
+				234CEBFF2799F75500983E20 /* Onboarding */,
 				2389E1C9279697E700BE68E3 /* Extension */,
 				2389E1CA279697F700BE68E3 /* View */,
-				23996032279656EB001C8EA4 /* Main.storyboard */,
 				23996035279656EC001C8EA4 /* Assets.xcassets */,
 				23996037279656EC001C8EA4 /* LaunchScreen.storyboard */,
 				2399603A279656EC001C8EA4 /* Info.plist */,
@@ -241,7 +267,6 @@
 				23996039279656EC001C8EA4 /* LaunchScreen.storyboard in Resources */,
 				2389E1C6279686F900BE68E3 /* NotoSansCJKkr-Regular.otf in Resources */,
 				23996036279656EC001C8EA4 /* Assets.xcassets in Resources */,
-				23996034279656EB001C8EA4 /* Main.storyboard in Resources */,
 				2389E1C5279686F700BE68E3 /* NotoSansCJKkr-Medium.otf in Resources */,
 				234E5FAA27988F8D00F5D2BB /* GoogleService-Info.plist in Resources */,
 			);
@@ -259,19 +284,26 @@
 				2389E1B027967B1200BE68E3 /* MainViewController.swift in Sources */,
 				239960412796572C001C8EA4 /* String+Extension.swift in Sources */,
 				234E5FA627987EE900F5D2BB /* UIButton+Extension.swift in Sources */,
+				234CEC07279AA73800983E20 /* ex.swift in Sources */,
 				2399604327965741001C8EA4 /* AuthView.swift in Sources */,
 				234E5FA427978FE700F5D2BB /* AuthVerificationCodeView.swift in Sources */,
 				2399604527965760001C8EA4 /* AuthViewController.swift in Sources */,
 				23996031279656EB001C8EA4 /* ViewController.swift in Sources */,
 				2389E1DB2796B6FF00BE68E3 /* UserDefaults+Extension.swift in Sources */,
 				2389E1C42796862A00BE68E3 /* UIFont+Extension.swift in Sources */,
+				234CEC032799F7F600983E20 /* OnboardingImages.swift in Sources */,
 				2389E1B227967B9900BE68E3 /* UIColor+Extension.swift in Sources */,
 				2389E1DE2796D8C800BE68E3 /* SignUpViewController.swift in Sources */,
+				234CEC012799F76B00983E20 /* OnboardingView.swift in Sources */,
 				2389E1D32796A29F00BE68E3 /* AuthViewModel.swift in Sources */,
 				2308B0262799DEBF004145E2 /* ToastMessage.swift in Sources */,
 				2399602D279656EB001C8EA4 /* AppDelegate.swift in Sources */,
+				234CEC09279AAD3A00983E20 /* OnboardingViewController.swift in Sources */,
 				2399602F279656EB001C8EA4 /* SceneDelegate.swift in Sources */,
+				234CEC052799FAC300983E20 /* BaseUIView.swift in Sources */,
 				2389E1D52796A2AD00BE68E3 /* APIService.swift in Sources */,
+				234CEC0D279AF61500983E20 /* PageViewController.swift in Sources */,
+				234CEC0B279AB3D500983E20 /* UIView+Extension.swift in Sources */,
 				2389E1C8279697E200BE68E3 /* UITextField+Extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -279,14 +311,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		23996032279656EB001C8EA4 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				23996033279656EB001C8EA4 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		23996037279656EC001C8EA4 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -427,10 +451,10 @@
 				INFOPLIST_FILE = SeSacFriends/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -457,10 +481,10 @@
 				INFOPLIST_FILE = SeSacFriends/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

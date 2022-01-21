@@ -8,7 +8,9 @@
 import Foundation
 
 extension UserDefaults {
+    
     private enum UserDefaultsKeys: String, CaseIterable {
+        
         case authVerificationID
         case phoneNumber
       

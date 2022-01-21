@@ -41,14 +41,10 @@ class SignUpViewController: BaseViewController {
             .disposed(by: disposeBag)
         
         mainView.reSendButton.rx.tap
-            .bind {
-                self.viewModel.rePostVerificationCode {
-                    self.showToast(message: "인증번호를 보냈습니다.")
-                }
-            }
+            .subscribe(onNext: { _ in
+                self.sendVerifyNumberButtonClicked()
+            })
             .disposed(by: disposeBag)
-        
-            
     }
     
     override func setupConstraints() {
@@ -58,16 +54,19 @@ class SignUpViewController: BaseViewController {
 //        mainView.verifyButton.setTitle("인증하고 시작하기", for: .normal)
     }
     
-    override func addAction() {
-        mainView.verifyButton.addTarget(self, action: #selector(sendVerifyNumberButtonClicked), for: .touchUpInside)
-    }
+//    override func addAction() {
+//        mainView.verifyButton.addTarget(self, action: #selector(sendVerifyNumberButtonClicked), for: .touchUpInside)
+//    }
     
-    @objc func sendVerifyNumberButtonClicked() {
-        viewModel.checkVerificationCode { error in
-            let vc = MainViewController()
-            self.navigationController?.pushViewController(vc, animated: true)
+    func sendVerifyNumberButtonClicked() {
+        UserDefaults.standard.phoneNumber = viewModel.phoneNumberObserver.value
+        showToastWithAction(message: "전화 번호 인증 시작") {
+            self.viewModel.postVerificationCode {
+                print("인증번호보냈습니다.")
+            }
         }
-       
+        
+                    
     }
 
     

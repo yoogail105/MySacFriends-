@@ -12,8 +12,6 @@ class BaseViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
-       
         configure()
         bind()
         addAction()
