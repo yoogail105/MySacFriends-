@@ -9,21 +9,34 @@ import UIKit
 
 class PageViewController: UIPageViewController, UIPageViewControllerDelegate, UIPageViewControllerDataSource {
     
+
     
     let mainView = OnboardingView()
-    
     var pages = [UIViewController]()
-    let pageControl = UIPageControl()
+    let pageControl = OnboardingView().pageControl
+    
+//    lazy var pageViewController: UIPageViewController = {
+//          let vc = UIPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
+//
+//          return vc
+//      }()
+    
+    override init(transitionStyle style: UIPageViewController.TransitionStyle, navigationOrientation: UIPageViewController.NavigationOrientation, options: [UIPageViewController.OptionsKey : Any]? = nil) {
+        super.init(transitionStyle: .scroll, navigationOrientation: .horizontal, options: options)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         
 //        let pageControl = mainView.pageControl
+        
         self.dataSource = self
         self.delegate = self
-        
-        
         let initialPage = 0
         let page1 = Onboarding01ViewController()
         let page2 = Onboarding02ViewController()
@@ -32,18 +45,23 @@ class PageViewController: UIPageViewController, UIPageViewControllerDelegate, UI
         [page1, page2, page3].forEach {
             self.pages.append($0)
         }
-       
         setViewControllers([pages[initialPage]], direction: .forward, animated: true, completion: nil)
+        
+       
+        
     }
     
+    
     // 유저가 제스처를 취했을 때 수행할 함수
+    
+   
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
         
-        if let viewControllerIndex = self.pages.index(of: viewController) {
-            print("viewControllerIndex:", viewControllerIndex)
+        if let viewControllerIndex = self.pages.index(of: viewController) { //현재(넘기기 전의 인덱스)
+            print("before viewControllerIndex:", viewControllerIndex)
                 if viewControllerIndex == 0 {
                     // wrap to last page in array
-                    return self.pages.last
+                    return nil
                 } else {
                     // go to previous page in array
                     return self.pages[viewControllerIndex - 1]

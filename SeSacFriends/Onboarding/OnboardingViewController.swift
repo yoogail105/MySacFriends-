@@ -10,8 +10,9 @@ import UIKit
 
 class Onboarding01ViewController: BaseViewController {
     
-    var mainView = OnboardingView()
     
+    
+    var mainView = OnboardingView()
     
     override func loadView() {
         self.view = mainView
@@ -20,6 +21,7 @@ class Onboarding01ViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+      
     }
 }
 

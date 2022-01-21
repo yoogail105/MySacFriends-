@@ -24,9 +24,16 @@ class OnboardingView: BaseUIView {
         label.text = "위치 기반으로 빠르게\n주위 친구를 확인"
         return label
     }()
-    
-    
-    
+
+    let pageView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .yellow
+        return view
+    }()
+
+    let pageViewController = UIPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal)
+
+//
     let startButton: BaseButton = {
         let button = BaseButton(frame: CGRect(x: 0, y: 0, width: 0, height: 48))
         button.buttonMode(.fill, title: "시작하기")
@@ -43,23 +50,29 @@ class OnboardingView: BaseUIView {
         return imageView
     }()
     
-    let pageController: UIPageControl = {
+    let pageControl: UIPageControl = {
         let initialPage = 0
-        let pageController = UIPageControl()
-        pageController.currentPageIndicatorTintColor = UIColor.black
-        pageController.pageIndicatorTintColor = UIColor.lightGray
-        pageController.numberOfPages = 3
-        pageController.currentPage = initialPage
-        pageController.translatesAutoresizingMaskIntoConstraints = false
-        return pageController
+        let pageControl = UIPageControl()
+        pageControl.frame = CGRect()
+        pageControl.currentPageIndicatorTintColor = UIColor.black
+        pageControl.pageIndicatorTintColor = UIColor.lightGray
+        pageControl.numberOfPages = 3
+        pageControl.currentPage = initialPage
+        pageControl.translatesAutoresizingMaskIntoConstraints = true
+        return pageControl
     }()
-
-
-    
+//
+//    override func configuration() {
+//        pageViewController.view.frame = pageView.frame
+//    }
+//
     override func constraints() {
         
+//        pageView.addSubview(pageViewController.view)
+
+        
         [
-            titleLabel, centerImage, startButton, pageController
+            titleLabel,centerImage, pageControl, startButton
         ].forEach {
             addSubview($0)
         }
@@ -68,14 +81,20 @@ class OnboardingView: BaseUIView {
             $0.bottom.equalTo(centerImage.snp.top).offset(-56)
             $0.centerX.equalToSuperview()
         }
-        
+
         centerImage.snp.makeConstraints {
             $0.centerX.equalToSuperview()
             $0.centerY.equalToSuperview()
             $0.width.equalToSuperview().multipliedBy(0.95)
             $0.height.equalTo(centerImage.snp.width)
-            
+
         }
+        
+//        pageView.snp.makeConstraints {
+//            $0.top.leading.trailing.equalToSuperview()
+//            $0.bottom.equalTo(startButton.snp.top)
+//
+//        }
         
         startButton.snp.makeConstraints {
             $0.bottom.equalToSuperview().offset(-50)
@@ -85,7 +104,7 @@ class OnboardingView: BaseUIView {
             
         }
         
-        pageController.snp.makeConstraints {
+        pageControl.snp.makeConstraints {
             $0.top.equalTo(centerImage.snp.bottom).offset(50)
             $0.centerX.equalToSuperview()
         }
