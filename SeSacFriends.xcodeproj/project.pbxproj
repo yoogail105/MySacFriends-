@@ -9,13 +9,15 @@
 /* Begin PBXBuildFile section */
 		2308B0242799D83D004145E2 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2308B0232799D83D004145E2 /* UIViewController+Extension.swift */; };
 		2308B0262799DEBF004145E2 /* ToastMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2308B0252799DEBF004145E2 /* ToastMessage.swift */; };
-		234CEC012799F76B00983E20 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 234CEC002799F76B00983E20 /* OnboardingView.swift */; };
+		234CEC012799F76B00983E20 /* OnboardingCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 234CEC002799F76B00983E20 /* OnboardingCardView.swift */; };
 		234CEC032799F7F600983E20 /* OnboardingImages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 234CEC022799F7F600983E20 /* OnboardingImages.swift */; };
 		234CEC052799FAC300983E20 /* BaseUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 234CEC042799FAC300983E20 /* BaseUIView.swift */; };
 		234CEC07279AA73800983E20 /* ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 234CEC06279AA73800983E20 /* ex.swift */; };
-		234CEC09279AAD3A00983E20 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 234CEC08279AAD3A00983E20 /* OnboardingViewController.swift */; };
+		234CEC09279AAD3A00983E20 /* OnboardingCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 234CEC08279AAD3A00983E20 /* OnboardingCardViewController.swift */; };
 		234CEC0B279AB3D500983E20 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 234CEC0A279AB3D500983E20 /* UIView+Extension.swift */; };
 		234CEC0D279AF61500983E20 /* PageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 234CEC0C279AF61500983E20 /* PageViewController.swift */; };
+		234CEC15279B247800983E20 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 234CEC14279B247800983E20 /* OnboardingView.swift */; };
+		234CEC17279B39AC00983E20 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 234CEC16279B39AC00983E20 /* OnboardingViewController.swift */; };
 		234E5FA427978FE700F5D2BB /* AuthVerificationCodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 234E5FA327978FE700F5D2BB /* AuthVerificationCodeView.swift */; };
 		234E5FA627987EE900F5D2BB /* UIButton+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 234E5FA527987EE900F5D2BB /* UIButton+Extension.swift */; };
 		234E5FAA27988F8D00F5D2BB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 234E5FA927988F8D00F5D2BB /* GoogleService-Info.plist */; };
@@ -48,13 +50,15 @@
 /* Begin PBXFileReference section */
 		2308B0232799D83D004145E2 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 		2308B0252799DEBF004145E2 /* ToastMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastMessage.swift; sourceTree = "<group>"; };
-		234CEC002799F76B00983E20 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
+		234CEC002799F76B00983E20 /* OnboardingCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCardView.swift; sourceTree = "<group>"; };
 		234CEC022799F7F600983E20 /* OnboardingImages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingImages.swift; sourceTree = "<group>"; };
 		234CEC042799FAC300983E20 /* BaseUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseUIView.swift; sourceTree = "<group>"; };
 		234CEC06279AA73800983E20 /* ex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ex.swift; sourceTree = "<group>"; };
-		234CEC08279AAD3A00983E20 /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
+		234CEC08279AAD3A00983E20 /* OnboardingCardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCardViewController.swift; sourceTree = "<group>"; };
 		234CEC0A279AB3D500983E20 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		234CEC0C279AF61500983E20 /* PageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageViewController.swift; sourceTree = "<group>"; };
+		234CEC14279B247800983E20 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
+		234CEC16279B39AC00983E20 /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 		234E5FA327978FE700F5D2BB /* AuthVerificationCodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthVerificationCodeView.swift; sourceTree = "<group>"; };
 		234E5FA527987EE900F5D2BB /* UIButton+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extension.swift"; sourceTree = "<group>"; };
 		234E5FA927988F8D00F5D2BB /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -101,8 +105,10 @@
 		234CEBFF2799F75500983E20 /* Onboarding */ = {
 			isa = PBXGroup;
 			children = (
-				234CEC002799F76B00983E20 /* OnboardingView.swift */,
-				234CEC08279AAD3A00983E20 /* OnboardingViewController.swift */,
+				234CEC002799F76B00983E20 /* OnboardingCardView.swift */,
+				234CEC08279AAD3A00983E20 /* OnboardingCardViewController.swift */,
+				234CEC16279B39AC00983E20 /* OnboardingViewController.swift */,
+				234CEC14279B247800983E20 /* OnboardingView.swift */,
 				234CEC0C279AF61500983E20 /* PageViewController.swift */,
 				234CEC022799F7F600983E20 /* OnboardingImages.swift */,
 			);
@@ -290,15 +296,17 @@
 				2399604527965760001C8EA4 /* AuthViewController.swift in Sources */,
 				23996031279656EB001C8EA4 /* ViewController.swift in Sources */,
 				2389E1DB2796B6FF00BE68E3 /* UserDefaults+Extension.swift in Sources */,
+				234CEC17279B39AC00983E20 /* OnboardingViewController.swift in Sources */,
 				2389E1C42796862A00BE68E3 /* UIFont+Extension.swift in Sources */,
+				234CEC15279B247800983E20 /* OnboardingView.swift in Sources */,
 				234CEC032799F7F600983E20 /* OnboardingImages.swift in Sources */,
 				2389E1B227967B9900BE68E3 /* UIColor+Extension.swift in Sources */,
 				2389E1DE2796D8C800BE68E3 /* SignUpViewController.swift in Sources */,
-				234CEC012799F76B00983E20 /* OnboardingView.swift in Sources */,
+				234CEC012799F76B00983E20 /* OnboardingCardView.swift in Sources */,
 				2389E1D32796A29F00BE68E3 /* AuthViewModel.swift in Sources */,
 				2308B0262799DEBF004145E2 /* ToastMessage.swift in Sources */,
 				2399602D279656EB001C8EA4 /* AppDelegate.swift in Sources */,
-				234CEC09279AAD3A00983E20 /* OnboardingViewController.swift in Sources */,
+				234CEC09279AAD3A00983E20 /* OnboardingCardViewController.swift in Sources */,
 				2399602F279656EB001C8EA4 /* SceneDelegate.swift in Sources */,
 				234CEC052799FAC300983E20 /* BaseUIView.swift in Sources */,
 				2389E1D52796A2AD00BE68E3 /* APIService.swift in Sources */,

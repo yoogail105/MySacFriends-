@@ -2,62 +2,35 @@
 //  OnboardingViewController.swift
 //  SeSacFriends
 //
-//  Created by 성민주민주 on 2022/01/21.
+//  Created by 성민주민주 on 2022/01/22.
 //
 
-import Foundation
 import UIKit
+import SnapKit
 
-class Onboarding01ViewController: BaseViewController {
+class OnboardingViewController: BaseViewController {
     
-    
-    
-    var mainView = OnboardingView()
+    let mainView = OnboardingView()
+    let cardViewController = PageViewController()
+//    let cardView = OnboardingCardView()
     
     override func loadView() {
         self.view = mainView
-        
+  
     }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-      
-    }
-}
-
-//관심사가 같은 친구를\n찾을 수 있어요
-// SeSAC Frineds
-
-
-class Onboarding02ViewController: Onboarding01ViewController {
-    
-    
-    override func loadView() {
-        self.view = mainView
-        mainView.titleLabel.text = "관심사가 같은 친구를\n찾을 수 있어요"
-        mainView.centerImage.image = UIImage(named: OnboardingImages.onboardingImage02.rawValue)
         
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-       
-    }
-    
-}
+        addChild(cardViewController)
+        cardViewController.view.translatesAutoresizingMaskIntoConstraints = false
+        mainView.pageView.addSubview(cardViewController.view)
+        cardViewController.view.snp.makeConstraints {
+            $0.top.leading.trailing.bottom.equalToSuperview()
 
-class Onboarding03ViewController: Onboarding01ViewController {
-   
-    override func loadView() {
-        self.view = mainView
-        mainView.titleLabel.text = "SeSAC Friends"
-        mainView.centerImage.image = UIImage(named: OnboardingImages.onboardingImage03.rawValue)
-        
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-       
+        }
+        cardViewController.didMove(toParent: self)
     }
     
 }

@@ -8,12 +8,11 @@
 import UIKit
 
 class PageViewController: UIPageViewController, UIPageViewControllerDelegate, UIPageViewControllerDataSource {
-    
 
     
-    let mainView = OnboardingView()
     var pages = [UIViewController]()
     let pageControl = OnboardingView().pageControl
+    
     
 //    lazy var pageViewController: UIPageViewController = {
 //          let vc = UIPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
@@ -38,9 +37,9 @@ class PageViewController: UIPageViewController, UIPageViewControllerDelegate, UI
         self.dataSource = self
         self.delegate = self
         let initialPage = 0
-        let page1 = Onboarding01ViewController()
-        let page2 = Onboarding02ViewController()
-        let page3 = Onboarding03ViewController()
+        let page1 = OnboardingCard01ViewController()
+        let page2 = OnboardingCard02ViewController()
+        let page3 = OnboardingCard03ViewController()
         
         [page1, page2, page3].forEach {
             self.pages.append($0)
@@ -77,7 +76,7 @@ class PageViewController: UIPageViewController, UIPageViewControllerDelegate, UI
                     return self.pages[viewControllerIndex + 1]
                 } else {
                     // wrap to first page in array
-                    return self.pages.first
+                    return nil
                 }
             }
             return nil
