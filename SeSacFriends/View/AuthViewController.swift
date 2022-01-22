@@ -32,17 +32,16 @@ class AuthViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
-        
-        //        mainView.verifyButton.addTarget(self, action: #selector(sendVerifyNumberButtonClicked), for: .touchUpInside)
-        //
-        //        mainView.verifyButton.addTarget(self, action: #selector(verifyButtonClicked), for: .touchUpInside)
-        
+    
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         mainView.numberTextField.underLine()
+    }
+    
+    override func setupNavigationBar() {
+        
     }
     
     override func bind() {

@@ -16,6 +16,7 @@ class BaseViewController: UIViewController {
         bind()
         addAction()
         setupConstraints()
+        setupNavigationBar()
     }
     
     func configure() {
@@ -38,6 +39,18 @@ class BaseViewController: UIViewController {
             self.view.endEditing(true)
         }
     
+    func setupNavigationBar() {
+        self.navigationItem.title = ""
+        self.navigationItem.backButtonTitle = ""
+        let backButton = UIBarButtonItem(image: UIImage(systemName: "arrowshape.turn.up.backward.fill"), style: .done, target: self, action: #selector(back))
+        self.navigationItem.leftBarButtonItem = backButton
+        self.navigationItem.leftBarButtonItem?.tintColor = UIColor(named: "SSACGreen")
+    }
+    
+    @objc func back() {
+        self.navigationController?.popViewController(animated: true)
+        
+    }
     
     
 }

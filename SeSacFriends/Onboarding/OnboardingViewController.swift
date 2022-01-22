@@ -47,7 +47,9 @@ class OnboardingViewController: BaseViewController {
     }
     
     func toAuthView() {
-        
+        UserDefaults.standard.startMode = StartMode.auth.rawValue
+        let vc = AuthViewController()
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
 }
