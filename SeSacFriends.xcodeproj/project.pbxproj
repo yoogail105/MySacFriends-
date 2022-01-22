@@ -17,6 +17,8 @@
 		234CEC0D279AF61500983E20 /* PageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 234CEC0C279AF61500983E20 /* PageViewController.swift */; };
 		234CEC15279B247800983E20 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 234CEC14279B247800983E20 /* OnboardingView.swift */; };
 		234CEC17279B39AC00983E20 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 234CEC16279B39AC00983E20 /* OnboardingViewController.swift */; };
+		234CEC19279C512700983E20 /* SignUpNicknameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 234CEC18279C512600983E20 /* SignUpNicknameView.swift */; };
+		234CEC1B279C51C700983E20 /* Text.swift in Sources */ = {isa = PBXBuildFile; fileRef = 234CEC1A279C51C700983E20 /* Text.swift */; };
 		234E5FA427978FE700F5D2BB /* AuthVerificationCodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 234E5FA327978FE700F5D2BB /* AuthVerificationCodeView.swift */; };
 		234E5FA627987EE900F5D2BB /* UIButton+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 234E5FA527987EE900F5D2BB /* UIButton+Extension.swift */; };
 		234E5FAA27988F8D00F5D2BB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 234E5FA927988F8D00F5D2BB /* GoogleService-Info.plist */; };
@@ -57,6 +59,8 @@
 		234CEC0C279AF61500983E20 /* PageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageViewController.swift; sourceTree = "<group>"; };
 		234CEC14279B247800983E20 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		234CEC16279B39AC00983E20 /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
+		234CEC18279C512600983E20 /* SignUpNicknameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpNicknameView.swift; sourceTree = "<group>"; };
+		234CEC1A279C51C700983E20 /* Text.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Text.swift; sourceTree = "<group>"; };
 		234E5FA327978FE700F5D2BB /* AuthVerificationCodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthVerificationCodeView.swift; sourceTree = "<group>"; };
 		234E5FA527987EE900F5D2BB /* UIButton+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extension.swift"; sourceTree = "<group>"; };
 		234E5FA927988F8D00F5D2BB /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -186,6 +190,8 @@
 				2399602C279656EB001C8EA4 /* AppDelegate.swift */,
 				2399602E279656EB001C8EA4 /* SceneDelegate.swift */,
 				23996030279656EB001C8EA4 /* ViewController.swift */,
+				234CEC18279C512600983E20 /* SignUpNicknameView.swift */,
+				234CEC1A279C51C700983E20 /* Text.swift */,
 				2389E1DC2796C81800BE68E3 /* APIService */,
 				234CEBFF2799F75500983E20 /* Onboarding */,
 				2389E1C9279697E700BE68E3 /* Extension */,
@@ -288,6 +294,7 @@
 				239960412796572C001C8EA4 /* String+Extension.swift in Sources */,
 				234E5FA627987EE900F5D2BB /* UIButton+Extension.swift in Sources */,
 				2399604327965741001C8EA4 /* AuthView.swift in Sources */,
+				234CEC19279C512700983E20 /* SignUpNicknameView.swift in Sources */,
 				234E5FA427978FE700F5D2BB /* AuthVerificationCodeView.swift in Sources */,
 				2399604527965760001C8EA4 /* AuthViewController.swift in Sources */,
 				23996031279656EB001C8EA4 /* ViewController.swift in Sources */,
@@ -307,6 +314,7 @@
 				234CEC052799FAC300983E20 /* BaseUIView.swift in Sources */,
 				2389E1D52796A2AD00BE68E3 /* APIService.swift in Sources */,
 				234CEC0D279AF61500983E20 /* PageViewController.swift in Sources */,
+				234CEC1B279C51C700983E20 /* Text.swift in Sources */,
 				234CEC0B279AB3D500983E20 /* UIView+Extension.swift in Sources */,
 				2389E1C8279697E200BE68E3 /* UITextField+Extension.swift in Sources */,
 			);

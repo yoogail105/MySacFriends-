@@ -13,7 +13,7 @@ class AuthVerificationCodeView: UIView {
     
     let mainLabel: UILabel = {
         let label = UILabel()
-        label.text = "인증번호가 문자로 전송되었어요."
+        label.text = AuthVerificationCodeText.mainLabel.rawValue
         label.font = UIFont().Display1_R20
         label.textAlignment = .center
         label.textColor = .black
@@ -22,7 +22,7 @@ class AuthVerificationCodeView: UIView {
     
     let subLabel: UILabel = {
        let label = UILabel()
-        label.text = "최대 소모 20초"
+        label.text = AuthVerificationCodeText.subLabel.rawValue
         label.textAlignment = .center
         label.font = UIFont().Title2_R16
         label.textColor = UIColor.grayColor(.gray7)
@@ -31,7 +31,7 @@ class AuthVerificationCodeView: UIView {
     
     let numberTextField: UITextField = {
        let textField = UITextField()
-        textField.placeholder = "인증번호 입력"
+        textField.placeholder = AuthVerificationCodeText.codePlaceholder.rawValue
         textField.keyboardType = .numberPad
         textField.textColor = .black
         textField.borderStyle = .none
@@ -48,7 +48,7 @@ class AuthVerificationCodeView: UIView {
     
     let reSendButton: BaseButton = {
         let button = BaseButton()
-        button.buttonMode(.fill, title: "재전송")
+        button.buttonMode(.fill, title: AuthVerificationCodeText.resendButton.rawValue)
         button.titleLabel?.font = UIFont().Body3_R14
         return button
     }()
@@ -56,7 +56,7 @@ class AuthVerificationCodeView: UIView {
     
     let verifyButton: BaseButton = {
        let button = BaseButton()
-        button.buttonMode(.disable, title: "인증하고 시작하기")
+        button.buttonMode(.disable, title: AuthVerificationCodeText.authVerificationCodeButton.rawValue)
         return button
     }()
 
@@ -121,6 +121,8 @@ class AuthVerificationCodeView: UIView {
             $0.trailing.equalTo(reSendButton.snp.leading).offset(-20)
             $0.centerY.equalTo(numberTextField)
         }
+        
+        
     }
 }
 

@@ -13,7 +13,7 @@ class AuthView: UIView {
     
     let mainLabel: UILabel = {
         let label = UILabel()
-        label.text = "새싹 서비스 이용을 위해\n 휴대폰 번호를 입력해 주세요."
+        label.text = AuthText.mainLabel.rawValue
         label.numberOfLines = 0
         label.font = UIFont().Display1_R20
         label.textAlignment = .center
@@ -23,7 +23,7 @@ class AuthView: UIView {
     
     let numberTextField: UITextField = {
        let textField = UITextField()
-        textField.placeholder = "휴대폰 번호(-없이 숫자만 입력)"
+        textField.placeholder = AuthText.phoneNumberPlaceholder.rawValue
         textField.keyboardType = .numberPad
         textField.textColor = .black
         textField.borderStyle = .none
@@ -33,7 +33,7 @@ class AuthView: UIView {
     
     let verifyButton: BaseButton = {
        let button = BaseButton()
-        button.buttonMode(.disable, title: "인증 번호 받기")
+        button.buttonMode(.disable, title: AuthText.authButton.rawValue)
         return button
     }()
 

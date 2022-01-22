@@ -77,6 +77,7 @@ class SignUpViewController: BaseViewController {
         showToastWithAction(message: "전화 번호 인증 시작") {
             self.viewModel.postVerificationCode {
                 print("인증번호보냈습니다.")
+                
             }
         }
         
