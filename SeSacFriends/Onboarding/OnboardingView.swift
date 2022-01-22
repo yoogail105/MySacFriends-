@@ -29,6 +29,7 @@ class OnboardingView: BaseUIView {
         pageControl.numberOfPages = 3
         pageControl.currentPage = initialPage
         pageControl.translatesAutoresizingMaskIntoConstraints = true
+        pageControl.isUserInteractionEnabled = false
         return pageControl
     }()
 

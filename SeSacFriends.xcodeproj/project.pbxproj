@@ -12,7 +12,6 @@
 		234CEC012799F76B00983E20 /* OnboardingCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 234CEC002799F76B00983E20 /* OnboardingCardView.swift */; };
 		234CEC032799F7F600983E20 /* OnboardingImages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 234CEC022799F7F600983E20 /* OnboardingImages.swift */; };
 		234CEC052799FAC300983E20 /* BaseUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 234CEC042799FAC300983E20 /* BaseUIView.swift */; };
-		234CEC07279AA73800983E20 /* ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 234CEC06279AA73800983E20 /* ex.swift */; };
 		234CEC09279AAD3A00983E20 /* OnboardingCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 234CEC08279AAD3A00983E20 /* OnboardingCardViewController.swift */; };
 		234CEC0B279AB3D500983E20 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 234CEC0A279AB3D500983E20 /* UIView+Extension.swift */; };
 		234CEC0D279AF61500983E20 /* PageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 234CEC0C279AF61500983E20 /* PageViewController.swift */; };
@@ -53,7 +52,6 @@
 		234CEC002799F76B00983E20 /* OnboardingCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCardView.swift; sourceTree = "<group>"; };
 		234CEC022799F7F600983E20 /* OnboardingImages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingImages.swift; sourceTree = "<group>"; };
 		234CEC042799FAC300983E20 /* BaseUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseUIView.swift; sourceTree = "<group>"; };
-		234CEC06279AA73800983E20 /* ex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ex.swift; sourceTree = "<group>"; };
 		234CEC08279AAD3A00983E20 /* OnboardingCardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCardViewController.swift; sourceTree = "<group>"; };
 		234CEC0A279AB3D500983E20 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		234CEC0C279AF61500983E20 /* PageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageViewController.swift; sourceTree = "<group>"; };
@@ -159,7 +157,6 @@
 			isa = PBXGroup;
 			children = (
 				2389E1D42796A2AD00BE68E3 /* APIService.swift */,
-				234CEC06279AA73800983E20 /* ex.swift */,
 			);
 			path = APIService;
 			sourceTree = "<group>";
@@ -290,7 +287,6 @@
 				2389E1B027967B1200BE68E3 /* MainViewController.swift in Sources */,
 				239960412796572C001C8EA4 /* String+Extension.swift in Sources */,
 				234E5FA627987EE900F5D2BB /* UIButton+Extension.swift in Sources */,
-				234CEC07279AA73800983E20 /* ex.swift in Sources */,
 				2399604327965741001C8EA4 /* AuthView.swift in Sources */,
 				234E5FA427978FE700F5D2BB /* AuthVerificationCodeView.swift in Sources */,
 				2399604527965760001C8EA4 /* AuthViewController.swift in Sources */,
