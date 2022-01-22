@@ -18,7 +18,25 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
   
         window = UIWindow(windowScene: windowScene)
         window?.windowScene = windowScene
-        window?.rootViewController = UINavigationController(rootViewController: OnboardingViewController())
+
+        
+        let startModeString = UserDefaults.standard.startMode
+        let startMode = StartMode(rawValue: startModeString) ?? .onBoarding
+        var startViewController: UIViewController
+        
+        switch startMode {
+        case .onBoarding:
+            startViewController = OnboardingViewController()
+        case .auth:
+            startViewController = AuthViewController()
+        case .signUp:
+            startViewController = SignUpViewController()
+        case .main:
+            startViewController = MainViewController()
+        }
+        
+        
+        window?.rootViewController = UINavigationController(rootViewController: startViewController)
         window?.makeKeyAndVisible()
         
     }

@@ -37,7 +37,7 @@ class AuthVerificationCodeView: UIView {
         textField.borderStyle = .none
         return textField
     }()
-    
+      
     let timerLabel: UILabel = {
        let label = UILabel()
         label.text = "01:00"

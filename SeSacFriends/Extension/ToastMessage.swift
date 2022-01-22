@@ -19,3 +19,27 @@ enum FirebaseAuthErrorCode: String {
     case e17057 = "이미 전송되었습니다.\n 메세지함을 확인해 주세요."
     case e17993 = "오류오류 그놈의 오류임."
 }
+
+/*
+enum HTTPCode: Int {
+        case OK = 200
+        case NOT_MODIFY = 304
+        case SERVER_ERROR = 500
+
+        var value: String {
+                return "HTTP number is \(self.rawValue)"
+        }
+
+        func getDescription () -> String {
+                switch self {
+                case .OK :
+                        return "HTTP 코드는 \(self.rawValue)" 입니다
+                }
+                ....
+        }
+        
+        static func getName() -> String {
+                return "이건 ~~"
+        }
+}
+*/

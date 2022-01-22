@@ -7,6 +7,8 @@
 
 import UIKit
 import SnapKit
+import RxSwift
+import RxCocoa
 
 class OnboardingViewController: BaseViewController {
     
@@ -23,6 +25,8 @@ class OnboardingViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        UserDefaults.standard.startMode = StartMode.onBoarding.rawValue
+        
         addChild(cardViewController)
         cardViewController.view.translatesAutoresizingMaskIntoConstraints = false
         mainView.pageView.addSubview(cardViewController.view)
@@ -31,6 +35,19 @@ class OnboardingViewController: BaseViewController {
 
         }
         cardViewController.didMove(toParent: self)
+    }
+    
+    override func bind() {
+        
+        mainView.startButton.rx.tap
+            .bind {
+                self.toAuthView()
+            }
+        
+    }
+    
+    func toAuthView() {
+        
     }
     
 }

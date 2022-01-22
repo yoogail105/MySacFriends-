@@ -11,7 +11,7 @@ import RxRelay
 
 class AuthViewModel {
     
-    var buttonMod = BehaviorRelay<String>(value: "false")
+    var buttonMode = BehaviorRelay<String>(value: "false")
     
     var phoneNumberObserver = BehaviorRelay<String>(value: "")
     var certificationCodeObserver = BehaviorRelay<String>(value: "")
@@ -23,6 +23,10 @@ class AuthViewModel {
     var isValidCertificationCode: Observable<Bool> {
         return certificationCodeObserver.map { $0.isValidCertificationCode()}
      }
+    
+    var onTimer: BehaviorRelay = BehaviorRelay(value: false)
+    
+    
     
     
     

@@ -16,13 +16,14 @@ class SignUpViewController: BaseViewController {
     let mainView = AuthVerificationCodeView()
     let viewModel = AuthViewModel()
     let disposeBag = DisposeBag()
-    
+
     override func loadView() {
         self.view = mainView
     }
+    
+    // MARK: viewDidLoad
     override func viewDidLoad() {
         super .viewDidLoad()
-        
         
         
 
@@ -45,6 +46,19 @@ class SignUpViewController: BaseViewController {
                 self.sendVerifyNumberButtonClicked()
             })
             .disposed(by: disposeBag)
+        
+        // timer
+        viewModel.onTimer.asObservable()
+          .debug("isRunningFirst") // 로그창에 running true, false 출력
+          .flatMapLatest { isRunning in
+          isRunning ? Observable<Int>
+          .interval(.seconds(1), scheduler: MainScheduler.instance) : .empty()
+          }
+          .subscribe(onNext: { _ in
+           print("timer")
+          })
+          .disposed(by: disposeBag)
+        
     }
     
     override func setupConstraints() {
