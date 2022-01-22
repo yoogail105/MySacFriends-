@@ -22,6 +22,7 @@ extension UserDefaults {
         case startMode
         case authVerificationID
         case phoneNumber
+        case nickname
 
     }
     
@@ -46,5 +47,10 @@ extension UserDefaults {
     var phoneNumber: String {
         get { string(forKey: UserDefaultsKeys.phoneNumber.rawValue) ?? ""}
         set { setValue(newValue, forKey: UserDefaultsKeys.phoneNumber.rawValue)}
+    }
+    
+    var nickname: String {
+        get { string(forKey: UserDefaultsKeys.nickname.rawValue) ?? ""}
+        set { setValue(newValue, forKey: UserDefaultsKeys.nickname.rawValue)}
     }
 }

@@ -12,7 +12,11 @@ enum requestVerificationCode: String {
     case invalid = "잘못된 전화번호 형식입니다."
     case overRequest = "과도한 인증시도가 있었습니다.\n나중에 다시 시도해 주세요."
     case unkownError = "에러가 발생했습니다.\n다시 시도해 주세요."
-    
+}
+
+enum SignUpToast: String {
+    case nicknameCountError = "닉네임은 1자 이상 10자 이내로 부탁드려요."
+    case invalidNickname = "해당 닉네임은 사용할 수 없습니다."
 }
 
 enum FirebaseAuthErrorCode: String {

@@ -7,23 +7,14 @@
 import UIKit
 
 
-class NicknameView: BaseUIView{
+class NicknameView: AuthView{
     
-    
-    let mainLabel: UILabel = {
-        let label = UILabel()
-        label.text = SignUpText.setNickname.rawValue
-        label.font = UIFont().Display1_R20
-        return label
-    }()
-    
-    let textField: UITextField = {
-       let textField = UITextField()
-        textField.placeholder = SignUpText.nicknamePlaceholder.rawValue
-        textField.borderStyle = .none
+    override func configuration() {
+        mainLabel.text = SignUpText.setNickname.rawValue
         
-        return textField
-    }()
-    
-    
+        textField.placeholder = SignUpText.nicknamePlaceholder.rawValue
+        textField.keyboardType = .default
+        
+        nextButton.setTitle(SignUpText.nextButton.rawValue, for: .normal)
+    }
 }

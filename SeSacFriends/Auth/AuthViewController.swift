@@ -36,18 +36,13 @@ class AuthViewController: BaseViewController {
     
     }
     
-//    override func viewDidLayoutSubviews() {
-//        super.viewDidLayoutSubviews()
-//        //mainView.numberTextField.underLine(borderColor: UIColor.grayColor(.gray3).cgColor)
-//    }
-    
     override func setupNavigationBar() {
         
     }
     
     override func bind() {
         
-        mainView.numberTextField.rx.text
+        mainView.textField.rx.text
             .orEmpty
             .bind(to: viewModel.phoneNumberObserver)
             .disposed(by: disposeBag)
@@ -58,7 +53,7 @@ class AuthViewController: BaseViewController {
             .disposed(by: disposeBag)
         
         
-        mainView.numberTextField.rx.text
+        mainView.textField.rx.text
             .orEmpty
             .subscribe(onNext: {
                 self.limitPhoneNumberTextField($0)
@@ -67,10 +62,10 @@ class AuthViewController: BaseViewController {
         
         viewModel.isValidPhoneNumber
             .map { $0 ? UIColor.brandColor(.green) : UIColor.grayColor(.gray3)}
-            .bind(to: mainView.verifyButton.rx.backgroundColor)
+            .bind(to: mainView.nextButton.rx.backgroundColor)
             .disposed(by: disposeBag)
         
-        mainView.verifyButton.rx.tap
+        mainView.nextButton.rx.tap
             .withLatestFrom(viewModel.isValidPhoneNumber)
             .filter{ $0 }
             .subscribe(onNext: { _ in
@@ -78,11 +73,11 @@ class AuthViewController: BaseViewController {
             })
             .disposed(by: disposeBag)
         
-        mainView.verifyButton.rx.tap
+        mainView.nextButton.rx.tap
             .withLatestFrom(viewModel.isValidPhoneNumber)
             .filter{ !$0 }
             .subscribe(onNext: { _ in
-                self.showToast(message: "잘못된 전화번호 형식입니다")
+                self.showToast(message: requestVerificationCode.invalid.rawValue )
             })
             .disposed(by: disposeBag)
         
@@ -120,7 +115,7 @@ class AuthViewController: BaseViewController {
         private func limitPhoneNumberTextField(_ phoneNumber: String) {
             if phoneNumber.count > 11 {
                 let index = phoneNumber.index(phoneNumber.startIndex, offsetBy: 11)
-                mainView.numberTextField.text = String(phoneNumber[..<index])
+                mainView.textField.text = String(phoneNumber[..<index])
             }
         }
         
