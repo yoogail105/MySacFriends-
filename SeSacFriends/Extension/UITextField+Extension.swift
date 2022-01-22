@@ -9,11 +9,14 @@ import Foundation
 import UIKit
 
 extension UITextField {
-    func underLine() {
+    func underLine(borderColor: CGColor) {
+        print("underLine(borderColor: \(borderColor))")
         let border = CALayer()
         border.frame = CGRect(x: 0, y: self.frame.size.height-1, width: self.frame.width, height: 1)
         border.borderWidth = 1
-        border.backgroundColor = UIColor.grayColor(.gray3).cgColor
+        border.borderColor = borderColor
         self.layer.addSublayer(border)
     }
+    
+    
 }

@@ -37,6 +37,8 @@ class AuthVerificationCodeView: UIView {
         textField.borderStyle = .none
         return textField
     }()
+    
+    let line = UIView()
       
     let timerLabel: UILabel = {
        let label = UILabel()
@@ -74,12 +76,12 @@ class AuthVerificationCodeView: UIView {
     
     func configuration() {
         self.backgroundColor = .white
-        numberTextField.underLine()
+       
     }
     
     func constraints() {
         [
-            mainLabel, subLabel, timerLabel, numberTextField, reSendButton, verifyButton
+            mainLabel, subLabel, timerLabel, numberTextField, line, reSendButton, verifyButton
         ].forEach {
             addSubview($0)
         }
@@ -107,6 +109,12 @@ class AuthVerificationCodeView: UIView {
             $0.leading.equalTo(verifyButton.snp.leading)
             $0.trailing.equalTo(verifyButton.snp.trailing)
             $0.height.equalTo(48)
+        }
+        
+        line.snp.makeConstraints {
+            $0.height.equalTo(1)
+            $0.leading.trailing.equalTo(numberTextField)
+            $0.top.equalTo(numberTextField.snp.bottom).offset(1)
         }
         
         reSendButton.snp.makeConstraints {

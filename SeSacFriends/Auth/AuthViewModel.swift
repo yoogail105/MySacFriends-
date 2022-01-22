@@ -14,7 +14,9 @@ class AuthViewModel {
     var buttonMode = BehaviorRelay<String>(value: "false")
     
     var phoneNumberObserver = BehaviorRelay<String>(value: "")
+    
     var certificationCodeObserver = BehaviorRelay<String>(value: "")
+    
     
     var isValidPhoneNumber: Observable<Bool> {
         return phoneNumberObserver.map { $0.validatePhoneNumber() }

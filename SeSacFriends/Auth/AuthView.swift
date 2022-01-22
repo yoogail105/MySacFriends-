@@ -10,6 +10,14 @@ import UIKit
 import SnapKit
 
 class AuthView: UIView {
+//
+//    func underLine() {
+//        let border = CALayer()
+//        border.frame = CGRect(x: 0, y: self.frame.size.height-1, width: self.frame.width, height: 1)
+//        border.borderWidth = 1
+//        border.borderColor = UIColor.grayColor(.gray3).cgColor
+//
+//    }
     
     let mainLabel: UILabel = {
         let label = UILabel()
@@ -21,22 +29,25 @@ class AuthView: UIView {
         return label
     }()
     
+    
     let numberTextField: UITextField = {
-       let textField = UITextField()
+        let textField = UITextField()
         textField.placeholder = AuthText.phoneNumberPlaceholder.rawValue
         textField.keyboardType = .numberPad
         textField.textColor = .black
-        textField.borderStyle = .none
+        //textField.borderStyle = .none
         
         return textField
     }()
+ 
+    let line = UIView()
     
     let verifyButton: BaseButton = {
-       let button = BaseButton()
+        let button = BaseButton()
         button.buttonMode(.disable, title: AuthText.authButton.rawValue)
         return button
     }()
-
+    
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -44,19 +55,19 @@ class AuthView: UIView {
         configuration()
         constraints()
     }
-  
+    
     required init?(coder: NSCoder) {
         super.init(coder: coder)
     }
     
     func configuration() {
         self.backgroundColor = .white
-       // numberTextField.underLine()
+
     }
     
     func constraints() {
         [
-            mainLabel, numberTextField, verifyButton
+            mainLabel, numberTextField, line, verifyButton
         ].forEach {
             addSubview($0)
         }
@@ -74,6 +85,7 @@ class AuthView: UIView {
             $0.centerY.equalToSuperview().offset(50)
         }
         
+        
         numberTextField.snp.makeConstraints {
             $0.bottom.equalTo(verifyButton.snp.top).offset(-72)
             $0.leading.equalTo(verifyButton.snp.leading)
@@ -81,7 +93,11 @@ class AuthView: UIView {
             $0.height.equalTo(48)
         }
         
-        
+        line.snp.makeConstraints {
+            $0.height.equalTo(1)
+            $0.leading.trailing.equalTo(numberTextField)
+            $0.top.equalTo(numberTextField.snp.bottom).offset(1)
+        }
     }
 }
 

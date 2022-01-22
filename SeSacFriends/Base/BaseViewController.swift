@@ -42,9 +42,9 @@ class BaseViewController: UIViewController {
     func setupNavigationBar() {
         self.navigationItem.title = ""
         self.navigationItem.backButtonTitle = ""
-        let backButton = UIBarButtonItem(image: UIImage(systemName: "arrowshape.turn.up.backward.fill"), style: .done, target: self, action: #selector(back))
+        let backButton = UIBarButtonItem(image: UIImage(named: AssetIcon.backArrow.rawValue), style: .done, target: self, action: #selector(back))
         self.navigationItem.leftBarButtonItem = backButton
-        self.navigationItem.leftBarButtonItem?.tintColor = UIColor(named: "SSACGreen")
+        self.navigationItem.leftBarButtonItem?.tintColor = UIColor.black
     }
     
     @objc func back() {

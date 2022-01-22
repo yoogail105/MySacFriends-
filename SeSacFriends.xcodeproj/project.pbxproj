@@ -19,6 +19,9 @@
 		234CEC17279B39AC00983E20 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 234CEC16279B39AC00983E20 /* OnboardingViewController.swift */; };
 		234CEC19279C512700983E20 /* SignUpNicknameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 234CEC18279C512600983E20 /* SignUpNicknameView.swift */; };
 		234CEC1B279C51C700983E20 /* Text.swift in Sources */ = {isa = PBXBuildFile; fileRef = 234CEC1A279C51C700983E20 /* Text.swift */; };
+		234CEC1D279C61F700983E20 /* NicknameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 234CEC1C279C61F700983E20 /* NicknameView.swift */; };
+		234CEC20279C729800983E20 /* AssetIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 234CEC1F279C729800983E20 /* AssetIcon.swift */; };
+		234CEC22279C827F00983E20 /* SignUpNicknameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 234CEC21279C827F00983E20 /* SignUpNicknameViewController.swift */; };
 		234E5FA427978FE700F5D2BB /* AuthVerificationCodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 234E5FA327978FE700F5D2BB /* AuthVerificationCodeView.swift */; };
 		234E5FA627987EE900F5D2BB /* UIButton+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 234E5FA527987EE900F5D2BB /* UIButton+Extension.swift */; };
 		234E5FAA27988F8D00F5D2BB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 234E5FA927988F8D00F5D2BB /* GoogleService-Info.plist */; };
@@ -35,10 +38,9 @@
 		2389E1D52796A2AD00BE68E3 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2389E1D42796A2AD00BE68E3 /* APIService.swift */; };
 		2389E1D72796A31800BE68E3 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2389E1D62796A31800BE68E3 /* BaseViewController.swift */; };
 		2389E1DB2796B6FF00BE68E3 /* UserDefaults+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2389E1DA2796B6FF00BE68E3 /* UserDefaults+Extension.swift */; };
-		2389E1DE2796D8C800BE68E3 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2389E1DD2796D8C800BE68E3 /* SignUpViewController.swift */; };
+		2389E1DE2796D8C800BE68E3 /* AuthVerificationCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2389E1DD2796D8C800BE68E3 /* AuthVerificationCodeViewController.swift */; };
 		2399602D279656EB001C8EA4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2399602C279656EB001C8EA4 /* AppDelegate.swift */; };
 		2399602F279656EB001C8EA4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2399602E279656EB001C8EA4 /* SceneDelegate.swift */; };
-		23996031279656EB001C8EA4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23996030279656EB001C8EA4 /* ViewController.swift */; };
 		23996036279656EC001C8EA4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 23996035279656EC001C8EA4 /* Assets.xcassets */; };
 		23996039279656EC001C8EA4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 23996037279656EC001C8EA4 /* LaunchScreen.storyboard */; };
 		239960412796572C001C8EA4 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 239960402796572C001C8EA4 /* String+Extension.swift */; };
@@ -61,6 +63,9 @@
 		234CEC16279B39AC00983E20 /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 		234CEC18279C512600983E20 /* SignUpNicknameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpNicknameView.swift; sourceTree = "<group>"; };
 		234CEC1A279C51C700983E20 /* Text.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Text.swift; sourceTree = "<group>"; };
+		234CEC1C279C61F700983E20 /* NicknameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NicknameView.swift; sourceTree = "<group>"; };
+		234CEC1F279C729800983E20 /* AssetIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetIcon.swift; sourceTree = "<group>"; };
+		234CEC21279C827F00983E20 /* SignUpNicknameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpNicknameViewController.swift; sourceTree = "<group>"; };
 		234E5FA327978FE700F5D2BB /* AuthVerificationCodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthVerificationCodeView.swift; sourceTree = "<group>"; };
 		234E5FA527987EE900F5D2BB /* UIButton+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extension.swift"; sourceTree = "<group>"; };
 		234E5FA927988F8D00F5D2BB /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -75,11 +80,10 @@
 		2389E1D42796A2AD00BE68E3 /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
 		2389E1D62796A31800BE68E3 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		2389E1DA2796B6FF00BE68E3 /* UserDefaults+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Extension.swift"; sourceTree = "<group>"; };
-		2389E1DD2796D8C800BE68E3 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		2389E1DD2796D8C800BE68E3 /* AuthVerificationCodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthVerificationCodeViewController.swift; sourceTree = "<group>"; };
 		23996029279656EB001C8EA4 /* SeSacFriends.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SeSacFriends.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2399602C279656EB001C8EA4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2399602E279656EB001C8EA4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		23996030279656EB001C8EA4 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		23996035279656EC001C8EA4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		23996038279656EC001C8EA4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2399603A279656EC001C8EA4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -117,6 +121,52 @@
 			path = Onboarding;
 			sourceTree = "<group>";
 		};
+		234CEC1E279C728300983E20 /* Text */ = {
+			isa = PBXGroup;
+			children = (
+				234CEC1A279C51C700983E20 /* Text.swift */,
+				234CEC1F279C729800983E20 /* AssetIcon.swift */,
+				2308B0252799DEBF004145E2 /* ToastMessage.swift */,
+			);
+			path = Text;
+			sourceTree = "<group>";
+		};
+		234CEC23279C82AD00983E20 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				234CEC042799FAC300983E20 /* BaseUIView.swift */,
+				2389E1D62796A31800BE68E3 /* BaseViewController.swift */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
+		234CEC24279C82F000983E20 /* SignUp */ = {
+			isa = PBXGroup;
+			children = (
+				234CEC18279C512600983E20 /* SignUpNicknameView.swift */,
+				234CEC21279C827F00983E20 /* SignUpNicknameViewController.swift */,
+				234CEC1C279C61F700983E20 /* NicknameView.swift */,
+			);
+			name = SignUp;
+			sourceTree = "<group>";
+		};
+		234CEC25279C830E00983E20 /* Support */ = {
+			isa = PBXGroup;
+			children = (
+				2399602C279656EB001C8EA4 /* AppDelegate.swift */,
+				2399602E279656EB001C8EA4 /* SceneDelegate.swift */,
+			);
+			path = Support;
+			sourceTree = "<group>";
+		};
+		234CEC26279C835500983E20 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				2389E1AF27967B1200BE68E3 /* MainViewController.swift */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
 		2389E1C1279685A800BE68E3 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
@@ -137,24 +187,20 @@
 				234E5FA527987EE900F5D2BB /* UIButton+Extension.swift */,
 				2308B0232799D83D004145E2 /* UIViewController+Extension.swift */,
 				234CEC0A279AB3D500983E20 /* UIView+Extension.swift */,
-				2308B0252799DEBF004145E2 /* ToastMessage.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
 		};
-		2389E1CA279697F700BE68E3 /* View */ = {
+		2389E1CA279697F700BE68E3 /* Auth */ = {
 			isa = PBXGroup;
 			children = (
 				2399604227965741001C8EA4 /* AuthView.swift */,
-				234CEC042799FAC300983E20 /* BaseUIView.swift */,
 				234E5FA327978FE700F5D2BB /* AuthVerificationCodeView.swift */,
 				2399604427965760001C8EA4 /* AuthViewController.swift */,
-				2389E1DD2796D8C800BE68E3 /* SignUpViewController.swift */,
-				2389E1D62796A31800BE68E3 /* BaseViewController.swift */,
+				2389E1DD2796D8C800BE68E3 /* AuthVerificationCodeViewController.swift */,
 				2389E1D22796A29F00BE68E3 /* AuthViewModel.swift */,
-				2389E1AF27967B1200BE68E3 /* MainViewController.swift */,
 			);
-			path = View;
+			path = Auth;
 			sourceTree = "<group>";
 		};
 		2389E1DC2796C81800BE68E3 /* APIService */ = {
@@ -187,15 +233,15 @@
 				234E5FA927988F8D00F5D2BB /* GoogleService-Info.plist */,
 				2389E1C1279685A800BE68E3 /* Fonts */,
 				2389E1AC27967A3A00BE68E3 /* SeSacFriends.entitlements */,
-				2399602C279656EB001C8EA4 /* AppDelegate.swift */,
-				2399602E279656EB001C8EA4 /* SceneDelegate.swift */,
-				23996030279656EB001C8EA4 /* ViewController.swift */,
-				234CEC18279C512600983E20 /* SignUpNicknameView.swift */,
-				234CEC1A279C51C700983E20 /* Text.swift */,
+				234CEC25279C830E00983E20 /* Support */,
 				2389E1DC2796C81800BE68E3 /* APIService */,
-				234CEBFF2799F75500983E20 /* Onboarding */,
+				234CEC23279C82AD00983E20 /* Base */,
+				234CEC1E279C728300983E20 /* Text */,
 				2389E1C9279697E700BE68E3 /* Extension */,
-				2389E1CA279697F700BE68E3 /* View */,
+				234CEBFF2799F75500983E20 /* Onboarding */,
+				2389E1CA279697F700BE68E3 /* Auth */,
+				234CEC24279C82F000983E20 /* SignUp */,
+				234CEC26279C835500983E20 /* Main */,
 				23996035279656EC001C8EA4 /* Assets.xcassets */,
 				23996037279656EC001C8EA4 /* LaunchScreen.storyboard */,
 				2399603A279656EC001C8EA4 /* Info.plist */,
@@ -288,6 +334,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				234CEC1D279C61F700983E20 /* NicknameView.swift in Sources */,
+				234CEC20279C729800983E20 /* AssetIcon.swift in Sources */,
 				2308B0242799D83D004145E2 /* UIViewController+Extension.swift in Sources */,
 				2389E1D72796A31800BE68E3 /* BaseViewController.swift in Sources */,
 				2389E1B027967B1200BE68E3 /* MainViewController.swift in Sources */,
@@ -297,19 +345,19 @@
 				234CEC19279C512700983E20 /* SignUpNicknameView.swift in Sources */,
 				234E5FA427978FE700F5D2BB /* AuthVerificationCodeView.swift in Sources */,
 				2399604527965760001C8EA4 /* AuthViewController.swift in Sources */,
-				23996031279656EB001C8EA4 /* ViewController.swift in Sources */,
 				2389E1DB2796B6FF00BE68E3 /* UserDefaults+Extension.swift in Sources */,
 				234CEC17279B39AC00983E20 /* OnboardingViewController.swift in Sources */,
 				2389E1C42796862A00BE68E3 /* UIFont+Extension.swift in Sources */,
 				234CEC15279B247800983E20 /* OnboardingView.swift in Sources */,
 				234CEC032799F7F600983E20 /* OnboardingImages.swift in Sources */,
 				2389E1B227967B9900BE68E3 /* UIColor+Extension.swift in Sources */,
-				2389E1DE2796D8C800BE68E3 /* SignUpViewController.swift in Sources */,
+				2389E1DE2796D8C800BE68E3 /* AuthVerificationCodeViewController.swift in Sources */,
 				234CEC012799F76B00983E20 /* OnboardingCardView.swift in Sources */,
 				2389E1D32796A29F00BE68E3 /* AuthViewModel.swift in Sources */,
 				2308B0262799DEBF004145E2 /* ToastMessage.swift in Sources */,
 				2399602D279656EB001C8EA4 /* AppDelegate.swift in Sources */,
 				234CEC09279AAD3A00983E20 /* OnboardingCardViewController.swift in Sources */,
+				234CEC22279C827F00983E20 /* SignUpNicknameViewController.swift in Sources */,
 				2399602F279656EB001C8EA4 /* SceneDelegate.swift in Sources */,
 				234CEC052799FAC300983E20 /* BaseUIView.swift in Sources */,
 				2389E1D52796A2AD00BE68E3 /* APIService.swift in Sources */,

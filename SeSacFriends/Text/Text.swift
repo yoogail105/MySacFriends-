@@ -22,7 +22,6 @@ enum AuthVerificationCodeText: String {
 }
 
 
-
 enum SignUpText: String {
     case nextButton = "다음"
     case setNickname = "닉네임을 입력해 주세요"
@@ -33,7 +32,6 @@ enum SignUpText: String {
     case setGenderSub = "새싹 찾기 기능을 이용하기 위해서 필요해요!"
     case nicknamePlaceholder = "10자 이내로 입력"
     case emailPlaceholder = "SeSAC@email.com"
-    
-    
+
 }
 

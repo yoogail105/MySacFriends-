@@ -24,6 +24,7 @@ class AuthViewController: BaseViewController {
     var verifyID: String?
     var isValid = false
     
+    
     override func loadView() {
         self.view = mainView
         
@@ -35,10 +36,10 @@ class AuthViewController: BaseViewController {
     
     }
     
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        mainView.numberTextField.underLine()
-    }
+//    override func viewDidLayoutSubviews() {
+//        super.viewDidLayoutSubviews()
+//        //mainView.numberTextField.underLine(borderColor: UIColor.grayColor(.gray3).cgColor)
+//    }
     
     override func setupNavigationBar() {
         
@@ -51,10 +52,16 @@ class AuthViewController: BaseViewController {
             .bind(to: viewModel.phoneNumberObserver)
             .disposed(by: disposeBag)
         
+        viewModel.phoneNumberObserver
+            .map { $0 != "" ? UIColor.black : UIColor.grayColor(.gray3)}
+            .bind(to: mainView.line.rx.backgroundColor)
+            .disposed(by: disposeBag)
+        
+        
         mainView.numberTextField.rx.text
             .orEmpty
             .subscribe(onNext: {
-                self.limitConfirmNewPasswordTextField($0)
+                self.limitPhoneNumberTextField($0)
             })
             .disposed(by: disposeBag)
         
@@ -97,7 +104,7 @@ class AuthViewController: BaseViewController {
             UserDefaults.standard.phoneNumber = viewModel.phoneNumberObserver.value
             showToastWithAction(message: "전화 번호 인증 시작") {
                 self.viewModel.postVerificationCode {
-                    let vc = SignUpViewController()
+                    let vc = AuthVerificationCodeViewController()
                     self.navigationController?.pushViewController(vc, animated: true)
                     print("화면 옮기기")
                 }
@@ -110,7 +117,7 @@ class AuthViewController: BaseViewController {
             
         }
         
-        private func limitConfirmNewPasswordTextField(_ phoneNumber: String) {
+        private func limitPhoneNumberTextField(_ phoneNumber: String) {
             if phoneNumber.count > 11 {
                 let index = phoneNumber.index(phoneNumber.startIndex, offsetBy: 11)
                 mainView.numberTextField.text = String(phoneNumber[..<index])
@@ -118,4 +125,3 @@ class AuthViewController: BaseViewController {
         }
         
     }
-    

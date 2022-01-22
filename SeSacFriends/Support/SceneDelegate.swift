@@ -30,7 +30,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         case .auth:
             startViewController = AuthViewController()
         case .signUp:
-            startViewController = SignUpViewController()
+            startViewController = SignUpNicknameViewController()
         case .main:
             startViewController = MainViewController()
         }
