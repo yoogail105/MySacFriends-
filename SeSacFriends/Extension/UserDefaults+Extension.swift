@@ -23,6 +23,9 @@ extension UserDefaults {
         case authVerificationID
         case phoneNumber
         case nickname
+        case birth
+        case email
+        case gender
 
     }
     
@@ -52,5 +55,20 @@ extension UserDefaults {
     var nickname: String {
         get { string(forKey: UserDefaultsKeys.nickname.rawValue) ?? ""}
         set { setValue(newValue, forKey: UserDefaultsKeys.nickname.rawValue)}
+    }
+    
+    var birth: String {
+        get { string(forKey: UserDefaultsKeys.birth.rawValue) ?? ""}
+        set { setValue(newValue, forKey: UserDefaultsKeys.birth.rawValue)}
+    }
+    
+    var email: String {
+        get { string(forKey: UserDefaultsKeys.email.rawValue) ?? ""}
+        set { setValue(newValue, forKey: UserDefaultsKeys.email.rawValue)}
+    }
+    
+    var gender: String {
+        get { string(forKey: UserDefaultsKeys.gender.rawValue) ?? ""}
+        set { setValue(newValue, forKey: UserDefaultsKeys.gender.rawValue)}
     }
 }

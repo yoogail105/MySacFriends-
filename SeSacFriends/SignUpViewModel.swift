@@ -12,8 +12,12 @@ import RxRelay
 class SignUpViewModel {
     
     var buttonMode = BehaviorRelay<String>(value: "false")
-    
     var nicknameObserver = BehaviorRelay<String>(value: "")
+    var emailObserver = BehaviorRelay<String>(value: "")
+    
+    var isValidEmail: Observable<Bool> {
+        return emailObserver.map { $0.validateEmail() }
+    }
     
    // var certificationCodeObserver = BehaviorRelay<String>(value: "")
     

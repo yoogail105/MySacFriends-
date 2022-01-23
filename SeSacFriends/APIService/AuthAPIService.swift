@@ -19,8 +19,15 @@ enum APIError: Error {
 
 class APIService {
     
+//    static func getUser(completion: @escaping (User?, APIError?) -> Void ) {
+//        var request = URLRequest(url: Endpoint.user.url)
+//        request.httpMethod = Method.POST.rawValue
+//        request.httpBody = "username=\(userName)&email=\(email)&password=\(password)".data(using: .utf8, allowLossyConversion: false)
+//        URLSession.request(endpoint: request, completion: completion)
+//    }
+
+    
     static func sendVerificationCode(phoneNumber: String, completion: @escaping () -> Void ) {
-        
         
         PhoneAuthProvider.provider()
             .verifyPhoneNumber(phoneNumber.phoneNumberFormat(), uiDelegate: nil) { verificationID, error in
@@ -41,16 +48,16 @@ class APIService {
                 }
                 
                 UserDefaults.standard.authVerificationID = verificationID!
-                //print("인증아이디는 \(verificationString(describing: ID)"))
+                print("인증아이디는 \(UserDefaults.standard.authVerificationID!)")
                 completion()
             }
         
     }
     
-    
+    // verificaitonCode: "AJOnW4QgBVF9FVNR6esYkz_BzpdGis9IoegIBy0ejeMTLaI42B0l36xXj3prJnhAgmQ6oBuckLYDbvVk9_hcxT_GapMAJPshiKZ_LuXoqAoex4qoAeH2H6FSnZAtDW8oPmLq_5mM9aK_GIOrDK8R-HZPL1H94Amo5sIA5apfDa2lPFD5wjo1MJn1QZEITaOKiFuBzB_zjoQxmPAVkpIcCc69EJq4PPiwXMFp4VXL2btGbeNZ798Jgkk"
     static func checkVerificationCode(verificationCode: String) {
-        let verificationID = UserDefaults.standard.authVerificationID
-        
+        let verificationID = UserDefaults.standard.authVerificationID!
+        print("입력한 verifiacationCode는 \(verificationCode)입니다.")
         
         let credential = PhoneAuthProvider.provider().credential(
             withVerificationID: verificationID,
@@ -90,4 +97,17 @@ class APIService {
         
     }
     
+    static func getTokenId() {
+        
+        let currentUser = Auth.auth().currentUser
+        currentUser?.getIDTokenForcingRefresh(true) { idToken, error in
+            if let error = error {
+                print("error: \(error)")
+                return;
+            }
+            
+            UserDefaults.standard.idToken = idToken
+            print("idToken = \(String(describing: UserDefaults.standard.idToken!))")
+        }
+    }
 }

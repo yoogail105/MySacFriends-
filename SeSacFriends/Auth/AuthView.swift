@@ -21,10 +21,20 @@ class AuthView: UIView {
         return label
     }()
     
+    let subLabel: UILabel = {
+       let label = UILabel()
+        label.text = AuthVerificationCodeText.subLabel.rawValue
+        label.textAlignment = .center
+        label.font = UIFont().Title2_R16
+        label.textColor = UIColor.grayColor(.gray7)
+        return label
+    }()
+    
     
     let textField: UITextField = {
         let textField = UITextField()
         textField.placeholder = AuthText.phoneNumberPlaceholder.rawValue
+        textField.becomeFirstResponder()
         textField.keyboardType = .numberPad
         textField.textColor = .black
         textField.autocorrectionType = .no
@@ -59,7 +69,7 @@ class AuthView: UIView {
     
     func constraints() {
         [
-            mainLabel, textField, line, nextButton
+            mainLabel, textField, line, nextButton, subLabel
         ].forEach {
             addSubview($0)
         }
@@ -68,6 +78,11 @@ class AuthView: UIView {
             $0.centerX.equalToSuperview()
             $0.bottom.equalTo(textField.snp.top).offset(-77)
             
+        }
+        
+        subLabel.snp.makeConstraints {
+            $0.centerX.equalToSuperview()
+            $0.top.equalTo(mainLabel.snp.bottom).offset(-8)
         }
         
         nextButton.snp.makeConstraints {

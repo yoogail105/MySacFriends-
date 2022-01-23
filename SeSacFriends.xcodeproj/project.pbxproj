@@ -25,6 +25,12 @@
 		234CEC28279C859300983E20 /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 234CEC27279C859300983E20 /* SignUpViewModel.swift */; };
 		234CEC2A279C863900983E20 /* BirthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 234CEC29279C863900983E20 /* BirthView.swift */; };
 		234CEC2C279C863F00983E20 /* BirthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 234CEC2B279C863F00983E20 /* BirthViewController.swift */; };
+		234CEC30279C95F600983E20 /* EmailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 234CEC2F279C95F600983E20 /* EmailView.swift */; };
+		234CEC32279C95FF00983E20 /* SetEmailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 234CEC31279C95FF00983E20 /* SetEmailView.swift */; };
+		234CEC34279C971F00983E20 /* EmailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 234CEC33279C971F00983E20 /* EmailViewController.swift */; };
+		234CEC37279C9A1000983E20 /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 234CEC36279C9A1000983E20 /* IQKeyboardManagerSwift */; };
+		234CEC39279C9CEA00983E20 /* GenderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 234CEC38279C9CEA00983E20 /* GenderViewController.swift */; };
+		234CEC3B279C9D0B00983E20 /* GenderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 234CEC3A279C9D0B00983E20 /* GenderView.swift */; };
 		234E5FA427978FE700F5D2BB /* AuthVerificationCodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 234E5FA327978FE700F5D2BB /* AuthVerificationCodeView.swift */; };
 		234E5FA627987EE900F5D2BB /* UIButton+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 234E5FA527987EE900F5D2BB /* UIButton+Extension.swift */; };
 		234E5FAA27988F8D00F5D2BB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 234E5FA927988F8D00F5D2BB /* GoogleService-Info.plist */; };
@@ -72,6 +78,11 @@
 		234CEC27279C859300983E20 /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
 		234CEC29279C863900983E20 /* BirthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BirthView.swift; sourceTree = "<group>"; };
 		234CEC2B279C863F00983E20 /* BirthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BirthViewController.swift; sourceTree = "<group>"; };
+		234CEC2F279C95F600983E20 /* EmailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailView.swift; sourceTree = "<group>"; };
+		234CEC31279C95FF00983E20 /* SetEmailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetEmailView.swift; sourceTree = "<group>"; };
+		234CEC33279C971F00983E20 /* EmailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailViewController.swift; sourceTree = "<group>"; };
+		234CEC38279C9CEA00983E20 /* GenderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenderViewController.swift; sourceTree = "<group>"; };
+		234CEC3A279C9D0B00983E20 /* GenderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenderView.swift; sourceTree = "<group>"; };
 		234E5FA327978FE700F5D2BB /* AuthVerificationCodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthVerificationCodeView.swift; sourceTree = "<group>"; };
 		234E5FA527987EE900F5D2BB /* UIButton+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extension.swift"; sourceTree = "<group>"; };
 		234E5FA927988F8D00F5D2BB /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -108,6 +119,7 @@
 				2389E1D127969CDD00BE68E3 /* RxSwift in Frameworks */,
 				2389E1CF27969CDD00BE68E3 /* RxRelay in Frameworks */,
 				2399604B279658B8001C8EA4 /* FirebaseAuth in Frameworks */,
+				234CEC37279C9A1000983E20 /* IQKeyboardManagerSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -149,8 +161,12 @@
 		234CEC24279C82F000983E20 /* SignUp */ = {
 			isa = PBXGroup;
 			children = (
+				234CEC38279C9CEA00983E20 /* GenderViewController.swift */,
+				234CEC3A279C9D0B00983E20 /* GenderView.swift */,
+				234CEC31279C95FF00983E20 /* SetEmailView.swift */,
 				234CEC18279C512600983E20 /* SignUpNicknameView.swift */,
 				234CEC21279C827F00983E20 /* SignUpNicknameViewController.swift */,
+				234CEC33279C971F00983E20 /* EmailViewController.swift */,
 				234CEC27279C859300983E20 /* SignUpViewModel.swift */,
 				234CEC29279C863900983E20 /* BirthView.swift */,
 				234CEC2B279C863F00983E20 /* BirthViewController.swift */,
@@ -179,6 +195,7 @@
 		2389E1C1279685A800BE68E3 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
+				234CEC2F279C95F600983E20 /* EmailView.swift */,
 				2389E1C0279685A200BE68E3 /* NotoSansCJKkr-Regular.otf */,
 				2389E1C2279685CA00BE68E3 /* NotoSansCJKkr-Medium.otf */,
 			);
@@ -280,6 +297,7 @@
 				2389E1CC27969CDD00BE68E3 /* RxCocoa */,
 				2389E1CE27969CDD00BE68E3 /* RxRelay */,
 				2389E1D027969CDD00BE68E3 /* RxSwift */,
+				234CEC36279C9A1000983E20 /* IQKeyboardManagerSwift */,
 			);
 			productName = SeSacFriends;
 			productReference = 23996029279656EB001C8EA4 /* SeSacFriends.app */;
@@ -313,6 +331,7 @@
 				2399604627965794001C8EA4 /* XCRemoteSwiftPackageReference "SnapKit" */,
 				23996049279658B8001C8EA4 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				2389E1CB27969CDD00BE68E3 /* XCRemoteSwiftPackageReference "RxSwift" */,
+				234CEC35279C9A1000983E20 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */,
 			);
 			productRefGroup = 2399602A279656EB001C8EA4 /* Products */;
 			projectDirPath = "";
@@ -348,6 +367,7 @@
 				2308B0242799D83D004145E2 /* UIViewController+Extension.swift in Sources */,
 				2389E1D72796A31800BE68E3 /* BaseViewController.swift in Sources */,
 				2389E1B027967B1200BE68E3 /* MainViewController.swift in Sources */,
+				234CEC32279C95FF00983E20 /* SetEmailView.swift in Sources */,
 				239960412796572C001C8EA4 /* String+Extension.swift in Sources */,
 				234E5FA627987EE900F5D2BB /* UIButton+Extension.swift in Sources */,
 				2399604327965741001C8EA4 /* AuthView.swift in Sources */,
@@ -355,6 +375,7 @@
 				234E5FA427978FE700F5D2BB /* AuthVerificationCodeView.swift in Sources */,
 				2399604527965760001C8EA4 /* AuthViewController.swift in Sources */,
 				2389E1DB2796B6FF00BE68E3 /* UserDefaults+Extension.swift in Sources */,
+				234CEC34279C971F00983E20 /* EmailViewController.swift in Sources */,
 				234CEC17279B39AC00983E20 /* OnboardingViewController.swift in Sources */,
 				2389E1C42796862A00BE68E3 /* UIFont+Extension.swift in Sources */,
 				234CEC15279B247800983E20 /* OnboardingView.swift in Sources */,
@@ -371,12 +392,15 @@
 				234CEC22279C827F00983E20 /* SignUpNicknameViewController.swift in Sources */,
 				2399602F279656EB001C8EA4 /* SceneDelegate.swift in Sources */,
 				234CEC2A279C863900983E20 /* BirthView.swift in Sources */,
+				234CEC3B279C9D0B00983E20 /* GenderView.swift in Sources */,
+				234CEC30279C95F600983E20 /* EmailView.swift in Sources */,
 				234CEC052799FAC300983E20 /* BaseUIView.swift in Sources */,
 				2389E1D52796A2AD00BE68E3 /* APIService.swift in Sources */,
 				234CEC0D279AF61500983E20 /* PageViewController.swift in Sources */,
 				234CEC1B279C51C700983E20 /* Text.swift in Sources */,
 				234CEC0B279AB3D500983E20 /* UIView+Extension.swift in Sources */,
 				2389E1C8279697E200BE68E3 /* UITextField+Extension.swift in Sources */,
+				234CEC39279C9CEA00983E20 /* GenderViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -594,6 +618,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		234CEC35279C9A1000983E20 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "git@github.com:hackiftekhar/IQKeyboardManager.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.0.0;
+			};
+		};
 		2389E1CB27969CDD00BE68E3 /* XCRemoteSwiftPackageReference "RxSwift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "git@github.com:ReactiveX/RxSwift.git";
@@ -621,6 +653,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		234CEC36279C9A1000983E20 /* IQKeyboardManagerSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 234CEC35279C9A1000983E20 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */;
+			productName = IQKeyboardManagerSwift;
+		};
 		2389E1CC27969CDD00BE68E3 /* RxCocoa */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 2389E1CB27969CDD00BE68E3 /* XCRemoteSwiftPackageReference "RxSwift" */;

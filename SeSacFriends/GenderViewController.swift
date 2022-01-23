@@ -1,36 +1,26 @@
 //
-//  BirthViewController.swift
+//  GenderViewController.swift
 //  SeSacFriends
 //
 //  Created by 성민주민주 on 2022/01/23.
 //
 
 import UIKit
-import RxSwift
 import RxCocoa
+import RxSwift
 
-class BirthViewController: BaseViewController {
+class GenderViewController: BaseViewController {
     
-    let mainView = BirthView()
+    let mainView = GenderView()
     let viewModel = SignUpViewModel()
     let disposeBag = DisposeBag()
-
-    override func loadView() {
-        self.view = mainView
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("nickname = \(UserDefaults.standard.nickname)")
+        
     }
     
     override func bind() {
-        
-        mainView.nextButton.rx.tap
-            .subscribe(onNext: { _ in
-                self.moveToNext()
-            })
-            .disposed(by: disposeBag)
         
     }
     
