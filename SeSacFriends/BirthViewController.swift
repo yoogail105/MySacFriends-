@@ -34,6 +34,14 @@ class BirthViewController: BaseViewController {
         
     }
     
+    override func addAction() {
+        mainView.datePicker.addTarget(self, action: #selector(onDidChangeDate), for: .valueChanged)
+    }
+    
+    @objc func onDidChangeDate() {
+        
+    }
+    
     private func moveToNext() {
         UserDefaults.standard.nickname = mainView.textField.text!
         let vc = EmailViewController()
