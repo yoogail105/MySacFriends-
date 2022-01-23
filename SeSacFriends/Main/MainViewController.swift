@@ -5,12 +5,15 @@
 //  Created by 성민주민주 on 2022/01/18.
 //
 
-import Foundation
 import UIKit
+import RxSwift
+import RxCocoa
 
-class MainViewController: UIViewController {
+class MainViewController: BaseViewController {
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .yellow
     }
+    
 }

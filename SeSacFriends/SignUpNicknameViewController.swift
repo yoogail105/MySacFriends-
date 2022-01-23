@@ -22,7 +22,7 @@ class SignUpNicknameViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+    
     }
     
     override func bind() {

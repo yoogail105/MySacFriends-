@@ -52,12 +52,26 @@ class AuthViewModel {
         }
     }
     
-    func getTokenId(completion: @escaping () -> Void) {
-        AuthAPIService.getTokenId {
+    func fetchIDToken(completion: @escaping () -> Void) {
+        AuthAPIService.fetchIDToken {
             print("토큰 가져오기 완료: \(UserDefaults.standard.idToken!)")
             completion()
         }
     }
+    
+    func getUser(completion: @escaping () -> Void) {
+        SignUpAPIService.fetchUser { user, error in
+            
+            guard let user = user else {
+                return
+            }
+            
+            UserDefaults.standard.startMode = StartMode.main.rawValue
+
+        }
+    }
+    
+    
     
 }
 

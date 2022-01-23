@@ -10,6 +10,8 @@
 		2308B0242799D83D004145E2 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2308B0232799D83D004145E2 /* UIViewController+Extension.swift */; };
 		2308B0262799DEBF004145E2 /* ToastMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2308B0252799DEBF004145E2 /* ToastMessage.swift */; };
 		23335717279D580D0062A9E8 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23335716279D580D0062A9E8 /* Endpoint.swift */; };
+		23335719279DB2A90062A9E8 /* SignUpAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23335718279DB2A90062A9E8 /* SignUpAPIService.swift */; };
+		2333571B279DC6AE0062A9E8 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2333571A279DC6AE0062A9E8 /* User.swift */; };
 		234CEC012799F76B00983E20 /* OnboardingCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 234CEC002799F76B00983E20 /* OnboardingCardView.swift */; };
 		234CEC032799F7F600983E20 /* OnboardingImages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 234CEC022799F7F600983E20 /* OnboardingImages.swift */; };
 		234CEC052799FAC300983E20 /* BaseUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 234CEC042799FAC300983E20 /* BaseUIView.swift */; };
@@ -64,6 +66,8 @@
 		2308B0232799D83D004145E2 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 		2308B0252799DEBF004145E2 /* ToastMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastMessage.swift; sourceTree = "<group>"; };
 		23335716279D580D0062A9E8 /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
+		23335718279DB2A90062A9E8 /* SignUpAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpAPIService.swift; sourceTree = "<group>"; };
+		2333571A279DC6AE0062A9E8 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		234CEC002799F76B00983E20 /* OnboardingCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCardView.swift; sourceTree = "<group>"; };
 		234CEC022799F7F600983E20 /* OnboardingImages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingImages.swift; sourceTree = "<group>"; };
 		234CEC042799FAC300983E20 /* BaseUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseUIView.swift; sourceTree = "<group>"; };
@@ -236,6 +240,8 @@
 			children = (
 				23335716279D580D0062A9E8 /* Endpoint.swift */,
 				2389E1D42796A2AD00BE68E3 /* AuthAPIService.swift */,
+				23335718279DB2A90062A9E8 /* SignUpAPIService.swift */,
+				2333571A279DC6AE0062A9E8 /* User.swift */,
 			);
 			path = APIService;
 			sourceTree = "<group>";
@@ -371,6 +377,7 @@
 				2389E1D72796A31800BE68E3 /* BaseViewController.swift in Sources */,
 				2389E1B027967B1200BE68E3 /* MainViewController.swift in Sources */,
 				234CEC32279C95FF00983E20 /* SetEmailView.swift in Sources */,
+				23335719279DB2A90062A9E8 /* SignUpAPIService.swift in Sources */,
 				239960412796572C001C8EA4 /* String+Extension.swift in Sources */,
 				234E5FA627987EE900F5D2BB /* UIButton+Extension.swift in Sources */,
 				2399604327965741001C8EA4 /* AuthView.swift in Sources */,
@@ -384,6 +391,7 @@
 				234CEC15279B247800983E20 /* OnboardingView.swift in Sources */,
 				234CEC032799F7F600983E20 /* OnboardingImages.swift in Sources */,
 				2389E1B227967B9900BE68E3 /* UIColor+Extension.swift in Sources */,
+				2333571B279DC6AE0062A9E8 /* User.swift in Sources */,
 				2389E1DE2796D8C800BE68E3 /* AuthVerificationCodeViewController.swift in Sources */,
 				234CEC2C279C863F00983E20 /* BirthViewController.swift in Sources */,
 				234CEC28279C859300983E20 /* SignUpViewModel.swift in Sources */,

@@ -84,6 +84,9 @@ class AuthAPIService {
             // User is signed in
             
             print("로그인 완료!")
+            UserDefaults.standard.startMode = StartMode.signUp.rawValue
+            print("verificationID: \(UserDefaults.standard.authVerificationID!)")
+            
             completion()
             
             // ...
@@ -92,7 +95,7 @@ class AuthAPIService {
         
     }
     
-    static func getTokenId(completion: @escaping () ->  Void) {
+    static func fetchIDToken(completion: @escaping () ->  Void) {
         print(#function)
         let currentUser = Auth.auth().currentUser
         currentUser?.getIDTokenForcingRefresh(true) { idToken, error in
@@ -108,4 +111,45 @@ class AuthAPIService {
             completion()
         }
     }
+
+    // 사용자 삭제
+    static func deleteUserAuth(completion: @escaping () ->  Void) {
+        let user = Auth.auth().currentUser
+        
+        user?.delete { error in
+            if let error = error {
+                // An error happened.
+            } else {
+                completion()
+            }
+        }
+        
+    }
+//
+//    handle = Auth.auth().addStateDidChangeListener { auth, user in
+//      // ...
+//    }
+//
+   static func fetchUserData(completion: @escaping () -> Void) {
+       
+        Auth.auth().addStateDidChangeListener { auth, user in
+            print(auth, user)
+            if let user = user {
+                //로그인 된 상태
+                print("\(Auth.auth().currentUser?.uid)")
+                print("\(Auth.auth().currentUser?.phoneNumber)")
+                print("user:", user)
+                
+            } else {
+                //로그인 안된상태
+                print("로그인 되어있지 않음")
+            }
+        //let currentUid = Auth.auth().currentUser?.uid
+        //guard let currentUid = currentUid else { return }
+        
+            completion()
+        }
+   }
+
+
 }

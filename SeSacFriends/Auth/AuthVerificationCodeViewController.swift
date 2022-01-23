@@ -98,33 +98,48 @@ class AuthVerificationCodeViewController: BaseViewController {
     
     func verifyButtonClicked() {
         self.viewModel.checkVerificationCode(verificationCode: mainView.numberTextField.text!) {
-            
-            UserDefaults.standard.startMode = StartMode.signUp.rawValue
-            print("verificationID: \(UserDefaults.standard.authVerificationID!)")
-            
-            self.viewModel.getTokenId {
-                self.moveToNext()
+            self.viewModel.fetchIDToken {
+                print("id토큰가져오기 완료")
+                self.viewModel.getUser {
+                    print("user 등록된 유저")
+                    UserDefaults.standard.startMode = StartMode.main.rawValue
+                }
             }
+            
         }
         
     }
     
     
-    
-
-
-func moveToNext() {
-    print(#function, "to signUpNicknameVC")
-    let vc = SignUpNicknameViewController()
-    self.navigationController?.pushViewController(vc, animated: true)
-}
-
-private func limitVerificationCodeTextField(_ phoneNumber: String) {
-    if phoneNumber.count > 6 {
-        let index = phoneNumber.index(phoneNumber.startIndex, offsetBy: 6)
-        mainView.numberTextField.text = String(phoneNumber[..<index])
+    func selectNextView() {
+        print(#function, "to signUpNicknameVC, mode: \(UserDefaults.standard.startMode)")
+        let mode = UserDefaults.standard.startMode
+        if mode == StartMode.signUp.rawValue {
+           moveToNext(nextVC: SignUpNicknameViewController())
+        } else {
+            moveToNext(nextVC: MainViewController())
+        }
     }
-}
-
-
+    
+    func moveToNext(nextVC: UIViewController) {
+        DispatchQueue.main.async {
+            guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene else { return }
+            
+            windowScene.windows.first?.rootViewController = UINavigationController(rootViewController: nextVC)
+            windowScene.windows.first?.makeKeyAndVisible()
+        }
+    }
+    
+    
+    
+    
+    
+    private func limitVerificationCodeTextField(_ phoneNumber: String) {
+        if phoneNumber.count > 6 {
+            let index = phoneNumber.index(phoneNumber.startIndex, offsetBy: 6)
+            mainView.numberTextField.text = String(phoneNumber[..<index])
+        }
+    }
+    
+    
 }

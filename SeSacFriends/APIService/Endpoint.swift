@@ -18,43 +18,17 @@ enum Method: String {
 
 enum Endpoint {
     case user
-    case signIn
-    case changePW
-    case posts(startIndex: Int, endIndex: Int, sort: String)
-    case addPost
-    case postDetail(id: Int)
-    case comments(id: Int)
-    case addComments
-    case commentDetail(id: Int)
+    case deleteUser
 }
 
-enum Sort: String {
-    case asc
-    case desc
-}
 
 extension Endpoint {
     var url: URL {
         switch self {
         case .user:
             return .makeEndPoint("/user")
-        case .signIn:
-            return .makeEndPoint("auth/local")
-        case .changePW:
-            return .makeEndPoint("custom/change-password")
-        case .posts(startIndex: let startIndex, endIndex: let endIndex, sort: let sort):
-            return .makeEndPoint("posts?_start=\(startIndex)&_limit=\(endIndex)&_sort=created_at:\(sort)")
-        case .addPost:
-            return .makeEndPoint("posts")
-        case .postDetail(id: let id):
-            return .makeEndPoint("posts/\(id)")
-        case .comments(id: let id):
-            return .makeEndPoint("comments?post=\(id)")
-        case .addComments:
-            return .makeEndPoint("comments")
-        case .commentDetail(id: let id):
-            return .makeEndPoint("comments/\(id)")
-            
+        case .deleteUser:
+            return .makeEndPoint("/user/withdraw")
             
         }
     }
@@ -84,11 +58,9 @@ extension URLSession {
     static func request<T: Decodable>(_ session: URLSession = .shared, endpoint: URLRequest, completion: @escaping (T?, APIError?) -> Void) {
         
         session.dataTask(endpoint) { data, response, error in
-            
             let str = String(decoding: data!, as: UTF8.self)
-            //print("결과:::::::\n data: \(str)")
+            print("data: ",data)
             print("결과:::::::\n response: \(response)\n error: \(error)")
-            
             DispatchQueue.main.async {
                 guard error == nil else {
                     completion(nil, .failed)
@@ -106,42 +78,18 @@ extension URLSession {
                     return
                 }
                 
-//                guard response.statusCode == 200 else {
-//                    
-//                    if response.statusCode == 401 {
-//                        print("토큰이 만료되었습니다.")
-//                        UserDefaults.standard.reset()
-//                        BaseViewController().isTokenExpired = true
-//                        
-//                        completion(nil, .unAuthorized)
-//                        return
-//                    }
-//                    
-//                    if response.statusCode == 400 {
-//                        completion(nil, .invalidData)
-//                        return
-//                    }
-//                    
-//                    
-//                    //                    else { completion(nil, .failed) }
-//                    
-//                    // 오류 확인
-//                    do {
-//                        print("statusCode: ", response.statusCode)
-//                        
-//                        let decoder = JSONDecoder()
-//                        let errorDetail = try decoder.decode(ErrorDetail.self, from: data)
-//                        completion(nil, .failed)
-//                        print("error:", errorDetail.message)
-//                        return
-//                    } catch {
-//                        print("status code do-catch: 여기오류")
-//                        
-//                        completion(nil, .invalidData)
-//                        return
-//                    }
-//                }
-//                
+                guard response.statusCode == 200 else {
+                    
+                    if response.statusCode == 201 {
+                        print("201: 사용자 정보 없음")
+                        UserDefaults.standard.startMode = StartMode.signUp.rawValue
+                        AuthVerificationCodeViewController().selectNextView()
+                        completion(nil, .invalidData)
+                        return
+                    }
+                    
+                    return
+                }
                 
                 do {
                     let decoder = JSONDecoder()
@@ -149,7 +97,7 @@ extension URLSession {
                     completion(userData, nil)
                     print("Ok")
                 } catch {
-                    print("do-catch: 여기오류")
+                    print("do-catch: codable 오류")
                     completion(nil, .invalidData)
                 }
             }
