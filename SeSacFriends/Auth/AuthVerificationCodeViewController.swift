@@ -12,11 +12,11 @@ import RxSwift
 
 
 class AuthVerificationCodeViewController: BaseViewController {
- 
+    
     let mainView = AuthVerificationCodeView()
     let viewModel = AuthViewModel()
     let disposeBag = DisposeBag()
-
+    
     override func loadView() {
         self.view = mainView
     }
@@ -39,7 +39,7 @@ class AuthVerificationCodeViewController: BaseViewController {
             .map { $0 != "" ? UIColor.black : UIColor.grayColor(.gray3)}
             .bind(to: mainView.line.rx.backgroundColor)
             .disposed(by: disposeBag)
-//        
+        //
         viewModel.isValidCertificationCode
             .map { $0 ? UIColor.brandColor(.green) : UIColor.grayColor(.gray6)}
             .bind(to: mainView.verifyButton.rx.backgroundColor)
@@ -76,18 +76,18 @@ class AuthVerificationCodeViewController: BaseViewController {
         
         // timer
         viewModel.onTimer.asObservable()
-          .debug("isRunningFirst") // 로그창에 running true, false 출력
-          .flatMapLatest { isRunning in
-          isRunning ? Observable<Int>
-          .interval(.seconds(1), scheduler: MainScheduler.instance) : .empty()
-          }
-          .subscribe(onNext: { _ in
-           print("timer")
-          })
-          .disposed(by: disposeBag)
+            .debug("isRunningFirst") // 로그창에 running true, false 출력
+            .flatMapLatest { isRunning in
+                isRunning ? Observable<Int>
+                    .interval(.seconds(1), scheduler: MainScheduler.instance) : .empty()
+            }
+            .subscribe(onNext: { _ in
+                print("timer")
+            })
+            .disposed(by: disposeBag)
     }
     
-
+    
     func sendVerifyNumberButtonClicked() {
         showToastWithAction(message: "전화 번호 인증 시작") {
             self.viewModel.postVerificationCode {
@@ -97,19 +97,34 @@ class AuthVerificationCodeViewController: BaseViewController {
     }
     
     func verifyButtonClicked() {
-            self.viewModel.checkVerificationCode {_ in
-                print("verificationID: \(UserDefaults.standard.authVerificationID)")
-                UserDefaults.standard.startMode = StartMode.signUp.rawValue
+        self.viewModel.checkVerificationCode(verificationCode: mainView.numberTextField.text!) {
+            
+            UserDefaults.standard.startMode = StartMode.signUp.rawValue
+            print("verificationID: \(UserDefaults.standard.authVerificationID!)")
+            
+            self.viewModel.getTokenId {
+                self.moveToNext()
             }
+        }
         
     }
     
-    private func limitVerificationCodeTextField(_ phoneNumber: String) {
-        if phoneNumber.count > 6 {
-            let index = phoneNumber.index(phoneNumber.startIndex, offsetBy: 6)
-            mainView.numberTextField.text = String(phoneNumber[..<index])
-        }
-    }
-
     
+    
+
+
+func moveToNext() {
+    print(#function, "to signUpNicknameVC")
+    let vc = SignUpNicknameViewController()
+    self.navigationController?.pushViewController(vc, animated: true)
+}
+
+private func limitVerificationCodeTextField(_ phoneNumber: String) {
+    if phoneNumber.count > 6 {
+        let index = phoneNumber.index(phoneNumber.startIndex, offsetBy: 6)
+        mainView.numberTextField.text = String(phoneNumber[..<index])
+    }
+}
+
+
 }

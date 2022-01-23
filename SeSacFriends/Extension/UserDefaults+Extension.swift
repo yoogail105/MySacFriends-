@@ -21,6 +21,7 @@ extension UserDefaults {
     private enum UserDefaultsKeys: String, CaseIterable {
         case startMode
         case authVerificationID
+        case idToken
         case phoneNumber
         case nickname
         case birth
@@ -42,8 +43,8 @@ extension UserDefaults {
         set { setValue(newValue, forKey: UserDefaultsKeys.startMode.rawValue)}
     }
     
-    var authVerificationID: String {
-        get { string(forKey: UserDefaultsKeys.authVerificationID.rawValue) ?? ""}
+    var authVerificationID: String? {
+        get { string(forKey: UserDefaultsKeys.authVerificationID.rawValue)}
         set { setValue(newValue, forKey: UserDefaultsKeys.authVerificationID.rawValue)}
     }
     
@@ -70,5 +71,10 @@ extension UserDefaults {
     var gender: String {
         get { string(forKey: UserDefaultsKeys.gender.rawValue) ?? ""}
         set { setValue(newValue, forKey: UserDefaultsKeys.gender.rawValue)}
+    }
+    
+    var idToken: String? {
+        get { string(forKey: UserDefaultsKeys.idToken.rawValue)}
+        set { setValue(newValue, forKey: UserDefaultsKeys.idToken.rawValue)}
     }
 }

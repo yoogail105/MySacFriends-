@@ -17,16 +17,7 @@ enum APIError: Error {
     case unAuthorized
 }
 
-class APIService {
-    
-//    static func getUser(completion: @escaping (User?, APIError?) -> Void ) {
-//        var request = URLRequest(url: Endpoint.user.url)
-//        request.httpMethod = Method.POST.rawValue
-//        request.httpBody = "username=\(userName)&email=\(email)&password=\(password)".data(using: .utf8, allowLossyConversion: false)
-//        URLSession.request(endpoint: request, completion: completion)
-//    }
-
-    
+class AuthAPIService {
     static func sendVerificationCode(phoneNumber: String, completion: @escaping () -> Void ) {
         
         PhoneAuthProvider.provider()
@@ -55,7 +46,8 @@ class APIService {
     }
     
     // verificaitonCode: "AJOnW4QgBVF9FVNR6esYkz_BzpdGis9IoegIBy0ejeMTLaI42B0l36xXj3prJnhAgmQ6oBuckLYDbvVk9_hcxT_GapMAJPshiKZ_LuXoqAoex4qoAeH2H6FSnZAtDW8oPmLq_5mM9aK_GIOrDK8R-HZPL1H94Amo5sIA5apfDa2lPFD5wjo1MJn1QZEITaOKiFuBzB_zjoQxmPAVkpIcCc69EJq4PPiwXMFp4VXL2btGbeNZ798Jgkk"
-    static func checkVerificationCode(verificationCode: String) {
+    static func checkVerificationCode(verificationCode: String, completion: @escaping () -> Void) {
+        
         let verificationID = UserDefaults.standard.authVerificationID!
         print("입력한 verifiacationCode는 \(verificationCode)입니다.")
         
@@ -64,6 +56,7 @@ class APIService {
             verificationCode: verificationCode
         )
         
+        //request
         Auth.auth().signIn(with: credential) { authResult, error in
             if let error = error {
              
@@ -91,16 +84,19 @@ class APIService {
             // User is signed in
             
             print("로그인 완료!")
+            completion()
+            
             // ...
         }
         
         
     }
     
-    static func getTokenId() {
-        
+    static func getTokenId(completion: @escaping () ->  Void) {
+        print(#function)
         let currentUser = Auth.auth().currentUser
         currentUser?.getIDTokenForcingRefresh(true) { idToken, error in
+            
             if let error = error {
                 print("error: \(error)")
                 return;
@@ -108,6 +104,8 @@ class APIService {
             
             UserDefaults.standard.idToken = idToken
             print("idToken = \(String(describing: UserDefaults.standard.idToken!))")
+            
+            completion()
         }
     }
 }

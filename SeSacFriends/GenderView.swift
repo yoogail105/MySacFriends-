@@ -44,7 +44,7 @@ class GenderView: AuthView {
         
         genderImage01.snp.makeConstraints {
             
-            $0.top.equalTo(<#T##other: ConstraintRelatableTarget##ConstraintRelatableTarget#>)
+            $0.top.equalTo(nextButton.snp.top)
         }
         
         

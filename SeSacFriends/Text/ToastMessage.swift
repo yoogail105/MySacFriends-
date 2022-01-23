@@ -14,8 +14,6 @@ enum requestVerificationCode: String {
     case unkownError = "에러가 발생했습니다.\n다시 시도해 주세요."
 }
 
-
-
 enum FirebaseAuthErrorCode: String {
     case e17057 = "이미 전송되었습니다.\n 메세지함을 확인해 주세요."
     case e17993 = "오류오류 그놈의 오류임."
@@ -29,6 +27,7 @@ enum SignUpToast: String {
     case invalidBirth = "새싹친구는 만 17세 이상만 사용할 수 있습니다."
     
     case invalidEmail = "이메일 형식이 올바르지 않습니다."
+    
 }
 
 /*

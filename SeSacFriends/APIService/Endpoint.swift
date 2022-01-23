@@ -7,6 +7,8 @@
 
 import Foundation
 
+
+
 enum Method: String {
     case GET
     case POST
@@ -15,7 +17,7 @@ enum Method: String {
 }
 
 enum Endpoint {
-    case signUp
+    case user
     case signIn
     case changePW
     case posts(startIndex: Int, endIndex: Int, sort: String)
@@ -34,8 +36,8 @@ enum Sort: String {
 extension Endpoint {
     var url: URL {
         switch self {
-        case .signUp:
-            return .makeEndPoint("auth/local/register")
+        case .user:
+            return .makeEndPoint("/user")
         case .signIn:
             return .makeEndPoint("auth/local")
         case .changePW:
@@ -57,11 +59,9 @@ extension Endpoint {
         }
     }
 }
-// http://test.monocoding.com/auth/local
-// http://test.monocoding.com:1231/auth/local
 
 extension URL {
-    static let baseURL = "http://test.monocoding.com:1231/"
+    static let baseURL = "http://test.monocoding.com:35484"
     
     static func makeEndPoint(_ endpoint: String) -> URL {
         URL(string: baseURL + endpoint)!
@@ -106,42 +106,42 @@ extension URLSession {
                     return
                 }
                 
-                guard response.statusCode == 200 else {
-                    
-                    if response.statusCode == 401 {
-                        print("토큰이 만료되었습니다.")
-                        UserDefaults.standard.reset()
-                        BaseViewController().isTokenExpired = true
-                        
-                        completion(nil, .unAuthorized)
-                        return
-                    }
-                    
-                    if response.statusCode == 400 {
-                        completion(nil, .invalidData)
-                        return
-                    }
-                    
-                    
-                    //                    else { completion(nil, .failed) }
-                    
-                    // 오류 확인
-                    do {
-                        print("statusCode: ", response.statusCode)
-                        
-                        let decoder = JSONDecoder()
-                        let errorDetail = try decoder.decode(ErrorDetail.self, from: data)
-                        completion(nil, .failed)
-                        print("error:", errorDetail.message)
-                        return
-                    } catch {
-                        print("status code do-catch: 여기오류")
-                        
-                        completion(nil, .invalidData)
-                        return
-                    }
-                }
-                
+//                guard response.statusCode == 200 else {
+//                    
+//                    if response.statusCode == 401 {
+//                        print("토큰이 만료되었습니다.")
+//                        UserDefaults.standard.reset()
+//                        BaseViewController().isTokenExpired = true
+//                        
+//                        completion(nil, .unAuthorized)
+//                        return
+//                    }
+//                    
+//                    if response.statusCode == 400 {
+//                        completion(nil, .invalidData)
+//                        return
+//                    }
+//                    
+//                    
+//                    //                    else { completion(nil, .failed) }
+//                    
+//                    // 오류 확인
+//                    do {
+//                        print("statusCode: ", response.statusCode)
+//                        
+//                        let decoder = JSONDecoder()
+//                        let errorDetail = try decoder.decode(ErrorDetail.self, from: data)
+//                        completion(nil, .failed)
+//                        print("error:", errorDetail.message)
+//                        return
+//                    } catch {
+//                        print("status code do-catch: 여기오류")
+//                        
+//                        completion(nil, .invalidData)
+//                        return
+//                    }
+//                }
+//                
                 
                 do {
                     let decoder = JSONDecoder()
