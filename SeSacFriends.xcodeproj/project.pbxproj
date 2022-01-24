@@ -61,7 +61,6 @@
 		2399604327965741001C8EA4 /* AuthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2399604227965741001C8EA4 /* AuthView.swift */; };
 		2399604527965760001C8EA4 /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2399604427965760001C8EA4 /* AuthViewController.swift */; };
 		2399604827965794001C8EA4 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 2399604727965794001C8EA4 /* SnapKit */; };
-		2399604B279658B8001C8EA4 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 2399604A279658B8001C8EA4 /* FirebaseAuth */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -128,7 +127,6 @@
 				2399604827965794001C8EA4 /* SnapKit in Frameworks */,
 				2389E1D127969CDD00BE68E3 /* RxSwift in Frameworks */,
 				2389E1CF27969CDD00BE68E3 /* RxRelay in Frameworks */,
-				2399604B279658B8001C8EA4 /* FirebaseAuth in Frameworks */,
 				234CEC37279C9A1000983E20 /* IQKeyboardManagerSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -316,7 +314,6 @@
 			name = SeSacFriends;
 			packageProductDependencies = (
 				2399604727965794001C8EA4 /* SnapKit */,
-				2399604A279658B8001C8EA4 /* FirebaseAuth */,
 				2389E1CC27969CDD00BE68E3 /* RxCocoa */,
 				2389E1CE27969CDD00BE68E3 /* RxRelay */,
 				2389E1D027969CDD00BE68E3 /* RxSwift */,
@@ -352,7 +349,6 @@
 			mainGroup = 23996020279656EB001C8EA4;
 			packageReferences = (
 				2399604627965794001C8EA4 /* XCRemoteSwiftPackageReference "SnapKit" */,
-				23996049279658B8001C8EA4 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				2389E1CB27969CDD00BE68E3 /* XCRemoteSwiftPackageReference "RxSwift" */,
 				234CEC35279C9A1000983E20 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */,
 			);
@@ -670,14 +666,6 @@
 				minimumVersion = 5.0.0;
 			};
 		};
-		23996049279658B8001C8EA4 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 8.0.0;
-			};
-		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -705,11 +693,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 2399604627965794001C8EA4 /* XCRemoteSwiftPackageReference "SnapKit" */;
 			productName = SnapKit;
-		};
-		2399604A279658B8001C8EA4 /* FirebaseAuth */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 23996049279658B8001C8EA4 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseAuth;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
