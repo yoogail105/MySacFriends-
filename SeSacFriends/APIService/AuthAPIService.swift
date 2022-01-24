@@ -106,7 +106,7 @@ class AuthAPIService {
             }
             
             UserDefaults.standard.idToken = idToken
-            print("idToken = \(String(describing: UserDefaults.standard.idToken!))")
+            print("idToken", UserDefaults.standard.idToken!)
             
             completion()
         }

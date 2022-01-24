@@ -36,9 +36,22 @@ class SignUpViewModel {
     
     
     
-//    func checkVerificationCode(completion: @escaping (APIError?) -> Void) {
-//        APIService.checkVerificationCode(verificationCode: phoneNumberObserver.value)
-//    }
+    func postSignUp(completion: @escaping (APIError?) -> Void) {
+        SignUpAPIService.signUp { userData, error in
+            if error != nil {
+                completion(error)
+            }
+            
+            guard userData != nil else {
+                print("userData는; ", userData)
+                return
+            }
+            
+            print("회원가입성공")
+            
+            completion(error)
+        }
+    }
     
 }
 

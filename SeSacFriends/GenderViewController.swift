@@ -27,13 +27,8 @@ class GenderViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         print("gender: viewdidload")
-        print(userDefaults.gender)
+        print("gender: ",userDefaults.gender)
         
-    }
-    
-    enum isSelected: String {
-        case on
-        case off
     }
     
     override func bind() {
@@ -86,7 +81,7 @@ class GenderViewController: BaseViewController {
         
         mainView.nextButton.rx.tap
             .subscribe(onNext: { _ in
-                self.moveToNext()
+                self.signUpSerer()
             })
             .disposed(by: disposeBag)
 
@@ -101,24 +96,46 @@ class GenderViewController: BaseViewController {
         var lastSelected = userDefaults.gender
         if lastSelected == Gender.woman.rawValue {
             userDefaults.gender = Gender.none.rawValue
+            print("여자버튼클릭해제: \(userDefaults.gender)")
         } else {
             userDefaults.gender = Gender.woman.rawValue
+            print("여자버튼클릭: \(userDefaults.gender)")
         }
+        
     }
     
     @objc func manButtonClicked() {
         var lastSelected = userDefaults.gender
         if lastSelected == Gender.man.rawValue {
             userDefaults.gender = Gender.none.rawValue
+            print("남자버튼클릭해제: \(userDefaults.gender)")
         } else {
             userDefaults.gender = Gender.man.rawValue
+            print("남자버튼클릭: \(userDefaults.gender)")
         }
     }
     
+    private func signUpSerer() {
+        print("gender: \(userDefaults.gender)")
+        print("phone: \(userDefaults.phoneNumber)")
+        print("idtoken: \(userDefaults.idToken)")
+        print("fcm: \(userDefaults.FCMToken)")
+        viewModel.postSignUp { error in
+            if error != nil {
+                print(error)
+                return
+            }
+            
+            self.moveToNext()
+        }
+    }
     
     private func moveToNext() {
         // 유저정보 post
-        let vc = EmailViewController()
+        
+        //print("gender: \(userDefaults.gender)")
+        //print("fcm: \()")
+        let vc = MainViewController()
         self.navigationController?.pushViewController(vc, animated: true)
     }
 }

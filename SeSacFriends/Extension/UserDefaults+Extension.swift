@@ -32,7 +32,7 @@ extension UserDefaults {
         case birth
         case email
         case gender
-        case FCMtoken
+        case FCMToken
 
     }
 
@@ -87,8 +87,8 @@ extension UserDefaults {
         set { setValue(newValue, forKey: UserDefaultsKeys.idToken.rawValue)}
     }
     
-    var FCMtoken: String? {
-        get { string(forKey: UserDefaultsKeys.FCMtoken.rawValue)}
-        set { setValue(newValue, forKey: UserDefaultsKeys.idToken.rawValue)}
+    var FCMToken: String? {
+        get { string(forKey: UserDefaultsKeys.FCMToken.rawValue)}
+        set { setValue(newValue, forKey: UserDefaultsKeys.FCMToken.rawValue)}
     }
 }

@@ -17,7 +17,7 @@ class NicknameView: AuthView{
         } else {
             textField.placeholder = SignUpText.nicknamePlaceholder.rawValue
         }
-        
+        subLabel.isHidden = true
         textField.keyboardType = .default
         
         nextButton.setTitle(SignUpText.nextButton.rawValue, for: .normal)

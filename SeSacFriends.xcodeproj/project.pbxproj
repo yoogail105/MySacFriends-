@@ -61,6 +61,7 @@
 		2399604327965741001C8EA4 /* AuthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2399604227965741001C8EA4 /* AuthView.swift */; };
 		2399604527965760001C8EA4 /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2399604427965760001C8EA4 /* AuthViewController.swift */; };
 		2399604827965794001C8EA4 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 2399604727965794001C8EA4 /* SnapKit */; };
+		935CEF8384FBA495647DE4C4 /* Pods_SeSacFriends.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7774CA6791F93EA43D6B3BE /* Pods_SeSacFriends.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -116,6 +117,9 @@
 		239960402796572C001C8EA4 /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		2399604227965741001C8EA4 /* AuthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthView.swift; sourceTree = "<group>"; };
 		2399604427965760001C8EA4 /* AuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
+		B7774CA6791F93EA43D6B3BE /* Pods_SeSacFriends.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SeSacFriends.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C38C49625B4A2CFF410BA47A /* Pods-SeSacFriends.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SeSacFriends.debug.xcconfig"; path = "Target Support Files/Pods-SeSacFriends/Pods-SeSacFriends.debug.xcconfig"; sourceTree = "<group>"; };
+		F2FA6C31C7F7A6700B8C0E46 /* Pods-SeSacFriends.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SeSacFriends.release.xcconfig"; path = "Target Support Files/Pods-SeSacFriends/Pods-SeSacFriends.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,6 +132,7 @@
 				2389E1D127969CDD00BE68E3 /* RxSwift in Frameworks */,
 				2389E1CF27969CDD00BE68E3 /* RxRelay in Frameworks */,
 				234CEC37279C9A1000983E20 /* IQKeyboardManagerSwift in Frameworks */,
+				935CEF8384FBA495647DE4C4 /* Pods_SeSacFriends.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -262,6 +267,8 @@
 			children = (
 				2399602B279656EB001C8EA4 /* SeSacFriends */,
 				2399602A279656EB001C8EA4 /* Products */,
+				8B8E1CDF8DC589E54C103147 /* Pods */,
+				B754107E9A269EC545356F05 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -296,6 +303,24 @@
 			path = SeSacFriends;
 			sourceTree = "<group>";
 		};
+		8B8E1CDF8DC589E54C103147 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				C38C49625B4A2CFF410BA47A /* Pods-SeSacFriends.debug.xcconfig */,
+				F2FA6C31C7F7A6700B8C0E46 /* Pods-SeSacFriends.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		B754107E9A269EC545356F05 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B7774CA6791F93EA43D6B3BE /* Pods_SeSacFriends.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -303,9 +328,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2399603D279656EC001C8EA4 /* Build configuration list for PBXNativeTarget "SeSacFriends" */;
 			buildPhases = (
+				76C897E873969168F9AA57E4 /* [CP] Check Pods Manifest.lock */,
 				23996025279656EB001C8EA4 /* Sources */,
 				23996026279656EB001C8EA4 /* Frameworks */,
 				23996027279656EB001C8EA4 /* Resources */,
+				973F3282D8D7E757C682F256 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -348,9 +375,9 @@
 			);
 			mainGroup = 23996020279656EB001C8EA4;
 			packageReferences = (
-				2399604627965794001C8EA4 /* XCRemoteSwiftPackageReference "SnapKit" */,
-				2389E1CB27969CDD00BE68E3 /* XCRemoteSwiftPackageReference "RxSwift" */,
-				234CEC35279C9A1000983E20 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */,
+				2399604627965794001C8EA4 /* XCRemoteSwiftPackageReference "SnapKit.git" */,
+				2389E1CB27969CDD00BE68E3 /* XCRemoteSwiftPackageReference "RxSwift.git" */,
+				234CEC35279C9A1000983E20 /* XCRemoteSwiftPackageReference "IQKeyboardManager.git" */,
 			);
 			productRefGroup = 2399602A279656EB001C8EA4 /* Products */;
 			projectDirPath = "";
@@ -375,6 +402,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		76C897E873969168F9AA57E4 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-SeSacFriends-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		973F3282D8D7E757C682F256 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SeSacFriends/Pods-SeSacFriends-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SeSacFriends/Pods-SeSacFriends-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SeSacFriends/Pods-SeSacFriends-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		23996025279656EB001C8EA4 /* Sources */ = {
@@ -560,6 +629,7 @@
 		};
 		2399603E279656EC001C8EA4 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C38C49625B4A2CFF410BA47A /* Pods-SeSacFriends.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -590,6 +660,7 @@
 		};
 		2399603F279656EC001C8EA4 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F2FA6C31C7F7A6700B8C0E46 /* Pods-SeSacFriends.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -642,7 +713,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		234CEC35279C9A1000983E20 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */ = {
+		234CEC35279C9A1000983E20 /* XCRemoteSwiftPackageReference "IQKeyboardManager.git" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "git@github.com:hackiftekhar/IQKeyboardManager.git";
 			requirement = {
@@ -650,7 +721,7 @@
 				minimumVersion = 6.0.0;
 			};
 		};
-		2389E1CB27969CDD00BE68E3 /* XCRemoteSwiftPackageReference "RxSwift" */ = {
+		2389E1CB27969CDD00BE68E3 /* XCRemoteSwiftPackageReference "RxSwift.git" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "git@github.com:ReactiveX/RxSwift.git";
 			requirement = {
@@ -658,7 +729,7 @@
 				minimumVersion = 6.0.0;
 			};
 		};
-		2399604627965794001C8EA4 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+		2399604627965794001C8EA4 /* XCRemoteSwiftPackageReference "SnapKit.git" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
 			requirement = {
@@ -671,27 +742,27 @@
 /* Begin XCSwiftPackageProductDependency section */
 		234CEC36279C9A1000983E20 /* IQKeyboardManagerSwift */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 234CEC35279C9A1000983E20 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */;
+			package = 234CEC35279C9A1000983E20 /* XCRemoteSwiftPackageReference "IQKeyboardManager.git" */;
 			productName = IQKeyboardManagerSwift;
 		};
 		2389E1CC27969CDD00BE68E3 /* RxCocoa */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 2389E1CB27969CDD00BE68E3 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			package = 2389E1CB27969CDD00BE68E3 /* XCRemoteSwiftPackageReference "RxSwift.git" */;
 			productName = RxCocoa;
 		};
 		2389E1CE27969CDD00BE68E3 /* RxRelay */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 2389E1CB27969CDD00BE68E3 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			package = 2389E1CB27969CDD00BE68E3 /* XCRemoteSwiftPackageReference "RxSwift.git" */;
 			productName = RxRelay;
 		};
 		2389E1D027969CDD00BE68E3 /* RxSwift */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 2389E1CB27969CDD00BE68E3 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			package = 2389E1CB27969CDD00BE68E3 /* XCRemoteSwiftPackageReference "RxSwift.git" */;
 			productName = RxSwift;
 		};
 		2399604727965794001C8EA4 /* SnapKit */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 2399604627965794001C8EA4 /* XCRemoteSwiftPackageReference "SnapKit" */;
+			package = 2399604627965794001C8EA4 /* XCRemoteSwiftPackageReference "SnapKit.git" */;
 			productName = SnapKit;
 		};
 /* End XCSwiftPackageProductDependency section */

@@ -77,7 +77,7 @@ extension URLSession {
         
         session.dataTask(endpoint) { data, response, error in
             let str = String(decoding: data!, as: UTF8.self)
-            print("data: ",data)
+            print("data: ",str)
             print("결과:::::::\n response: \(response)\n error: \(error)")
             DispatchQueue.main.async {
                 guard error == nil else {

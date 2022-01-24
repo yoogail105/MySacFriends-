@@ -74,6 +74,7 @@ class SignUpNicknameViewController: BaseViewController {
     
     private func moveToNext() {
         UserDefaults.standard.nickname = mainView.textField.text!
+        print("nick: \(userDefaults.nickname)")
         let vc = BirthViewController()
         self.navigationController?.pushViewController(vc, animated: true)
     }

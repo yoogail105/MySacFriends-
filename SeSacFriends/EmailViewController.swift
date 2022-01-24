@@ -64,6 +64,7 @@ class EmailViewController: BaseViewController {
     
     private func moveToNext() {
         UserDefaults.standard.email = mainView.textField.text!
+        print("email: \(userDefaults.email)")
         let vc = GenderViewController()
         self.navigationController?.pushViewController(vc, animated: true)
     }
