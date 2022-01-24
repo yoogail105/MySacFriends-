@@ -15,5 +15,5 @@ class SignUpNicknameView: BaseUIView {
         label.text = SignUpText.setNickname.rawValue
         return label
     }()
-    
+
 }

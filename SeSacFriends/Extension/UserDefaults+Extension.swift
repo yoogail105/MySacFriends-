@@ -15,6 +15,11 @@ enum StartMode: String {
     case main
 }
 
+enum Gender: Int {
+    case woman = 0
+    case man = 1
+    case none = -1
+}
 
 extension UserDefaults {
     
@@ -29,8 +34,10 @@ extension UserDefaults {
         case gender
 
     }
-    
 
+    func register() {
+        self.register(defaults: [UserDefaultsKeys.gender.rawValue : -1])
+    }
 
     func reset() {
         UserDefaultsKeys.allCases.forEach {
@@ -68,8 +75,8 @@ extension UserDefaults {
         set { setValue(newValue, forKey: UserDefaultsKeys.email.rawValue)}
     }
     
-    var gender: String {
-        get { string(forKey: UserDefaultsKeys.gender.rawValue) ?? ""}
+    var gender: Int {
+        get { integer(forKey: UserDefaultsKeys.gender.rawValue) }
         set { setValue(newValue, forKey: UserDefaultsKeys.gender.rawValue)}
     }
     

@@ -7,6 +7,9 @@
 
 import Foundation
 
+
+
+
 enum AuthText: String {
     case mainLabel = "새싹 서비스 이용을 위해\n 휴대폰 번호를 입력해 주세요."
     case authButton = "인증 번호 받기"

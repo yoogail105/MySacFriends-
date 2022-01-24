@@ -82,7 +82,7 @@ class AuthView: UIView {
         
         subLabel.snp.makeConstraints {
             $0.centerX.equalToSuperview()
-            $0.top.equalTo(mainLabel.snp.bottom).offset(-8)
+            $0.top.equalTo(mainLabel.snp.bottom).offset(8)
         }
         
         nextButton.snp.makeConstraints {

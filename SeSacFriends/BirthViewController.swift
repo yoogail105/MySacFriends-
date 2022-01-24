@@ -21,6 +21,7 @@ class BirthViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("birth: viewdidload")
         print("nickname = \(UserDefaults.standard.nickname)")
     }
     
@@ -36,6 +37,7 @@ class BirthViewController: BaseViewController {
     
     override func addAction() {
         mainView.datePicker.addTarget(self, action: #selector(onDidChangeDate), for: .valueChanged)
+        
     }
     
     @objc func onDidChangeDate() {

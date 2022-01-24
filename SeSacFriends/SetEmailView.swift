@@ -4,7 +4,7 @@
 //
 //  Created by 성민주민주 on 2022/01/23.
 //
-
+import UIKit
 
 class setEmailView: AuthView{
     
@@ -12,7 +12,13 @@ class setEmailView: AuthView{
         mainLabel.text = SignUpText.setEmail.rawValue
         subLabel.text = SignUpText.setEmailSub.rawValue
         
-        textField.placeholder = SignUpText.emailPlaceholder.rawValue
+        if UserDefaults.standard.email != "" {
+            textField.text = UserDefaults.standard.email
+        } else {
+            textField.placeholder = SignUpText.emailPlaceholder.rawValue
+        }
+        
+       
         textField.keyboardType = .emailAddress
         
         nextButton.setTitle(SignUpText.nextButton.rawValue, for: .normal)

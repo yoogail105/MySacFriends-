@@ -13,6 +13,7 @@
 		23335719279DB2A90062A9E8 /* SignUpAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23335718279DB2A90062A9E8 /* SignUpAPIService.swift */; };
 		2333571B279DC6AE0062A9E8 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2333571A279DC6AE0062A9E8 /* User.swift */; };
 		2333571D279DED330062A9E8 /* BirthTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2333571C279DED330062A9E8 /* BirthTextFieldView.swift */; };
+		2333571F279DF89E0062A9E8 /* genderBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2333571E279DF89E0062A9E8 /* genderBoxView.swift */; };
 		234CEC012799F76B00983E20 /* OnboardingCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 234CEC002799F76B00983E20 /* OnboardingCardView.swift */; };
 		234CEC032799F7F600983E20 /* OnboardingImages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 234CEC022799F7F600983E20 /* OnboardingImages.swift */; };
 		234CEC052799FAC300983E20 /* BaseUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 234CEC042799FAC300983E20 /* BaseUIView.swift */; };
@@ -70,6 +71,7 @@
 		23335718279DB2A90062A9E8 /* SignUpAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpAPIService.swift; sourceTree = "<group>"; };
 		2333571A279DC6AE0062A9E8 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		2333571C279DED330062A9E8 /* BirthTextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BirthTextFieldView.swift; sourceTree = "<group>"; };
+		2333571E279DF89E0062A9E8 /* genderBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = genderBoxView.swift; sourceTree = "<group>"; };
 		234CEC002799F76B00983E20 /* OnboardingCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCardView.swift; sourceTree = "<group>"; };
 		234CEC022799F7F600983E20 /* OnboardingImages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingImages.swift; sourceTree = "<group>"; };
 		234CEC042799FAC300983E20 /* BaseUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseUIView.swift; sourceTree = "<group>"; };
@@ -134,6 +136,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		23335720279DF8AC0062A9E8 /* CustomView */ = {
+			isa = PBXGroup;
+			children = (
+				2333571C279DED330062A9E8 /* BirthTextFieldView.swift */,
+				2333571E279DF89E0062A9E8 /* genderBoxView.swift */,
+			);
+			path = CustomView;
+			sourceTree = "<group>";
+		};
 		234CEBFF2799F75500983E20 /* Onboarding */ = {
 			isa = PBXGroup;
 			children = (
@@ -221,7 +232,6 @@
 				234E5FA527987EE900F5D2BB /* UIButton+Extension.swift */,
 				2308B0232799D83D004145E2 /* UIViewController+Extension.swift */,
 				234CEC0A279AB3D500983E20 /* UIView+Extension.swift */,
-				2333571C279DED330062A9E8 /* BirthTextFieldView.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -276,6 +286,7 @@
 				234CEC23279C82AD00983E20 /* Base */,
 				234CEC1E279C728300983E20 /* Text */,
 				2389E1C9279697E700BE68E3 /* Extension */,
+				23335720279DF8AC0062A9E8 /* CustomView */,
 				234CEBFF2799F75500983E20 /* Onboarding */,
 				2389E1CA279697F700BE68E3 /* Auth */,
 				234CEC24279C82F000983E20 /* SignUp */,
@@ -417,6 +428,7 @@
 				234CEC0B279AB3D500983E20 /* UIView+Extension.swift in Sources */,
 				2389E1C8279697E200BE68E3 /* UITextField+Extension.swift in Sources */,
 				234CEC39279C9CEA00983E20 /* GenderViewController.swift in Sources */,
+				2333571F279DF89E0062A9E8 /* genderBoxView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

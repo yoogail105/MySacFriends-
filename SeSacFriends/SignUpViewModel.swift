@@ -14,6 +14,7 @@ class SignUpViewModel {
     var buttonMode = BehaviorRelay<String>(value: "false")
     var nicknameObserver = BehaviorRelay<String>(value: "")
     var emailObserver = BehaviorRelay<String>(value: "")
+    var genderObserver = PublishRelay<Gender>()
     
     var isValidEmail: Observable<Bool> {
         return emailObserver.map { $0.validateEmail() }
@@ -32,8 +33,6 @@ class SignUpViewModel {
     
     //var onTimer: BehaviorRelay = BehaviorRelay(value: false)
     
-    
-
     
     
 //    func checkVerificationCode(completion: @escaping (APIError?) -> Void) {

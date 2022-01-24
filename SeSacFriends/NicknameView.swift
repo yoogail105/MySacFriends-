@@ -12,7 +12,12 @@ class NicknameView: AuthView{
     override func configuration() {
         mainLabel.text = SignUpText.setNickname.rawValue
         
-        textField.placeholder = SignUpText.nicknamePlaceholder.rawValue
+        if UserDefaults.standard.nickname != "" {
+            textField.text = UserDefaults.standard.nickname
+        } else {
+            textField.placeholder = SignUpText.nicknamePlaceholder.rawValue
+        }
+        
         textField.keyboardType = .default
         
         nextButton.setTitle(SignUpText.nextButton.rawValue, for: .normal)

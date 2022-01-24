@@ -18,10 +18,14 @@ class SignUpNicknameViewController: BaseViewController {
     
     override func loadView() {
         self.view = mainView
+        
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("nickname: viewdidload")
+        print("nickname: \(UserDefaults.standard.nickname)")
+
     
     }
     

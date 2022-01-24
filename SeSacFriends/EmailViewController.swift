@@ -15,8 +15,13 @@ class EmailViewController: BaseViewController {
     let viewModel = SignUpViewModel()
     let disposeBag = DisposeBag()
     
+    override func loadView() {
+        self.view = mainView
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("email: viewdidload")
         
     }
     
