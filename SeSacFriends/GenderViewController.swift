@@ -18,7 +18,7 @@ class GenderViewController: BaseViewController {
     var gender = UserDefaults.standard.gender
     var woman = false
     var man = false
-    override func loadView() {
+    override func loadView() { 
         self.view = mainView
 
     }
@@ -55,16 +55,12 @@ class GenderViewController: BaseViewController {
                 switch lastSelected {
                 case .woman:
                     if self.mainView.button00.backgroundColor == UIColor.white {
-                        print("woman")
                         return .woman
                     }
-                    print("woman:",lastSelected)
                     return .none
                 case .none:
-                    print("woman:",lastSelected)
                     return .woman
                 case .man:
-                    print("woman:",lastSelected)
                     return .woman
                 }
             })
@@ -75,21 +71,23 @@ class GenderViewController: BaseViewController {
             .scan(Gender.none, accumulator: { lastSelected, _ in
                 switch lastSelected {
                 case .woman:
-                    print("man:",lastSelected)
                     return .man
                 case .none:
-                    print("man:",lastSelected)
                     return .man
                 case .man:
                     if self.mainView.button01.backgroundColor == UIColor.white {
-                        print("man")
                         return .man
                     }
-                    print("man:",lastSelected)
                     return .none
                 }
             })
             .bind(to: viewModel.genderObserver)
+            .disposed(by: disposeBag)
+        
+        mainView.nextButton.rx.tap
+            .subscribe(onNext: { _ in
+                self.moveToNext()
+            })
             .disposed(by: disposeBag)
 
     }
@@ -119,7 +117,7 @@ class GenderViewController: BaseViewController {
     
     
     private func moveToNext() {
-        UserDefaults.standard.nickname = mainView.textField.text!
+        // 유저정보 post
         let vc = EmailViewController()
         self.navigationController?.pushViewController(vc, animated: true)
     }

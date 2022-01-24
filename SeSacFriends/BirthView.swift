@@ -17,8 +17,9 @@ class BirthView: AuthView{
         datePicker.locale = Locale(identifier: "ko-KR")
         datePicker.timeZone = .autoupdatingCurrent
         datePicker.translatesAutoresizingMaskIntoConstraints = false
+        datePicker.backgroundColor = .white
         return datePicker
-    }()
+    }() 
     
     
     let stackView: UIStackView = {
@@ -39,12 +40,14 @@ class BirthView: AuthView{
     
     let monthView: BirthTextFieldView = {
         let view = BirthTextFieldView()
+        view.textField.placeholder = "1"
         view.label.text = "월"
         return view
     }()
     
     let dayView: BirthTextFieldView = {
         let view = BirthTextFieldView()
+        view.textField.placeholder = "1"
         view.label.text = "일"
         return view
     }()
@@ -53,7 +56,7 @@ class BirthView: AuthView{
         mainLabel.text = SignUpText.setBirthday.rawValue
         nextButton.setTitle(SignUpText.nextButton.rawValue, for: .normal)
         
-        //pickerview
+        subLabel.isHidden = true
     }
     
     override func constraints() {

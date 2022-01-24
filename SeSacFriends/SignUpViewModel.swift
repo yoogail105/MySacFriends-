@@ -15,6 +15,7 @@ class SignUpViewModel {
     var nicknameObserver = BehaviorRelay<String>(value: "")
     var emailObserver = BehaviorRelay<String>(value: "")
     var genderObserver = PublishRelay<Gender>()
+    var birthObserver = PublishRelay<Date>()
     
     var isValidEmail: Observable<Bool> {
         return emailObserver.map { $0.validateEmail() }

@@ -21,7 +21,7 @@ class AuthAPIService {
     static func sendVerificationCode(phoneNumber: String, completion: @escaping () -> Void ) {
         
         PhoneAuthProvider.provider()
-            .verifyPhoneNumber(phoneNumber.phoneNumberFormat(), uiDelegate: nil) { verificationID, error in
+            .verifyPhoneNumber(phoneNumber, uiDelegate: nil) { verificationID, error in
                 print(phoneNumber)
                 if  error != nil {
                     if let errCode = AuthErrorCode(rawValue: error!._code) {

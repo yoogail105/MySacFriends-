@@ -21,6 +21,24 @@ enum Endpoint {
     case deleteUser
 }
 
+enum HTTPString: String {
+    case idtoken
+    case ContentType = "Content-Type"
+    
+}
+
+enum HTTPHeaderValue: String {
+    case contentType = "application/x-www-form-urlencoded"
+}
+
+enum UserBodyPara: String {
+    case phoneNumber
+    case FCMtoken
+    case nick
+    case birth
+    case email
+    case gender
+}
 
 extension Endpoint {
     var url: URL {

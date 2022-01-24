@@ -33,8 +33,7 @@ class AuthViewModel {
     
     
     func postVerificationCode(completion: @escaping () -> Void)  {
-        let phoneNumber = UserDefaults.standard.phoneNumber
-        
+        let phoneNumber = UserDefaults.standard.phoneNumber.phoneNumberFormat()
         AuthAPIService.sendVerificationCode(phoneNumber: phoneNumber) {
             print("인증번호발송완료")
             completion()
@@ -60,7 +59,7 @@ class AuthViewModel {
     }
     
     func getUser(completion: @escaping () -> Void) {
-        SignUpAPIService.fetchUser { user, error in
+        SignUpAPIService.login { user, error in
             
             guard let user = user else {
                 return

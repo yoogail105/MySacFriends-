@@ -8,7 +8,10 @@
 import Foundation
 
 class SignUpAPIService {
-    static func fetchUser(completion: @escaping (User?, APIError?) -> Void ) {
+    
+    let userDefaults = UserDefaults.standard
+    
+    static func login(completion: @escaping (User?, APIError?) -> Void ) {
         
         let idToken = UserDefaults.standard.idToken!
         print("fetchUser idToken: \(idToken)")
@@ -16,9 +19,28 @@ class SignUpAPIService {
         
         request.httpMethod = Method.GET.rawValue
         
-        request.setValue(idToken, forHTTPHeaderField: "idtoken")
-        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.setValue(idToken, forHTTPHeaderField: HTTPString.idtoken.rawValue)
+       // request.setValue(HTTPHeaderValue.contentType.rawValue, forHTTPHeaderField: HTTPString.ContentType.rawValue)
         
         URLSession.request(endpoint: request, completion: completion)
+    }
+    
+    static func signUp(completion: @escaping (User?, APIError?) -> Void) {
+        let idToken = UserDefaults.standard.idToken!
+        
+        var request = URLRequest(url: Endpoint.user.url)
+        
+        request.httpMethod = Method.POST.rawValue
+        
+        request.setValue(idToken, forHTTPHeaderField: HTTPString.idtoken.rawValue)
+        request.setValue(HTTPHeaderValue.contentType.rawValue, forHTTPHeaderField: HTTPString.ContentType.rawValue)
+        
+        request.httpBody = "\(UserBodyPara.phoneNumber.rawValue)=\(UserDefaults.standard.phoneNumber)&\(UserBodyPara.FCMtoken)=\(UserDefaults.standard.FCMtoken!)&\(UserBodyPara.nick.rawValue)=\(UserDefaults.standard.nickname)&\(UserBodyPara.birth.rawValue)=\(UserDefaults.standard.birth)&\(UserBodyPara.email.rawValue)=\(UserDefaults.standard.email)&\(UserBodyPara.gender.rawValue)=\(UserDefaults.standard.gender)"
+            .data(using: .utf8, allowLossyConversion: false)
+        
+        print("\(UserBodyPara.phoneNumber.rawValue)=\(UserDefaults.standard.phoneNumber)&\(UserBodyPara.FCMtoken)=\(UserDefaults.standard.FCMtoken!)&\(UserBodyPara.nick.rawValue)=\(UserDefaults.standard.nickname)&\(UserBodyPara.birth.rawValue)=\(UserDefaults.standard.birth)&\(UserBodyPara.email.rawValue)=\(UserDefaults.standard.email)&\(UserBodyPara.gender.rawValue)=\(UserDefaults.standard.gender)")
+        
+        URLSession.request(endpoint: request, completion: completion)
+        
     }
 }

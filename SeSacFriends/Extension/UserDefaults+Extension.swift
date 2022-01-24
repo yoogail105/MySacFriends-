@@ -32,6 +32,7 @@ extension UserDefaults {
         case birth
         case email
         case gender
+        case FCMtoken
 
     }
 
@@ -65,8 +66,9 @@ extension UserDefaults {
         set { setValue(newValue, forKey: UserDefaultsKeys.nickname.rawValue)}
     }
     
-    var birth: String {
-        get { string(forKey: UserDefaultsKeys.birth.rawValue) ?? ""}
+    
+    var birth: Date? {
+        get { return UserDefaults.standard.object(forKey: UserDefaultsKeys.birth.rawValue) as? Date }
         set { setValue(newValue, forKey: UserDefaultsKeys.birth.rawValue)}
     }
     
@@ -82,6 +84,11 @@ extension UserDefaults {
     
     var idToken: String? {
         get { string(forKey: UserDefaultsKeys.idToken.rawValue)}
+        set { setValue(newValue, forKey: UserDefaultsKeys.idToken.rawValue)}
+    }
+    
+    var FCMtoken: String? {
+        get { string(forKey: UserDefaultsKeys.FCMtoken.rawValue)}
         set { setValue(newValue, forKey: UserDefaultsKeys.idToken.rawValue)}
     }
 }
