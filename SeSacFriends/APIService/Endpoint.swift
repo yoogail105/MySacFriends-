@@ -19,6 +19,8 @@ enum Method: String {
 enum Endpoint {
     case user
     case deleteUser
+    case updateFCMToken
+    case updateMyPage
 }
 
 enum HTTPString: String {
@@ -38,6 +40,11 @@ enum UserBodyPara: String {
     case birth
     case email
     case gender
+    case searchable
+    case ageMin
+    case ageMax
+    case hobby
+    
 }
 
 extension Endpoint {
@@ -47,6 +54,10 @@ extension Endpoint {
             return .makeEndPoint("/user")
         case .deleteUser:
             return .makeEndPoint("/user/withdraw")
+        case .updateFCMToken:
+            return .makeEndPoint("/user/update_fcm_token")
+        case.updateMyPage:
+            return .makeEndPoint("/user/update/mypage")
             
         }
     }

@@ -96,7 +96,7 @@ class AuthViewController: BaseViewController {
 //
         
         func sendVerifyNumberButtonClicked() {
-            UserDefaults.standard.phoneNumber = viewModel.phoneNumberObserver.value
+            UserDefaults.standard.phoneNumber = viewModel.phoneNumberObserver.value.phoneNumberFormat()
             showToastWithAction(message: "전화 번호 인증 시작") {
                 self.viewModel.postVerificationCode {
                     let vc = AuthVerificationCodeViewController()
