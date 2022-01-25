@@ -42,7 +42,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 print("저장: FCM registration token: \(token)")
             }
         }
-        
+    
         return true
     }
     

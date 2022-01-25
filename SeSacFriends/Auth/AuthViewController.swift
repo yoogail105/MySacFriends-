@@ -33,21 +33,21 @@ class AuthViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-    
+        
     }
     
     override func setupNavigationBar() {
-        
+        navigationController?.navigationBar.isHidden = true
     }
     
     override func bind() {
         
         mainView.textField.rx.text
             .orEmpty
-            .bind(to: viewModel.phoneNumberObserver)
+            .bind(to: viewModel.textFieldObserver)
             .disposed(by: disposeBag)
         
-        viewModel.phoneNumberObserver
+        viewModel.textFieldObserver
             .map { $0 != "" ? UIColor.black : UIColor.grayColor(.gray3)}
             .bind(to: mainView.line.rx.backgroundColor)
             .disposed(by: disposeBag)
@@ -77,47 +77,56 @@ class AuthViewController: BaseViewController {
             .withLatestFrom(viewModel.isValidPhoneNumber)
             .filter{ !$0 }
             .subscribe(onNext: { _ in
-                self.showToast(message: requestVerificationCode.invalid.rawValue )
+                self.showToast(message: requestVerificationCodeToast.invalidPhoneFormat.rawValue )
             })
             .disposed(by: disposeBag)
         
-//
+        //
     }
+    
+    func showAlert() {
+        print("alert!")
+    }
+    
+    
+    func sendVerifyNumberButtonClicked() {
+        UserDefaults.standard.phoneNumber = mainView.textField.text?.phoneNumberFormat() ?? ""
         
-        func showAlert() {
-            print("alert!")
-        }
-        
-        
-        
-//        override func addAction() {
-//            mainView.verifyButton.addTarget(self, action: #selector(sendVerifyNumberButtonClicked), for: .touchUpInside)
-//        }
-//
-        
-        func sendVerifyNumberButtonClicked() {
-            UserDefaults.standard.phoneNumber = viewModel.phoneNumberObserver.value.phoneNumberFormat()
-            
-            showToastWithAction(message: "전화 번호 인증 시작") {
-                self.viewModel.postVerificationCode {
-                    let vc = AuthVerificationCodeViewController()
-                    self.navigationController?.pushViewController(vc, animated: true)
-                    print("화면 옮기기")
+        showToastWithAction(message: requestVerificationCodeToast.isValid.rawValue) {
+            self.viewModel.postVerificationCode { error in
+                
+                if error != nil {
+                    switch error {
+                    case .tooManyRequests:
+                        self.showToast(message: APIError.tooManyRequests.rawValue)
+                        return
+                    default:
+                        self.showToast(message: APIError.failed.rawValue)
+                        return
+                    }
                 }
-            }
-            
-                        
-        }
-        
-        @objc func verifyButtonClicked() {
-            
-        }
-        
-        private func limitPhoneNumberTextField(_ phoneNumber: String) {
-            if phoneNumber.count > 11 {
-                let index = phoneNumber.index(phoneNumber.startIndex, offsetBy: 11)
-                mainView.textField.text = String(phoneNumber[..<index])
+                if error != nil {
+                    return
+                }
+                let vc = AuthVerificationCodeViewController()
+                self.navigationController?.pushViewController(vc, animated: true)
+                print("화면 옮기기")
             }
         }
+        
         
     }
+    
+    
+    @objc func verifyButtonClicked() {
+        
+    }
+    
+    private func limitPhoneNumberTextField(_ phoneNumber: String) {
+        if phoneNumber.count > 11 {
+            let index = phoneNumber.index(phoneNumber.startIndex, offsetBy: 11)
+            mainView.textField.text = String(phoneNumber[..<index])
+        }
+    }
+    
+}

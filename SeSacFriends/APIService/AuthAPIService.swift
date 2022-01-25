@@ -9,18 +9,10 @@ import Foundation
 import FirebaseAuth
 import CoreMedia
 
-enum APIError: Error {
-    case invalidResponse
-    case noData
-    case failed
-    case invalidData
-    case unAuthorized
-    case nicknameError
-    
-}
+
 
 class AuthAPIService {
-    static func sendVerificationCode(phoneNumber: String, completion: @escaping () -> Void ) {
+    static func sendVerificationCode(phoneNumber: String, completion: @escaping (APIError?) -> Void ) {
         
         PhoneAuthProvider.provider()
             .verifyPhoneNumber(phoneNumber, uiDelegate: nil) { verificationID, error in
@@ -29,26 +21,27 @@ class AuthAPIService {
                     if let errCode = AuthErrorCode(rawValue: error!._code) {
                         
                         switch errCode {
-                        case .invalidPhoneNumber:
-                            print("invalid email")
-                        case .missingPhoneNumber:
-                            print("in use")
+                            
+                        case .tooManyRequests:
+                            completion(.tooManyRequests)
+                            print("너무 많은 요청")
                         default:
                             print("Create User Error: \(error!)")
+                            completion(.failed)
                         }
+
                     }
                     return
                 }
                 
                 UserDefaults.standard.authVerificationID = verificationID!
-             //   print("인증아이디는 \(UserDefaults.standard.authVerificationID)")
-                completion()
+                completion(nil)
             }
         
     }
     
     // verificaitonCode: "AJOnW4QgBVF9FVNR6esYkz_BzpdGis9IoegIBy0ejeMTLaI42B0l36xXj3prJnhAgmQ6oBuckLYDbvVk9_hcxT_GapMAJPshiKZ_LuXoqAoex4qoAeH2H6FSnZAtDW8oPmLq_5mM9aK_GIOrDK8R-HZPL1H94Amo5sIA5apfDa2lPFD5wjo1MJn1QZEITaOKiFuBzB_zjoQxmPAVkpIcCc69EJq4PPiwXMFp4VXL2btGbeNZ798Jgkk"
-    static func checkVerificationCode(verificationCode: String, completion: @escaping () -> Void) {
+    static func checkVerificationCode(verificationCode: String, completion: @escaping (APIError?) -> Void) {
         
         let verificationID = UserDefaults.standard.authVerificationID!
         print("입력한 verifiacationCode는 \(verificationCode)입니다.")
@@ -61,9 +54,11 @@ class AuthAPIService {
         //request
         Auth.auth().signIn(with: credential) { authResult, error in
             if let error = error {
+                completion(.verificaitonToken)
              
                     if let errCode = AuthErrorCode(rawValue: error._code) {
                         print("check verification User Error: \(error)")
+                        
                     }
                 let authError = error as NSError
                 if authError.code == AuthErrorCode.secondFactorRequired.rawValue {
@@ -89,7 +84,7 @@ class AuthAPIService {
             UserDefaults.standard.startMode = StartMode.signUp.rawValue
             print("verificationID: \(UserDefaults.standard.authVerificationID!)")
             
-            completion()
+            completion(nil)
             
             // ...
         }

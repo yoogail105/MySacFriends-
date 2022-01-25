@@ -13,35 +13,48 @@ class AuthViewModel {
     
     var buttonMode = BehaviorRelay<String>(value: "false")
     
-    var phoneNumberObserver = BehaviorRelay<String>(value: "")
-    
-    var certificationCodeObserver = BehaviorRelay<String>(value: "")
-    
-    
-    var isValidPhoneNumber: Observable<Bool> {
-        return phoneNumberObserver.map { $0.validatePhoneNumber() }
-    }
-    
-    var isValidCertificationCode: Observable<Bool> {
-        return certificationCodeObserver.map { $0.isValidCertificationCode()}
-     }
+    var textFieldObserver = PublishRelay<String>()
     
     var onTimer: BehaviorRelay = BehaviorRelay(value: false)
     
-    func postVerificationCode(completion: @escaping () -> Void)  {
+    var isValidPhoneNumber: Observable<Bool> {
+        return textFieldObserver.map { $0.validatePhoneNumber() }
+    }
+    
+    var isValidCertificationCode: Observable<Bool> {
+        return textFieldObserver.map { $0.isValidCertificationCode()}
+    }
+    
+    func postVerificationCode(completion: @escaping (APIError?) -> Void)  {
         let phoneNumber = UserDefaults.standard.phoneNumber
         
-        AuthAPIService.sendVerificationCode(phoneNumber: phoneNumber) {
-            print("인증번호발송완료")
-            completion()
+        AuthAPIService.sendVerificationCode(phoneNumber: phoneNumber) { error in
+            
+//            if error != nil {
+//                switch error {
+//                case .tooManyRequests:
+//                    BaseViewController().showToast(message: APIError.tooManyRequests.rawValue)
+//                    return
+//                default:
+//                    BaseViewController().showToast(message: APIError.failed.rawValue)
+//                    return
+//                }
+//            }
+            
+            completion(error)
         }
     }
     
-   
-    func checkVerificationCode(verificationCode: String, completion: @escaping () -> Void) {
-        AuthAPIService.checkVerificationCode(verificationCode: verificationCode) {
-            print("여기는 AuthViewModel, check완료: \(verificationCode)")
-            completion()
+    
+    func checkVerificationCode(verificationCode: String, completion: @escaping (APIError?) -> Void) {
+        AuthAPIService.checkVerificationCode(verificationCode: verificationCode) { error in
+            if error != nil {
+                if error == .verificaitonToken {
+                    completion(error)
+                }
+            }
+            UserDefaults.standard.startMode = StartMode.signUp.rawValue
+            completion(nil)
         }
     }
     
@@ -55,13 +68,26 @@ class AuthViewModel {
     func getUser(completion: @escaping () -> Void) {
         SignUpAPIService.login { user, error in
             
+            guard let error = error else {
+                return
+            }
+            
             guard let user = user else {
                 return
             }
             
-            UserDefaults.standard.startMode = StartMode.main.rawValue
-
+            // 이제 막 token을 발급 받고, 호출을 하니까 firebaseError가 나지 않지 않을까?
+            if error == .unAuthorized {
+                return
+            }
+            
+            
+            completion()
+            
         }
+        UserDefaults.standard.startMode = StartMode.main.rawValue
+        print(UserDefaults.standard.startMode)
+        completion()
     }
 }
 

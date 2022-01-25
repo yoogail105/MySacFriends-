@@ -36,6 +36,9 @@ class OnboardingViewController: BaseViewController {
         }
         cardViewController.didMove(toParent: self)
     }
+    override func setupNavigationBar() {
+        
+    }
     
     override func bind() {
         

@@ -7,14 +7,15 @@
 
 import Foundation
 
-enum requestVerificationCode: String {
+enum requestVerificationCodeToast: String {
     case isValid = "전화 번호 인증 시작"
-    case invalid = "잘못된 전화번호 형식입니다."
+    case invalidPhoneFormat = "잘못된 전화번호 형식입니다."
+    case invalidCodeForamt = "잘못된 인증번호 형식입니다."
     case overRequest = "과도한 인증시도가 있었습니다.\n나중에 다시 시도해 주세요."
     case unkownError = "에러가 발생했습니다.\n다시 시도해 주세요."
 }
 
-enum FirebaseAuthErrorCode: String {
+enum FirebaseAuthErrorCodeToast: String {
     case e17057 = "이미 전송되었습니다.\n 메세지함을 확인해 주세요."
     case e17993 = "오류오류 그놈의 오류임."
     case s17010 = "과도한 인증시도가 있었습니다.\n나중에 다시 시도해 주세요." //overRequest

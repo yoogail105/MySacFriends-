@@ -90,6 +90,7 @@ extension URLSession {
             let str = String(decoding: data!, as: UTF8.self)
             print("data: ",str)
             print("결과:::::::\n response: \(response)\n error: \(error)")
+            
             DispatchQueue.main.async {
                 guard error == nil else {
                     completion(nil, .failed)
@@ -108,18 +109,18 @@ extension URLSession {
                 }
                 
                 guard response.statusCode == 200 else {
-                    
-                    if response.statusCode == 201 {
-                        print("201: 사용자 정보 없음")
-                        UserDefaults.standard.startMode = StartMode.signUp.rawValue
-                        AuthVerificationCodeViewController().selectNextView()
-                        completion(nil, .invalidData)
-                        return
-                    } else if response.statusCode == 401 {
-                        print("401: 파이어베이스 토큰 에러")
-                        completion(nil, .unAuthorized)
+                    let statusCode = response.statusCode
+                    switch statusCode {
+                    case 201:
+                        completion(nil, .already)
+                    case 202:
+                        completion(nil, .invalidNickname)
+                    case 401:
+                        completion(nil, .expiredIDToken)
+                    default:
+                        print("error: \(str)")
+                        completion(nil, .serverError)
                     }
-                    
                     return
                 }
                 
@@ -127,10 +128,14 @@ extension URLSession {
                     let decoder = JSONDecoder()
                     let userData = try decoder.decode(T.self, from: data)
                     completion(userData, nil)
-                    print("Ok")
+                    print("codable Ok")
+                    return
+                    
                 } catch {
                     print("do-catch: codable 오류")
                     completion(nil, .invalidData)
+                    return
+                    
                 }
             }
         }

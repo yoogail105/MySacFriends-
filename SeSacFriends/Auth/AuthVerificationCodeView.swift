@@ -76,6 +76,7 @@ class AuthVerificationCodeView: UIView {
     
     func configuration() {
         self.backgroundColor = .white
+        line.backgroundColor = UIColor.grayColor(.gray3)
        
     }
     

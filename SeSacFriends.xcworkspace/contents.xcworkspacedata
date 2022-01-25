@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:/Users/mimjoohehe/SeSacFriends/SeSacFriends/APIService/APIError.swift">
+   </FileRef>
+   <FileRef
       location = "group:SeSacFriends.xcodeproj">
    </FileRef>
    <FileRef

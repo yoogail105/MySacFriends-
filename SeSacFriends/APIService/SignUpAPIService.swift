@@ -11,6 +11,8 @@ class SignUpAPIService {
     
     let userDefaults = UserDefaults.standard
     
+    
+    // 로그인하기: 번호인증 후, 로그인이 안되어있다면
     static func login(completion: @escaping (User?, APIError?) -> Void ) {
         
         let idToken = UserDefaults.standard.idToken!

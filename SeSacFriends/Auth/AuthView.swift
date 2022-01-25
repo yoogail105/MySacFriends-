@@ -64,6 +64,7 @@ class AuthView: UIView {
     
     func configuration() {
         self.backgroundColor = .white
+        subLabel.isHidden = true
 
     }
     

@@ -32,10 +32,10 @@ class AuthVerificationCodeViewController: BaseViewController {
         
         mainView.numberTextField.rx.text
             .orEmpty
-            .bind(to: viewModel.certificationCodeObserver)
+            .bind(to: viewModel.textFieldObserver)
             .disposed(by: disposeBag)
         
-        viewModel.phoneNumberObserver
+        viewModel.textFieldObserver
             .map { $0 != "" ? UIColor.black : UIColor.grayColor(.gray3)}
             .bind(to: mainView.line.rx.backgroundColor)
             .disposed(by: disposeBag)
@@ -70,7 +70,7 @@ class AuthVerificationCodeViewController: BaseViewController {
             .withLatestFrom(viewModel.isValidCertificationCode)
             .filter{ !$0 }
             .subscribe(onNext: { _ in
-                self.showToast(message: "잘못된 전화번호 형식입니다")
+                self.showToast(message: requestVerificationCodeToast.invalidCodeForamt.rawValue)
             })
             .disposed(by: disposeBag)
         
@@ -89,28 +89,45 @@ class AuthVerificationCodeViewController: BaseViewController {
     
     
     func sendVerifyNumberButtonClicked() {
-        showToastWithAction(message: "전화 번호 인증 시작") {
-            self.viewModel.postVerificationCode {
+        showToastWithAction(message: requestVerificationCodeToast.isValid.rawValue) {
+            self.viewModel.postVerificationCode { error in
+                if error != nil {
+                    switch error {
+                    case .tooManyRequests:
+                        self.showToast(message: APIError.tooManyRequests.rawValue)
+                        return
+                    default:
+                        self.showToast(message: APIError.failed.rawValue)
+                        return
+                    }
+                }
                 print("인증번호 보냈어요. 타이머 다시 시작하기")
             }
         }
     }
     
     func verifyButtonClicked() {
-        self.viewModel.checkVerificationCode(verificationCode: mainView.numberTextField.text!) {
+        self.viewModel.checkVerificationCode(verificationCode: mainView.numberTextField.text!) { error in
+            if error == .verificaitonToken {
+                self.showToast(message: APIError.verificaitonToken.rawValue)
+                return
+            } else {
+            
             self.viewModel.fetchIDToken {
                 print("id토큰가져오기 완료")
                 self.viewModel.getUser {
-                    print("user 등록된 유저")
-                    UserDefaults.standard.startMode = StartMode.main.rawValue
+                    print("user 등록된 유저: 로그인완료")
+                    self.selectNextView()
                 }
             }
-            
+
+            }
         }
         
     }
     
     
+    // 회원가입 or 메인화면
     func selectNextView() {
         print(#function, "to signUpNicknameVC, mode: \(UserDefaults.standard.startMode)")
         let mode = UserDefaults.standard.startMode
@@ -120,6 +137,7 @@ class AuthVerificationCodeViewController: BaseViewController {
             moveToNext(nextVC: MainViewController())
         }
     }
+    
     
     func moveToNext(nextVC: UIViewController) {
         DispatchQueue.main.async {
@@ -131,7 +149,9 @@ class AuthVerificationCodeViewController: BaseViewController {
     }
     
     
-    
+    override func setupNavigationBar() {
+        super.setupNavigationBar()
+    }
     
     
     private func limitVerificationCodeTextField(_ phoneNumber: String) {
