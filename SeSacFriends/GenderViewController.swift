@@ -116,13 +116,12 @@ class GenderViewController: BaseViewController {
     }
     
     private func signUpSerer() {
-        print("gender: \(userDefaults.gender)")
-        print("phone: \(userDefaults.phoneNumber)")
-        print("idtoken: \(userDefaults.idToken)")
-        print("fcm: \(userDefaults.FCMToken)")
         viewModel.postSignUp { error in
             if error != nil {
                 print(error)
+                if error == .unAuthorized {
+                    self.showToast(message: "오류가 생겼습니다.\n다시 버튼을 눌러주세요.")
+                }
                 return
             }
             

@@ -6,7 +6,7 @@ target 'SeSacFriends' do
   use_frameworks!
 
   # Pods for SeSacFriends
-
+#
 pod 'Firebase/Messaging'
 pod 'Firebase/Auth'
 

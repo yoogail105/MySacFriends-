@@ -15,6 +15,7 @@ class BirthViewController: BaseViewController {
     let viewModel = SignUpViewModel()
     let disposeBag = DisposeBag()
     let calendar = Calendar.current
+    let dateFormatter = DateFormatter()
 
     override func loadView() {
         self.view = mainView
@@ -58,9 +59,16 @@ class BirthViewController: BaseViewController {
         
     }
     
+//    func dateFormatChange() -> String {
+//        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
+//        let resultDate = dateFormatter.string(from: mainView.datePicker.date)
+//    }
+    
     private func moveToNext() {
-        UserDefaults.standard.birth = mainView.datePicker.date
-        print("저장된 날짜: \(UserDefaults.standard.birth)")
+    
+        let birth = mainView.datePicker.date.birthFormat()
+        UserDefaults.standard.birth = birth
+        print("저장된 날짜: \(birth)")
         let vc = EmailViewController()
         self.navigationController?.pushViewController(vc, animated: true)
     }

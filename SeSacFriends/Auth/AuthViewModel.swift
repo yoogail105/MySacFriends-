@@ -28,10 +28,6 @@ class AuthViewModel {
     
     var onTimer: BehaviorRelay = BehaviorRelay(value: false)
     
-    
-    
-    
-    
     func postVerificationCode(completion: @escaping () -> Void)  {
         let phoneNumber = UserDefaults.standard.phoneNumber
         
@@ -39,12 +35,9 @@ class AuthViewModel {
             print("인증번호발송완료")
             completion()
         }
-        
-
     }
     
    
-    
     func checkVerificationCode(verificationCode: String, completion: @escaping () -> Void) {
         AuthAPIService.checkVerificationCode(verificationCode: verificationCode) {
             print("여기는 AuthViewModel, check완료: \(verificationCode)")
@@ -70,8 +63,5 @@ class AuthViewModel {
 
         }
     }
-    
-    
-    
 }
 

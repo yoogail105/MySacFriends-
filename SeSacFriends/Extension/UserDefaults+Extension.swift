@@ -67,8 +67,13 @@ extension UserDefaults {
     }
     
     
-    var birth: Date? {
-        get { return UserDefaults.standard.object(forKey: UserDefaultsKeys.birth.rawValue) as? Date }
+//    var birth: Date? {
+//        get { return UserDefaults.standard.object(forKey: UserDefaultsKeys.birth.rawValue) as? Date }
+//        set { setValue(newValue, forKey: UserDefaultsKeys.birth.rawValue)}
+//    }
+//
+    var birth: String? {
+        get { string(forKey: UserDefaultsKeys.birth.rawValue)}
         set { setValue(newValue, forKey: UserDefaultsKeys.birth.rawValue)}
     }
     

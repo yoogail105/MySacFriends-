@@ -8,6 +8,7 @@
 import Foundation
 
 extension String {
+  
     
     func phoneNumberFormat() -> String {
         let startIdx: String.Index = self.index(self.startIndex, offsetBy: 1)

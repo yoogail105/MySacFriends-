@@ -35,7 +35,7 @@ class BirthView: AuthView{
     let yearView: BirthTextFieldView = {
         let view = BirthTextFieldView()
         if UserDefaults.standard.birth != nil {
-            view.textField.text = String(Calendar.current.component(.year, from: UserDefaults.standard.birth!))
+//            view.textField.text = String(Calendar.current.component(.year, from: UserDefaults.standard.birth!))
         } else {
             view.textField.placeholder = "1990"
         }
@@ -46,7 +46,7 @@ class BirthView: AuthView{
     let monthView: BirthTextFieldView = {
         let view = BirthTextFieldView()
         if UserDefaults.standard.birth != nil {
-            view.textField.text = String(Calendar.current.component(.month, from: UserDefaults.standard.birth!))
+//            view.textField.text = String(Calendar.current.component(.month, from: UserDefaults.standard.birth!))
         } else {
             view.textField.placeholder = "1"
         }
@@ -57,7 +57,7 @@ class BirthView: AuthView{
     let dayView: BirthTextFieldView = {
         let view = BirthTextFieldView()
         if UserDefaults.standard.birth != nil {
-            view.textField.text = String(Calendar.current.component(.day, from: UserDefaults.standard.birth!))
+//            view.textField.text = String(Calendar.current.component(.day, from: UserDefaults.standard.birth!))
         } else {
             view.textField.placeholder = "1"
         }
