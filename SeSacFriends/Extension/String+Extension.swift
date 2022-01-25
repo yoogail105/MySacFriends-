@@ -8,7 +8,7 @@
 import Foundation
 
 extension String {
-  
+    
     
     func phoneNumberFormat() -> String {
         let startIdx: String.Index = self.index(self.startIndex, offsetBy: 1)
@@ -16,8 +16,23 @@ extension String {
         return "+82\(result)"
     }
     
+    func addHyphen() -> String {
+        let _str = self.replacingOccurrences(of: "-", with: "")
+        let arr = Array(_str)
+        if arr.count > 3 {
+            if let regex = try? NSRegularExpression(pattern: "([0-9]{3})([0-9]{3,4})([0-9]{4})", options: .caseInsensitive) {
+                let modString = regex.stringByReplacingMatches(in: _str, options: [], range: NSRange(_str.startIndex..., in: _str), withTemplate: "$1-$2-$3")
+                return modString
+                
+            }
+            
+        }
+        return self
+    }
+    
+    
     func validatePhoneNumber() -> Bool {
-        let phoneNumberRegex = "^01([0-9])([0-9]{3,4})([0-9]{4})$"
+        let phoneNumberRegex = "^01([0-9])+-([0-9]{3,4})+-([0-9]{4})$"
         let predicate = NSPredicate(format:"SELF MATCHES %@", phoneNumberRegex)
         return predicate.evaluate(with: self)
     }

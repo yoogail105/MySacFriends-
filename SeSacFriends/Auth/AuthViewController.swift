@@ -43,6 +43,12 @@ class AuthViewController: BaseViewController {
     override func bind() {
         
         mainView.textField.rx.text
+            .subscribe(onNext: {
+                self.mainView.textField.text = $0?.addHyphen()
+            })
+            .disposed(by: disposeBag)
+        
+        mainView.textField.rx.text
             .orEmpty
             .bind(to: viewModel.textFieldObserver)
             .disposed(by: disposeBag)
@@ -113,8 +119,6 @@ class AuthViewController: BaseViewController {
                 print("화면 옮기기")
             }
         }
-        
-        
     }
     
     
@@ -123,10 +127,13 @@ class AuthViewController: BaseViewController {
     }
     
     private func limitPhoneNumberTextField(_ phoneNumber: String) {
-        if phoneNumber.count > 11 {
-            let index = phoneNumber.index(phoneNumber.startIndex, offsetBy: 11)
+        if phoneNumber.count > 13 {
+            let index = phoneNumber.index(phoneNumber.startIndex, offsetBy: 13)
             mainView.textField.text = String(phoneNumber[..<index])
         }
     }
-    
+        
+
+  
+
 }

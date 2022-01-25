@@ -36,7 +36,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         }
         
         
-        window?.rootViewController = UINavigationController(rootViewController: OnboardingViewController())
+        window?.rootViewController = UINavigationController(rootViewController: AuthViewController())
         window?.makeKeyAndVisible()
         
     }

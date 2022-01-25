@@ -89,5 +89,7 @@ class AuthViewModel {
         print(UserDefaults.standard.startMode)
         completion()
     }
+    
+    
 }
 
