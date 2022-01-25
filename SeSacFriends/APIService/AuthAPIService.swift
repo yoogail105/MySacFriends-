@@ -41,7 +41,7 @@ class AuthAPIService {
                 }
                 
                 UserDefaults.standard.authVerificationID = verificationID!
-                print("인증아이디는 \(UserDefaults.standard.authVerificationID!)")
+             //   print("인증아이디는 \(UserDefaults.standard.authVerificationID)")
                 completion()
             }
         

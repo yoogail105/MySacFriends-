@@ -10,10 +10,16 @@ import RxSwift
 import RxCocoa
 
 class MainViewController: BaseViewController {
+    let viewModel = AuthViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .yellow
+        
+        viewModel.getUser {
+            print("complete")
+        }
+        
     }
     
 }
