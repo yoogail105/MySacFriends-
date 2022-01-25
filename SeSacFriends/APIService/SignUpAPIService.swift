@@ -35,9 +35,9 @@ class SignUpAPIService {
         
         request.setValue(idToken, forHTTPHeaderField: HTTPString.idtoken.rawValue)
         request.setValue(HTTPHeaderValue.contentType.rawValue, forHTTPHeaderField: HTTPString.ContentType.rawValue)
-        
-        request.httpBody = "\(UserBodyPara.phoneNumber.rawValue)=+821055555555&\(UserBodyPara.FCMtoken.rawValue)=\(UserDefaults.standard.FCMToken!)&\(UserBodyPara.nick.rawValue)=\(UserDefaults.standard.nickname)&\(UserBodyPara.birth.rawValue)=\(UserDefaults.standard.birth!)&\(UserBodyPara.email.rawValue)=\(UserDefaults.standard.email)&\(UserBodyPara.gender.rawValue)=\(UserDefaults.standard.gender)"
-            .data(using: .utf8, allowLossyConversion: false)
+ 
+        request.httpBody = "\(UserBodyPara.phoneNumber.rawValue)=\(UserDefaults.standard.phoneNumber)&\(UserBodyPara.FCMtoken.rawValue)=\(UserDefaults.standard.FCMToken!)&\(UserBodyPara.nick.rawValue)=\(UserDefaults.standard.nickname)&\(UserBodyPara.birth.rawValue)=\(UserDefaults.standard.birth!)&\(UserBodyPara.email.rawValue)=\(UserDefaults.standard.email)&\(UserBodyPara.gender.rawValue)=\(UserDefaults.standard.gender)".data(using: .utf8, allowLossyConversion: false)
+       
         print("\(UserBodyPara.phoneNumber.rawValue)=\(UserDefaults.standard.phoneNumber)\n&\(UserBodyPara.FCMtoken)=\(UserDefaults.standard.FCMToken!)\n&\(UserBodyPara.nick.rawValue)=\(UserDefaults.standard.nickname)\n&\(UserBodyPara.birth.rawValue)=\(UserDefaults.standard.birth!)\n&\(UserBodyPara.email.rawValue)=\(UserDefaults.standard.email)\n&\(UserBodyPara.gender.rawValue)=\(UserDefaults.standard.gender)")
        
         URLSession.request(endpoint: request, completion: completion)

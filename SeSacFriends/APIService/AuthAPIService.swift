@@ -15,6 +15,8 @@ enum APIError: Error {
     case failed
     case invalidData
     case unAuthorized
+    case nicknameError
+    
 }
 
 class AuthAPIService {
@@ -95,6 +97,7 @@ class AuthAPIService {
         
     }
     
+    //firebase idtocken발급
     static func fetchIDToken(completion: @escaping () ->  Void) {
         print(#function)
         let currentUser = Auth.auth().currentUser

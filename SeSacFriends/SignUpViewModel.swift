@@ -5,7 +5,7 @@
 //  Created by 성민주민주 on 2022/01/23.
 //
 
-import Foundation
+import UIKit
 import RxSwift
 import RxRelay
 
@@ -39,6 +39,12 @@ class SignUpViewModel {
     func postSignUp(completion: @escaping (APIError?) -> Void) {
         SignUpAPIService.signUp { userData, error in
             if error != nil {
+                if error == .unAuthorized {
+                    AuthAPIService.fetchIDToken {
+                        print("토큰 가져오기 완료: \(UserDefaults.standard.idToken!)")
+                    }
+                }
+                    
                 completion(error)
             }
             
@@ -52,6 +58,8 @@ class SignUpViewModel {
             completion(error)
         }
     }
+    
+    
     
 }
 

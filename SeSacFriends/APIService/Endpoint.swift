@@ -115,6 +115,9 @@ extension URLSession {
                         AuthVerificationCodeViewController().selectNextView()
                         completion(nil, .invalidData)
                         return
+                    } else if response.statusCode == 401 {
+                        print("401: 파이어베이스 토큰 에러")
+                        completion(nil, .unAuthorized)
                     }
                     
                     return

@@ -46,7 +46,6 @@ class BirthViewController: BaseViewController {
             .disposed(by: disposeBag)
         
         
-        
     }
     
     override func addAction() {
