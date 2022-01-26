@@ -104,10 +104,10 @@ class AuthViewController: BaseViewController {
                 if error != nil {
                     switch error {
                     case .tooManyRequests:
-                        self.showToast(message: APIError.tooManyRequests.rawValue)
+                        self.showToast(message: APIErrorMessage.tooManyRequests.rawValue)
                         return
                     default:
-                        self.showToast(message: APIError.failed.rawValue)
+                        self.showToast(message: APIErrorMessage.failed.rawValue)
                         return
                     }
                 }

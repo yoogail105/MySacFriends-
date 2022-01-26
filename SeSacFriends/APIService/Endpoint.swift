@@ -21,6 +21,7 @@ enum Endpoint {
     case deleteUser
     case updateFCMToken
     case updateMyPage
+    case userUpdateFCMToken
 }
 
 enum HTTPString: String {
@@ -58,6 +59,8 @@ extension Endpoint {
             return .makeEndPoint("/user/update_fcm_token")
         case.updateMyPage:
             return .makeEndPoint("/user/update/mypage")
+        case .userUpdateFCMToken:
+            return .makeEndPoint("/user/update_fcm_token")
             
         }
     }
@@ -84,7 +87,7 @@ extension URLSession {
         return task
     }
     
-    static func request<T: Decodable>(_ session: URLSession = .shared, endpoint: URLRequest, completion: @escaping (T?, APIError?) -> Void) {
+    static func request<T: Decodable>(_ session: URLSession = .shared, endpoint: URLRequest, completion: @escaping (T?, APIErrorCode?) -> Void) {
         
         session.dataTask(endpoint) { data, response, error in
             let str = String(decoding: data!, as: UTF8.self)
@@ -108,18 +111,20 @@ extension URLSession {
                     return
                 }
                 
-                guard response.statusCode == 200 else {
+                guard response.statusCode == APIErrorCode.ok.rawValue else {
                     let statusCode = response.statusCode
                     switch statusCode {
-                    case 201:
-                        completion(nil, .already)
-                    case 202:
+                    case APIErrorCode.created.rawValue: //201
+                        completion(nil, .created)
+                    case APIErrorCode.invalidNickname.rawValue: //202
                         completion(nil, .invalidNickname)
-                    case 401:
-                        completion(nil, .expiredIDToken)
+                    case APIErrorCode.unAuthorized.rawValue: //401
+                        completion(nil, .unAuthorized)
+                    case APIErrorCode.notAcceptable.rawValue: //406
+                        completion(nil, .notAcceptable)
                     default:
                         print("error: \(str)")
-                        completion(nil, .serverError)
+                        completion(nil, .internalServerError)
                     }
                     return
                 }

@@ -12,7 +12,7 @@ import CoreMedia
 
 
 class AuthAPIService {
-    static func sendVerificationCode(phoneNumber: String, completion: @escaping (APIError?) -> Void ) {
+    static func sendVerificationCode(phoneNumber: String, completion: @escaping (APIErrorMessage?) -> Void ) {
         
         PhoneAuthProvider.provider()
             .verifyPhoneNumber(phoneNumber, uiDelegate: nil) { verificationID, error in
@@ -41,7 +41,7 @@ class AuthAPIService {
     }
     
     // verificaitonCode: "AJOnW4QgBVF9FVNR6esYkz_BzpdGis9IoegIBy0ejeMTLaI42B0l36xXj3prJnhAgmQ6oBuckLYDbvVk9_hcxT_GapMAJPshiKZ_LuXoqAoex4qoAeH2H6FSnZAtDW8oPmLq_5mM9aK_GIOrDK8R-HZPL1H94Amo5sIA5apfDa2lPFD5wjo1MJn1QZEITaOKiFuBzB_zjoQxmPAVkpIcCc69EJq4PPiwXMFp4VXL2btGbeNZ798Jgkk"
-    static func checkVerificationCode(verificationCode: String, completion: @escaping (APIError?) -> Void) {
+    static func checkVerificationCode(verificationCode: String, completion: @escaping (APIErrorMessage?) -> Void) {
         
         let verificationID = UserDefaults.standard.authVerificationID!
         print("입력한 verifiacationCode는 \(verificationCode)입니다.")
@@ -54,7 +54,7 @@ class AuthAPIService {
         //request
         Auth.auth().signIn(with: credential) { authResult, error in
             if let error = error {
-                completion(.verificaitonToken)
+                completion(.verificaitonTokenNotMatched)
              
                     if let errCode = AuthErrorCode(rawValue: error._code) {
                         print("check verification User Error: \(error)")

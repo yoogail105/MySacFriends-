@@ -7,18 +7,13 @@
 
 import UIKit
 
-class PageViewController: UIPageViewController, UIPageViewControllerDelegate, UIPageViewControllerDataSource {
-
+class PageViewController: UIPageViewController {
+    
     
     var pages = [UIViewController]()
     let pageControl = OnboardingView().pageControl
-    
-    
-//    lazy var pageViewController: UIPageViewController = {
-//          let vc = UIPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
-//
-//          return vc
-//      }()
+    let initialPage = 0
+
     
     override init(transitionStyle style: UIPageViewController.TransitionStyle, navigationOrientation: UIPageViewController.NavigationOrientation, options: [UIPageViewController.OptionsKey : Any]? = nil) {
         super.init(transitionStyle: .scroll, navigationOrientation: .horizontal, options: options)
@@ -31,12 +26,20 @@ class PageViewController: UIPageViewController, UIPageViewControllerDelegate, UI
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
-//        let pageControl = mainView.pageControl
+        setup()
+        style()
+        layout()
+    }
+}
+
+extension PageViewController {
+    func setup() {
         
         self.dataSource = self
         self.delegate = self
-        let initialPage = 0
+        
+        pageControl.addTarget(self, action: #selector(pageControlTapped(_:)), for: .valueChanged)
+        
         let page1 = OnboardingCard01ViewController()
         let page2 = OnboardingCard02ViewController()
         let page3 = OnboardingCard03ViewController()
@@ -44,55 +47,74 @@ class PageViewController: UIPageViewController, UIPageViewControllerDelegate, UI
         [page1, page2, page3].forEach {
             self.pages.append($0)
         }
-        setViewControllers([pages[initialPage]], direction: .forward, animated: true, completion: nil)
         
-       
+        setViewControllers([pages[initialPage]], direction: .forward, animated: true, completion: nil)
         
     }
     
+    func style() {
+        self.pageControl.currentPage = initialPage
+    }
     
-    // 유저가 제스처를 취했을 때 수행할 함수
     
-   
+    func layout() {
+    }
+}
+
+//- actions
+
+// 유저가 제스처를 취했을 때 수행할 함수
+
+extension PageViewController {
+    @objc func pageControlTapped(_ sender: UIPageControl) {
+        setViewControllers([pages[sender.currentPage]], direction: .forward, animated: true, completion: nil)
+    }
+}
+
+extension PageViewController: UIPageViewControllerDataSource {
+    
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
         
         if let viewControllerIndex = self.pages.index(of: viewController) { //현재(넘기기 전의 인덱스)
             print("before viewControllerIndex:", viewControllerIndex)
-                if viewControllerIndex == 0 {
-                    // wrap to last page in array
-                    return nil
-                } else {
-                    // go to previous page in array
-                    return self.pages[viewControllerIndex - 1]
-                }
+            print(self.initialPage)
+            if viewControllerIndex == 0 {
+                // wrap to last page in array
+                return nil
+            } else {
+                // go to previous page in array
+                return self.pages[viewControllerIndex - 1]
             }
-            return nil
+        }
+        return nil
     }
     
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
         if let viewControllerIndex = self.pages.index(of: viewController) {
-                if viewControllerIndex < self.pages.count - 1 {
-                    // go to next page in array
-                    return self.pages[viewControllerIndex + 1]
-                } else {
-                    // wrap to first page in array
-                    return nil
-                }
+            if viewControllerIndex < self.pages.count - 1 {
+                // go to next page in array
+                return self.pages[viewControllerIndex + 1]
+            } else {
+                // wrap to first page in array
+                return nil
             }
-            return nil
+        }
+        return nil
     }
+}
+
+extension PageViewController: UIPageViewControllerDelegate {
+    // pageControl
     
     func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
-            
-     //set the pageControl.currentPage to the index of the current viewController in pages
-        if let viewControllers = pageViewController.viewControllers {
-            if let viewControllerIndex = self.pages.index(of: viewControllers[0]) {
-                self.pageControl.currentPage = viewControllerIndex
-            }
-
-
-        }
-     
+        
+        //set the pageControl.currentPage to the index of the current viewController in pages
+        guard let viewControllers = pageViewController.viewControllers else { return }
+        
+        guard let currentIndex = pages.firstIndex(of: viewControllers[0]) else { return }
+        
+        OnboardingView().pageControl.currentPage = currentIndex
+        print(currentIndex)
     }
-    
 }
+

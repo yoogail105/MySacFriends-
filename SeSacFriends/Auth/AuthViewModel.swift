@@ -25,7 +25,7 @@ class AuthViewModel {
         return textFieldObserver.map { $0.isValidCertificationCode()}
     }
     
-    func postVerificationCode(completion: @escaping (APIError?) -> Void)  {
+    func postVerificationCode(completion: @escaping (APIErrorMessage?) -> Void)  {
         let phoneNumber = UserDefaults.standard.phoneNumber
         
         AuthAPIService.sendVerificationCode(phoneNumber: phoneNumber) { error in
@@ -46,10 +46,10 @@ class AuthViewModel {
     }
     
     
-    func checkVerificationCode(verificationCode: String, completion: @escaping (APIError?) -> Void) {
+    func checkVerificationCode(verificationCode: String, completion: @escaping (APIErrorMessage?) -> Void) {
         AuthAPIService.checkVerificationCode(verificationCode: verificationCode) { error in
             if error != nil {
-                if error == .verificaitonToken {
+                if error == .verificaitonTokenNotMatched {
                     completion(error)
                 }
             }
@@ -60,6 +60,7 @@ class AuthViewModel {
     
     func fetchIDToken(completion: @escaping () -> Void) {
         AuthAPIService.fetchIDToken {
+            
             print("토큰 가져오기 완료: \(UserDefaults.standard.idToken!)")
             completion()
         }
@@ -76,8 +77,12 @@ class AuthViewModel {
                 return
             }
             
-            // 이제 막 token을 발급 받고, 호출을 하니까 firebaseError가 나지 않지 않을까?
+         print("error: ",error)
             if error == .unAuthorized {
+                print("토큰 새로 발급 하기")
+                self.fetchIDToken {
+                    print("토큰 새로 발급 완료")
+                }
                 return
             }
             

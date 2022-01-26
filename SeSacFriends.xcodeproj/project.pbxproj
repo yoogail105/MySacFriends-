@@ -15,7 +15,9 @@
 		2333571D279DED330062A9E8 /* BirthTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2333571C279DED330062A9E8 /* BirthTextFieldView.swift */; };
 		2333571F279DF89E0062A9E8 /* genderBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2333571E279DF89E0062A9E8 /* genderBoxView.swift */; };
 		23335727279FB5650062A9E8 /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23335726279FB5650062A9E8 /* Date+Extension.swift */; };
-		2333572927A00E570062A9E8 /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2333572827A00E570062A9E8 /* APIError.swift */; };
+		2333572D27A08D630062A9E8 /* APIErrorMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2333572C27A08D630062A9E8 /* APIErrorMessage.swift */; };
+		2333572F27A09EF20062A9E8 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2333572E27A09EF20062A9E8 /* ProfileView.swift */; };
+		2333573227A09FCE0062A9E8 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2333573127A09FCE0062A9E8 /* MainView.swift */; };
 		234CEC012799F76B00983E20 /* OnboardingCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 234CEC002799F76B00983E20 /* OnboardingCardView.swift */; };
 		234CEC032799F7F600983E20 /* OnboardingImages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 234CEC022799F7F600983E20 /* OnboardingImages.swift */; };
 		234CEC052799FAC300983E20 /* BaseUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 234CEC042799FAC300983E20 /* BaseUIView.swift */; };
@@ -75,7 +77,9 @@
 		2333571C279DED330062A9E8 /* BirthTextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BirthTextFieldView.swift; sourceTree = "<group>"; };
 		2333571E279DF89E0062A9E8 /* genderBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = genderBoxView.swift; sourceTree = "<group>"; };
 		23335726279FB5650062A9E8 /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
-		2333572827A00E570062A9E8 /* APIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = APIError.swift; path = /Users/mimjoohehe/SeSacFriends/SeSacFriends/APIService/APIError.swift; sourceTree = "<absolute>"; };
+		2333572C27A08D630062A9E8 /* APIErrorMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIErrorMessage.swift; sourceTree = "<group>"; };
+		2333572E27A09EF20062A9E8 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		2333573127A09FCE0062A9E8 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		234CEC002799F76B00983E20 /* OnboardingCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCardView.swift; sourceTree = "<group>"; };
 		234CEC022799F7F600983E20 /* OnboardingImages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingImages.swift; sourceTree = "<group>"; };
 		234CEC042799FAC300983E20 /* BaseUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseUIView.swift; sourceTree = "<group>"; };
@@ -152,6 +156,15 @@
 			path = CustomView;
 			sourceTree = "<group>";
 		};
+		2333573027A09EF70062A9E8 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				2333572E27A09EF20062A9E8 /* ProfileView.swift */,
+			);
+			name = Profile;
+			path = Onboarding;
+			sourceTree = "<group>";
+		};
 		234CEBFF2799F75500983E20 /* Onboarding */ = {
 			isa = PBXGroup;
 			children = (
@@ -214,6 +227,7 @@
 			isa = PBXGroup;
 			children = (
 				2389E1AF27967B1200BE68E3 /* MainViewController.swift */,
+				2333573127A09FCE0062A9E8 /* MainView.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -259,11 +273,11 @@
 		2389E1DC2796C81800BE68E3 /* APIService */ = {
 			isa = PBXGroup;
 			children = (
-				2333572827A00E570062A9E8 /* APIError.swift */,
 				23335716279D580D0062A9E8 /* Endpoint.swift */,
 				2389E1D42796A2AD00BE68E3 /* AuthAPIService.swift */,
 				23335718279DB2A90062A9E8 /* SignUpAPIService.swift */,
 				2333571A279DC6AE0062A9E8 /* User.swift */,
+				2333572C27A08D630062A9E8 /* APIErrorMessage.swift */,
 			);
 			path = APIService;
 			sourceTree = "<group>";
@@ -298,6 +312,7 @@
 				234CEC1E279C728300983E20 /* Text */,
 				2389E1C9279697E700BE68E3 /* Extension */,
 				23335720279DF8AC0062A9E8 /* CustomView */,
+				2333573027A09EF70062A9E8 /* Profile */,
 				234CEBFF2799F75500983E20 /* Onboarding */,
 				2389E1CA279697F700BE68E3 /* Auth */,
 				234CEC24279C82F000983E20 /* SignUp */,
@@ -459,6 +474,7 @@
 				234CEC20279C729800983E20 /* AssetIcon.swift in Sources */,
 				2308B0242799D83D004145E2 /* UIViewController+Extension.swift in Sources */,
 				2389E1D72796A31800BE68E3 /* BaseViewController.swift in Sources */,
+				2333572F27A09EF20062A9E8 /* ProfileView.swift in Sources */,
 				2389E1B027967B1200BE68E3 /* MainViewController.swift in Sources */,
 				234CEC32279C95FF00983E20 /* SetEmailView.swift in Sources */,
 				23335719279DB2A90062A9E8 /* SignUpAPIService.swift in Sources */,
@@ -466,7 +482,7 @@
 				234E5FA627987EE900F5D2BB /* UIButton+Extension.swift in Sources */,
 				2399604327965741001C8EA4 /* AuthView.swift in Sources */,
 				234CEC19279C512700983E20 /* SignUpNicknameView.swift in Sources */,
-				2333572927A00E570062A9E8 /* APIError.swift in Sources */,
+				2333572D27A08D630062A9E8 /* APIErrorMessage.swift in Sources */,
 				2333571D279DED330062A9E8 /* BirthTextFieldView.swift in Sources */,
 				234E5FA427978FE700F5D2BB /* AuthVerificationCodeView.swift in Sources */,
 				2399604527965760001C8EA4 /* AuthViewController.swift in Sources */,
@@ -479,6 +495,7 @@
 				2389E1B227967B9900BE68E3 /* UIColor+Extension.swift in Sources */,
 				2333571B279DC6AE0062A9E8 /* User.swift in Sources */,
 				2389E1DE2796D8C800BE68E3 /* AuthVerificationCodeViewController.swift in Sources */,
+				2333573227A09FCE0062A9E8 /* MainView.swift in Sources */,
 				23335727279FB5650062A9E8 /* Date+Extension.swift in Sources */,
 				234CEC2C279C863F00983E20 /* BirthViewController.swift in Sources */,
 				234CEC28279C859300983E20 /* SignUpViewModel.swift in Sources */,

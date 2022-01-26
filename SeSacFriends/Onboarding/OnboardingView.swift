@@ -18,16 +18,15 @@ class OnboardingView: BaseUIView {
         view.backgroundColor = .white
         return view
     }()
-
     
     let pageControl: UIPageControl = {
-        let initialPage = 0
         let pageControl = UIPageControl()
+        
         pageControl.frame = CGRect()
         pageControl.currentPageIndicatorTintColor = UIColor.black
         pageControl.pageIndicatorTintColor = UIColor.lightGray
         pageControl.numberOfPages = 3
-        pageControl.currentPage = initialPage
+        //pageControl.currentPage = PageViewController().initialPage
         pageControl.translatesAutoresizingMaskIntoConstraints = true
         pageControl.isUserInteractionEnabled = false
         return pageControl

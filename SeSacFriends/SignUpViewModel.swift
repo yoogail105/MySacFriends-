@@ -20,23 +20,12 @@ class SignUpViewModel {
     var isValidEmail: Observable<Bool> {
         return emailObserver.map { $0.validateEmail() }
     }
-    
-   // var certificationCodeObserver = BehaviorRelay<String>(value: "")
-    
-//
-//    var isValidnickname: Observable<Bool> {
-//        return phoneNumberObserver.map { $0.validatePhoneNumber() }
-//    }
-    
+
     var isValidNickname: Observable<Bool> {
         return nicknameObserver.map { $0 != "" ? true : false }
      }
     
-    //var onTimer: BehaviorRelay = BehaviorRelay(value: false)
-    
-    
-    
-    func postSignUp(completion: @escaping (APIError?) -> Void) {
+    func postSignUp(completion: @escaping (APIErrorCode?) -> Void) {
         SignUpAPIService.signUp { userData, error in
             if error != nil {
                 if error == .unAuthorized {
@@ -56,6 +45,18 @@ class SignUpViewModel {
             print("회원가입성공")
             
             completion(error)
+        }
+    }
+    
+    func deleteUser(completion: @escaping(APIErrorCode?) -> Void) {
+        SignUpAPIService.deleteUser { userData, error in
+            print(error)
+            guard let error = error else {
+                return
+            }
+            
+            completion(error)
+            
         }
     }
     

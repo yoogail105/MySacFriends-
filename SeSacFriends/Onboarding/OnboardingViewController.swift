@@ -14,6 +14,7 @@ class OnboardingViewController: BaseViewController {
     
     let mainView = OnboardingView()
     let cardViewController = PageViewController()
+    let disposBag = DisposeBag()
 //    let cardView = OnboardingCardView()
     
     override func loadView() {
@@ -41,12 +42,12 @@ class OnboardingViewController: BaseViewController {
     }
     
     override func bind() {
-        
         mainView.startButton.rx.tap
             .bind {
                 self.toAuthView()
             }
-        
+            .disposed(by: disposBag)
+
     }
     
     func toAuthView() {

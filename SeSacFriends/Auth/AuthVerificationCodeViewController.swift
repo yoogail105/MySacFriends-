@@ -94,10 +94,10 @@ class AuthVerificationCodeViewController: BaseViewController {
                 if error != nil {
                     switch error {
                     case .tooManyRequests:
-                        self.showToast(message: APIError.tooManyRequests.rawValue)
+                        self.showToast(message: APIErrorMessage.tooManyRequests.rawValue)
                         return
                     default:
-                        self.showToast(message: APIError.failed.rawValue)
+                        self.showToast(message: APIErrorMessage.failed.rawValue)
                         return
                     }
                 }
@@ -108,8 +108,8 @@ class AuthVerificationCodeViewController: BaseViewController {
     
     func verifyButtonClicked() {
         self.viewModel.checkVerificationCode(verificationCode: mainView.numberTextField.text!) { error in
-            if error == .verificaitonToken {
-                self.showToast(message: APIError.verificaitonToken.rawValue)
+            if error == .verificaitonTokenNotMatched {
+                self.showToast(message: APIErrorMessage.verificaitonTokenNotMatched.rawValue)
                 return
             } else {
             

@@ -13,7 +13,7 @@ class SignUpAPIService {
     
     
     // 로그인하기: 번호인증 후, 로그인이 안되어있다면
-    static func login(completion: @escaping (User?, APIError?) -> Void ) {
+    static func login(completion: @escaping (User?, APIErrorCode?) -> Void ) {
         
         let idToken = UserDefaults.standard.idToken!
         print("fetchUser idToken: \(idToken)")
@@ -28,7 +28,7 @@ class SignUpAPIService {
     }
     
     
-    static func signUp(completion: @escaping (User?, APIError?) -> Void) {
+    static func signUp(completion: @escaping (User?, APIErrorCode?) -> Void) {
         let idToken = UserDefaults.standard.idToken!
         print("signup에서 idtoken: ", idToken)
         var request = URLRequest(url: Endpoint.user.url)
@@ -46,7 +46,8 @@ class SignUpAPIService {
         
     }
     
-    static func deleteUser(completion: @escaping (User?, APIError?) -> Void) {
+    // 회원 삭제하기 -> FCM 토큰 강제 갱신해줘야 한다.
+    static func deleteUser(completion: @escaping (User?, APIErrorCode?) -> Void) {
         let idToken = UserDefaults.standard.idToken!
         var request = URLRequest(url: Endpoint.deleteUser.url)
         
@@ -58,7 +59,7 @@ class SignUpAPIService {
         URLSession.request(endpoint: request, completion: completion)
     }
     
-    static func updateFCMToken(completion: @escaping (User?, APIError?) -> Void) {
+    static func updateFCMToken(completion: @escaping (User?, APIErrorCode?) -> Void) {
         
         var request = URLRequest(url: Endpoint.updateFCMToken.url)
         request.httpMethod = Method.PUT.rawValue
@@ -71,7 +72,7 @@ class SignUpAPIService {
         
     }
     
-    static func updateMyPage(completion: @escaping (User?, APIError?) -> Void) {
+    static func updateMyPage(completion: @escaping (User?, APIErrorCode?) -> Void) {
         var request = URLRequest(url: Endpoint.updateMyPage.url)
         request.httpMethod = Method.POST.rawValue
         
