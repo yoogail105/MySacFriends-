@@ -11,6 +11,7 @@ import SnapKit
 
 class MainView: BaseUIView {
     
+    
     let button: UIButton = {
         let button = UIButton()
         button.setTitle("탈퇴하기", for: .normal)

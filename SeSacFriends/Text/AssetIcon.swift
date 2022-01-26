@@ -31,9 +31,9 @@ enum AssetIcon: String {
     case sesacImg
 }
 
-enum TapIcon: String {
+enum TabBarIcon: String {
     case friendsAct
-    case friendsinAct
+    case friendsInact
     case homeAct
     case homeInact
     case myAct

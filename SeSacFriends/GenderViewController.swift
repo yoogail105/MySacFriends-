@@ -12,6 +12,8 @@ import AVFoundation
 
 class GenderViewController: BaseViewController {
     
+    //weak var coordinator: HomeCoordinator?
+    
     let mainView = GenderView()
     let viewModel = SignUpViewModel()
     let disposeBag = DisposeBag()
@@ -130,11 +132,13 @@ class GenderViewController: BaseViewController {
     }
     
     private func moveToNext() {
+//        coordinator?.pushToHomeTab(navigationController!)
         // 유저정보 post
-        
-        //print("gender: \(userDefaults.gender)")
-        //print("fcm: \()")
+//        
+//        //print("gender: \(userDefaults.gender)")
+//        //print("fcm: \()")
         let vc = MainViewController()
         self.navigationController?.pushViewController(vc, animated: true)
     }
+    
 }

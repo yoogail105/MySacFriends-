@@ -65,6 +65,13 @@
 		2399604327965741001C8EA4 /* AuthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2399604227965741001C8EA4 /* AuthView.swift */; };
 		2399604527965760001C8EA4 /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2399604427965760001C8EA4 /* AuthViewController.swift */; };
 		2399604827965794001C8EA4 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 2399604727965794001C8EA4 /* SnapKit */; };
+		23AF965327A19B210078A204 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23AF965227A19B210078A204 /* MainTabBarController.swift */; };
+		23AF965527A19BEC0078A204 /* MyPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23AF965427A19BEC0078A204 /* MyPageViewController.swift */; };
+		23AF965927A1A0470078A204 /* TabBarText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23AF965827A1A0470078A204 /* TabBarText.swift */; };
+		23AF965B27A1A0C40078A204 /* ShopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23AF965A27A1A0C40078A204 /* ShopViewController.swift */; };
+		23AF965D27A1A0EE0078A204 /* FriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23AF965C27A1A0EE0078A204 /* FriendsViewController.swift */; };
+		23AF965F27A1B5F70078A204 /* CoordinatorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23AF965E27A1B5F70078A204 /* CoordinatorProtocol.swift */; };
+		23AF966127A1DF820078A204 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23AF966027A1DF820078A204 /* HomeViewController.swift */; };
 		935CEF8384FBA495647DE4C4 /* Pods_SeSacFriends.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7774CA6791F93EA43D6B3BE /* Pods_SeSacFriends.framework */; };
 /* End PBXBuildFile section */
 
@@ -125,6 +132,13 @@
 		239960402796572C001C8EA4 /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		2399604227965741001C8EA4 /* AuthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthView.swift; sourceTree = "<group>"; };
 		2399604427965760001C8EA4 /* AuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
+		23AF965227A19B210078A204 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
+		23AF965427A19BEC0078A204 /* MyPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageViewController.swift; sourceTree = "<group>"; };
+		23AF965827A1A0470078A204 /* TabBarText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarText.swift; sourceTree = "<group>"; };
+		23AF965A27A1A0C40078A204 /* ShopViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopViewController.swift; sourceTree = "<group>"; };
+		23AF965C27A1A0EE0078A204 /* FriendsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsViewController.swift; sourceTree = "<group>"; };
+		23AF965E27A1B5F70078A204 /* CoordinatorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordinatorProtocol.swift; sourceTree = "<group>"; };
+		23AF966027A1DF820078A204 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		B7774CA6791F93EA43D6B3BE /* Pods_SeSacFriends.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SeSacFriends.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C38C49625B4A2CFF410BA47A /* Pods-SeSacFriends.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SeSacFriends.debug.xcconfig"; path = "Target Support Files/Pods-SeSacFriends/Pods-SeSacFriends.debug.xcconfig"; sourceTree = "<group>"; };
 		F2FA6C31C7F7A6700B8C0E46 /* Pods-SeSacFriends.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SeSacFriends.release.xcconfig"; path = "Target Support Files/Pods-SeSacFriends/Pods-SeSacFriends.release.xcconfig"; sourceTree = "<group>"; };
@@ -160,6 +174,7 @@
 			isa = PBXGroup;
 			children = (
 				2333572E27A09EF20062A9E8 /* ProfileView.swift */,
+				23AF965427A19BEC0078A204 /* MyPageViewController.swift */,
 			);
 			name = Profile;
 			path = Onboarding;
@@ -184,6 +199,7 @@
 				234CEC1A279C51C700983E20 /* Text.swift */,
 				234CEC1F279C729800983E20 /* AssetIcon.swift */,
 				2308B0252799DEBF004145E2 /* ToastMessage.swift */,
+				23AF965827A1A0470078A204 /* TabBarText.swift */,
 			);
 			path = Text;
 			sourceTree = "<group>";
@@ -193,6 +209,7 @@
 			children = (
 				234CEC042799FAC300983E20 /* BaseUIView.swift */,
 				2389E1D62796A31800BE68E3 /* BaseViewController.swift */,
+				23AF965E27A1B5F70078A204 /* CoordinatorProtocol.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -228,6 +245,10 @@
 			children = (
 				2389E1AF27967B1200BE68E3 /* MainViewController.swift */,
 				2333573127A09FCE0062A9E8 /* MainView.swift */,
+				23AF965227A19B210078A204 /* MainTabBarController.swift */,
+				23AF965C27A1A0EE0078A204 /* FriendsViewController.swift */,
+				23AF965A27A1A0C40078A204 /* ShopViewController.swift */,
+				23AF966027A1DF820078A204 /* HomeViewController.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -474,6 +495,7 @@
 				234CEC20279C729800983E20 /* AssetIcon.swift in Sources */,
 				2308B0242799D83D004145E2 /* UIViewController+Extension.swift in Sources */,
 				2389E1D72796A31800BE68E3 /* BaseViewController.swift in Sources */,
+				23AF965B27A1A0C40078A204 /* ShopViewController.swift in Sources */,
 				2333572F27A09EF20062A9E8 /* ProfileView.swift in Sources */,
 				2389E1B027967B1200BE68E3 /* MainViewController.swift in Sources */,
 				234CEC32279C95FF00983E20 /* SetEmailView.swift in Sources */,
@@ -483,15 +505,19 @@
 				2399604327965741001C8EA4 /* AuthView.swift in Sources */,
 				234CEC19279C512700983E20 /* SignUpNicknameView.swift in Sources */,
 				2333572D27A08D630062A9E8 /* APIErrorMessage.swift in Sources */,
+				23AF965F27A1B5F70078A204 /* CoordinatorProtocol.swift in Sources */,
 				2333571D279DED330062A9E8 /* BirthTextFieldView.swift in Sources */,
 				234E5FA427978FE700F5D2BB /* AuthVerificationCodeView.swift in Sources */,
 				2399604527965760001C8EA4 /* AuthViewController.swift in Sources */,
 				2389E1DB2796B6FF00BE68E3 /* UserDefaults+Extension.swift in Sources */,
 				234CEC34279C971F00983E20 /* EmailViewController.swift in Sources */,
+				23AF965927A1A0470078A204 /* TabBarText.swift in Sources */,
+				23AF965D27A1A0EE0078A204 /* FriendsViewController.swift in Sources */,
 				234CEC17279B39AC00983E20 /* OnboardingViewController.swift in Sources */,
 				2389E1C42796862A00BE68E3 /* UIFont+Extension.swift in Sources */,
 				234CEC15279B247800983E20 /* OnboardingView.swift in Sources */,
 				234CEC032799F7F600983E20 /* OnboardingImages.swift in Sources */,
+				23AF965527A19BEC0078A204 /* MyPageViewController.swift in Sources */,
 				2389E1B227967B9900BE68E3 /* UIColor+Extension.swift in Sources */,
 				2333571B279DC6AE0062A9E8 /* User.swift in Sources */,
 				2389E1DE2796D8C800BE68E3 /* AuthVerificationCodeViewController.swift in Sources */,
@@ -505,10 +531,12 @@
 				2399602D279656EB001C8EA4 /* AppDelegate.swift in Sources */,
 				234CEC09279AAD3A00983E20 /* OnboardingCardViewController.swift in Sources */,
 				234CEC22279C827F00983E20 /* SignUpNicknameViewController.swift in Sources */,
+				23AF966127A1DF820078A204 /* HomeViewController.swift in Sources */,
 				2399602F279656EB001C8EA4 /* SceneDelegate.swift in Sources */,
 				234CEC2A279C863900983E20 /* BirthView.swift in Sources */,
 				234CEC3B279C9D0B00983E20 /* GenderView.swift in Sources */,
 				234CEC30279C95F600983E20 /* EmailView.swift in Sources */,
+				23AF965327A19B210078A204 /* MainTabBarController.swift in Sources */,
 				234CEC052799FAC300983E20 /* BaseUIView.swift in Sources */,
 				2389E1D52796A2AD00BE68E3 /* AuthAPIService.swift in Sources */,
 				23335717279D580D0062A9E8 /* Endpoint.swift in Sources */,

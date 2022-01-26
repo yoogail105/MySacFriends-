@@ -32,11 +32,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         case .signUp:
             startViewController = SignUpNicknameViewController()
         case .main:
-            startViewController = MainViewController()
+            startViewController = MainTabBarController()
         }
         
         
-        window?.rootViewController = UINavigationController(rootViewController: startViewController)
+        window?.rootViewController = UINavigationController(rootViewController: MainTabBarController())
         window?.makeKeyAndVisible()
         
     }

@@ -21,6 +21,11 @@ class BaseViewController: UIViewController {
         setupNavigationBar()
     }
     
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+    }
+    
     func configure() {
         view.backgroundColor = .white
     }

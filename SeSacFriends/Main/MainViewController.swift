@@ -22,7 +22,12 @@ class MainViewController: BaseViewController {
         super.viewDidLoad()
         //view.backgroundColor = .yellow
         
+        self.title = "Map"
         
+    }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
         
     }
     
@@ -48,7 +53,7 @@ class MainViewController: BaseViewController {
         }
     }
     
-   
+    
     private func moveToNext() {
         // 유저정보 post
         
