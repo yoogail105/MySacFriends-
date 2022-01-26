@@ -15,6 +15,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
+        UITabBar.appearance().tintColor = UIColor.brandColor(.green)
+        UITabBar.appearance().unselectedItemTintColor = UIColor.grayColor(.gray6)
+        
         IQKeyboardManager.shared.enable = true
         FirebaseApp.configure()
         
@@ -65,7 +68,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 final class AppAppearance {
     static func setupAppearance() {
-        
         UIView.appearance().backgroundColor = .white
         
     }
