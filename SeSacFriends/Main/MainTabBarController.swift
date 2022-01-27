@@ -8,13 +8,10 @@
 import UIKit
 
 class MainTabBarController: UITabBarController, Coordinator {
+    var childCoordinator: [Coordinator] = []
     func start() {
-        
     }
     
-  
-    var childCoordinator: [Coordinator] = []
-
     let home = HomeCoordinator()
     let shop = ShopCoordinator()
     let friends = FriendsCoordinator()
@@ -29,38 +26,35 @@ class MainTabBarController: UITabBarController, Coordinator {
     
     
     func setupViewControllers() {
-    // extension으로 뺴기
+      
         
         let homeBarItem = UITabBarItem(title: TabBarTitle.home.rawValue, image: UIImage(named: TabBarIcon.homeInact.rawValue)?.withRenderingMode(.alwaysOriginal), selectedImage: UIImage(named: TabBarIcon.homeAct.rawValue)?.withRenderingMode(.alwaysOriginal))
     
         home.parentCoordinator = self
         childCoordinator.append(home)
-        home.start()
-        navigationController?.tabBarItem = homeBarItem
+        let home = home.startPush()
+        home.tabBarItem = homeBarItem
         
         let shopBarItem = UITabBarItem(title: TabBarTitle.shop.rawValue, image: UIImage(named: TabBarIcon.shopInact.rawValue)?.withRenderingMode(.alwaysOriginal), selectedImage: UIImage(named: TabBarIcon.shopAct.rawValue)?.withRenderingMode(.alwaysOriginal))
         shop.parentCoordinator = self
         childCoordinator.append(shop)
-        shop.start()
-        navigationController?.tabBarItem = shopBarItem
-        
+        let shop = shop.startPush()
+        shop.tabBarItem = shopBarItem
         
         let  friendsBarItem = UITabBarItem(title: TabBarTitle.friends.rawValue, image: UIImage(named: TabBarIcon.friendsInact.rawValue)?.withRenderingMode(.alwaysOriginal), selectedImage: UIImage(named: TabBarIcon.friendsAct.rawValue)?.withRenderingMode(.alwaysOriginal))
         friends.parentCoordinator = self
         childCoordinator.append(friends)
-        friends.start()
-        navigationController?.tabBarItem = friendsBarItem
+        let friends = friends.startPush()
+        friends.tabBarItem =  friendsBarItem
         
         
         let myPageBarItem = UITabBarItem(title: TabBarTitle.myPage.rawValue, image: UIImage(named: TabBarIcon.myInact.rawValue)?.withRenderingMode(.alwaysOriginal), selectedImage: UIImage(named: TabBarIcon.myAct.rawValue)?.withRenderingMode(.alwaysOriginal))
         myPage.parentCoordinator = self
         childCoordinator.append(myPage)
-        myPage.start()
-        navigationController?.tabBarItem = myPageBarItem
+        let myPage = myPage.startPush()
+        myPage.tabBarItem = myPageBarItem
         
-        viewControllers = [home.navigationController, shop.navigationController, friends.navigationController, myPage.navigationController]
+        viewControllers = [home, shop, friends, myPage]
     }
 
 }
-
-
