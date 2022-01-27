@@ -174,7 +174,7 @@
 			path = CustomView;
 			sourceTree = "<group>";
 		};
-		2333573027A09EF70062A9E8 /* Profile */ = {
+		2333573027A09EF70062A9E8 /* MyPage */ = {
 			isa = PBXGroup;
 			children = (
 				2333572E27A09EF20062A9E8 /* MyPageView.swift */,
@@ -182,7 +182,7 @@
 				237B9F0D27A262BD008A6E06 /* MyPageViewCell.swift */,
 				23AF965427A19BEC0078A204 /* MyPageViewController.swift */,
 			);
-			name = Profile;
+			name = MyPage;
 			path = Onboarding;
 			sourceTree = "<group>";
 		};
@@ -339,7 +339,7 @@
 				234CEC1E279C728300983E20 /* Text */,
 				2389E1C9279697E700BE68E3 /* Extension */,
 				23335720279DF8AC0062A9E8 /* CustomView */,
-				2333573027A09EF70062A9E8 /* Profile */,
+				2333573027A09EF70062A9E8 /* MyPage */,
 				234CEBFF2799F75500983E20 /* Onboarding */,
 				2389E1CA279697F700BE68E3 /* Auth */,
 				234CEC24279C82F000983E20 /* SignUp */,

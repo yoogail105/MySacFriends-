@@ -14,6 +14,7 @@ class MyPageView: UIView {
     let tableView: UITableView = {
        let table = UITableView()
         table.register(MyPageTableViewCell.self, forCellReuseIdentifier: MyPageTableViewCell.identifier)
+        table.backgroundColor = .yellow
         return table
     }()
     
@@ -37,7 +38,7 @@ class MyPageView: UIView {
         addSubview(tableView)
         
         tableView.snp.makeConstraints {
-            $0.top.bottom.leading.trailing.equalToSuperview()
+            $0.top.bottom.leading.trailing.equalTo(self.safeAreaLayoutGuide)
         }
     }
 

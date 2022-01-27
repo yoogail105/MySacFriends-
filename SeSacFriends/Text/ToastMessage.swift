@@ -31,6 +31,14 @@ enum SignUpToast: String {
     
 }
 
+enum RequestFriendToast: String {
+    case created = "신고가 누적되어 이용하실 수 없습니다."
+    case firstPenalty = "약속취소 페널티 1단계 적용 중 입니다."
+    case secondPenalty = "약속취소 페널티 2단계 적용 중 입니다."
+    case finalPenalty = "약속취소 페널티 3단계 적용 중 입니다"
+    case emptyGender = "새싹을 찾기 위해서는 성별 입력이 필요합니다."
+}
+
 /*
 enum HTTPCode: Int {
         case OK = 200

@@ -33,6 +33,10 @@ extension UserDefaults {
         case email
         case gender
         case FCMToken
+        case searchable
+        case ageMin
+        case ageMax
+        case hobby
 
     }
 
@@ -95,5 +99,25 @@ extension UserDefaults {
     var FCMToken: String? {
         get { string(forKey: UserDefaultsKeys.FCMToken.rawValue)}
         set { setValue(newValue, forKey: UserDefaultsKeys.FCMToken.rawValue)}
+    }
+    
+    var searchable: Int {
+        get { integer(forKey: UserDefaultsKeys.searchable.rawValue) }
+        set { setValue(newValue, forKey: UserDefaultsKeys.searchable.rawValue)}
+    }
+    
+    var ageMin: Int {
+        get { integer(forKey: UserDefaultsKeys.ageMin.rawValue) }
+        set { setValue(newValue, forKey: UserDefaultsKeys.ageMin.rawValue)}
+    }
+    
+    var ageMax: Int {
+        get { integer(forKey: UserDefaultsKeys.ageMax.rawValue) }
+        set { setValue(newValue, forKey: UserDefaultsKeys.ageMax.rawValue)}
+    }
+    
+    var hobby: String? {
+        get { string(forKey: UserDefaultsKeys.hobby.rawValue)}
+        set { setValue(newValue, forKey: UserDefaultsKeys.hobby.rawValue)}
     }
 }

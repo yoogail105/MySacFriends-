@@ -8,21 +8,8 @@
 import Foundation
 
 
+// 정리하기 컴포넌트..
 
-enum Method: String {
-    case GET
-    case POST
-    case PUT
-    case DELETE
-}
-
-enum Endpoint {
-    case user
-    case deleteUser
-    case updateFCMToken
-    case updateMyPage
-    case userUpdateFCMToken
-}
 
 enum HTTPString: String {
     case idtoken
@@ -36,7 +23,7 @@ enum HTTPHeaderValue: String {
 
 enum UserBodyPara: String {
     case phoneNumber
-    case FCMtoken
+    case FCMToken
     case nick
     case birth
     case email
@@ -45,8 +32,24 @@ enum UserBodyPara: String {
     case ageMin
     case ageMax
     case hobby
-    
 }
+
+
+enum Method: String {
+    case GET
+    case POST
+    case PUT
+    case DELETE
+}
+enum Endpoint {
+    case user
+    case deleteUser
+    case updateFCMToken
+    case updateMyPage
+    case userUpdateFCMToken
+    case userUpdateMyPage
+}
+
 
 extension Endpoint {
     var url: URL {
@@ -61,7 +64,33 @@ extension Endpoint {
             return .makeEndPoint("/user/update/mypage")
         case .userUpdateFCMToken:
             return .makeEndPoint("/user/update_fcm_token")
-            
+        case .userUpdateMyPage:
+            return .makeEndPoint("/user/update/mypage")
+        }
+    }
+}
+
+enum QueueEndpoint {
+    case queue
+    case onQueue
+}
+
+enum QueueBodyPara: String {
+    case friendsGender  = "type"
+    case region
+    case lat
+    case long
+    case hobbyArray = "hf"
+    
+}
+
+extension QueueEndpoint {
+    var url: URL {
+        switch self {
+        case .queue:
+            return .makeEndPoint("/queue")
+        case .onQueue:
+            return .makeEndPoint("/queue/onqueue")
         }
     }
 }

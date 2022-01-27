@@ -23,6 +23,8 @@ class MyPageViewController: UIViewController {
         self.title = TabBarTitle.myPage.rawValue
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.register(MyPageTableViewCell.self, forCellReuseIdentifier: MyPageTableViewCell.identifier)
+        tableView.backgroundColor = .grayColor(.gray3)
         
     }
 
@@ -34,15 +36,14 @@ extension MyPageViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        guard let cell = tableView.dequeueReusableCell(withIdentifier: MyPageTableViewCell.identifier, for: indexPath) as? MyPageTableViewCell else {
-//            return UITableViewCell()
-//        }
-       let cell = UITableViewCell()
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: MyPageTableViewCell.identifier, for: indexPath) as? MyPageTableViewCell else {
+            return UITableViewCell()
+        }
+       
         var content = cell.defaultContentConfiguration()
         content.image = UIImage(systemName: "heart.fill")
         content.imageProperties.tintColor = .brandColor(.green)
         content.imageToTextPadding = 100
-
         
         content.attributedText = NSAttributedString(string: "Text", attributes: [ .font: UIFont.systemFont(ofSize: 20, weight: .bold), .foregroundColor: UIColor.systemBlue ])
         content.secondaryAttributedText = NSAttributedString(string: "secondaryText", attributes: [ .font: UIFont.systemFont(ofSize: 10, weight: .light), .foregroundColor: UIColor.systemGreen ])
@@ -50,10 +51,11 @@ extension MyPageViewController: UITableViewDelegate, UITableViewDataSource {
         content.secondaryTextProperties.alignment = .justified
         cell.contentConfiguration = content
       
-        
-        
         return cell
     }
     
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 80
+    }
     
 }

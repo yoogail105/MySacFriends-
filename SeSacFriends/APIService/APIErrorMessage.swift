@@ -20,6 +20,10 @@ enum APIErrorCode: Int {
     case ok = 200
     case created = 201 // already existed user
     case invalidNickname = 202
+    case firstPenalty = 203
+    case secondPenalty = 204
+    case finalPenalty = 205
+    case emptyGender = 206
     case unAuthorized = 401 //firebase idtoken
     case internalServerError = 405
     case notAcceptable = 406 // already deleted user
