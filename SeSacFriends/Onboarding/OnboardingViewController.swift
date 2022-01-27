@@ -10,12 +10,15 @@ import SnapKit
 import RxSwift
 import RxCocoa
 
-class OnboardingViewController: BaseViewController {
+class OnboardingViewController: BaseViewController  {
+
+    
+    //weak var coordinator: PushAuthCoordinator?
     
     let mainView = OnboardingView()
     let cardViewController = PageViewController()
     let disposBag = DisposeBag()
-//    let cardView = OnboardingCardView()
+    
     
     override func loadView() {
         self.view = mainView
@@ -51,7 +54,9 @@ class OnboardingViewController: BaseViewController {
     }
     
     func toAuthView() {
+        print("toAuthView")
         UserDefaults.standard.startMode = StartMode.auth.rawValue
+       //coordinator?.start(navigationController!)
         let vc = AuthViewController()
         self.navigationController?.pushViewController(vc, animated: true)
     }

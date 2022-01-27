@@ -16,7 +16,7 @@
 		2333571F279DF89E0062A9E8 /* genderBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2333571E279DF89E0062A9E8 /* genderBoxView.swift */; };
 		23335727279FB5650062A9E8 /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23335726279FB5650062A9E8 /* Date+Extension.swift */; };
 		2333572D27A08D630062A9E8 /* APIErrorMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2333572C27A08D630062A9E8 /* APIErrorMessage.swift */; };
-		2333572F27A09EF20062A9E8 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2333572E27A09EF20062A9E8 /* ProfileView.swift */; };
+		2333572F27A09EF20062A9E8 /* MyPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2333572E27A09EF20062A9E8 /* MyPageView.swift */; };
 		2333573227A09FCE0062A9E8 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2333573127A09FCE0062A9E8 /* MainView.swift */; };
 		234CEC012799F76B00983E20 /* OnboardingCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 234CEC002799F76B00983E20 /* OnboardingCardView.swift */; };
 		234CEC032799F7F600983E20 /* OnboardingImages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 234CEC022799F7F600983E20 /* OnboardingImages.swift */; };
@@ -34,7 +34,6 @@
 		234CEC28279C859300983E20 /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 234CEC27279C859300983E20 /* SignUpViewModel.swift */; };
 		234CEC2A279C863900983E20 /* BirthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 234CEC29279C863900983E20 /* BirthView.swift */; };
 		234CEC2C279C863F00983E20 /* BirthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 234CEC2B279C863F00983E20 /* BirthViewController.swift */; };
-		234CEC30279C95F600983E20 /* EmailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 234CEC2F279C95F600983E20 /* EmailView.swift */; };
 		234CEC32279C95FF00983E20 /* SetEmailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 234CEC31279C95FF00983E20 /* SetEmailView.swift */; };
 		234CEC34279C971F00983E20 /* EmailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 234CEC33279C971F00983E20 /* EmailViewController.swift */; };
 		234CEC37279C9A1000983E20 /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 234CEC36279C9A1000983E20 /* IQKeyboardManagerSwift */; };
@@ -43,6 +42,9 @@
 		234E5FA427978FE700F5D2BB /* AuthVerificationCodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 234E5FA327978FE700F5D2BB /* AuthVerificationCodeView.swift */; };
 		234E5FA627987EE900F5D2BB /* UIButton+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 234E5FA527987EE900F5D2BB /* UIButton+Extension.swift */; };
 		234E5FAA27988F8D00F5D2BB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 234E5FA927988F8D00F5D2BB /* GoogleService-Info.plist */; };
+		237B9F0E27A262BD008A6E06 /* MyPageViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 237B9F0D27A262BD008A6E06 /* MyPageViewCell.swift */; };
+		237B9F1027A26834008A6E06 /* MyPageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 237B9F0F27A26834008A6E06 /* MyPageViewModel.swift */; };
+		237B9F1227A2AA13008A6E06 /* PushCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 237B9F1127A2AA13008A6E06 /* PushCoordinator.swift */; };
 		2389E1B027967B1200BE68E3 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2389E1AF27967B1200BE68E3 /* MainViewController.swift */; };
 		2389E1B227967B9900BE68E3 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2389E1B127967B9900BE68E3 /* UIColor+Extension.swift */; };
 		2389E1C42796862A00BE68E3 /* UIFont+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2389E1C32796862A00BE68E3 /* UIFont+Extension.swift */; };
@@ -85,7 +87,7 @@
 		2333571E279DF89E0062A9E8 /* genderBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = genderBoxView.swift; sourceTree = "<group>"; };
 		23335726279FB5650062A9E8 /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
 		2333572C27A08D630062A9E8 /* APIErrorMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIErrorMessage.swift; sourceTree = "<group>"; };
-		2333572E27A09EF20062A9E8 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		2333572E27A09EF20062A9E8 /* MyPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageView.swift; sourceTree = "<group>"; };
 		2333573127A09FCE0062A9E8 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		234CEC002799F76B00983E20 /* OnboardingCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCardView.swift; sourceTree = "<group>"; };
 		234CEC022799F7F600983E20 /* OnboardingImages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingImages.swift; sourceTree = "<group>"; };
@@ -103,7 +105,6 @@
 		234CEC27279C859300983E20 /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
 		234CEC29279C863900983E20 /* BirthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BirthView.swift; sourceTree = "<group>"; };
 		234CEC2B279C863F00983E20 /* BirthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BirthViewController.swift; sourceTree = "<group>"; };
-		234CEC2F279C95F600983E20 /* EmailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailView.swift; sourceTree = "<group>"; };
 		234CEC31279C95FF00983E20 /* SetEmailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetEmailView.swift; sourceTree = "<group>"; };
 		234CEC33279C971F00983E20 /* EmailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailViewController.swift; sourceTree = "<group>"; };
 		234CEC38279C9CEA00983E20 /* GenderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenderViewController.swift; sourceTree = "<group>"; };
@@ -111,6 +112,9 @@
 		234E5FA327978FE700F5D2BB /* AuthVerificationCodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthVerificationCodeView.swift; sourceTree = "<group>"; };
 		234E5FA527987EE900F5D2BB /* UIButton+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extension.swift"; sourceTree = "<group>"; };
 		234E5FA927988F8D00F5D2BB /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		237B9F0D27A262BD008A6E06 /* MyPageViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageViewCell.swift; sourceTree = "<group>"; };
+		237B9F0F27A26834008A6E06 /* MyPageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageViewModel.swift; sourceTree = "<group>"; };
+		237B9F1127A2AA13008A6E06 /* PushCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushCoordinator.swift; sourceTree = "<group>"; };
 		2389E1AC27967A3A00BE68E3 /* SeSacFriends.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SeSacFriends.entitlements; sourceTree = "<group>"; };
 		2389E1AF27967B1200BE68E3 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		2389E1B127967B9900BE68E3 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
@@ -173,7 +177,9 @@
 		2333573027A09EF70062A9E8 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
-				2333572E27A09EF20062A9E8 /* ProfileView.swift */,
+				2333572E27A09EF20062A9E8 /* MyPageView.swift */,
+				237B9F0F27A26834008A6E06 /* MyPageViewModel.swift */,
+				237B9F0D27A262BD008A6E06 /* MyPageViewCell.swift */,
 				23AF965427A19BEC0078A204 /* MyPageViewController.swift */,
 			);
 			name = Profile;
@@ -210,6 +216,7 @@
 				234CEC042799FAC300983E20 /* BaseUIView.swift */,
 				2389E1D62796A31800BE68E3 /* BaseViewController.swift */,
 				23AF965E27A1B5F70078A204 /* CoordinatorProtocol.swift */,
+				237B9F1127A2AA13008A6E06 /* PushCoordinator.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -256,7 +263,6 @@
 		2389E1C1279685A800BE68E3 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
-				234CEC2F279C95F600983E20 /* EmailView.swift */,
 				2389E1C0279685A200BE68E3 /* NotoSansCJKkr-Regular.otf */,
 				2389E1C2279685CA00BE68E3 /* NotoSansCJKkr-Medium.otf */,
 			);
@@ -496,11 +502,12 @@
 				2308B0242799D83D004145E2 /* UIViewController+Extension.swift in Sources */,
 				2389E1D72796A31800BE68E3 /* BaseViewController.swift in Sources */,
 				23AF965B27A1A0C40078A204 /* ShopViewController.swift in Sources */,
-				2333572F27A09EF20062A9E8 /* ProfileView.swift in Sources */,
+				2333572F27A09EF20062A9E8 /* MyPageView.swift in Sources */,
 				2389E1B027967B1200BE68E3 /* MainViewController.swift in Sources */,
 				234CEC32279C95FF00983E20 /* SetEmailView.swift in Sources */,
 				23335719279DB2A90062A9E8 /* SignUpAPIService.swift in Sources */,
 				239960412796572C001C8EA4 /* String+Extension.swift in Sources */,
+				237B9F1227A2AA13008A6E06 /* PushCoordinator.swift in Sources */,
 				234E5FA627987EE900F5D2BB /* UIButton+Extension.swift in Sources */,
 				2399604327965741001C8EA4 /* AuthView.swift in Sources */,
 				234CEC19279C512700983E20 /* SignUpNicknameView.swift in Sources */,
@@ -520,6 +527,7 @@
 				23AF965527A19BEC0078A204 /* MyPageViewController.swift in Sources */,
 				2389E1B227967B9900BE68E3 /* UIColor+Extension.swift in Sources */,
 				2333571B279DC6AE0062A9E8 /* User.swift in Sources */,
+				237B9F0E27A262BD008A6E06 /* MyPageViewCell.swift in Sources */,
 				2389E1DE2796D8C800BE68E3 /* AuthVerificationCodeViewController.swift in Sources */,
 				2333573227A09FCE0062A9E8 /* MainView.swift in Sources */,
 				23335727279FB5650062A9E8 /* Date+Extension.swift in Sources */,
@@ -535,7 +543,6 @@
 				2399602F279656EB001C8EA4 /* SceneDelegate.swift in Sources */,
 				234CEC2A279C863900983E20 /* BirthView.swift in Sources */,
 				234CEC3B279C9D0B00983E20 /* GenderView.swift in Sources */,
-				234CEC30279C95F600983E20 /* EmailView.swift in Sources */,
 				23AF965327A19B210078A204 /* MainTabBarController.swift in Sources */,
 				234CEC052799FAC300983E20 /* BaseUIView.swift in Sources */,
 				2389E1D52796A2AD00BE68E3 /* AuthAPIService.swift in Sources */,
@@ -543,6 +550,7 @@
 				234CEC0D279AF61500983E20 /* PageViewController.swift in Sources */,
 				234CEC1B279C51C700983E20 /* Text.swift in Sources */,
 				234CEC0B279AB3D500983E20 /* UIView+Extension.swift in Sources */,
+				237B9F1027A26834008A6E06 /* MyPageViewModel.swift in Sources */,
 				2389E1C8279697E200BE68E3 /* UITextField+Extension.swift in Sources */,
 				234CEC39279C9CEA00983E20 /* GenderViewController.swift in Sources */,
 				2333571F279DF89E0062A9E8 /* genderBoxView.swift in Sources */,
