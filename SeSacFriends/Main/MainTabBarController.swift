@@ -17,6 +17,10 @@ class MainTabBarController: UITabBarController, Coordinator {
     let friends = FriendsCoordinator()
     let myPage = MyPageCoordinator()
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.setNavigationBarHidden(true, animated: animated)
+    }
     
     
     override func viewDidLoad() {

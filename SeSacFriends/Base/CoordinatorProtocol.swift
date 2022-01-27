@@ -31,6 +31,7 @@ class HomeCoordinator: Coordinator {
     func startPush() -> UINavigationController {
         let homeViewController = HomeViewController()
         navigationController.setViewControllers([homeViewController], animated: false)
+        
         return navigationController
     }
 }

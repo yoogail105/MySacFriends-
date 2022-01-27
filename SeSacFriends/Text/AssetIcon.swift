@@ -42,6 +42,22 @@ enum TabBarIcon: String {
     case sendInact
     case shopAct
     case shopInact
+}
+
+enum sesacIcon: String, CaseIterable {
+    case face1 = "sesac_face_1"
+    case face2 = "sesac_face_2"
+    case face3 = "sesac_face_3"
+    case face4 = "sesac_face_4"
+    case face5 = "sesac_face_5"
     
+}
+
+enum myPageMenuIcon: String, CaseIterable {
+    case notice
+    case question = "faq"
+    case qna
+    case settingAlarm = "setting_alarm"
+    case permit
 }
 

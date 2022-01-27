@@ -6,14 +6,14 @@
 //
 
 import UIKit
-
+import SnapKit
 
 class MyPageView: UIView {
     
     
     let tableView: UITableView = {
        let table = UITableView()
-        table.register(MyPageTableViewCell.self, forCellReuseIdentifier: MyPageTableViewCell.identifier)
+       // table.register(MyPageTableViewCell.self, forCellReuseIdentifier: MyPageTableViewCell.identifier)
         table.backgroundColor = .yellow
         return table
     }()
@@ -27,6 +27,8 @@ class MyPageView: UIView {
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
+        configuration()
+        constraints()
     }
     
     func configuration() {
