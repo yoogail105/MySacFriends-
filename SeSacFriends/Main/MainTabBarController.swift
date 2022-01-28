@@ -8,6 +8,8 @@
 import UIKit
 
 class MainTabBarController: UITabBarController, Coordinator {
+
+    
     var childCoordinator: [Coordinator] = []
     func start() {
     }
@@ -25,6 +27,7 @@ class MainTabBarController: UITabBarController, Coordinator {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("진입")
         setupViewControllers()
     }
     

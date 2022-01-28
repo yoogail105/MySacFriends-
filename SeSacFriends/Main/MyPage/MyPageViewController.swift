@@ -49,7 +49,7 @@ class MyPageViewController: BaseViewController {
     }
     
     override func setupNavigationBar() {
-        navigationController?.navigationBar.isHidden = true
+//        navigationController?.navigationBar.isHidden = true
     }
 }
 
@@ -60,9 +60,9 @@ extension MyPageViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: MyPageTableViewCell.identifier, for: indexPath) as? MyPageTableViewCell else {
-            return UITableViewCell()
-        }
+//        guard let cell = tableView.dequeueReusableCell(withIdentifier: MyPageTableViewCell.identifier, for: indexPath) as? MyPageTableViewCell else {
+//            return UITableViewCell()
+//        }
 
         let cell = UITableViewCell()
         var content = cell.defaultContentConfiguration()
@@ -74,7 +74,7 @@ extension MyPageViewController: UITableViewDelegate, UITableViewDataSource {
         
         if row == 0 {
     
-            content.image = UIImage(named: sesacIcon.face1.rawValue)
+            content.image = UIImage(named: AssetIcon.profileIcon.rawValue)
             content.attributedText = NSAttributedString(string: UserDefaults.standard.nickname, attributes: [ .font: UIFont().Title1_M16, .foregroundColor: UIColor.black ])
             
         } else {

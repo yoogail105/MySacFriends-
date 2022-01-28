@@ -12,7 +12,7 @@ import IQKeyboardManagerSwift
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
     
-    
+    // 네트워크 연결 구축이나 데이터베이스 초기 접근 설정과 같은 앱 초기에 해야 할 초기화 작업을 작성하는데 좋다.
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         UITabBar.appearance().tintColor = UIColor.brandColor(.green)

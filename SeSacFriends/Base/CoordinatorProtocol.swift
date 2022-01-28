@@ -7,6 +7,46 @@
 
 import UIKit
 
+protocol Coordinator2 {
+  var parentCoordinator: Coordinator2? { get set }
+  var childCoordinators: [Coordinator2] { get set }
+  var navigationController: UINavigationController { get set }
+  
+  func start()
+
+}
+
+class MainCoordinator: Coordinator2 {
+    var parentCoordinator: Coordinator2?
+    var childCoordinators = [Coordinator2]()
+    var navigationController: UINavigationController
+
+    init(navigationController: UINavigationController, parentCoordinator: Coordinator2?) {
+        self.navigationController = navigationController
+        self.parentCoordinator = parentCoordinator
+    }
+
+    func start() {
+        let viewController = OnboardingViewController()
+        navigationController.pushViewController(viewController, animated: true)
+    }
+    
+    func pushToAuth() {
+        let viewController = AuthViewController()
+        navigationController.pushViewController(viewController, animated: true)
+    }
+    
+    func pushToAuthSignUp() {
+        let viewController = SignUpNicknameViewController()
+        navigationController.pushViewController(viewController, animated: true)
+    }
+    
+    func pushToAuthMain() {
+        let viewController = MainTabBarController()
+        navigationController.pushViewController(viewController, animated: true)
+    }
+}
+
 protocol Coordinator: AnyObject {
     var childCoordinator: [Coordinator] { get set }
     

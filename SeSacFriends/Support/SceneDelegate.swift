@@ -8,37 +8,39 @@
 import UIKit
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
-
+    
     var window: UIWindow?
-
+    var coordinator: MainCoordinator?
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         
         guard let windowScene = (scene as? UIWindowScene) else { return }
-  
-        window = UIWindow(windowScene: windowScene)
-        window?.windowScene = windowScene
-
+        let appWindow = UIWindow(frame: windowScene.coordinateSpace.bounds)
+        appWindow.windowScene = windowScene
+        
+        let navigationController = UINavigationController()
+        coordinator = MainCoordinator(navigationController: navigationController, parentCoordinator: coordinator)
         
         let startModeString = UserDefaults.standard.startMode
         let startMode = StartMode(rawValue: startModeString) ?? .onBoarding
-        var startViewController: UIViewController
         
         switch startMode {
         case .onBoarding:
-            startViewController = OnboardingViewController()
+            coordinator?.start()
         case .auth:
-            startViewController = AuthViewController()
+            coordinator?.pushToAuth()
         case .signUp:
-            startViewController = SignUpNicknameViewController()
+            coordinator?.pushToAuthSignUp()
         case .main:
-            startViewController = MainTabBarController()
+            print("go to main")
+            coordinator?.pushToAuthMain()
         }
+
+        appWindow.rootViewController = navigationController
+        appWindow.makeKeyAndVisible()
         
-        
-        window?.rootViewController = UINavigationController(rootViewController: MainTabBarController())
-        window?.makeKeyAndVisible()
-        
+        window = appWindow
+
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

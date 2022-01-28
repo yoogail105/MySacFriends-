@@ -29,6 +29,7 @@ enum AssetIcon: String {
     case write
     case bagde
     case sesacImg
+    case profileIcon = "profile_img"
 }
 
 enum TabBarIcon: String {
