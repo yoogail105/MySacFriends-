@@ -13,7 +13,7 @@ class FriendsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.title = "friedns"
+        self.title = TabBarTitle.friends.rawValue
         view.backgroundColor = .red
     }
 }

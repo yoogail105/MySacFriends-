@@ -13,4 +13,5 @@ enum TabBarTitle: String {
     case shop = "새싹샵"
     case friends = "새싹친구"
     case myPage = "내정보"
+    case detail = "정보 관리"
 }

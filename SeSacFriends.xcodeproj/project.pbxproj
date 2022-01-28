@@ -48,6 +48,8 @@
 		237B9F1427A35233008A6E06 /* FriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 237B9F1327A35232008A6E06 /* FriendsViewController.swift */; };
 		237B9F1627A35237008A6E06 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 237B9F1527A35237008A6E06 /* HomeViewController.swift */; };
 		237B9F1827A35239008A6E06 /* ShopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 237B9F1727A35239008A6E06 /* ShopViewController.swift */; };
+		237B9F1A27A3DC16008A6E06 /* ProfileDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 237B9F1927A3DC16008A6E06 /* ProfileDetailView.swift */; };
+		237B9F1C27A3FB3F008A6E06 /* ProfileDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 237B9F1B27A3FB3F008A6E06 /* ProfileDetailViewController.swift */; };
 		2389E1B027967B1200BE68E3 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2389E1AF27967B1200BE68E3 /* MainViewController.swift */; };
 		2389E1B227967B9900BE68E3 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2389E1B127967B9900BE68E3 /* UIColor+Extension.swift */; };
 		2389E1C42796862A00BE68E3 /* UIFont+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2389E1C32796862A00BE68E3 /* UIFont+Extension.swift */; };
@@ -118,6 +120,8 @@
 		237B9F1327A35232008A6E06 /* FriendsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsViewController.swift; sourceTree = "<group>"; };
 		237B9F1527A35237008A6E06 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		237B9F1727A35239008A6E06 /* ShopViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopViewController.swift; sourceTree = "<group>"; };
+		237B9F1927A3DC16008A6E06 /* ProfileDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileDetailView.swift; sourceTree = "<group>"; };
+		237B9F1B27A3FB3F008A6E06 /* ProfileDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileDetailViewController.swift; sourceTree = "<group>"; };
 		2389E1AC27967A3A00BE68E3 /* SeSacFriends.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SeSacFriends.entitlements; sourceTree = "<group>"; };
 		2389E1AF27967B1200BE68E3 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		2389E1B127967B9900BE68E3 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
@@ -181,6 +185,8 @@
 				237B9F0F27A26834008A6E06 /* MyPageViewModel.swift */,
 				237B9F0D27A262BD008A6E06 /* MyPageViewCell.swift */,
 				23AF965427A19BEC0078A204 /* MyPageViewController.swift */,
+				237B9F1927A3DC16008A6E06 /* ProfileDetailView.swift */,
+				237B9F1B27A3FB3F008A6E06 /* ProfileDetailViewController.swift */,
 			);
 			path = MyPage;
 			sourceTree = "<group>";
@@ -507,6 +513,7 @@
 				239960412796572C001C8EA4 /* String+Extension.swift in Sources */,
 				237B9F1227A2AA13008A6E06 /* PushCoordinator.swift in Sources */,
 				234E5FA627987EE900F5D2BB /* UIButton+Extension.swift in Sources */,
+				237B9F1A27A3DC16008A6E06 /* ProfileDetailView.swift in Sources */,
 				2399604327965741001C8EA4 /* AuthView.swift in Sources */,
 				234CEC19279C512700983E20 /* SignUpNicknameView.swift in Sources */,
 				2333572D27A08D630062A9E8 /* APIErrorMessage.swift in Sources */,
@@ -545,6 +552,7 @@
 				234CEC052799FAC300983E20 /* BaseUIView.swift in Sources */,
 				2389E1D52796A2AD00BE68E3 /* AuthAPIService.swift in Sources */,
 				23335717279D580D0062A9E8 /* Endpoint.swift in Sources */,
+				237B9F1C27A3FB3F008A6E06 /* ProfileDetailViewController.swift in Sources */,
 				234CEC0D279AF61500983E20 /* PageViewController.swift in Sources */,
 				234CEC1B279C51C700983E20 /* Text.swift in Sources */,
 				234CEC0B279AB3D500983E20 /* UIView+Extension.swift in Sources */,

@@ -14,7 +14,6 @@ class MyPageView: UIView {
     let tableView: UITableView = {
        let table = UITableView()
        // table.register(MyPageTableViewCell.self, forCellReuseIdentifier: MyPageTableViewCell.identifier)
-        table.backgroundColor = .yellow
         return table
     }()
     

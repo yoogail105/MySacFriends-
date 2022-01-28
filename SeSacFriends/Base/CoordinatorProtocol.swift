@@ -30,6 +30,7 @@ class HomeCoordinator: Coordinator {
     
     func startPush() -> UINavigationController {
         let homeViewController = HomeViewController()
+        homeViewController.title = TabBarTitle.home.rawValue
         navigationController.setViewControllers([homeViewController], animated: false)
         
         return navigationController
@@ -102,6 +103,7 @@ class MyPageCoordinator: Coordinator {
     
     func startPush() -> UINavigationController {
         let myPageViewController = MyPageViewController()
+        myPageViewController.title = TabBarTitle.myPage.rawValue
         navigationController.setViewControllers([myPageViewController], animated: false)
         return navigationController
     }

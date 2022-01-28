@@ -9,6 +9,8 @@ target 'SeSacFriends' do
 #
 pod 'Firebase/Messaging'
 pod 'Firebase/Auth'
-
+pod 'Then'
+pod 'R.swift'
+pod 'SwiftLint'
 
 end

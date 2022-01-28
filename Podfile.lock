@@ -63,10 +63,18 @@ PODS:
   - nanopb/decode (2.30908.0)
   - nanopb/encode (2.30908.0)
   - PromisesObjC (2.0.0)
+  - R.swift (6.1.0):
+    - R.swift.Library (~> 5.3.0)
+  - R.swift.Library (5.3.0)
+  - SwiftLint (0.46.2)
+  - Then (2.7.0)
 
 DEPENDENCIES:
   - Firebase/Auth
   - Firebase/Messaging
+  - R.swift
+  - SwiftLint
+  - Then
 
 SPEC REPOS:
   trunk:
@@ -81,6 +89,10 @@ SPEC REPOS:
     - GTMSessionFetcher
     - nanopb
     - PromisesObjC
+    - R.swift
+    - R.swift.Library
+    - SwiftLint
+    - Then
 
 SPEC CHECKSUMS:
   Firebase: 44213362f1dcc52555b935dc925ed35ac55f1b20
@@ -94,7 +106,11 @@ SPEC CHECKSUMS:
   GTMSessionFetcher: 43748f93435c2aa068b1cbe39655aaf600652e91
   nanopb: a0ba3315591a9ae0a16a309ee504766e90db0c96
   PromisesObjC: 68159ce6952d93e17b2dfe273b8c40907db5ba58
+  R.swift: ec98ff71c4ab2f6fd01dd077e5afd15e63a4834c
+  R.swift.Library: 0fc583cb55a99e28901299cc451614cad1161962
+  SwiftLint: 6bc52a21f0fd44cab9aa2dc8e534fb9f5e3ec507
+  Then: acfe0be7e98221c6204e12f8161459606d5d822d
 
-PODFILE CHECKSUM: f90dd3f28e4ca08db5bc8df4764d9a73ec9a37b0
+PODFILE CHECKSUM: 4e6ed5d7dc1538f84705c349935f6820a99b7a0b
 
 COCOAPODS: 1.11.2

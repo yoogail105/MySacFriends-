@@ -21,6 +21,5 @@ class MyPageTableViewCell: UITableViewCell {
         fatalError()
     }
     
-    
 }
 

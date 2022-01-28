@@ -10,9 +10,10 @@ import UIKit
 import SnapKit
 
 class BaseUIView: UIView {
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
+        backgroundColor = .white
         configuration()
         constraints()
         
