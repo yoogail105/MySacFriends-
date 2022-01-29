@@ -7,21 +7,21 @@
 
 import UIKit
 
-protocol Coordinator2 {
-  var parentCoordinator: Coordinator2? { get set }
-  var childCoordinators: [Coordinator2] { get set }
+protocol Coordinator: class {
+  var parentCoordinator: Coordinator? { get set }
+  var childCoordinators: [Coordinator] { get set }
   var navigationController: UINavigationController { get set }
   
   func start()
 
 }
 
-class MainCoordinator: Coordinator2 {
-    var parentCoordinator: Coordinator2?
-    var childCoordinators = [Coordinator2]()
+class MainCoordinator: Coordinator {
+    var parentCoordinator: Coordinator?
+    var childCoordinators = [Coordinator]()
     var navigationController: UINavigationController
 
-    init(navigationController: UINavigationController, parentCoordinator: Coordinator2?) {
+    init(navigationController: UINavigationController, parentCoordinator: Coordinator?) {
         self.navigationController = navigationController
         self.parentCoordinator = parentCoordinator
     }
@@ -47,17 +47,18 @@ class MainCoordinator: Coordinator2 {
     }
 }
 
-protocol Coordinator: AnyObject {
-    var childCoordinator: [Coordinator] { get set }
+
+protocol Coordinator1: AnyObject {
+    var childCoordinator: [Coordinator1] { get set }
     
     func start()
 }
 
 // MARK: HomeCoordinator
-class HomeCoordinator: Coordinator {
+class HomeCoordinator: Coordinator1 {
     
-    weak var parentCoordinator: Coordinator?
-    var childCoordinator: [Coordinator] = []
+    weak var parentCoordinator: Coordinator1?
+    var childCoordinator: [Coordinator1] = []
     var navigationController: UINavigationController
 
     init() {
@@ -80,10 +81,10 @@ class HomeCoordinator: Coordinator {
 
 
  //MARK: ShopCoordinator
-class ShopCoordinator: Coordinator {
+class ShopCoordinator: Coordinator1 {
     
-    weak var parentCoordinator: Coordinator?
-    var childCoordinator: [Coordinator] = []
+    weak var parentCoordinator: Coordinator1?
+    var childCoordinator: [Coordinator1] = []
     var navigationController: UINavigationController
 
     init() {
@@ -104,10 +105,10 @@ class ShopCoordinator: Coordinator {
 
 
 // MARK:friendsCoordinator
-class FriendsCoordinator: Coordinator {
+class FriendsCoordinator: Coordinator1 {
     
-    weak var parentCoordinator: Coordinator?
-    var childCoordinator: [Coordinator] = []
+    weak var parentCoordinator: Coordinator1?
+    var childCoordinator: [Coordinator1] = []
     var navigationController: UINavigationController
 
     init() {
@@ -127,10 +128,10 @@ class FriendsCoordinator: Coordinator {
 
 
 // MARK: MyPageCoordinator
-class MyPageCoordinator: Coordinator {
+class MyPageCoordinator: Coordinator1 {
     
-    weak var parentCoordinator: Coordinator?
-    var childCoordinator: [Coordinator] = []
+    weak var parentCoordinator: Coordinator1?
+    var childCoordinator: [Coordinator1] = []
     var navigationController: UINavigationController
 
     init() {

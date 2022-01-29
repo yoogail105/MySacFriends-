@@ -1,6 +1,6 @@
 //
 //  QueueAPIService.swift
-//  
+//
 //
 //  Created by 성민주민주 on 2022/01/27.
 //
@@ -8,8 +8,9 @@
 import Foundation
 class QueueAPIService {
     
+    
     static func requestFriends(region: Int, lat: Double, long: Double, hf: [String], completion: @escaping (User?, APIErrorCode?) -> Void) {
-        
+        let userDefaults = UserDefaults.standard
         var request = URLRequest(url: QueueEndpoint.queue.url)
         request.httpMethod = Method.POST.rawValue
         
@@ -17,7 +18,7 @@ class QueueAPIService {
         request.setValue(idToken, forHTTPHeaderField: HTTPString.idtoken.rawValue)
         request.setValue(HTTPHeaderValue.contentType.rawValue, forHTTPHeaderField: HTTPString.ContentType.rawValue)
         
-        request.httpBody = "\(QueueBodyPara.type.rawValue)=2&\(QueueBodyPara.region.rawValue)=\(region)&\(QueueBodyPara.long.rawValue)=\(lat)&\(QueueBodyPara.lat.rawValue)=\(long)&\(QueueBodyPara.hf.rawValue)=\(hf)".data(using: .utf8, allowLossyConversion: false)
+        request.httpBody = "\(QueueBodyPara.friendsGender.rawValue)=2&\(QueueBodyPara.region.rawValue)=\(region)&\(QueueBodyPara.long.rawValue)=\(lat)&\(QueueBodyPara.lat.rawValue)=\(long)&\(QueueBodyPara.hobbyArray.rawValue)=\(hf)".data(using: .utf8, allowLossyConversion: false)
         
         
         URLSession.request(endpoint: request, completion: completion)
@@ -27,7 +28,7 @@ class QueueAPIService {
     static func searchFriends(completion: @escaping (User?, APIErrorCode?) -> Void) {
         let userDefaults = UserDefaults.standard
         
-        var request = URLRequest(url: QueueEndpoint.onqueue.url)
+        var request = URLRequest(url: QueueEndpoint.queue.url)
         request.httpMethod = Method.POST.rawValue
         
         let idToken = userDefaults.idToken!

@@ -91,3 +91,23 @@ class IconButton: BaseButton {
             
         }
 }
+
+class genderButton: BaseButton {
+    override init(frame: CGRect) {
+            super.init(frame: frame)
+            configuration()
+        }
+
+        required init?(coder aDecoder: NSCoder) {
+            super.init(coder: aDecoder)
+        }
+
+    override func configuration() {
+            layer.cornerRadius = 8
+            clipsToBounds = true
+            frame = CGRect(x: 0, y: 0, width: 56, height: 48)
+            titleLabel?.font = UIFont().Body3_R14
+        tintColor = UIColor.black
+        }
+}
+

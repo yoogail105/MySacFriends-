@@ -88,6 +88,13 @@ extension MyPageViewController: UITableViewDelegate, UITableViewDataSource {
       
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.row == 0{
+            let vc = ProfileDetailViewController()
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+    }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 80

@@ -7,10 +7,10 @@
 
 import UIKit
 
-class MainTabBarController: UITabBarController, Coordinator {
+class MainTabBarController: UITabBarController, Coordinator1 {
 
     
-    var childCoordinator: [Coordinator] = []
+    var childCoordinator: [Coordinator1] = []
     func start() {
     }
     

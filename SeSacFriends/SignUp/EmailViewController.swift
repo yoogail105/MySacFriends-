@@ -38,7 +38,7 @@ class EmailViewController: BaseViewController {
             .disposed(by: disposeBag)
         
         viewModel.isValidEmail
-            .map { $0 ? UIColor.brandColor(.green) : UIColor.grayColor(.gray3)}
+            .map { $0 ? UIColor.brandColor(.green): UIColor.grayColor(.gray3)}
             .bind(to: mainView.nextButton.rx.backgroundColor)
             .disposed(by: disposeBag)
         

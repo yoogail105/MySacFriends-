@@ -35,11 +35,11 @@ extension UIColor {
     static func brandColor(_ name: BrandColor) -> UIColor {
         switch name {
         case .green:
-            return #colorLiteral(red: 0.2862745098, green: 0.862745098, blue: 0.5725490196, alpha: 1)
+            return #colorLiteral(red: 0.2823529412, green: 0.862745098, blue: 0.5725490196, alpha: 1)
         case .whitegreen:
             return #colorLiteral(red: 0.8039215686, green: 0.9568627451, blue: 0.8823529412, alpha: 1)
         case .yellowgreen:
-            return #colorLiteral(red: 0.6980392157, green: 0.9215686275, blue: 0.3803921569, alpha: 1)
+            return #colorLiteral(red: 0.6941176471, green: 0.9215686275, blue: 0.3764705882, alpha: 1)
       
         }
     }

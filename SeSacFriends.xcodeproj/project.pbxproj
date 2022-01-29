@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		2308B0242799D83D004145E2 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2308B0232799D83D004145E2 /* UIViewController+Extension.swift */; };
 		2308B0262799DEBF004145E2 /* ToastMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2308B0252799DEBF004145E2 /* ToastMessage.swift */; };
+		2323AEAE27A557CA00895CC7 /* ProfileDetailText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2323AEAD27A557CA00895CC7 /* ProfileDetailText.swift */; };
+		2323AEB027A5BDDB00895CC7 /* RangeSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2323AEAF27A5BDDB00895CC7 /* RangeSlider.swift */; };
+		2323AEB227A5BEDB00895CC7 /* RangeSliderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2323AEB127A5BEDB00895CC7 /* RangeSliderViewController.swift */; };
 		23335717279D580D0062A9E8 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23335716279D580D0062A9E8 /* Endpoint.swift */; };
 		23335719279DB2A90062A9E8 /* SignUpAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23335718279DB2A90062A9E8 /* SignUpAPIService.swift */; };
 		2333571B279DC6AE0062A9E8 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2333571A279DC6AE0062A9E8 /* User.swift */; };
@@ -29,7 +32,7 @@
 		234CEC19279C512700983E20 /* SignUpNicknameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 234CEC18279C512600983E20 /* SignUpNicknameView.swift */; };
 		234CEC1B279C51C700983E20 /* Text.swift in Sources */ = {isa = PBXBuildFile; fileRef = 234CEC1A279C51C700983E20 /* Text.swift */; };
 		234CEC1D279C61F700983E20 /* NicknameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 234CEC1C279C61F700983E20 /* NicknameView.swift */; };
-		234CEC20279C729800983E20 /* AssetIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 234CEC1F279C729800983E20 /* AssetIcon.swift */; };
+		234CEC20279C729800983E20 /* AssetsText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 234CEC1F279C729800983E20 /* AssetsText.swift */; };
 		234CEC22279C827F00983E20 /* SignUpNicknameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 234CEC21279C827F00983E20 /* SignUpNicknameViewController.swift */; };
 		234CEC28279C859300983E20 /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 234CEC27279C859300983E20 /* SignUpViewModel.swift */; };
 		234CEC2A279C863900983E20 /* BirthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 234CEC29279C863900983E20 /* BirthView.swift */; };
@@ -50,6 +53,7 @@
 		237B9F1827A35239008A6E06 /* ShopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 237B9F1727A35239008A6E06 /* ShopViewController.swift */; };
 		237B9F1A27A3DC16008A6E06 /* ProfileDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 237B9F1927A3DC16008A6E06 /* ProfileDetailView.swift */; };
 		237B9F1C27A3FB3F008A6E06 /* ProfileDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 237B9F1B27A3FB3F008A6E06 /* ProfileDetailViewController.swift */; };
+		237B9F2027A53F8A008A6E06 /* QueueAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 237B9F1F27A53F8A008A6E06 /* QueueAPIService.swift */; };
 		2389E1B027967B1200BE68E3 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2389E1AF27967B1200BE68E3 /* MainViewController.swift */; };
 		2389E1B227967B9900BE68E3 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2389E1B127967B9900BE68E3 /* UIColor+Extension.swift */; };
 		2389E1C42796862A00BE68E3 /* UIFont+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2389E1C32796862A00BE68E3 /* UIFont+Extension.swift */; };
@@ -82,6 +86,9 @@
 /* Begin PBXFileReference section */
 		2308B0232799D83D004145E2 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 		2308B0252799DEBF004145E2 /* ToastMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastMessage.swift; sourceTree = "<group>"; };
+		2323AEAD27A557CA00895CC7 /* ProfileDetailText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileDetailText.swift; sourceTree = "<group>"; };
+		2323AEAF27A5BDDB00895CC7 /* RangeSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RangeSlider.swift; sourceTree = "<group>"; };
+		2323AEB127A5BEDB00895CC7 /* RangeSliderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RangeSliderViewController.swift; sourceTree = "<group>"; };
 		23335716279D580D0062A9E8 /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
 		23335718279DB2A90062A9E8 /* SignUpAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpAPIService.swift; sourceTree = "<group>"; };
 		2333571A279DC6AE0062A9E8 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -102,7 +109,7 @@
 		234CEC18279C512600983E20 /* SignUpNicknameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpNicknameView.swift; sourceTree = "<group>"; };
 		234CEC1A279C51C700983E20 /* Text.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Text.swift; sourceTree = "<group>"; };
 		234CEC1C279C61F700983E20 /* NicknameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NicknameView.swift; sourceTree = "<group>"; };
-		234CEC1F279C729800983E20 /* AssetIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetIcon.swift; sourceTree = "<group>"; };
+		234CEC1F279C729800983E20 /* AssetsText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetsText.swift; sourceTree = "<group>"; };
 		234CEC21279C827F00983E20 /* SignUpNicknameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpNicknameViewController.swift; sourceTree = "<group>"; };
 		234CEC27279C859300983E20 /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
 		234CEC29279C863900983E20 /* BirthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BirthView.swift; sourceTree = "<group>"; };
@@ -122,6 +129,7 @@
 		237B9F1727A35239008A6E06 /* ShopViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopViewController.swift; sourceTree = "<group>"; };
 		237B9F1927A3DC16008A6E06 /* ProfileDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileDetailView.swift; sourceTree = "<group>"; };
 		237B9F1B27A3FB3F008A6E06 /* ProfileDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileDetailViewController.swift; sourceTree = "<group>"; };
+		237B9F1F27A53F8A008A6E06 /* QueueAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueueAPIService.swift; sourceTree = "<group>"; };
 		2389E1AC27967A3A00BE68E3 /* SeSacFriends.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SeSacFriends.entitlements; sourceTree = "<group>"; };
 		2389E1AF27967B1200BE68E3 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		2389E1B127967B9900BE68E3 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
@@ -174,6 +182,8 @@
 			children = (
 				2333571C279DED330062A9E8 /* BirthTextFieldView.swift */,
 				2333571E279DF89E0062A9E8 /* genderBoxView.swift */,
+				2323AEAF27A5BDDB00895CC7 /* RangeSlider.swift */,
+				2323AEB127A5BEDB00895CC7 /* RangeSliderViewController.swift */,
 			);
 			path = CustomView;
 			sourceTree = "<group>";
@@ -208,9 +218,10 @@
 			isa = PBXGroup;
 			children = (
 				234CEC1A279C51C700983E20 /* Text.swift */,
-				234CEC1F279C729800983E20 /* AssetIcon.swift */,
+				234CEC1F279C729800983E20 /* AssetsText.swift */,
 				2308B0252799DEBF004145E2 /* ToastMessage.swift */,
 				23AF965827A1A0470078A204 /* TabBarText.swift */,
+				2323AEAD27A557CA00895CC7 /* ProfileDetailText.swift */,
 			);
 			path = Text;
 			sourceTree = "<group>";
@@ -311,6 +322,7 @@
 				23335718279DB2A90062A9E8 /* SignUpAPIService.swift */,
 				2333571A279DC6AE0062A9E8 /* User.swift */,
 				2333572C27A08D630062A9E8 /* APIErrorMessage.swift */,
+				237B9F1F27A53F8A008A6E06 /* QueueAPIService.swift */,
 			);
 			path = APIService;
 			sourceTree = "<group>";
@@ -381,6 +393,7 @@
 			buildConfigurationList = 2399603D279656EC001C8EA4 /* Build configuration list for PBXNativeTarget "SeSacFriends" */;
 			buildPhases = (
 				76C897E873969168F9AA57E4 /* [CP] Check Pods Manifest.lock */,
+				237B9F2127A53FA3008A6E06 /* ShellScript */,
 				23996025279656EB001C8EA4 /* Sources */,
 				23996026279656EB001C8EA4 /* Frameworks */,
 				23996027279656EB001C8EA4 /* Resources */,
@@ -456,6 +469,25 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		237B9F2127A53FA3008A6E06 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"$TEMP_DIR/rswift-lastrun",
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				$SRCROOT/R.generated.swift,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"$PODS_ROOT/R.swift/rswift\" generate \"$SRCROOT/R.generated.swift\"\n";
+		};
 		76C897E873969168F9AA57E4 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -503,11 +535,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				234CEC1D279C61F700983E20 /* NicknameView.swift in Sources */,
-				234CEC20279C729800983E20 /* AssetIcon.swift in Sources */,
+				234CEC20279C729800983E20 /* AssetsText.swift in Sources */,
 				2308B0242799D83D004145E2 /* UIViewController+Extension.swift in Sources */,
 				2389E1D72796A31800BE68E3 /* BaseViewController.swift in Sources */,
 				2333572F27A09EF20062A9E8 /* MyPageView.swift in Sources */,
 				2389E1B027967B1200BE68E3 /* MainViewController.swift in Sources */,
+				2323AEAE27A557CA00895CC7 /* ProfileDetailText.swift in Sources */,
 				234CEC32279C95FF00983E20 /* SetEmailView.swift in Sources */,
 				23335719279DB2A90062A9E8 /* SignUpAPIService.swift in Sources */,
 				239960412796572C001C8EA4 /* String+Extension.swift in Sources */,
@@ -538,6 +571,7 @@
 				23335727279FB5650062A9E8 /* Date+Extension.swift in Sources */,
 				234CEC2C279C863F00983E20 /* BirthViewController.swift in Sources */,
 				234CEC28279C859300983E20 /* SignUpViewModel.swift in Sources */,
+				237B9F2027A53F8A008A6E06 /* QueueAPIService.swift in Sources */,
 				234CEC012799F76B00983E20 /* OnboardingCardView.swift in Sources */,
 				2389E1D32796A29F00BE68E3 /* AuthViewModel.swift in Sources */,
 				2308B0262799DEBF004145E2 /* ToastMessage.swift in Sources */,
@@ -546,12 +580,14 @@
 				234CEC22279C827F00983E20 /* SignUpNicknameViewController.swift in Sources */,
 				2399602F279656EB001C8EA4 /* SceneDelegate.swift in Sources */,
 				234CEC2A279C863900983E20 /* BirthView.swift in Sources */,
+				2323AEB227A5BEDB00895CC7 /* RangeSliderViewController.swift in Sources */,
 				234CEC3B279C9D0B00983E20 /* GenderView.swift in Sources */,
 				237B9F1427A35233008A6E06 /* FriendsViewController.swift in Sources */,
 				23AF965327A19B210078A204 /* MainTabBarController.swift in Sources */,
 				234CEC052799FAC300983E20 /* BaseUIView.swift in Sources */,
 				2389E1D52796A2AD00BE68E3 /* AuthAPIService.swift in Sources */,
 				23335717279D580D0062A9E8 /* Endpoint.swift in Sources */,
+				2323AEB027A5BDDB00895CC7 /* RangeSlider.swift in Sources */,
 				237B9F1C27A3FB3F008A6E06 /* ProfileDetailViewController.swift in Sources */,
 				234CEC0D279AF61500983E20 /* PageViewController.swift in Sources */,
 				234CEC1B279C51C700983E20 /* Text.swift in Sources */,
