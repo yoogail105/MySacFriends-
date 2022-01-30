@@ -86,27 +86,27 @@ class ProfileDetailView: BaseUIView {
     let ageLabel = UILabel().then {
         $0.text = ProfileDetailText.partnerAge.rawValue
         $0.font = UIFont().Body4_R12
+        
     }
+
     
     let ageLabelSub = UILabel().then {
         $0.text = "18-35"
         $0.font = UIFont().Title3_M14
+        $0.textColor = UIColor.brandColor(.green)
     }
     
-    let ageBar = UISlider().then {
-        $0.setThumbImage(UIImage(named: AssetIcon.filterControl.rawValue), for: .normal)
-        $0.setMinimumTrackImage(UIImage(named: AssetIcon.filterControl.rawValue), for: .selected)
-//        $0.minimumValueImage = UIImage(named: AssetIcon.filterControl.rawValue)
-        $0.minimumTrackTintColor = UIColor.brandColor(.green)
-        $0.maximumTrackTintColor =  UIColor.grayColor(.gray2)
-        $0.maximumValue = 35
-        $0.minimumValue = 18
+
+    let ageBar = RangeSlider(frame: .zero).then {
+        $0.clipsToBounds = false
     }
-    
+
     let withdrawalLabel = UILabel().then {
         $0.text = ProfileDetailText.withdrawal.rawValue
         $0.font = UIFont().Body4_R12
     }
+    
+    
     
     override func constraints() {
         backgroundImage.addSubview(userImage)
@@ -144,6 +144,7 @@ class ProfileDetailView: BaseUIView {
             ageView.addSubview($0)
         }
         
+    
         
         [withdrawalLabel].forEach {
             withdrawalView.addSubview($0)
@@ -229,13 +230,14 @@ class ProfileDetailView: BaseUIView {
             $0.centerY.equalToSuperview()
             $0.trailing.equalToSuperview()
         }
-        
+
         ageBar.snp.makeConstraints {
+            $0.centerX.equalToSuperview()
             $0.height.equalTo(24)
             $0.leading.equalToSuperview().offset(12)
             $0.trailing.equalToSuperview().offset(-12)
         }
-        
+
         withdrawalLabel.snp.makeConstraints {
             $0.centerY.equalToSuperview()
             $0.leading.equalToSuperview()

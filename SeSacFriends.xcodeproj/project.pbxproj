@@ -11,7 +11,7 @@
 		2308B0262799DEBF004145E2 /* ToastMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2308B0252799DEBF004145E2 /* ToastMessage.swift */; };
 		2323AEAE27A557CA00895CC7 /* ProfileDetailText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2323AEAD27A557CA00895CC7 /* ProfileDetailText.swift */; };
 		2323AEB027A5BDDB00895CC7 /* RangeSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2323AEAF27A5BDDB00895CC7 /* RangeSlider.swift */; };
-		2323AEB227A5BEDB00895CC7 /* RangeSliderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2323AEB127A5BEDB00895CC7 /* RangeSliderViewController.swift */; };
+		2323AEB427A6CE0600895CC7 /* RangeSliderTrackLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2323AEB327A6CE0600895CC7 /* RangeSliderTrackLayer.swift */; };
 		23335717279D580D0062A9E8 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23335716279D580D0062A9E8 /* Endpoint.swift */; };
 		23335719279DB2A90062A9E8 /* SignUpAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23335718279DB2A90062A9E8 /* SignUpAPIService.swift */; };
 		2333571B279DC6AE0062A9E8 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2333571A279DC6AE0062A9E8 /* User.swift */; };
@@ -88,7 +88,7 @@
 		2308B0252799DEBF004145E2 /* ToastMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastMessage.swift; sourceTree = "<group>"; };
 		2323AEAD27A557CA00895CC7 /* ProfileDetailText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileDetailText.swift; sourceTree = "<group>"; };
 		2323AEAF27A5BDDB00895CC7 /* RangeSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RangeSlider.swift; sourceTree = "<group>"; };
-		2323AEB127A5BEDB00895CC7 /* RangeSliderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RangeSliderViewController.swift; sourceTree = "<group>"; };
+		2323AEB327A6CE0600895CC7 /* RangeSliderTrackLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RangeSliderTrackLayer.swift; sourceTree = "<group>"; };
 		23335716279D580D0062A9E8 /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
 		23335718279DB2A90062A9E8 /* SignUpAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpAPIService.swift; sourceTree = "<group>"; };
 		2333571A279DC6AE0062A9E8 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -183,7 +183,7 @@
 				2333571C279DED330062A9E8 /* BirthTextFieldView.swift */,
 				2333571E279DF89E0062A9E8 /* genderBoxView.swift */,
 				2323AEAF27A5BDDB00895CC7 /* RangeSlider.swift */,
-				2323AEB127A5BEDB00895CC7 /* RangeSliderViewController.swift */,
+				2323AEB327A6CE0600895CC7 /* RangeSliderTrackLayer.swift */,
 			);
 			path = CustomView;
 			sourceTree = "<group>";
@@ -580,11 +580,11 @@
 				234CEC22279C827F00983E20 /* SignUpNicknameViewController.swift in Sources */,
 				2399602F279656EB001C8EA4 /* SceneDelegate.swift in Sources */,
 				234CEC2A279C863900983E20 /* BirthView.swift in Sources */,
-				2323AEB227A5BEDB00895CC7 /* RangeSliderViewController.swift in Sources */,
 				234CEC3B279C9D0B00983E20 /* GenderView.swift in Sources */,
 				237B9F1427A35233008A6E06 /* FriendsViewController.swift in Sources */,
 				23AF965327A19B210078A204 /* MainTabBarController.swift in Sources */,
 				234CEC052799FAC300983E20 /* BaseUIView.swift in Sources */,
+				2323AEB427A6CE0600895CC7 /* RangeSliderTrackLayer.swift in Sources */,
 				2389E1D52796A2AD00BE68E3 /* AuthAPIService.swift in Sources */,
 				23335717279D580D0062A9E8 /* Endpoint.swift in Sources */,
 				2323AEB027A5BDDB00895CC7 /* RangeSlider.swift in Sources */,
