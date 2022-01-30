@@ -42,20 +42,12 @@ class ProfileDetailView: BaseUIView {
         $0.font = UIFont().Body4_R12
     }
     
-    let genderStackView = UIStackView().then {
-        $0.axis = .horizontal
-        $0.spacing = 8
-        $0.alignment = .fill
-        $0.distribution = .equalSpacing
-        $0.backgroundColor = .yellow
-    }
-    
-    let manButton = genderButton().then {
+    let manButton = BaseButton().then {
         $0.buttonMode(.inactive, title: ProfileDetailText.man.rawValue)
         
     }
     
-    let womanButton = genderButton().then {
+    let womanButton = BaseButton().then {
         $0.buttonMode(.inactive, title: ProfileDetailText.woman.rawValue)
     }
     
@@ -122,11 +114,8 @@ class ProfileDetailView: BaseUIView {
             stackView.addArrangedSubview($0)
         }
         
-        [manButton, womanButton].forEach {
-            genderStackView.addArrangedSubview($0)
-        }
         
-        [genderLabel, genderStackView].forEach {
+        [genderLabel, manButton, womanButton].forEach {
             genderView.addSubview($0)
         }
         
@@ -189,8 +178,15 @@ class ProfileDetailView: BaseUIView {
             $0.centerY.equalToSuperview()
         }
         
-        genderStackView.snp.makeConstraints {
-            $0.centerY.equalToSuperview()
+        manButton.snp.makeConstraints {
+            $0.height.equalTo(48)
+            $0.width.equalTo(56)
+            $0.trailing.equalTo(womanButton.snp.leading).offset(-8)
+        }
+        
+        womanButton.snp.makeConstraints {
+            $0.height.equalTo(48)
+            $0.width.equalTo(56)
             $0.trailing.equalToSuperview()
         }
         

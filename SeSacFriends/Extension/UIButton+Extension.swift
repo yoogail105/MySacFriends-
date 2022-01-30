@@ -24,7 +24,7 @@ extension UIButton {
         switch mode {
         case .inactive:
             setTitle(title, for: .normal)
-            tintColor = .black
+            setTitleColor(.black, for: .normal)
             backgroundColor = .white
             layer.borderWidth = 1
             layer.borderColor = UIColor.grayColor(.gray4).cgColor
@@ -32,24 +32,24 @@ extension UIButton {
             
         case .fill:
             setTitle(title, for: .normal)
-            tintColor = .white
+            setTitleColor(.white, for: .normal)
             backgroundColor = UIColor.brandColor(.green)
             
         case .outline:
             setTitle(title, for: .normal)
-            tintColor = UIColor.brandColor(.green)
+            setTitleColor(UIColor.brandColor(.green), for: .normal)
             backgroundColor = .white
             layer.borderWidth = 1
             layer.borderColor = UIColor.brandColor(.green).cgColor
             
         case .cancel:
             setTitle(title, for: .normal)
-            tintColor = .black
+            setTitleColor(.black, for: .normal)
             backgroundColor = UIColor.grayColor(.gray2)
             
         case .disable:
             setTitle(title, for: .normal)
-            tintColor = .white
+            setTitleColor(.white, for: .normal)
             backgroundColor = UIColor.grayColor(.gray6)
         }
     }
@@ -92,22 +92,4 @@ class IconButton: BaseButton {
         }
 }
 
-class genderButton: BaseButton {
-    override init(frame: CGRect) {
-            super.init(frame: frame)
-            configuration()
-        }
-
-        required init?(coder aDecoder: NSCoder) {
-            super.init(coder: aDecoder)
-        }
-
-    override func configuration() {
-            layer.cornerRadius = 8
-            clipsToBounds = true
-            frame = CGRect(x: 0, y: 0, width: 56, height: 48)
-            titleLabel?.font = UIFont().Body3_R14
-        tintColor = UIColor.black
-        }
-}
 
