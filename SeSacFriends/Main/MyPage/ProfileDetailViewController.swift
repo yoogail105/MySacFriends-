@@ -10,7 +10,9 @@ import UIKit
 class ProfileDetailViewController: BaseViewController {
     
     
+    
     let mainView = ProfileDetailView()
+    let headereView = ProfileHeaderView()
     
     override func loadView() {
         self.view = mainView
@@ -20,14 +22,23 @@ class ProfileDetailViewController: BaseViewController {
         DispatchQueue.main.asyncAfter(deadline: time) {
             self.mainView.ageBar.trackHighlightTintColor = UIColor.brandColor(.green)
             self.mainView.ageBar.thumbImage = UIImage(named: AssetIcon.filterControl.rawValue)
-          //self.mainView.ageBar.highlightedThumbImage = UIImage(named: AssetIcon.filterControl.rawValue)
         }
+    
+
+        
         
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = TabBarTitle.detail.rawValue
+        
+        //        let tableView = mainView.profileTableView
+        //        tableView.register(NameTableViewCell.self, forCellReuseIdentifier: NameTableViewCell.identifier)
+        //        tableView.delegate = self
+        //        tableView.dataSource = self
+        //        tableView.isScrollEnabled = false
+        //        tableView.rowHeight = UITableView.automaticDimension
     
         
     }
@@ -45,3 +56,22 @@ class ProfileDetailViewController: BaseViewController {
     }
 
 }
+
+
+//extension ProfileDetailViewController: UITableViewDelegate, UITableViewDataSource {
+//
+//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+//        return 3
+//    }
+//
+//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+//
+//            guard let cell = tableView.dequeueReusableCell(withIdentifier: NameTableViewCell.identifier, for: indexPath) as? NameTableViewCell else { return UITableViewCell()}
+//
+//
+//
+//
+//        cell.selectionStyle = .none
+//        return cell
+//    }
+//}

@@ -36,7 +36,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             coordinator?.pushToAuthMain()
         }
 
-        appWindow.rootViewController = navigationController
+        appWindow.rootViewController = ProfileCardViewController()
         appWindow.makeKeyAndVisible()
         
         window = appWindow

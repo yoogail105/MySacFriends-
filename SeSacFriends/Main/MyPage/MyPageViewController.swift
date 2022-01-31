@@ -40,6 +40,7 @@ class MyPageViewController: BaseViewController {
         tableView.rowHeight = UITableView.automaticDimension
         tableView.backgroundColor = .white
         tableView.separatorStyle = .singleLine
+        tableView.isScrollEnabled = false
         
         
     }

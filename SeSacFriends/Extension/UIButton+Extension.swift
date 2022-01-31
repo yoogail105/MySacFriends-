@@ -44,12 +44,12 @@ extension UIButton {
             
         case .cancel:
             setTitle(title, for: .normal)
-            setTitleColor(.black, for: .normal)
+            setTitleColor(UIColor.black, for: .normal)
             backgroundColor = UIColor.grayColor(.gray2)
             
         case .disable:
             setTitle(title, for: .normal)
-            setTitleColor(.white, for: .normal)
+            setTitleColor(UIColor.grayColor(.gray3), for: .normal)
             backgroundColor = UIColor.grayColor(.gray6)
         }
     }

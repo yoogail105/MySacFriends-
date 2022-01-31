@@ -11,9 +11,16 @@ import Then
 
 
 class ProfileDetailView: BaseUIView {
+
+    let scrollView = UIScrollView()
+    
+    let contentView = UIView()
     
     let profileTableView = UITableView().then {
-        $0.backgroundColor = .yellow
+        $0.layer.cornerRadius = 8
+        $0.clipsToBounds = true
+        $0.layer.borderColor = UIColor.grayColor(.gray3).cgColor
+        $0.layer.borderWidth = 1
     }
     
     let stackView = UIStackView().then {
@@ -43,12 +50,22 @@ class ProfileDetailView: BaseUIView {
     }
     
     let manButton = BaseButton().then {
-        $0.buttonMode(.inactive, title: ProfileDetailText.man.rawValue)
         
+        if UserDefaults.standard.gender == 1 {
+            $0.buttonMode(.fill, title: ProfileDetailText.man.rawValue)
+        } else {
+            $0.buttonMode(.inactive, title: ProfileDetailText.man.rawValue)
+        }
     }
     
     let womanButton = BaseButton().then {
-        $0.buttonMode(.inactive, title: ProfileDetailText.woman.rawValue)
+        
+        if UserDefaults.standard.gender == 0 {
+            $0.buttonMode(.fill, title: ProfileDetailText.woman.rawValue)
+        } else {
+            $0.buttonMode(.inactive, title: ProfileDetailText.woman.rawValue)
+        }
+        
     }
     
     let hobbyLabel = UILabel().then {
@@ -98,57 +115,77 @@ class ProfileDetailView: BaseUIView {
         $0.font = UIFont().Body4_R12
     }
     
-    
+    override func configuration() {
+        scrollView.backgroundColor = .yellow
+        contentView.backgroundColor = .cyan
+        stackView.backgroundColor = .white
+    }
     
     override func constraints() {
-        backgroundImage.addSubview(userImage)
-        
-        
-        [stackView].forEach {
-            
-            addSubview($0)
-        }
-        
-        
+        //backgroundImage.addSubview(userImage)
+        addSubview(profileTableView)
+        addSubview(stackView)
+
+       // scrollView.addSubview(stackView)
+       
+    
         [genderView, hobbyView, phoneNumberView, ageView, ageBar,  withdrawalView].forEach {
             stackView.addArrangedSubview($0)
         }
-        
-        
+//
+        //contentView.addSubview(stackView)
+//
         [genderLabel, manButton, womanButton].forEach {
             genderView.addSubview($0)
         }
-        
+
         [hobbyLabel, hobbyTextField, underLine].forEach {
             hobbyView.addSubview($0)
         }
-        
-       
-        
+
+
+
         [phoneNumberPermissionLabel, phoneNumberPermissionToggle].forEach {
             phoneNumberView.addSubview($0)
         }
-        
+
         [ageLabel, ageLabelSub].forEach {
             ageView.addSubview($0)
         }
-        
-    
-        
+
+
+
         [withdrawalLabel].forEach {
             withdrawalView.addSubview($0)
         }
+
+
+        // MARK: Constraints
+    
         
-        
-        
-        
-//        profileTableView.snp.makeConstraints {
-//            $0.height.equalTo(150)
-//            $0.top.equalToSuperview().offset(16)
+//        scrollView.snp.makeConstraints {
+//            $0.top.equalTo(self.safeAreaLayoutGuide).offset(16)
+//            $0.bottom.equalTo(self.safeAreaLayoutGuide).offset(-16)
+//            $0.leading.equalToSuperview().offset(16)
+//            $0.trailing.equalToSuperview().offset(-16)
+//
 //        }
         
-        stackView.snp.makeConstraints {
+//        contentView.snp.makeConstraints {
+//            $0.top.bottom.trailing.leading.equalToSuperview()
+//        }
+    
+        
+        profileTableView.snp.makeConstraints {
             $0.top.equalTo(self.safeAreaLayoutGuide).offset(16)
+            $0.leading.equalToSuperview().offset(16)
+            $0.trailing.equalToSuperview().offset(-16)
+            $0.height.equalTo(200)
+            
+        }
+        
+        stackView.snp.makeConstraints {
+            $0.top.equalTo(profileTableView.snp.bottom).offset(16)
             $0.leading.equalToSuperview().offset(16)
             $0.trailing.equalToSuperview().offset(-16)
         }
@@ -156,72 +193,72 @@ class ProfileDetailView: BaseUIView {
         genderView.snp.makeConstraints {
             $0.height.equalTo(48)
         }
-        
+
         hobbyView.snp.makeConstraints {
             $0.height.equalTo(48)
         }
-        
+
         phoneNumberView.snp.makeConstraints {
             $0.height.equalTo(48)
         }
-        
+
         ageView.snp.makeConstraints {
             $0.height.equalTo(48)
         }
-        
+
         withdrawalView.snp.makeConstraints {
             $0.height.equalTo(48)
         }
-        
+
         genderLabel.snp.makeConstraints {
             $0.leading.equalToSuperview()
             $0.centerY.equalToSuperview()
         }
-        
+
         manButton.snp.makeConstraints {
             $0.height.equalTo(48)
             $0.width.equalTo(56)
             $0.trailing.equalTo(womanButton.snp.leading).offset(-8)
         }
-        
+
         womanButton.snp.makeConstraints {
             $0.height.equalTo(48)
             $0.width.equalTo(56)
             $0.trailing.equalToSuperview()
         }
-        
+
         hobbyLabel.snp.makeConstraints {
             $0.centerY.equalToSuperview()
             $0.leading.equalToSuperview()
         }
-        
+
         hobbyTextField.snp.makeConstraints {
             $0.centerY.equalToSuperview()
             $0.centerX.equalTo(underLine.snp.centerX)
         }
-        
+
         underLine.snp.makeConstraints {
             $0.trailing.equalToSuperview()
             $0.top.equalTo(hobbyTextField.snp.bottom).offset(12)
             $0.height.equalTo(1)
             $0.width.equalTo(164)
         }
-        
+
         phoneNumberPermissionLabel.snp.makeConstraints {
             $0.centerY.equalToSuperview()
             $0.leading.equalToSuperview()
         }
-        
+
         phoneNumberPermissionToggle.snp.makeConstraints {
             $0.centerY.equalToSuperview()
             $0.trailing.equalToSuperview()
         }
-        
+
         ageLabel.snp.makeConstraints {
             $0.centerY.equalToSuperview()
             $0.leading.equalToSuperview()
         }
-        
+
         ageLabelSub.snp.makeConstraints {
             $0.centerY.equalToSuperview()
             $0.trailing.equalToSuperview()

@@ -19,7 +19,9 @@ enum AssetIcon: String {
     case friendsPlus = "friends_plus"
     case man
     case message
-    case moreArrow = "more_arrow"
+    case moreArrow = "more_arrow_right"
+    case moreArrowUp = "more_arrow_up"
+    case moreArrowDown = "more_arrow_down"
     case more
     case place
     case plus
