@@ -6,17 +6,26 @@
 //
 
 import UIKit
+import SnapKit
 
 class ProfileCollectionViewCell: UICollectionViewCell {
     static let identifier = "ProfileCollectionViewCell"
     
-    let userTitleButton = UIButton().then {
+    let userTitleButton = BaseButton().then {
         $0.buttonMode(.inactive, title: UserTitleText.title1.rawValue)
+        $0.titleLabel?.font = UIFont().Title4_R14
     }
+    
+    override func layoutSubviews() {
+        // contentView = superView
+        contentView.backgroundColor = .white
+        
+    }
+    
     
     override init(frame: CGRect) {
         super.init(frame: .zero)
-        contentView.addSubview(userTitleButton)
+        
         
         constraints()
     }
@@ -26,8 +35,11 @@ class ProfileCollectionViewCell: UICollectionViewCell {
     }
     
     func constraints() {
+        contentView.addSubview(userTitleButton)
         userTitleButton.snp.makeConstraints {
-            $0.top.bottom.trailing.leading.equalToSuperview()
+            $0.edges.equalToSuperview()
         }
     }
+    
+    
 }

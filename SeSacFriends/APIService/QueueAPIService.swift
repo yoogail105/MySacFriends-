@@ -28,14 +28,14 @@ class QueueAPIService {
     static func searchFriends(completion: @escaping (User?, APIErrorCode?) -> Void) {
         let userDefaults = UserDefaults.standard
         
-        var request = URLRequest(url: QueueEndpoint.queue.url)
+        var request = URLRequest(url: QueueEndpoint.onQueue.url)
         request.httpMethod = Method.POST.rawValue
         
         let idToken = userDefaults.idToken!
         request.setValue(idToken, forHTTPHeaderField: HTTPString.idtoken.rawValue)
         request.setValue(HTTPHeaderValue.contentType.rawValue, forHTTPHeaderField: HTTPString.ContentType.rawValue)
         
-        request.httpBody = "\(UserBodyPara.searchable.rawValue)=\(userDefaults.searchable)&\(UserBodyPara.ageMin.rawValue)=\(userDefaults.ageMin)&\(UserBodyPara.ageMax.rawValue)=\(userDefaults.ageMax)&\(UserBodyPara.gender.rawValue)=\(userDefaults.gender)&\(UserBodyPara.hobby.rawValue)=\(userDefaults.hobby)".data(using: .utf8, allowLossyConversion: false)
+        request.httpBody = "\(QueueBodyPara.region.rawValue)=\(userDefaults.searchable)&\(QueueBodyPara.lat.rawValue)=\(userDefaults.ageMin)&\(QueueBodyPara.long.rawValue)=\(userDefaults.ageMax)".data(using: .utf8, allowLossyConversion: false)
         
         
         URLSession.request(endpoint: request, completion: completion)

@@ -250,7 +250,7 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
 
-  /// This `R.image` struct is generated, and contains static references to 48 images.
+  /// This `R.image` struct is generated, and contains static references to 52 images.
   struct image {
     /// Image `Ellipse 85`.
     static let ellipse85 = Rswift.ImageResource(bundle: R.hostingBundle, name: "Ellipse 85")
@@ -290,6 +290,14 @@ struct R: Rswift.Validatable {
     static let man = Rswift.ImageResource(bundle: R.hostingBundle, name: "man")
     /// Image `message`.
     static let message = Rswift.ImageResource(bundle: R.hostingBundle, name: "message")
+    /// Image `more_arrow_down`.
+    static let more_arrow_down = Rswift.ImageResource(bundle: R.hostingBundle, name: "more_arrow_down")
+    /// Image `more_arrow_right`.
+    static let more_arrow_right = Rswift.ImageResource(bundle: R.hostingBundle, name: "more_arrow_right")
+    /// Image `more_arrow_up`.
+    static let more_arrow_up = Rswift.ImageResource(bundle: R.hostingBundle, name: "more_arrow_up")
+    /// Image `more_arrow`.
+    static let more_arrow = Rswift.ImageResource(bundle: R.hostingBundle, name: "more_arrow")
     /// Image `more`.
     static let more = Rswift.ImageResource(bundle: R.hostingBundle, name: "more")
     /// Image `myAct`.
@@ -486,6 +494,34 @@ struct R: Rswift.Validatable {
     /// `UIImage(named: "more", bundle: ..., traitCollection: ...)`
     static func more(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.more, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "more_arrow", bundle: ..., traitCollection: ...)`
+    static func more_arrow(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.more_arrow, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "more_arrow_down", bundle: ..., traitCollection: ...)`
+    static func more_arrow_down(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.more_arrow_down, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "more_arrow_right", bundle: ..., traitCollection: ...)`
+    static func more_arrow_right(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.more_arrow_right, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "more_arrow_up", bundle: ..., traitCollection: ...)`
+    static func more_arrow_up(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.more_arrow_up, compatibleWith: traitCollection)
     }
     #endif
 

@@ -36,7 +36,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             coordinator?.pushToAuthMain()
         }
 
-        appWindow.rootViewController = ProfileCardViewController()
+        let layout = UICollectionViewFlowLayout()
+        let vc = ProfileCollectionViewController(collectionViewLayout: layout)
+        appWindow.rootViewController = vc
         appWindow.makeKeyAndVisible()
         
         window = appWindow

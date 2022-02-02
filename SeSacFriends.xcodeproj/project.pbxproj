@@ -82,6 +82,8 @@
 		2399604527965760001C8EA4 /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2399604427965760001C8EA4 /* AuthViewController.swift */; };
 		2399604827965794001C8EA4 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 2399604727965794001C8EA4 /* SnapKit */; };
 		23ADC13627A725D900101C43 /* OpenedProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23ADC13527A725D900101C43 /* OpenedProfileTableViewCell.swift */; };
+		23ADC13827AA9A7200101C43 /* ProfileCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23ADC13727AA9A7200101C43 /* ProfileCollectionViewController.swift */; };
+		23ADC13A27AAA17F00101C43 /* ProfileCardCollectionViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23ADC13927AAA17F00101C43 /* ProfileCardCollectionViewHeader.swift */; };
 		23AF965327A19B210078A204 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23AF965227A19B210078A204 /* MainTabBarController.swift */; };
 		23AF965527A19BEC0078A204 /* MyPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23AF965427A19BEC0078A204 /* MyPageViewController.swift */; };
 		23AF965927A1A0470078A204 /* TabBarText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23AF965827A1A0470078A204 /* TabBarText.swift */; };
@@ -163,6 +165,8 @@
 		2399604227965741001C8EA4 /* AuthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthView.swift; sourceTree = "<group>"; };
 		2399604427965760001C8EA4 /* AuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
 		23ADC13527A725D900101C43 /* OpenedProfileTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenedProfileTableViewCell.swift; sourceTree = "<group>"; };
+		23ADC13727AA9A7200101C43 /* ProfileCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCollectionViewController.swift; sourceTree = "<group>"; };
+		23ADC13927AAA17F00101C43 /* ProfileCardCollectionViewHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCardCollectionViewHeader.swift; sourceTree = "<group>"; };
 		23AF965227A19B210078A204 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		23AF965427A19BEC0078A204 /* MyPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageViewController.swift; sourceTree = "<group>"; };
 		23AF965827A1A0470078A204 /* TabBarText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarText.swift; sourceTree = "<group>"; };
@@ -212,7 +216,9 @@
 				2323AEB727A6F53D00895CC7 /* ProfileHeaderView.swift */,
 				2323AEB527A6F2E500895CC7 /* ProfileTableView.swift */,
 				2323AEBB27A7193500895CC7 /* ProfileCardViewController.swift */,
+				23ADC13927AAA17F00101C43 /* ProfileCardCollectionViewHeader.swift */,
 				2323AEBD27A71F7300895CC7 /* ProfileCollectionViewCell.swift */,
+				23ADC13727AA9A7200101C43 /* ProfileCollectionViewController.swift */,
 				23ADC13527A725D900101C43 /* OpenedProfileTableViewCell.swift */,
 				237B9F1B27A3FB3F008A6E06 /* ProfileDetailViewController.swift */,
 			);
@@ -592,6 +598,7 @@
 				2333573227A09FCE0062A9E8 /* MainView.swift in Sources */,
 				23335727279FB5650062A9E8 /* Date+Extension.swift in Sources */,
 				234CEC2C279C863F00983E20 /* BirthViewController.swift in Sources */,
+				23ADC13A27AAA17F00101C43 /* ProfileCardCollectionViewHeader.swift in Sources */,
 				234CEC28279C859300983E20 /* SignUpViewModel.swift in Sources */,
 				237B9F2027A53F8A008A6E06 /* QueueAPIService.swift in Sources */,
 				234CEC012799F76B00983E20 /* OnboardingCardView.swift in Sources */,
@@ -606,6 +613,7 @@
 				234CEC3B279C9D0B00983E20 /* GenderView.swift in Sources */,
 				237B9F1427A35233008A6E06 /* FriendsViewController.swift in Sources */,
 				23AF965327A19B210078A204 /* MainTabBarController.swift in Sources */,
+				23ADC13827AA9A7200101C43 /* ProfileCollectionViewController.swift in Sources */,
 				234CEC052799FAC300983E20 /* BaseUIView.swift in Sources */,
 				2323AEB427A6CE0600895CC7 /* RangeSliderTrackLayer.swift in Sources */,
 				2389E1D52796A2AD00BE68E3 /* AuthAPIService.swift in Sources */,

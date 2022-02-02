@@ -40,6 +40,19 @@ class ProfileDetailViewController: BaseViewController {
         //        tableView.isScrollEnabled = false
         //        tableView.rowHeight = UITableView.automaticDimension
     
+    
+    }
+    
+    override func setupNavigationBar() {
+        super.setupNavigationBar()
+        let saveButton = UIBarButtonItem(title: "저장", style: .done, target: self, action: #selector(saveButtonClicked))
+        
+        self.navigationItem.rightBarButtonItem = saveButton
+        self.navigationItem.rightBarButtonItem?.tintColor = UIColor.black
+        
+    }
+    
+    @objc func saveButtonClicked() {
         
     }
     

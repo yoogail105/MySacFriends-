@@ -20,14 +20,11 @@ class ProfileCardViewController: BaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = TabBarTitle.detail.rawValue
         
         for userTitle in UserTitleText.allCases {
             userTitles.append(userTitle.rawValue)
         }
 
-      
-        
         let tableView = mainView.tableView
         tableView.register(NameTableViewCell.self, forCellReuseIdentifier: NameTableViewCell.identifier)
         tableView.delegate = self
@@ -57,3 +54,7 @@ extension ProfileCardViewController: UITableViewDelegate, UITableViewDataSource 
         return cell
     }
 }
+
+//extension ProfileCardViewController: UICollectionViewController {
+//
+//}
