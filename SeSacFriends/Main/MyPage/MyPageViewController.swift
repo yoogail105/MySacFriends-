@@ -92,7 +92,7 @@ extension MyPageViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.row == 0{
-            let vc = ProfileDetailViewController()
+            let vc = ProfileViewController()
             self.navigationController?.pushViewController(vc, animated: true)
         }
     }

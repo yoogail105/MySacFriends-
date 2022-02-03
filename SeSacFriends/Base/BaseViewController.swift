@@ -52,6 +52,8 @@ class BaseViewController: UIViewController {
         self.navigationItem.title = ""
         self.navigationItem.backButtonTitle = ""
         let backButton = UIBarButtonItem(image: UIImage(named: AssetIcon.backArrow.rawValue), style: .done, target: self, action: #selector(back))
+        self.navigationItem.leftBarButtonItem?.tintColor = UIColor.black
+       
        
     }
     

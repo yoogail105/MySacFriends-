@@ -143,8 +143,6 @@ extension URLSession {
                 guard response.statusCode == APIErrorCode.ok.rawValue else {
                     let statusCode = response.statusCode
                     switch statusCode {
-                    case APIErrorCode.created.rawValue: //201
-                        completion(nil, .created)
                     case APIErrorCode.invalidNickname.rawValue: //202
                         completion(nil, .invalidNickname)
                     case APIErrorCode.unAuthorized.rawValue: //401

@@ -18,7 +18,7 @@ enum APIErrorCode: Int {
     case noData
     case invalidData
     case ok = 200
-    case created = 201 // already existed user
+    //case created = 201 // already existed user
     case invalidNickname = 202
     case firstPenalty = 203
     case secondPenalty = 204
@@ -26,7 +26,7 @@ enum APIErrorCode: Int {
     case emptyGender = 206
     case unAuthorized = 401 //firebase idtoken
     case internalServerError = 405
-    case notAcceptable = 406 // already deleted user
+    case notAcceptable = 406 // already deleted user. 미가입회원
 }
 
 enum APIErrorMessage: String, Error {

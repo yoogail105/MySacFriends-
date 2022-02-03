@@ -8,7 +8,7 @@
 import UIKit
 import SwiftUI
 
-class ProfileDetailViewController: BaseViewController {
+class ProfileViewController: BaseViewController {
     
     
     
@@ -22,7 +22,6 @@ class ProfileDetailViewController: BaseViewController {
     override func loadView() {
         self.view = mainView
 
-        //mainView.scrollView.delegate = self
         let time = DispatchTime.now()
         DispatchQueue.main.asyncAfter(deadline: time) {
             self.mainView.detailView.ageBar.trackHighlightTintColor = UIColor.brandColor(.green)
@@ -84,7 +83,7 @@ class ProfileDetailViewController: BaseViewController {
 }
 
 
-extension ProfileDetailViewController: UITableViewDelegate, UITableViewDataSource {
+extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return sectionTitles.count + 1
@@ -142,7 +141,7 @@ extension ProfileDetailViewController: UITableViewDelegate, UITableViewDataSourc
             return cell
         case [2, 0]:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: ProfileCardReviewTableViewCell.identifier, for: indexPath) as? ProfileCardReviewTableViewCell else { return UITableViewCell()}
-            cell.backgroundColor = .yellow
+            //cell.backgroundColor = .yellow
             cell.selectionStyle = .none
         
             return cell
@@ -170,7 +169,7 @@ struct ProfileDetailViewControllerPreview: PreviewProvider {
     
     struct Container: UIViewControllerRepresentable {
         func makeUIViewController(context: Context) -> UIViewController {
-            let controller = ProfileDetailViewController()
+            let controller = ProfileViewController()
             return UINavigationController(rootViewController: controller)
         }
     
