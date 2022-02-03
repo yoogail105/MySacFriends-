@@ -6,26 +6,47 @@
 //
 
 import UIKit
+import SwiftUI
 
 class ProfileDetailViewController: BaseViewController, UIScrollViewDelegate {
     
-    let mainView = ProfileView()
+    
+    
+    //let mainView = ProfileView()
+    
+    let cardView = ProfileCardView()
+    let detailView = ProfileDetailView()
+    
     var userTitles: [String] = []
     var sectionTitles: [String] = []
     
-    override func loadView() {
-        self.view = mainView
-        
-        mainView.scrollView.delegate = self
-        let time = DispatchTime.now()
-        DispatchQueue.main.asyncAfter(deadline: time) {
-            self.mainView.detailView.ageBar.trackHighlightTintColor = UIColor.brandColor(.green)
-            self.mainView.detailView.ageBar.thumbImage = UIImage(named: AssetIcon.filterControl.rawValue)
-        }
+    let scrollView = UIScrollView().then {
+        $0.translatesAutoresizingMaskIntoConstraints = false
+        $0.backgroundColor = .yellow
+        $0.showsVerticalScrollIndicator = true
+        $0.showsHorizontalScrollIndicator = false
     }
+    
+    let contentView = UIView().then {
+        $0.translatesAutoresizingMaskIntoConstraints = false
+        $0.backgroundColor = .red
+    }
+    
+//    override func loadView() {
+//        //self.view = mainView
+//
+//        //mainView.scrollView.delegate = self
+//        let time = DispatchTime.now()
+//        DispatchQueue.main.asyncAfter(deadline: time) {
+//            self.detailView.ageBar.trackHighlightTintColor = UIColor.brandColor(.green)
+//            self.detailView.ageBar.thumbImage = UIImage(named: AssetIcon.filterControl.rawValue)
+//        }
+//    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
         self.title = TabBarTitle.detail.rawValue
         
         for userTitle in UserTitleText.allCases {
@@ -36,7 +57,7 @@ class ProfileDetailViewController: BaseViewController, UIScrollViewDelegate {
             sectionTitles.append(sectionTitle.rawValue)
         }
         
-        let tableView = mainView.cardView.tableView
+        let tableView = cardView.tableView
         tableView.register(NameTableViewCell.self, forCellReuseIdentifier: NameTableViewCell.identifier)
         tableView.register(ProfileCardTitleTableViewCell.self, forCellReuseIdentifier: ProfileCardTitleTableViewCell.identifier)
         tableView.register(ProfileCardReviewTableViewCell.self, forCellReuseIdentifier: ProfileCardReviewTableViewCell.identifier)
@@ -45,7 +66,57 @@ class ProfileDetailViewController: BaseViewController, UIScrollViewDelegate {
         tableView.isScrollEnabled = false
         tableView.estimatedRowHeight = 58
         tableView.separatorStyle = .none
+        
+        constraints()
     
+    }
+    
+    func constraints() {
+        
+        view.addSubview(scrollView)
+        
+        scrollView.addSubview(contentView)
+        
+        
+        [cardView, detailView].forEach {
+            contentView.addSubview($0)
+            
+        }
+        
+        scrollView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+//            $0.height.equalToSuperview()
+          //  $0.centerX.equalToSuperview()
+//            $0.width.equalToSuperview()
+        }
+
+        contentView.snp.makeConstraints {
+          //  $0.top.equalToSuperview()
+            $0.edges.equalToSuperview()
+           // $0.centerX.equalToSuperview()
+           // $0.trailing.leading.equalToSuperview()
+           //$0.width.equalToSuperview()
+        }
+//
+    
+        cardView.snp.makeConstraints {
+            $0.top.leading.trailing.equalToSuperview()
+          //  $0.width.equalToSuperview()
+            $0.height.equalTo(500)
+            //$0.centerX.equalToSuperview()
+        }
+        
+
+
+        detailView.snp.makeConstraints {
+            $0.top.equalTo(cardView.snp.bottom).offset(8)
+            $0.trailing.leading.bottom.equalToSuperview()
+//            $0.bottom.equalTo(contentView.snp.bottom)
+          //  $0.width.equalToSuperview()
+            $0.height.equalTo(350)
+            
+            
+        }
     }
     
     override func setupNavigationBar() {
@@ -62,7 +133,7 @@ class ProfileDetailViewController: BaseViewController, UIScrollViewDelegate {
     }
     
     override func addAction() {
-        mainView.detailView.ageBar.addTarget(self, action: #selector(rangeSliderValueChanged(_:)),
+        detailView.ageBar.addTarget(self, action: #selector(rangeSliderValueChanged(_:)),
                                   for: .valueChanged)
         
         
@@ -151,5 +222,24 @@ extension ProfileDetailViewController: UITableViewDelegate, UITableViewDataSourc
         default:
             return UITableView.automaticDimension
         }
+    }
+}
+
+
+struct ProfileDetailViewControllerPreview: PreviewProvider {
+    static var previews: some View {
+        Container().edgesIgnoringSafeArea(.all)
+    }
+    
+    struct Container: UIViewControllerRepresentable {
+        func makeUIViewController(context: Context) -> UIViewController {
+            let controller = ProfileDetailViewController()
+            return UINavigationController(rootViewController: controller)
+        }
+    
+        
+        func updateUIViewController(_ uiViewController: UIViewControllerType, context: Context) {}
+        
+        typealias UIViewControllerType = UIViewController
     }
 }

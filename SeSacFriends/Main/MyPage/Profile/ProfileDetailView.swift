@@ -136,8 +136,6 @@ class ProfileDetailView: BaseUIView {
             ageView.addSubview($0)
         }
 
-
-
         [withdrawalLabel].forEach {
             withdrawalView.addSubview($0)
         }
@@ -181,12 +179,14 @@ class ProfileDetailView: BaseUIView {
             $0.height.equalTo(48)
             $0.width.equalTo(56)
             $0.trailing.equalTo(womanButton.snp.leading).offset(-8)
+            $0.centerY.equalToSuperview()
         }
 
         womanButton.snp.makeConstraints {
             $0.height.equalTo(48)
             $0.width.equalTo(56)
             $0.trailing.equalToSuperview()
+            $0.centerY.equalToSuperview()
         }
 
         hobbyLabel.snp.makeConstraints {
