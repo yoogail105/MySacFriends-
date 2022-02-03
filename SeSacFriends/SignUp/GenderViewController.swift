@@ -25,7 +25,7 @@ class GenderViewController: BaseViewController {
 
     }
     
-
+//
     override func viewDidLoad() {
         super.viewDidLoad()
         print("gender: viewdidload")

@@ -14,7 +14,7 @@ class ProfileCollectionViewController:  UICollectionViewController {
     
     
     
-    var userTitles = [""]
+    var userTitles: [String] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,7 +32,7 @@ class ProfileCollectionViewController:  UICollectionViewController {
         
     
         //collectionViewItem(cell) 설 설정
-        collectionView.register(ProfileCollectionViewCell.self, forCellWithReuseIdentifier: ProfileCollectionViewCell.identifier)
+        collectionView.register(ProfileCardCollectionViewCell.self, forCellWithReuseIdentifier: ProfileCardCollectionViewCell.identifier)
         collectionView.register(ProfileCardCollectionViewHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: ProfileCardCollectionViewHeader.identifier)
         
         collectionView.collectionViewLayout = layout()
@@ -88,7 +88,7 @@ extension ProfileCollectionViewController {
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ProfileCollectionViewCell.identifier, for: indexPath) as? ProfileCollectionViewCell else { return UICollectionViewCell() }
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ProfileCardCollectionViewCell.identifier, for: indexPath) as? ProfileCardCollectionViewCell else { return UICollectionViewCell() }
         
         cell.userTitleButton.setTitle(userTitles[indexPath.row], for: .normal)
         return cell

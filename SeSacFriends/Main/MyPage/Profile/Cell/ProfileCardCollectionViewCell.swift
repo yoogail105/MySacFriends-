@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-class ProfileCollectionViewCell: UICollectionViewCell {
+class ProfileCardCollectionViewCell: UICollectionViewCell {
     static let identifier = "ProfileCollectionViewCell"
     
     let userTitleButton = BaseButton().then {

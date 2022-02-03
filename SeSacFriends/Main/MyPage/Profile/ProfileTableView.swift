@@ -9,6 +9,9 @@ import UIKit
 
 class ProfileCardView: BaseUIView {
     
+    var sectionHeaderTitles: [String] = []
+    var userTitles: [String] = []
+    
     let headerView = ProfileHeaderView()
     let tableView = UITableView().then {
         $0.layer.cornerRadius = 8
@@ -23,7 +26,7 @@ class ProfileCardView: BaseUIView {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
         let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        cv.register(ProfileCollectionViewCell.self, forCellWithReuseIdentifier: ProfileCollectionViewCell.identifier)
+        cv.register(ProfileCardCollectionViewCell.self, forCellWithReuseIdentifier: ProfileCardCollectionViewCell.identifier)
        return cv
     }()
     
@@ -35,9 +38,7 @@ class ProfileCardView: BaseUIView {
     
     override func constraints() {
         
-        
-        
-        [headerView, tableView, colorView].forEach {
+        [headerView, tableView].forEach {
             addSubview($0)
         }
         
@@ -51,16 +52,16 @@ class ProfileCardView: BaseUIView {
         tableView.snp.makeConstraints {
             $0.top.equalTo(headerView.snp.bottom)
             $0.trailing.leading.equalTo(headerView)
-            $0.bottom.equalTo(colorView.snp.top).offset(-16)
-            
-        }
-        
-        colorView.snp.makeConstraints {
-            $0.height.equalTo(58)
-            $0.leading.trailing.equalTo(tableView)
             $0.bottom.equalToSuperview()
             
         }
+        
+//        colorView.snp.makeConstraints {
+//            $0.height.equalTo(58)
+//            $0.leading.trailing.equalTo(tableView)
+//            $0.bottom.equalToSuperview()
+//            
+//        }
     }
  
 }

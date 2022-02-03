@@ -9,19 +9,7 @@ import UIKit
 import SnapKit
 import Then
 
-
 class ProfileDetailView: BaseUIView {
-
-    let scrollView = UIScrollView()
-    
-    let contentView = UIView()
-    
-    let profileTableView = UITableView().then {
-        $0.layer.cornerRadius = 8
-        $0.clipsToBounds = true
-        $0.layer.borderColor = UIColor.grayColor(.gray3).cgColor
-        $0.layer.borderWidth = 1
-    }
     
     let stackView = UIStackView().then {
         $0.axis = .vertical
@@ -116,25 +104,20 @@ class ProfileDetailView: BaseUIView {
     }
     
     override func configuration() {
-        scrollView.backgroundColor = .yellow
-        contentView.backgroundColor = .cyan
+       
         stackView.backgroundColor = .white
     }
     
     override func constraints() {
-        //backgroundImage.addSubview(userImage)
-        addSubview(profileTableView)
+        
         addSubview(stackView)
 
-       // scrollView.addSubview(stackView)
        
     
         [genderView, hobbyView, phoneNumberView, ageView, ageBar,  withdrawalView].forEach {
             stackView.addArrangedSubview($0)
         }
-//
-        //contentView.addSubview(stackView)
-//
+
         [genderLabel, manButton, womanButton].forEach {
             genderView.addSubview($0)
         }
@@ -162,30 +145,9 @@ class ProfileDetailView: BaseUIView {
 
         // MARK: Constraints
     
-        
-//        scrollView.snp.makeConstraints {
-//            $0.top.equalTo(self.safeAreaLayoutGuide).offset(16)
-//            $0.bottom.equalTo(self.safeAreaLayoutGuide).offset(-16)
-//            $0.leading.equalToSuperview().offset(16)
-//            $0.trailing.equalToSuperview().offset(-16)
-//
-//        }
-        
-//        contentView.snp.makeConstraints {
-//            $0.top.bottom.trailing.leading.equalToSuperview()
-//        }
-    
-        
-        profileTableView.snp.makeConstraints {
-            $0.top.equalTo(self.safeAreaLayoutGuide).offset(16)
-            $0.leading.equalToSuperview().offset(16)
-            $0.trailing.equalToSuperview().offset(-16)
-            $0.height.equalTo(200)
-            
-        }
-        
+
         stackView.snp.makeConstraints {
-            $0.top.equalTo(profileTableView.snp.bottom).offset(16)
+            $0.top.equalToSuperview()
             $0.leading.equalToSuperview().offset(16)
             $0.trailing.equalToSuperview().offset(-16)
         }
@@ -237,6 +199,7 @@ class ProfileDetailView: BaseUIView {
             $0.centerX.equalTo(underLine.snp.centerX)
         }
 
+        
         underLine.snp.makeConstraints {
             $0.trailing.equalToSuperview()
             $0.top.equalTo(hobbyTextField.snp.bottom).offset(12)

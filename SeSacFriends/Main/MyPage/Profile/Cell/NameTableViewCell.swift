@@ -7,14 +7,17 @@
 
 
 import UIKit
+import SnapKit
 
 class NameTableViewCell: UITableViewCell {
     
     static let identifier = "NameTableViewCell"
     
-    let nameLabel = UILabel().then {
-        $0.text = UserDefaults.standard.nickname
+    let label = UILabel().then {
+        $0.text = "긴것긴것긴것긴것긴것긴것긴것긴것긴것긴것긴것긴것긴것긴것긴것긴것긴것긴것긴것긴것긴것긴것긴것긴것긴것긴것긴것긴것긴것긴것긴것긴것긴것긴것긴것긴것긴것긴것긴것긴것긴것긴것긴것긴것긴것긴것긴것긴것긴것긴것"
+        $0.textAlignment = .left
         $0.font = UIFont().Title1_M16
+        $0.numberOfLines = 2
     }
     
     let openButton = UIButton().then {
@@ -31,13 +34,15 @@ class NameTableViewCell: UITableViewCell {
     }
     
     func constraints() {
-        [nameLabel, openButton].forEach {
+        [label, openButton].forEach {
             addSubview($0)
         }
         
-        nameLabel.snp.makeConstraints {
-            $0.centerY.equalToSuperview()
+        label.snp.makeConstraints {
+            $0.top.equalToSuperview().offset(8)
             $0.leading.equalToSuperview().offset(16)
+            $0.trailing.equalTo(openButton.snp.leading).offset(-8)
+            $0.bottom.equalToSuperview().offset(-8)
         }
         
         openButton.snp.makeConstraints {
