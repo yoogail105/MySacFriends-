@@ -12,7 +12,11 @@ class HomeViewController: UIViewController {
     
     var coordinator: MainCoordinator?
     let viewModel = AuthViewModel()
-   
+    let mainView = AlertView()
+    
+    override func loadView() {
+        self.view = mainView
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()

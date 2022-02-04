@@ -38,3 +38,7 @@ enum SignUpText: String {
 
 }
 
+enum ProfileViewText: String {
+    case backButtonClicked = "정보가 저장되지 않았습니다.\n뒤로 가시겠습니까?"
+    case saveButtonClicked = "저장되었습니다."
+}

@@ -22,8 +22,6 @@ class ProfileViewController: BaseViewController {
     var userTitles: [String] = []
     var sectionTitles: [String] = []
     
-   
-    
     override func loadView() {
         self.view = mainView
         
@@ -37,7 +35,6 @@ class ProfileViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         
         self.title = TabBarTitle.detail.rawValue
         
@@ -63,6 +60,28 @@ class ProfileViewController: BaseViewController {
     
     override func bind() {
         
+    
+       
+        
+        mainView.detailView.hobbyTextField.rx.text
+            .subscribe(onNext: { hobby in
+                self.viewModel.profileData.hobby = hobby ?? ""
+                print(self.viewModel.profileData.hobby)
+            })
+
+        mainView.detailView.searchableSwitch.rx.isOn
+            .subscribe(onNext: { value in
+                switch value{
+                case true:
+                    self.viewModel.profileData.searchable = 1
+                case false:
+                    self.viewModel.profileData.searchable = 0
+                }
+            })
+            .disposed(by: disposeBag)
+            
+    
+    
      
         mainView.detailView.withdrawalButton.rx.tap
             .subscribe(onNext: { _ in
@@ -74,17 +93,22 @@ class ProfileViewController: BaseViewController {
     override func setupNavigationBar() {
         super.setupNavigationBar()
         let saveButton = UIBarButtonItem(title: "저장", style: .done, target: self, action: #selector(saveButtonClicked))
-        
         self.navigationItem.rightBarButtonItem = saveButton
         self.navigationItem.rightBarButtonItem?.tintColor = UIColor.black
-        
+    }
+    
+    override func back() {
+        showToastWithAction(message: ProfileViewText.backButtonClicked.rawValue) {
+            self.navigationController?.popViewController(animated: true)
+        }
     }
     
     @objc func saveButtonClicked() {
         //api 보내기
         
-        showToast(message: "저장되었습니다.")
+        showToast(message: ProfileViewText.saveButtonClicked.rawValue)
     }
+    
     
     override func addAction() {
         mainView.detailView.ageBar.addTarget(self, action: #selector(rangeSliderValueChanged(_:)),
@@ -99,7 +123,7 @@ class ProfileViewController: BaseViewController {
     }
 
     
-    @objc func withdrawal() {
+    func withdrawal() {
         print(#function)
         viewModel.onErrorHandling = { error in
             if error == .ok || error == .notAcceptable {
@@ -114,6 +138,7 @@ class ProfileViewController: BaseViewController {
 }
 
 
+// MARK: TableView
 extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {

@@ -11,7 +11,11 @@ import RxRelay
 
 class ProfileViewModel {
     var onErrorHandling: ((APIErrorCode) -> Void)?
-    
+    var profileData = (searchable: 0,
+                       ageMin:18,
+                       ageMax: 65,
+                       gender:1,
+                       hobby: "Coding")
     
     func withdrawalUser(_ completion: ((Result<Bool, APIErrorCode>) -> Void)? = nil) {
         

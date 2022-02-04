@@ -75,7 +75,7 @@ class ProfileDetailView: BaseUIView {
         $0.font = UIFont().Body4_R12
     }
      
-    let phoneNumberPermissionToggle = UISwitch().then {
+    let searchableSwitch = UISwitch().then {
         $0.isOn = true
     }
     
@@ -128,7 +128,7 @@ class ProfileDetailView: BaseUIView {
 
 
 
-        [phoneNumberPermissionLabel, phoneNumberPermissionToggle].forEach {
+        [phoneNumberPermissionLabel, searchableSwitch].forEach {
             phoneNumberView.addSubview($0)
         }
 
@@ -212,7 +212,7 @@ class ProfileDetailView: BaseUIView {
             $0.leading.equalToSuperview()
         }
 
-        phoneNumberPermissionToggle.snp.makeConstraints {
+        searchableSwitch.snp.makeConstraints {
             $0.centerY.equalToSuperview()
             $0.trailing.equalToSuperview()
         }
