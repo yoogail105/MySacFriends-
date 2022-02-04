@@ -137,8 +137,7 @@ class GenderViewController: BaseViewController {
 //        
 //        //print("gender: \(userDefaults.gender)")
 //        //print("fcm: \()")
-        let vc = MainViewController()
-        self.navigationController?.pushViewController(vc, animated: true)
+        coordinator?.pushToMainTabbar()
     }
     
 }

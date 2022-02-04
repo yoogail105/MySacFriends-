@@ -23,8 +23,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         let startModeString = UserDefaults.standard.startMode
         let startMode = StartMode(rawValue: startModeString) ?? .onBoarding
-        
+        print("스타트모드는: \(startMode)")
         switch startMode {
+           
         case .onBoarding:
             coordinator?.start()
         case .auth:
@@ -33,7 +34,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             coordinator?.pushToAuthSignUp()
         case .main:
             print("go to main")
-            coordinator?.pushToAuthMain()
+            coordinator?.pushToMainTabbar()
         }
 
        // let layout = UICollectionViewFlowLayout()

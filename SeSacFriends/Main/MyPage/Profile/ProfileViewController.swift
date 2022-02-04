@@ -7,12 +7,17 @@
 
 import UIKit
 import SwiftUI
+import RxCocoa
+import RxSwift
 
 class ProfileViewController: BaseViewController {
     
-    
-    
+
     let mainView = ProfileView()
+    let viewModel = ProfileViewModel()
+    
+    let disposeBag = DisposeBag()
+    
     
     var userTitles: [String] = []
     var sectionTitles: [String] = []
@@ -21,6 +26,7 @@ class ProfileViewController: BaseViewController {
     
     override func loadView() {
         self.view = mainView
+        
 
         let time = DispatchTime.now()
         DispatchQueue.main.asyncAfter(deadline: time) {
@@ -55,6 +61,16 @@ class ProfileViewController: BaseViewController {
     
     }
     
+    override func bind() {
+        
+     
+        mainView.detailView.withdrawalButton.rx.tap
+            .subscribe(onNext: { _ in
+                self.withdrawal()
+            })
+            .disposed(by: disposeBag)
+    }
+    
     override func setupNavigationBar() {
         super.setupNavigationBar()
         let saveButton = UIBarButtonItem(title: "저장", style: .done, target: self, action: #selector(saveButtonClicked))
@@ -65,7 +81,9 @@ class ProfileViewController: BaseViewController {
     }
     
     @objc func saveButtonClicked() {
+        //api 보내기
         
+        showToast(message: "저장되었습니다.")
     }
     
     override func addAction() {
@@ -80,6 +98,19 @@ class ProfileViewController: BaseViewController {
       print("Range slider value changed: \(values)")
     }
 
+    
+    @objc func withdrawal() {
+        print(#function)
+        viewModel.onErrorHandling = { error in
+            if error == .ok || error == .notAcceptable {
+                print("회원탈퇴완료되었습니다. 뷰컨")
+                self.coordinator?.start()
+            }
+        }
+        
+        self.viewModel.withdrawalUser()
+       
+    }
 }
 
 

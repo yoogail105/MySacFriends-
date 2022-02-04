@@ -18,6 +18,8 @@ import RxCocoa
 
 class AuthViewController: BaseViewController {
     
+    
+    
     let mainView = AuthView()
     var viewModel = AuthViewModel()
     let disposeBag = DisposeBag()
@@ -33,7 +35,7 @@ class AuthViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
+//        userDefaults.startMode = StartMode.main.rawValue
     }
     
     override func setupNavigationBar() {

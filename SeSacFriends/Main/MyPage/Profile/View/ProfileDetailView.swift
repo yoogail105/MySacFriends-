@@ -22,7 +22,7 @@ class ProfileDetailView: BaseUIView {
     let hobbyView = UIView()
     let phoneNumberView = UIView()
     let ageView = UIView()
-    let withdrawalView = UIView()
+    let withdrawalButton = UIButton()
     
     let backgroundImage = UIImageView().then {
         $0.image = UIImage(named: BackgroundImage.color.rawValue)
@@ -114,7 +114,7 @@ class ProfileDetailView: BaseUIView {
 
        
     
-        [genderView, hobbyView, phoneNumberView, ageView, ageBar,  withdrawalView].forEach {
+        [genderView, hobbyView, phoneNumberView, ageView, ageBar,  withdrawalButton].forEach {
             stackView.addArrangedSubview($0)
         }
 
@@ -137,7 +137,7 @@ class ProfileDetailView: BaseUIView {
         }
 
         [withdrawalLabel].forEach {
-            withdrawalView.addSubview($0)
+            withdrawalButton.addSubview($0)
         }
 
 
@@ -166,7 +166,7 @@ class ProfileDetailView: BaseUIView {
             $0.height.equalTo(48)
         }
 
-        withdrawalView.snp.makeConstraints {
+        withdrawalButton.snp.makeConstraints {
             $0.height.equalTo(48)
         }
 

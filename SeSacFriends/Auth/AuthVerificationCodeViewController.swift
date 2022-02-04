@@ -107,20 +107,28 @@ class AuthVerificationCodeViewController: BaseViewController {
     }
     
     func verifyButtonClicked() {
+        // 1. firebase인증번호확인
+        
+        self.viewModel.onErrorHandling = { error in
+            if error == .notAcceptable {
+                print("온헨들링에서 에러는 \(error) -> 회원가입뷰로 넘어가기")
+                self.coordinator?.pushToAuthSignUp()
+            }
+        }
         self.viewModel.checkVerificationCode(verificationCode: mainView.numberTextField.text!) { error in
             if error == .verificaitonTokenNotMatched {
                 self.showToast(message: APIErrorMessage.verificaitonTokenNotMatched.rawValue)
                 return
             } else {
-            
-            self.viewModel.fetchIDToken {
-                print("id토큰가져오기 완료")
-                self.viewModel.getUser {
-                    print("user 등록된 유저: 로그인완료")
-                    self.selectNextView()
+                // 2. 인증번호가 일치하면 FirebaseIDToken 가져오기
+                self.viewModel.fetchIDToken {
+                    print("id토큰가져오기 완료")
+                    //3. idToken가져오면 서버에 유저 등록되어있는지 확인하기
+                    self.viewModel.getUser{ _ in
+                        print("유저 있으니까 메인 탭바로 이동한다.")
+                        self.coordinator?.pushToMainTabbar()
+                    }
                 }
-            }
-
             }
         }
         
@@ -131,20 +139,11 @@ class AuthVerificationCodeViewController: BaseViewController {
     func selectNextView() {
         print(#function, "to signUpNicknameVC, mode: \(UserDefaults.standard.startMode)")
         let mode = UserDefaults.standard.startMode
+        
         if mode == StartMode.signUp.rawValue {
-           moveToNext(nextVC: SignUpNicknameViewController())
+            self.coordinator?.pushToAuthSignUp()
         } else {
-            moveToNext(nextVC: MainViewController())
-        }
-    }
-    
-    
-    func moveToNext(nextVC: UIViewController) {
-        DispatchQueue.main.async {
-            guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene else { return }
-            
-            windowScene.windows.first?.rootViewController = UINavigationController(rootViewController: nextVC)
-            windowScene.windows.first?.makeKeyAndVisible()
+            self.coordinator?.pushToMainTabbar()
         }
     }
     

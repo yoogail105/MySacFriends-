@@ -21,9 +21,9 @@ enum HTTPHeaderValue: String {
     case contentType = "application/x-www-form-urlencoded"
 }
 
-enum UserBodyPara: String {
+enum UserBodyPara: String { // 수정하면 안돼!!
     case phoneNumber
-    case FCMToken
+    case FCMtoken
     case nick
     case birth
     case email
@@ -146,7 +146,11 @@ extension URLSession {
                     case APIErrorCode.invalidNickname.rawValue: //202
                         completion(nil, .invalidNickname)
                     case APIErrorCode.unAuthorized.rawValue: //401
-                        completion(nil, .unAuthorized)
+                        AuthAPIService.fetchIDToken {
+                            print("토큰 새로 발급 완료")
+                            completion(nil, .unAuthorized)
+                        }
+                        
                     case APIErrorCode.notAcceptable.rawValue: //406
                         completion(nil, .notAcceptable)
                     default:
@@ -162,7 +166,6 @@ extension URLSession {
                     completion(userData, nil)
                     print("codable Ok")
                     return
-                    
                 } catch {
                     print("do-catch: codable 오류")
                     completion(nil, .invalidData)

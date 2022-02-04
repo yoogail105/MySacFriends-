@@ -95,6 +95,7 @@ extension MyPageViewController: UITableViewDelegate, UITableViewDataSource {
             let vc = ProfileViewController()
             self.navigationController?.pushViewController(vc, animated: true)
         }
+        
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

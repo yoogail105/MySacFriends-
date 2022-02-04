@@ -13,7 +13,7 @@ import Foundation
 그럼에도 안묶이는 것들에 대해서는 개별적으로 처리를 한다.
 */
 
-enum APIErrorCode: Int {
+enum APIErrorCode: Int, Error {
     case failed
     case noData
     case invalidData
@@ -34,7 +34,7 @@ enum APIErrorMessage: String, Error {
     case noData
     case failed = "에러가 발생했습니다. 다시 시도해주세요."
     case invalidData
-    case unAuthorized = "확인되지 않은 사용자입니다." //201
+    case unAuthorized = "확인되지 않은 사용자입니다." //406
     case alreadyExisted = "이미 가입한 계정입니다."//202 이미 가입 -> 홈호면 already
     case invalidNickname  = "사용할 수 없는 닉네임입니다."//202
     case expiredIDToken = "파이어 베이스 토큰 에러"// 401

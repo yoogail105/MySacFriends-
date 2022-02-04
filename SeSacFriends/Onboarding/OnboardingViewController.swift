@@ -56,9 +56,6 @@ class OnboardingViewController: BaseViewController  {
     func toAuthView() {
         print("toAuthView")
         UserDefaults.standard.startMode = StartMode.auth.rawValue
-       //coordinator?.start(navigationController!)
-        let vc = AuthViewController()
-        self.navigationController?.pushViewController(vc, animated: true)
+        coordinator?.pushToAuth()
     }
-    
 }

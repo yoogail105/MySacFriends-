@@ -12,7 +12,9 @@ extension String {
     
     func phoneNumberFormat() -> String {
         let startIdx: String.Index = self.index(self.startIndex, offsetBy: 1)
-        let result = String(self[startIdx...])
+        var result = String(self[startIdx...])
+        result =  result.replacingOccurrences(of: "-", with: "")
+        print("저장된 폰넘버: ", result)
         return "+82\(result)"
     }
     

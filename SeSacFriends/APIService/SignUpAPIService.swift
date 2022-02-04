@@ -29,6 +29,8 @@ class SignUpAPIService {
     
     
     static func signUp(completion: @escaping (User?, APIErrorCode?) -> Void) {
+        
+        
         let idToken = UserDefaults.standard.idToken!
         print("signup에서 idtoken: ", idToken)
         var request = URLRequest(url: Endpoint.user.url)
@@ -38,22 +40,22 @@ class SignUpAPIService {
         request.setValue(idToken, forHTTPHeaderField: HTTPString.idtoken.rawValue)
         request.setValue(HTTPHeaderValue.contentType.rawValue, forHTTPHeaderField: HTTPString.ContentType.rawValue)
  
-        request.httpBody = "\(UserBodyPara.phoneNumber.rawValue)=\(UserDefaults.standard.phoneNumber)&\(UserBodyPara.FCMToken.rawValue)=\(UserDefaults.standard.FCMToken!)&\(UserBodyPara.nick.rawValue)=\(UserDefaults.standard.nickname)&\(UserBodyPara.birth.rawValue)=\(UserDefaults.standard.birth!)&\(UserBodyPara.email.rawValue)=\(UserDefaults.standard.email)&\(UserBodyPara.gender.rawValue)=\(UserDefaults.standard.gender)".data(using: .utf8, allowLossyConversion: false)
+        request.httpBody = "\(UserBodyPara.phoneNumber.rawValue)=\(UserDefaults.standard.phoneNumber)&\(UserBodyPara.FCMtoken.rawValue)=\(UserDefaults.standard.FCMToken!)&\(UserBodyPara.nick.rawValue)=\(UserDefaults.standard.nickname)&\(UserBodyPara.birth.rawValue)=\(UserDefaults.standard.birth!)&\(UserBodyPara.email.rawValue)=\(UserDefaults.standard.email)&\(UserBodyPara.gender.rawValue)=\(UserDefaults.standard.gender)".data(using: .utf8, allowLossyConversion: false)
        
-        print("\(UserBodyPara.phoneNumber.rawValue)=\(UserDefaults.standard.phoneNumber)\n&\(UserBodyPara.FCMToken)=\(UserDefaults.standard.FCMToken!)\n&\(UserBodyPara.nick.rawValue)=\(UserDefaults.standard.nickname)\n&\(UserBodyPara.birth.rawValue)=\(UserDefaults.standard.birth!)\n&\(UserBodyPara.email.rawValue)=\(UserDefaults.standard.email)\n&\(UserBodyPara.gender.rawValue)=\(UserDefaults.standard.gender)")
+        print("\(UserBodyPara.phoneNumber.rawValue)=\(UserDefaults.standard.phoneNumber)\n&\(UserBodyPara.FCMtoken)=\(UserDefaults.standard.FCMToken!)\n&\(UserBodyPara.nick.rawValue)=\(UserDefaults.standard.nickname)\n&\(UserBodyPara.birth.rawValue)=\(UserDefaults.standard.birth!)\n&\(UserBodyPara.email.rawValue)=\(UserDefaults.standard.email)\n&\(UserBodyPara.gender.rawValue)=\(UserDefaults.standard.gender)")
        
         URLSession.request(endpoint: request, completion: completion)
         
     }
     
     // 회원 삭제하기 -> FCM 토큰 강제 갱신해줘야 한다.
-    static func deleteUser(completion: @escaping (User?, APIErrorCode?) -> Void) {
+    static func withdrawalUser(completion: @escaping (User?, APIErrorCode?) -> Void) {
         let idToken = UserDefaults.standard.idToken!
         let fcmToken = UserDefaults.standard.FCMToken!
         var request = URLRequest(url: Endpoint.deleteUser.url)
         
         request.httpMethod = Method.POST.rawValue
-        request.httpBody = "\(UserBodyPara.FCMToken.rawValue)=\(fcmToken)".data(using: .utf8, allowLossyConversion: false)
+        request.httpBody = "\(UserBodyPara.FCMtoken.rawValue)=\(fcmToken)".data(using: .utf8, allowLossyConversion: false)
         request.setValue(idToken, forHTTPHeaderField: HTTPString.idtoken.rawValue)
         request.setValue(HTTPHeaderValue.contentType.rawValue, forHTTPHeaderField: HTTPString.ContentType.rawValue)
         

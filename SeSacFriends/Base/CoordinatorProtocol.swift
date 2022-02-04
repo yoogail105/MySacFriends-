@@ -41,7 +41,7 @@ class MainCoordinator: Coordinator {
         navigationController.pushViewController(viewController, animated: true)
     }
     
-    func pushToAuthMain() {
+    func pushToMainTabbar() {
         let viewController = MainTabBarController()
         navigationController.pushViewController(viewController, animated: true)
     }

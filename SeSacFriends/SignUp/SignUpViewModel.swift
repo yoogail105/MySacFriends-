@@ -49,7 +49,7 @@ class SignUpViewModel {
     }
     
     func deleteUser(completion: @escaping(APIErrorCode?) -> Void) {
-        SignUpAPIService.deleteUser { userData, error in
+        SignUpAPIService.withdrawalUser { userData, error in
             print(error)
             guard let error = error else {
                 return

@@ -47,6 +47,7 @@
 		234CEC37279C9A1000983E20 /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 234CEC36279C9A1000983E20 /* IQKeyboardManagerSwift */; };
 		234CEC39279C9CEA00983E20 /* GenderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 234CEC38279C9CEA00983E20 /* GenderViewController.swift */; };
 		234CEC3B279C9D0B00983E20 /* GenderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 234CEC3A279C9D0B00983E20 /* GenderView.swift */; };
+		234DC38E27AD9B5A00132A36 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 234DC38D27AD9B5A00132A36 /* ProfileViewModel.swift */; };
 		234E5FA427978FE700F5D2BB /* AuthVerificationCodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 234E5FA327978FE700F5D2BB /* AuthVerificationCodeView.swift */; };
 		234E5FA627987EE900F5D2BB /* UIButton+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 234E5FA527987EE900F5D2BB /* UIButton+Extension.swift */; };
 		234E5FAA27988F8D00F5D2BB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 234E5FA927988F8D00F5D2BB /* GoogleService-Info.plist */; };
@@ -134,6 +135,7 @@
 		234CEC33279C971F00983E20 /* EmailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailViewController.swift; sourceTree = "<group>"; };
 		234CEC38279C9CEA00983E20 /* GenderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenderViewController.swift; sourceTree = "<group>"; };
 		234CEC3A279C9D0B00983E20 /* GenderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenderView.swift; sourceTree = "<group>"; };
+		234DC38D27AD9B5A00132A36 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		234E5FA327978FE700F5D2BB /* AuthVerificationCodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthVerificationCodeView.swift; sourceTree = "<group>"; };
 		234E5FA527987EE900F5D2BB /* UIButton+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extension.swift"; sourceTree = "<group>"; };
 		234E5FA927988F8D00F5D2BB /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -397,6 +399,7 @@
 				23ADC14827AC299C00101C43 /* View */,
 				23ADC14627AB748200101C43 /* Cell */,
 				23ADC14727AC291700101C43 /* EX */,
+				234DC38D27AD9B5A00132A36 /* ProfileViewModel.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -638,6 +641,7 @@
 				237B9F0E27A262BD008A6E06 /* MyPageViewCell.swift in Sources */,
 				2323AEB827A6F53D00895CC7 /* ProfileHeaderView.swift in Sources */,
 				2389E1DE2796D8C800BE68E3 /* AuthVerificationCodeViewController.swift in Sources */,
+				234DC38E27AD9B5A00132A36 /* ProfileViewModel.swift in Sources */,
 				237B9F1827A35239008A6E06 /* ShopViewController.swift in Sources */,
 				2333573227A09FCE0062A9E8 /* MainView.swift in Sources */,
 				23335727279FB5650062A9E8 /* Date+Extension.swift in Sources */,

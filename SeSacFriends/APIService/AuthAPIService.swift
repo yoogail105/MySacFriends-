@@ -40,7 +40,7 @@ class AuthAPIService {
         
     }
     
-    // verificaitonCode: "AJOnW4QgBVF9FVNR6esYkz_BzpdGis9IoegIBy0ejeMTLaI42B0l36xXj3prJnhAgmQ6oBuckLYDbvVk9_hcxT_GapMAJPshiKZ_LuXoqAoex4qoAeH2H6FSnZAtDW8oPmLq_5mM9aK_GIOrDK8R-HZPL1H94Amo5sIA5apfDa2lPFD5wjo1MJn1QZEITaOKiFuBzB_zjoQxmPAVkpIcCc69EJq4PPiwXMFp4VXL2btGbeNZ798Jgkk"
+    
     static func checkVerificationCode(verificationCode: String, completion: @escaping (APIErrorMessage?) -> Void) {
         
         let verificationID = UserDefaults.standard.authVerificationID!
@@ -80,7 +80,7 @@ class AuthAPIService {
             }
             // User is signed in
             
-            print("로그인 완료!")
+            print("firebase 로그인 완료(인증번호확인완료)!")
             UserDefaults.standard.startMode = StartMode.signUp.rawValue
             print("verificationID: \(UserDefaults.standard.authVerificationID!)")
             

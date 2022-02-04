@@ -9,7 +9,11 @@ import Foundation
 import RxSwift
 import RxRelay
 
+
+
 class AuthViewModel {
+    
+    var onErrorHandling: ((APIErrorCode) -> Void)?
     
     var buttonMode = BehaviorRelay<String>(value: "false")
     
@@ -66,33 +70,48 @@ class AuthViewModel {
         }
     }
     
-    func getUser(completion: @escaping () -> Void) {
-        SignUpAPIService.login { user, error in
+    func getUser(_ completion: ((Result<Bool, APIErrorCode>) -> Void)? = nil) {
+        //later in the code
+        SignUpAPIService.login { user, result  in
+
             
-            guard let error = error else {
-                return
-            }
-            
-            guard let user = user else {
-                return
-            }
-            
-         print("error: ",error)
-            if error == .unAuthorized {
-                print("토큰 새로 발급 하기")
-                self.fetchIDToken {
-                    print("토큰 새로 발급 완료")
+                switch result {
+                case .ok:
+                    UserDefaults.standard.startMode = StartMode.main.rawValue
+                    print(UserDefaults.standard.startMode)
+                    
+//                case .unAuthorized:
+//                    print("토큰 새로 발급하기")
+//                    self.fetchIDToken {
+//                        print("new tocken 완료")
+//                    }
+//                    self.onErrorHandling?(.unAuthorized)
+                    
+                case .notAcceptable:
+                    UserDefaults.standard.startMode = StartMode.signUp.rawValue
+                    self.onErrorHandling?(.notAcceptable)
+                    
+                default:
+                    self.onErrorHandling?(.internalServerError)
+                    
                 }
-                return
-            }
             
+     
+//         print("error: ",error)
+//            if error == .unAuthorized {
+//                print("토큰 새로 발급 하기")
+//                self.fetchIDToken {
+//                    print("토큰 새로 발급 완료")
+//                }
+//                return
+//            }
+//
             
-            completion()
+        
             
         }
-        UserDefaults.standard.startMode = StartMode.main.rawValue
-        print(UserDefaults.standard.startMode)
-        completion()
+       
+        
     }
     
     

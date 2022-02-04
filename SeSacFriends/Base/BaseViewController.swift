@@ -10,8 +10,9 @@ import RxSwift
 import RxCocoa
 
 class BaseViewController: UIViewController {
-    
+
     let userDefaults = UserDefaults.standard
+    var coordinator: MainCoordinator?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,6 +22,8 @@ class BaseViewController: UIViewController {
         addAction()
         setupConstraints()
         setupNavigationBar()
+        
+        coordinator = MainCoordinator(navigationController: self.navigationController!, parentCoordinator: coordinator)
     }
     
     
@@ -53,8 +56,8 @@ class BaseViewController: UIViewController {
         self.navigationItem.backButtonTitle = ""
         let backButton = UIBarButtonItem(image: UIImage(named: AssetIcon.backArrow.rawValue), style: .done, target: self, action: #selector(back))
         self.navigationItem.leftBarButtonItem?.tintColor = UIColor.black
-       
-       
+        self.navigationItem.leftBarButtonItem = backButton
+        self.navigationItem.leftBarButtonItem?.tintColor = UIColor.black
     }
     
     @objc func back() {

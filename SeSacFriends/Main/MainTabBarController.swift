@@ -29,12 +29,12 @@ class MainTabBarController: UITabBarController, Coordinator1 {
         super.viewDidLoad()
         print("진입")
         setupViewControllers()
+        
     }
     
     
     func setupViewControllers() {
       
-        
         let homeBarItem = UITabBarItem(title: TabBarTitle.home.rawValue, image: UIImage(named: TabBarIcon.homeInact.rawValue)?.withRenderingMode(.alwaysOriginal), selectedImage: UIImage(named: TabBarIcon.homeAct.rawValue)?.withRenderingMode(.alwaysOriginal))
     
         home.parentCoordinator = self
