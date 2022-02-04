@@ -116,8 +116,8 @@ class AuthVerificationCodeViewController: BaseViewController {
             }
         }
         self.viewModel.checkVerificationCode(verificationCode: mainView.numberTextField.text!) { error in
-            if error == .verificaitonTokenNotMatched {
-                self.showToast(message: APIErrorMessage.verificaitonTokenNotMatched.rawValue)
+            if error == .verificationTokenNotMatched {
+                self.showToast(message: APIErrorMessage.verificationTokenNotMatched.rawValue)
                 return
             } else {
                 // 2. 인증번호가 일치하면 FirebaseIDToken 가져오기

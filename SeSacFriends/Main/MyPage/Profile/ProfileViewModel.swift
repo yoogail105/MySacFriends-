@@ -17,6 +17,8 @@ class ProfileViewModel {
                        gender:1,
                        hobby: "Coding")
     
+    var
+    
     func withdrawalUser(_ completion: ((Result<Bool, APIErrorCode>) -> Void)? = nil) {
         
         SignUpAPIService.withdrawalUser { user, result  in

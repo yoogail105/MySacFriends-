@@ -41,7 +41,7 @@ enum APIErrorMessage: String, Error {
     case serverError = "ServerError" //500
     case clientError = "ClientError" //501
     case tooManyRequests = "과도한 인증 시도가 있었습니다. 나중에 다시 시도해 주세요."
-    case verificaitonTokenNotMatched = "인증번호가 일치하지 않습니다."
+    case verificationTokenNotMatched = "인증번호가 일치하지 않습니다."
     case deletedUser = "이미 탈퇴한 회원입니다."
 
 }

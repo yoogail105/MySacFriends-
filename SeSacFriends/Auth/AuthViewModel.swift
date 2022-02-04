@@ -53,7 +53,7 @@ class AuthViewModel {
     func checkVerificationCode(verificationCode: String, completion: @escaping (APIErrorMessage?) -> Void) {
         AuthAPIService.checkVerificationCode(verificationCode: verificationCode) { error in
             if error != nil {
-                if error == .verificaitonTokenNotMatched {
+                if error == .verificationTokenNotMatched {
                     completion(error)
                 }
             }

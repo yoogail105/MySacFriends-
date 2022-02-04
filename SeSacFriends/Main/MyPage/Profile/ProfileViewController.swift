@@ -80,7 +80,37 @@ class ProfileViewController: BaseViewController {
             })
             .disposed(by: disposeBag)
             
-    
+        mainView.detailView.womanButton.rx.tap
+            .scan(Gender.none, accumulator: { lastSelected, _ in
+                switch lastSelected {
+                case .woman:
+                    if self.mainView.button00.backgroundColor == UIColor.white {
+                        return .woman
+                    }
+                    return .none
+                case .none:
+                    return .woman
+                case .man:
+                    return .woman
+                }
+            })
+            .bind(to: viewModel.genderObserver)
+            .disposed(by: disposeBag)
+
+        mainView.detailView.manButton.rx.tap
+            .scan(Gender.none, accumulator: { lastSelected, _ in
+                switch lastSelected {
+                case .woman:
+                    return .man
+                case .none:
+                    return .man
+                case .man:
+                    if self.mainView.button01.backgroundColor == UIColor.white {
+                        return .man
+                    }
+                    return .none
+                }
+            })
     
      
         mainView.detailView.withdrawalButton.rx.tap
