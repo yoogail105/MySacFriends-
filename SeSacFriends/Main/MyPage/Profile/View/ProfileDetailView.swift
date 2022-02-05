@@ -38,7 +38,7 @@ class ProfileDetailView: BaseUIView {
     }
     
     let manButton = BaseButton().then {
-        
+        $0.tag = 1
         if UserDefaults.standard.gender == 1 {
             $0.buttonMode(.fill, title: ProfileDetailText.man.rawValue)
         } else {
@@ -47,7 +47,7 @@ class ProfileDetailView: BaseUIView {
     }
     
     let womanButton = BaseButton().then {
-        
+        $0.tag = 0
         if UserDefaults.standard.gender == 0 {
             $0.buttonMode(.fill, title: ProfileDetailText.woman.rawValue)
         } else {

@@ -22,6 +22,9 @@ class ProfileViewController: BaseViewController {
     var userTitles: [String] = []
     var sectionTitles: [String] = []
     
+    var genderButtons = [UIButton()]
+    var gender: Gender.RawValue = UserDefaults.standard.gender
+    
     override func loadView() {
         self.view = mainView
         
@@ -35,7 +38,7 @@ class ProfileViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+    
         self.title = TabBarTitle.detail.rawValue
         
         for userTitle in UserTitleText.allCases {
@@ -45,6 +48,8 @@ class ProfileViewController: BaseViewController {
         for sectionTitle in ProfileCardTableViewSectionHeaderText.allCases {
             sectionTitles.append(sectionTitle.rawValue)
         }
+        
+        genderButtons = [mainView.detailView.womanButton, mainView.detailView.manButton]
         
         let tableView = mainView.cardView.tableView
         tableView.register(NameTableViewCell.self, forCellReuseIdentifier: NameTableViewCell.identifier)
@@ -79,40 +84,66 @@ class ProfileViewController: BaseViewController {
                 }
             })
             .disposed(by: disposeBag)
-            
-        mainView.detailView.womanButton.rx.tap
-            .scan(Gender.none, accumulator: { lastSelected, _ in
-                switch lastSelected {
-                case .woman:
-                    if self.mainView.button00.backgroundColor == UIColor.white {
-                        return .woman
-                    }
-                    return .none
-                case .none:
-                    return .woman
-                case .man:
-                    return .woman
-                }
+        
+        // MARK: genderButton
+        var gender = viewModel.profileData.gender
+        var womanButton = mainView.detailView.womanButton
+        var manButton = mainView.detailView.manButton
+        
+        viewModel.genderObserver
+            .map { $0 == 0 ? CustomButton.fill : CustomButton.inactive }
+            .subscribe(onNext: { mode in
+                womanButton.buttonMode(mode, title: "여자")
+                
             })
+            .disposed(by: disposeBag)
+        
+        viewModel.genderObserver
+            .map { $0 == 1 ? CustomButton.fill : CustomButton.inactive }
+            .subscribe(onNext: { mode in
+                manButton.buttonMode(mode, title: "남자")
+                
+            })
+            .disposed(by: disposeBag)
+        
+        
+        womanButton.rx.tap
+            .scan(gender) { lastSelected, _ in
+                print("\(lastSelected), woman button tapped")
+                switch lastSelected {
+                case 0:
+                    if womanButton.backgroundColor == UIColor.white {
+                        return 0
+                    }
+                    return -1
+                case 1:
+                    return 0
+                default:
+                    return 0
+                }
+            }
             .bind(to: viewModel.genderObserver)
             .disposed(by: disposeBag)
-
-        mainView.detailView.manButton.rx.tap
-            .scan(Gender.none, accumulator: { lastSelected, _ in
+        
+        manButton.rx.tap
+            .scan(gender) { lastSelected, _ in
+                print("\(lastSelected), man button tapped")
                 switch lastSelected {
-                case .woman:
-                    return .man
-                case .none:
-                    return .man
-                case .man:
-                    if self.mainView.button01.backgroundColor == UIColor.white {
-                        return .man
+                case 0:
+                    return 1
+                case 1:
+                    if manButton.backgroundColor == UIColor.white {
+                        return 1
                     }
-                    return .none
+                    return -1
+                default:
+                    return 1
                 }
-            })
-    
-     
+            }
+            .bind(to: viewModel.genderObserver)
+            .disposed(by: disposeBag)
+        
+        
         mainView.detailView.withdrawalButton.rx.tap
             .subscribe(onNext: { _ in
                 self.withdrawal()

@@ -35,7 +35,7 @@ class AuthViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        userDefaults.startMode = StartMode.main.rawValue
+        //userDefaults.startMode = StartMode.main.rawValue
     }
     
     override func setupNavigationBar() {

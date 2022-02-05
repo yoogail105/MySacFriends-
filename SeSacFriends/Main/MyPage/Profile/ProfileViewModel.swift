@@ -14,11 +14,15 @@ class ProfileViewModel {
     var profileData = (searchable: 0,
                        ageMin:18,
                        ageMax: 65,
-                       gender:1,
+                       gender: 0,
                        hobby: "Coding")
     
-    var
+    var genderObserver = PublishRelay<Int>()
     
+//    var genderObserver: Observable<Int> {
+//
+//    }
+//
     func withdrawalUser(_ completion: ((Result<Bool, APIErrorCode>) -> Void)? = nil) {
         
         SignUpAPIService.withdrawalUser { user, result  in
