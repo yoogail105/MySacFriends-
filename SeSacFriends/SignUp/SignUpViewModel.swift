@@ -26,7 +26,7 @@ class SignUpViewModel {
      }
     
     func postSignUp(completion: @escaping (APIErrorCode?) -> Void) {
-        SignUpAPIService.signUp { userData, error in
+        UserAPIService.signUp { userData, error in
             if error != nil {
                 if error == .unAuthorized {
                     AuthAPIService.fetchIDToken {
@@ -49,7 +49,7 @@ class SignUpViewModel {
     }
     
     func deleteUser(completion: @escaping(APIErrorCode?) -> Void) {
-        SignUpAPIService.withdrawalUser { userData, error in
+        UserAPIService.withdrawalUser { userData, error in
             print(error)
             guard let error = error else {
                 return

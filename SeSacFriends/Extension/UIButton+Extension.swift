@@ -54,6 +54,36 @@ extension UIButton {
         }
     }
     
+    func buttonModeColor(_ mode: CustomButton) {
+        
+        switch mode {
+        case .inactive:
+            setTitleColor(.black, for: .normal)
+            backgroundColor = .white
+            layer.borderWidth = 1
+            layer.borderColor = UIColor.grayColor(.gray4).cgColor
+            
+            
+        case .fill:
+            setTitleColor(.white, for: .normal)
+            backgroundColor = UIColor.brandColor(.green)
+            
+        case .outline:
+            setTitleColor(UIColor.brandColor(.green), for: .normal)
+            backgroundColor = .white
+            layer.borderWidth = 1
+            layer.borderColor = UIColor.brandColor(.green).cgColor
+            
+        case .cancel:
+            setTitleColor(UIColor.black, for: .normal)
+            backgroundColor = UIColor.grayColor(.gray2)
+            
+        case .disable:
+            setTitleColor(UIColor.grayColor(.gray3), for: .normal)
+            backgroundColor = UIColor.grayColor(.gray6)
+        }
+    }
+    
     
 }
 

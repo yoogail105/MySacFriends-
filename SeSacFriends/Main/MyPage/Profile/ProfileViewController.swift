@@ -18,15 +18,14 @@ class ProfileViewController: BaseViewController {
     
     let disposeBag = DisposeBag()
     
-    
     var userTitles: [String] = []
     var sectionTitles: [String] = []
     
-    var genderButtons = [UIButton()]
-    var gender: Gender.RawValue = UserDefaults.standard.gender
+
     
     override func loadView() {
-        self.view = mainView
+        print(#function)
+        self.view = self.mainView
         
 
         let time = DispatchTime.now()
@@ -38,6 +37,9 @@ class ProfileViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        print(#function)
+        
+        getProfileData()
     
         self.title = TabBarTitle.detail.rawValue
         
@@ -48,8 +50,7 @@ class ProfileViewController: BaseViewController {
         for sectionTitle in ProfileCardTableViewSectionHeaderText.allCases {
             sectionTitles.append(sectionTitle.rawValue)
         }
-        
-        genderButtons = [mainView.detailView.womanButton, mainView.detailView.manButton]
+
         
         let tableView = mainView.cardView.tableView
         tableView.register(NameTableViewCell.self, forCellReuseIdentifier: NameTableViewCell.identifier)
@@ -63,53 +64,82 @@ class ProfileViewController: BaseViewController {
     
     }
     
+    func setUpDetailView() {
+        print("setUpDetailView")
+        let profileData = viewModel.profileData
+        let detailView = mainView.detailView
+    
+        switch profileData.gender {
+        
+        case 0:
+            print(profileData.gender)
+            detailView.womanButton.buttonModeColor(.fill)
+            detailView.manButton.buttonModeColor(.inactive)
+        case 1:
+            print(profileData.gender)
+            detailView.womanButton.buttonModeColor(.inactive)
+            detailView.manButton.buttonModeColor(.fill)
+        default:
+            print(profileData.gender)
+            detailView.womanButton.buttonModeColor(.inactive)
+            detailView.manButton.buttonModeColor(.inactive)
+        }
+        
+        detailView.hobbyTextField.text = profileData.hobby
+        
+        if profileData.searchable == 1 {
+            detailView.searchableSwitch.isOn = true
+        } else {
+            detailView.searchableSwitch.isOn = false
+        }
+        
+        detailView.ageLabelSub.text = "\(profileData.ageMin)-\(profileData.ageMax)"
+        
+    }
+    
+    func getProfileData() {
+        print("정보가져오기")
+        
+        viewModel.onErrorHandling = { result in
+            if result == .ok {
+                print("뷰그려야지")
+                self.setUpDetailView()
+            }
+            
+        }
+        self.viewModel.getUser()
+    }
+  
+    
     override func bind() {
         
-    
-       
-        
-        mainView.detailView.hobbyTextField.rx.text
-            .subscribe(onNext: { hobby in
-                self.viewModel.profileData.hobby = hobby ?? ""
-                print(self.viewModel.profileData.hobby)
-            })
-
-        mainView.detailView.searchableSwitch.rx.isOn
-            .subscribe(onNext: { value in
-                switch value{
-                case true:
-                    self.viewModel.profileData.searchable = 1
-                case false:
-                    self.viewModel.profileData.searchable = 0
-                }
-            })
-            .disposed(by: disposeBag)
-        
+        let detailView = mainView.detailView
+      
         // MARK: genderButton
-        var gender = viewModel.profileData.gender
-        var womanButton = mainView.detailView.womanButton
-        var manButton = mainView.detailView.manButton
+        let womanButton = mainView.detailView.womanButton
+        let manButton = mainView.detailView.manButton
+        let genderButtons = [womanButton, manButton]
         
+      
         viewModel.genderObserver
             .map { $0 == 0 ? CustomButton.fill : CustomButton.inactive }
             .subscribe(onNext: { mode in
-                womanButton.buttonMode(mode, title: "여자")
-                
+                womanButton.buttonModeColor(mode)
             })
             .disposed(by: disposeBag)
         
         viewModel.genderObserver
             .map { $0 == 1 ? CustomButton.fill : CustomButton.inactive }
             .subscribe(onNext: { mode in
-                manButton.buttonMode(mode, title: "남자")
+                manButton.buttonModeColor(mode)
                 
             })
             .disposed(by: disposeBag)
         
+        var gender = viewModel.profileData.gender
         
         womanButton.rx.tap
             .scan(gender) { lastSelected, _ in
-                print("\(lastSelected), woman button tapped")
                 switch lastSelected {
                 case 0:
                     if womanButton.backgroundColor == UIColor.white {
@@ -127,7 +157,6 @@ class ProfileViewController: BaseViewController {
         
         manButton.rx.tap
             .scan(gender) { lastSelected, _ in
-                print("\(lastSelected), man button tapped")
                 switch lastSelected {
                 case 0:
                     return 1
@@ -143,6 +172,24 @@ class ProfileViewController: BaseViewController {
             .bind(to: viewModel.genderObserver)
             .disposed(by: disposeBag)
         
+        // MARK: hobby
+        detailView.hobbyTextField.rx.text
+            .orEmpty
+            .bind(to: viewModel.hobbyObserer)
+            .disposed(by: disposeBag)
+    
+        // MARK: searchable
+        mainView.detailView.searchableSwitch.rx.isOn
+            .map { $0 ? 1 : 0 }
+            .bind(to: viewModel.searchableObserver)
+            .disposed(by: disposeBag)
+        
+        mainView.detailView.searchableSwitch.rx.isOn
+            .subscribe(onNext: { value in
+                print("searchable: \(self.viewModel.searchableObserver.value), \(value)는 벨류")
+            })
+            .disposed(by: disposeBag)
+        
         
         mainView.detailView.withdrawalButton.rx.tap
             .subscribe(onNext: { _ in
@@ -150,6 +197,8 @@ class ProfileViewController: BaseViewController {
             })
             .disposed(by: disposeBag)
     }
+    
+    
     
     override func setupNavigationBar() {
         super.setupNavigationBar()
@@ -165,9 +214,14 @@ class ProfileViewController: BaseViewController {
     }
     
     @objc func saveButtonClicked() {
+        
+        viewModel.updateMypage() {_ in
+            self.showToast(message: ProfileViewText.saveButtonClicked.rawValue)
+        }
         //api 보내기
         
-        showToast(message: ProfileViewText.saveButtonClicked.rawValue)
+        
+       
     }
     
     
@@ -186,6 +240,8 @@ class ProfileViewController: BaseViewController {
     
     func withdrawal() {
         print(#function)
+        
+        
         viewModel.onErrorHandling = { error in
             if error == .ok || error == .notAcceptable {
                 print("회원탈퇴완료되었습니다. 뷰컨")

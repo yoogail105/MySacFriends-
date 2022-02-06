@@ -115,6 +115,7 @@ class AuthVerificationCodeViewController: BaseViewController {
                 self.coordinator?.pushToAuthSignUp()
             }
         }
+        
         self.viewModel.checkVerificationCode(verificationCode: mainView.numberTextField.text!) { error in
             if error == .verificationTokenNotMatched {
                 self.showToast(message: APIErrorMessage.verificationTokenNotMatched.rawValue)

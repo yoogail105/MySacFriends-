@@ -7,7 +7,7 @@
 
 import Foundation
 
-class SignUpAPIService {
+class UserAPIService {
     
     let userDefaults = UserDefaults.standard
     
@@ -24,7 +24,7 @@ class SignUpAPIService {
         request.setValue(idToken, forHTTPHeaderField: HTTPString.idtoken.rawValue)
        // request.setValue(HTTPHeaderValue.contentType.rawValue, forHTTPHeaderField: HTTPString.ContentType.rawValue)
         
-        URLSession.request(endpoint: request, completion: completion)
+        URLSession.requestWithCodable(endpoint: request, completion: completion)
     }
     
     
@@ -62,6 +62,7 @@ class SignUpAPIService {
         URLSession.request(endpoint: request, completion: completion)
     }
     
+    // FCM토큰 업데이트
     static func updateFCMToken(completion: @escaping (User?, APIErrorCode?) -> Void) {
         
         var request = URLRequest(url: Endpoint.updateFCMToken.url)
@@ -71,11 +72,12 @@ class SignUpAPIService {
         request.setValue(idToken, forHTTPHeaderField: HTTPString.idtoken.rawValue)
         request.setValue(HTTPHeaderValue.contentType.rawValue, forHTTPHeaderField: HTTPString.ContentType.rawValue)
         
-        URLSession.request(endpoint: request, completion: completion)
+        URLSession.requestWithCodable(endpoint: request, completion: completion)
         
     }
     
-    static func updateMyPage(completion: @escaping (User?, APIErrorCode?) -> Void) {
+    // 내정보 업데이트
+    static func updateMyPage(searchable: Int, ageMin: Int, ageMax: Int, gender: Int, hobby: String, completion: @escaping (User?, APIErrorCode?) -> Void) {
         let userDefaults = UserDefaults.standard
         
         var request = URLRequest(url: Endpoint.updateMyPage.url)
@@ -85,7 +87,10 @@ class SignUpAPIService {
         request.setValue(idToken, forHTTPHeaderField: HTTPString.idtoken.rawValue)
         request.setValue(HTTPHeaderValue.contentType.rawValue, forHTTPHeaderField: HTTPString.ContentType.rawValue)
         
-        request.httpBody = "\(UserBodyPara.searchable.rawValue)=\(userDefaults.searchable)&\(UserBodyPara.ageMin.rawValue)=\(userDefaults.ageMin)&\(UserBodyPara.ageMax)=\(userDefaults.ageMax)&\(UserBodyPara.gender.rawValue)=\(userDefaults.gender)&\(UserBodyPara.hobby.rawValue)=\(userDefaults.hobby)".data(using: .utf8, allowLossyConversion: false)
+        request.httpBody = "\(UserBodyPara.searchable.rawValue)=\(searchable)&\(UserBodyPara.ageMin.rawValue)=\(ageMin)&\(UserBodyPara.ageMax)=\(ageMax)&\(UserBodyPara.gender.rawValue)=\(gender)&\(UserBodyPara.hobby.rawValue)=\(hobby)".data(using: .utf8, allowLossyConversion: false)
+        
+        print( "내가 보낸 정보는: \(UserBodyPara.searchable.rawValue)=\(searchable)&\(UserBodyPara.ageMin.rawValue)=\(ageMin)&\(UserBodyPara.ageMax)=\(ageMax)&\(UserBodyPara.gender.rawValue)=\(gender)&\(UserBodyPara.hobby.rawValue)=\(hobby)")
+        
         
         
         URLSession.request(endpoint: request, completion: completion)

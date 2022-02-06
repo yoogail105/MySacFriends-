@@ -18,7 +18,7 @@
 		2323AEBC27A7193500895CC7 /* EX-ProfileCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2323AEBB27A7193500895CC7 /* EX-ProfileCardViewController.swift */; };
 		2323AEBE27A71F7300895CC7 /* ProfileCardCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2323AEBD27A71F7300895CC7 /* ProfileCardCollectionViewCell.swift */; };
 		23335717279D580D0062A9E8 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23335716279D580D0062A9E8 /* Endpoint.swift */; };
-		23335719279DB2A90062A9E8 /* SignUpAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23335718279DB2A90062A9E8 /* SignUpAPIService.swift */; };
+		23335719279DB2A90062A9E8 /* UserAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23335718279DB2A90062A9E8 /* UserAPIService.swift */; };
 		2333571B279DC6AE0062A9E8 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2333571A279DC6AE0062A9E8 /* User.swift */; };
 		2333571D279DED330062A9E8 /* BirthTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2333571C279DED330062A9E8 /* BirthTextFieldView.swift */; };
 		2333571F279DF89E0062A9E8 /* genderBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2333571E279DF89E0062A9E8 /* genderBoxView.swift */; };
@@ -52,7 +52,6 @@
 		234E5FA627987EE900F5D2BB /* UIButton+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 234E5FA527987EE900F5D2BB /* UIButton+Extension.swift */; };
 		234E5FAA27988F8D00F5D2BB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 234E5FA927988F8D00F5D2BB /* GoogleService-Info.plist */; };
 		237B9F0E27A262BD008A6E06 /* MyPageViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 237B9F0D27A262BD008A6E06 /* MyPageViewCell.swift */; };
-		237B9F1027A26834008A6E06 /* MyPageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 237B9F0F27A26834008A6E06 /* MyPageViewModel.swift */; };
 		237B9F1227A2AA13008A6E06 /* PushCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 237B9F1127A2AA13008A6E06 /* PushCoordinator.swift */; };
 		237B9F1427A35233008A6E06 /* FriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 237B9F1327A35232008A6E06 /* FriendsViewController.swift */; };
 		237B9F1627A35237008A6E06 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 237B9F1527A35237008A6E06 /* HomeViewController.swift */; };
@@ -108,7 +107,7 @@
 		2323AEBB27A7193500895CC7 /* EX-ProfileCardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EX-ProfileCardViewController.swift"; sourceTree = "<group>"; };
 		2323AEBD27A71F7300895CC7 /* ProfileCardCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCardCollectionViewCell.swift; sourceTree = "<group>"; };
 		23335716279D580D0062A9E8 /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
-		23335718279DB2A90062A9E8 /* SignUpAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpAPIService.swift; sourceTree = "<group>"; };
+		23335718279DB2A90062A9E8 /* UserAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAPIService.swift; sourceTree = "<group>"; };
 		2333571A279DC6AE0062A9E8 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		2333571C279DED330062A9E8 /* BirthTextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BirthTextFieldView.swift; sourceTree = "<group>"; };
 		2333571E279DF89E0062A9E8 /* genderBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = genderBoxView.swift; sourceTree = "<group>"; };
@@ -141,7 +140,6 @@
 		234E5FA527987EE900F5D2BB /* UIButton+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extension.swift"; sourceTree = "<group>"; };
 		234E5FA927988F8D00F5D2BB /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		237B9F0D27A262BD008A6E06 /* MyPageViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageViewCell.swift; sourceTree = "<group>"; };
-		237B9F0F27A26834008A6E06 /* MyPageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageViewModel.swift; sourceTree = "<group>"; };
 		237B9F1127A2AA13008A6E06 /* PushCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushCoordinator.swift; sourceTree = "<group>"; };
 		237B9F1327A35232008A6E06 /* FriendsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsViewController.swift; sourceTree = "<group>"; };
 		237B9F1527A35237008A6E06 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -218,7 +216,6 @@
 		2333573027A09EF70062A9E8 /* MyPage */ = {
 			isa = PBXGroup;
 			children = (
-				237B9F0F27A26834008A6E06 /* MyPageViewModel.swift */,
 				23AF965427A19BEC0078A204 /* MyPageViewController.swift */,
 				2333572E27A09EF20062A9E8 /* MyPageView.swift */,
 				237B9F0D27A262BD008A6E06 /* MyPageViewCell.swift */,
@@ -346,7 +343,7 @@
 			children = (
 				23335716279D580D0062A9E8 /* Endpoint.swift */,
 				2389E1D42796A2AD00BE68E3 /* AuthAPIService.swift */,
-				23335718279DB2A90062A9E8 /* SignUpAPIService.swift */,
+				23335718279DB2A90062A9E8 /* UserAPIService.swift */,
 				2333571A279DC6AE0062A9E8 /* User.swift */,
 				2333572C27A08D630062A9E8 /* APIErrorMessage.swift */,
 				237B9F1F27A53F8A008A6E06 /* QueueAPIService.swift */,
@@ -619,7 +616,7 @@
 				23ADC14027AB03BB00101C43 /* TitleTableViewCell.swift in Sources */,
 				2323AEAE27A557CA00895CC7 /* ProfileCardText.swift in Sources */,
 				234CEC32279C95FF00983E20 /* SetEmailView.swift in Sources */,
-				23335719279DB2A90062A9E8 /* SignUpAPIService.swift in Sources */,
+				23335719279DB2A90062A9E8 /* UserAPIService.swift in Sources */,
 				239960412796572C001C8EA4 /* String+Extension.swift in Sources */,
 				237B9F1227A2AA13008A6E06 /* PushCoordinator.swift in Sources */,
 				234E5FA627987EE900F5D2BB /* UIButton+Extension.swift in Sources */,
@@ -675,7 +672,6 @@
 				234CEC1B279C51C700983E20 /* Text.swift in Sources */,
 				234CEC0B279AB3D500983E20 /* UIView+Extension.swift in Sources */,
 				2323AEBA27A7048C00895CC7 /* NameTableViewCell.swift in Sources */,
-				237B9F1027A26834008A6E06 /* MyPageViewModel.swift in Sources */,
 				23ADC14227AB1F3F00101C43 /* ReviewTableViewCell.swift in Sources */,
 				237B9F1627A35237008A6E06 /* HomeViewController.swift in Sources */,
 				2389E1C8279697E200BE68E3 /* UITextField+Extension.swift in Sources */,

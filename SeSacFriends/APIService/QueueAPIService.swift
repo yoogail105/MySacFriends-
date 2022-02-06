@@ -21,7 +21,7 @@ class QueueAPIService {
         request.httpBody = "\(QueueBodyPara.friendsGender.rawValue)=2&\(QueueBodyPara.region.rawValue)=\(region)&\(QueueBodyPara.long.rawValue)=\(lat)&\(QueueBodyPara.lat.rawValue)=\(long)&\(QueueBodyPara.hobbyArray.rawValue)=\(hf)".data(using: .utf8, allowLossyConversion: false)
         
         
-        URLSession.request(endpoint: request, completion: completion)
+        URLSession.requestWithCodable(endpoint: request, completion: completion)
     }
     
     
@@ -38,7 +38,7 @@ class QueueAPIService {
         request.httpBody = "\(QueueBodyPara.region.rawValue)=\(userDefaults.searchable)&\(QueueBodyPara.lat.rawValue)=\(userDefaults.ageMin)&\(QueueBodyPara.long.rawValue)=\(userDefaults.ageMax)".data(using: .utf8, allowLossyConversion: false)
         
         
-        URLSession.request(endpoint: request, completion: completion)
+        URLSession.requestWithCodable(endpoint: request, completion: completion)
     }
     
     static func stopSearchFriends(completion: @escaping (User?, APIErrorCode?) -> Void) {
@@ -49,7 +49,7 @@ class QueueAPIService {
         request.httpMethod = Method.DELETE.rawValue
         request.setValue(idToken, forHTTPHeaderField: HTTPString.idtoken.rawValue)
 
-        URLSession.request(endpoint: request, completion: completion)
+        URLSession.requestWithCodable(endpoint: request, completion: completion)
     }
     
 }

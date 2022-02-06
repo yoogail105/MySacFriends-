@@ -15,7 +15,7 @@ struct  User: Codable {
     let birth: String?
     let gender: Int?
     let email: String?
-    let hobby: String?
+    var hobby: String?
     let comment: Array<String?>
     let reputation: Array<Int?>
     let sesac: Int?
@@ -29,8 +29,8 @@ struct  User: Codable {
     let reportedUser: Array<String?>
     let dodgepenalty: Int?
     let dodgeNum: Int?
-    let ageMin: Int?
-    let ageMax: Int?
-    let searchable: Int?
+    var ageMin: Int?
+    var ageMax: Int?
+    var searchable: Int?
     let createdAt: String?
 }

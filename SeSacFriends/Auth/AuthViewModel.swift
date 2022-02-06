@@ -49,7 +49,6 @@ class AuthViewModel {
         }
     }
     
-    
     func checkVerificationCode(verificationCode: String, completion: @escaping (APIErrorMessage?) -> Void) {
         AuthAPIService.checkVerificationCode(verificationCode: verificationCode) { error in
             if error != nil {
@@ -72,7 +71,7 @@ class AuthViewModel {
     
     func getUser(_ completion: ((Result<Bool, APIErrorCode>) -> Void)? = nil) {
         //later in the code
-        SignUpAPIService.login { user, result  in
+        UserAPIService.login { user, result  in
 
             
                 switch result {
@@ -95,20 +94,6 @@ class AuthViewModel {
                     self.onErrorHandling?(.internalServerError)
                     
                 }
-            
-     
-//         print("error: ",error)
-//            if error == .unAuthorized {
-//                print("토큰 새로 발급 하기")
-//                self.fetchIDToken {
-//                    print("토큰 새로 발급 완료")
-//                }
-//                return
-//            }
-//
-            
-        
-            
         }
        
         

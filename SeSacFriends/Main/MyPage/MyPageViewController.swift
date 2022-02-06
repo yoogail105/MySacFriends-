@@ -12,7 +12,7 @@ class MyPageViewController: BaseViewController {
     
     
     let mainView = MyPageView()
-    let viewModel = MyPageViewModel()
+    let viewModel = ProfileViewModel()
     var menuIcons = [""]
 
     
@@ -21,7 +21,7 @@ class MyPageViewController: BaseViewController {
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        //navigationController?.setNavigationBarHidden(true, animated: animated)
+        
     }
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,6 +52,11 @@ class MyPageViewController: BaseViewController {
     override func setupNavigationBar() {
 //        navigationController?.navigationBar.isHidden = true
     }
+    
+    func getProfileData() {
+        self.viewModel.getUser()
+    }
+    
 }
 
 extension MyPageViewController: UITableViewDelegate, UITableViewDataSource {

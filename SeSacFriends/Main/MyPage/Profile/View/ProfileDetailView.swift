@@ -11,6 +11,8 @@ import Then
 
 class ProfileDetailView: BaseUIView {
     
+    let viewModel = ProfileViewModel()
+    
     let stackView = UIStackView().then {
         $0.axis = .vertical
         $0.spacing = 16
@@ -36,24 +38,15 @@ class ProfileDetailView: BaseUIView {
         $0.text = ProfileDetailText.gender.rawValue
         $0.font = UIFont().Body4_R12
     }
+    var manButtonMode = CustomButton.inactive
+    var womanButtonMode = CustomButton.inactive
     
     let manButton = BaseButton().then {
-        $0.tag = 1
-        if UserDefaults.standard.gender == 1 {
-            $0.buttonMode(.fill, title: ProfileDetailText.man.rawValue)
-        } else {
-            $0.buttonMode(.inactive, title: ProfileDetailText.man.rawValue)
-        }
+        $0.buttonMode(.inactive, title: ProfileDetailText.man.rawValue)
     }
     
     let womanButton = BaseButton().then {
-        $0.tag = 0
-        if UserDefaults.standard.gender == 0 {
-            $0.buttonMode(.fill, title: ProfileDetailText.woman.rawValue)
-        } else {
-            $0.buttonMode(.inactive, title: ProfileDetailText.woman.rawValue)
-        }
-        
+        $0.buttonMode(.inactive, title: ProfileDetailText.woman.rawValue)
     }
     
     let hobbyLabel = UILabel().then {
@@ -75,7 +68,7 @@ class ProfileDetailView: BaseUIView {
         $0.font = UIFont().Body4_R12
     }
      
-    let searchableSwitch = UISwitch().then {
+    var searchableSwitch = UISwitch().then {
         $0.isOn = true
     }
     

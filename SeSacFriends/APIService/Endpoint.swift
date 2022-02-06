@@ -116,7 +116,7 @@ extension URLSession {
         return task
     }
     
-    static func request<T: Decodable>(_ session: URLSession = .shared, endpoint: URLRequest, completion: @escaping (T?, APIErrorCode?) -> Void) {
+    static func requestWithCodable<T: Decodable>(_ session: URLSession = .shared, endpoint: URLRequest, completion: @escaping (T?, APIErrorCode?) -> Void) {
         
         session.dataTask(endpoint) { data, response, error in
             let str = String(decoding: data!, as: UTF8.self)
@@ -163,16 +163,72 @@ extension URLSession {
                 do {
                     let decoder = JSONDecoder()
                     let userData = try decoder.decode(T.self, from: data)
-                    completion(userData, nil)
+                    completion(userData, .ok)
                     print("codable Ok")
                     return
                 } catch {
                     print("do-catch: codable 오류")
                     completion(nil, .invalidData)
                     return
-                    
+                
                 }
+                
             }
         }
     }
+    
+    static func request<T: Decodable>(_ session: URLSession = .shared, endpoint: URLRequest, completion: @escaping (T?, APIErrorCode?) -> Void) {
+        
+        session.dataTask(endpoint) { data, response, error in
+            let str = String(decoding: data!, as: UTF8.self)
+            print("data: ",str)
+            print("결과:::::::\n response: \(response)\n error: \(error)")
+            
+            DispatchQueue.main.async {
+                guard error == nil else {
+                    completion(nil, .failed)
+                    return
+                }
+                
+                guard let data = data else {
+                    completion(nil, .noData)
+                    return
+                }
+                
+                guard let response = response as? HTTPURLResponse else {
+                    print("error3: 여기오류")
+                    completion(nil, .invalidData)
+                    return
+                }
+                
+                guard response.statusCode == APIErrorCode.ok.rawValue else {
+                    let statusCode = response.statusCode
+                    switch statusCode {
+                    case APIErrorCode.invalidNickname.rawValue: //202
+                        completion(nil, .invalidNickname)
+                    case APIErrorCode.unAuthorized.rawValue: //401
+                        AuthAPIService.fetchIDToken {
+                            print("토큰 새로 발급 완료")
+                            completion(nil, .unAuthorized)
+                        }
+                        
+                    case APIErrorCode.notAcceptable.rawValue: //406
+                        completion(nil, .notAcceptable)
+                    default:
+                        print("error: \(str)")
+                        completion(nil, .internalServerError)
+                    }
+                    return
+                }
+                
+                completion(nil, .ok)
+                
+                
+            }
+        
+        }
+    }
 }
+
+
+
