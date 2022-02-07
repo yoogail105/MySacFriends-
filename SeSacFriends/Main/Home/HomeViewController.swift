@@ -12,7 +12,7 @@ class HomeViewController: UIViewController {
     
     var coordinator: MainCoordinator?
     let viewModel = AuthViewModel()
-    let mainView = AlertView()
+    let mainView = HomeView()
     
     override func loadView() {
         self.view = mainView
@@ -22,6 +22,8 @@ class HomeViewController: UIViewController {
         super.viewDidLoad()
         print("유저체크하기")
         checkUser()
+        
+        mainView.mapView.center = mainView.center
         
         let navigationController = UINavigationController()
         coordinator = MainCoordinator(navigationController: navigationController, parentCoordinator: coordinator)
