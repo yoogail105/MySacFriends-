@@ -12,10 +12,12 @@ import RxSwift
 
 class ProfileViewController: BaseViewController {
     
+    var withdrawalCoordinator: WithdrawalCoordinator?
 
     let mainView = ProfileView()
-    let viewModel = ProfileViewModel()
+    lazy var withdrawalAlert = AlertView()
     
+    let viewModel = ProfileViewModel()
     let disposeBag = DisposeBag()
     
     var userTitles: [String] = []
@@ -39,7 +41,7 @@ class ProfileViewController: BaseViewController {
         print(#function)
         self.view = self.mainView
         
-
+        
         let time = DispatchTime.now()
         DispatchQueue.main.asyncAfter(deadline: time + 0.1) {
             self.mainView.detailView.ageBar.trackHighlightTintColor = UIColor.brandColor(.green)
@@ -52,7 +54,8 @@ class ProfileViewController: BaseViewController {
         print(#function)
         
         getProfileData()
-    
+    // MARK:coordinator
+        withdrawalCoordinator = WithdrawalCoordinator(navigationController: self.navigationController!, parentCoordinator: coordinator)
         self.title = TabBarTitle.detail.rawValue
         
         for userTitle in UserTitleText.allCases {
@@ -118,7 +121,6 @@ class ProfileViewController: BaseViewController {
         
         viewModel.onErrorHandling = { result in
             if result == .ok {
-                print("뷰그려야지")
                 self.setUpDetailView()
             }
             
@@ -236,8 +238,6 @@ class ProfileViewController: BaseViewController {
             self.showToast(message: ProfileViewText.saveButtonClicked.rawValue)
         }
         //api 보내기
-        
-        
        
     }
     
@@ -265,15 +265,11 @@ class ProfileViewController: BaseViewController {
     func withdrawal() {
         print(#function)
         
-        
-        viewModel.onErrorHandling = { error in
-            if error == .ok || error == .notAcceptable {
-                print("회원탈퇴완료되었습니다. 뷰컨")
-                self.coordinator?.start()
-            }
-        }
-        
-        self.viewModel.withdrawalUser()
+
+        let vc = withdrawalViewController()
+        vc.modalPresentationStyle = .overCurrentContext
+        vc.modalTransitionStyle = .crossDissolve
+        present(vc, animated: true, completion: nil)
        
     }
 }

@@ -95,10 +95,6 @@ class AuthViewModel {
                     
                 }
         }
-       
-        
     }
-    
-    
 }
 

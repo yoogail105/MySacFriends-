@@ -32,28 +32,6 @@ class MainViewController: BaseViewController {
         
     }
     
-    override func addAction() {
-        mainView.button.addTarget(self, action: #selector(cancelButtonClicked), for: .touchUpInside)
-    }
-    
-    @objc func cancelButtonClicked() {
-        print("버튼 클릭됨")
-        SignUpViewModel().deleteUser { error in
-            if error != nil {
-                print("mainview 탈퇴오류: \(error)")
-                if error == .notAcceptable {
-                    self.showToast(message: APIErrorMessage.deletedUser.rawValue)
-                    return
-                }
-            } else {
-                self.showToast(message: "회원 삭제가 완료되었습니다.")
-                self.moveToNext()
-                
-            }
-            
-        }
-    }
-    
     
     private func moveToNext() {
         // 유저정보 post
