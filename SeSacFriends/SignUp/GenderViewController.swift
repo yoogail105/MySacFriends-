@@ -118,17 +118,21 @@ class GenderViewController: BaseViewController {
     }
     
     private func signUpSerer() {
-        viewModel.postSignUp { error in
-            if error != nil {
-                print(error)
-                if error == .unAuthorized {
-                    self.showToast(message: "오류가 생겼습니다.\n다시 버튼을 눌러주세요.")
-                }
-                return
-            }
+        viewModel.onErrorHandling = { result in
             
-            self.moveToNext()
+            switch result {
+            case .ok:
+                self.coordinator?.pushToMainTabbar()
+            case .unAuthorized:
+                self.showToast(message: "오류가 생겼습니다.\n다시 버튼을 눌러주세요.")
+                
+            default:
+                self.showToast(message: "오류가 생겼습니다.\n다시 버튼을 눌러주세요.")
+            }
         }
+            
+        viewModel.postSignUp()
+        
     }
     
     private func moveToNext() {

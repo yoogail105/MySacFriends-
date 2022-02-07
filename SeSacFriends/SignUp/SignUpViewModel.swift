@@ -10,6 +10,7 @@ import RxSwift
 import RxRelay
 
 class SignUpViewModel {
+    var onErrorHandling: ((APIErrorCode) -> Void)?
     
     var buttonMode = BehaviorRelay<String>(value: "false")
     var nicknameObserver = BehaviorRelay<String>(value: "")
@@ -25,42 +26,28 @@ class SignUpViewModel {
         return nicknameObserver.map { $0 != "" ? true : false }
      }
     
-    func postSignUp(completion: @escaping (APIErrorCode?) -> Void) {
-        UserAPIService.signUp { userData, error in
-            if error != nil {
-                if error == .unAuthorized {
-                    AuthAPIService.fetchIDToken {
-                        print("토큰 가져오기 완료: \(UserDefaults.standard.idToken!)")
-                    }
+    
+    
+    func postSignUp( _ completion: ((Result<Bool, APIErrorCode>) -> Void)? = nil) {
+        UserAPIService.signUp { user, result in
+            
+            switch result {
+                
+            case .ok:
+                UserDefaults.standard.startMode = StartMode.main.rawValue
+                self.onErrorHandling?(.ok)
+                
+            case .unAuthorized:
+                AuthAPIService.fetchIDToken {
+                    print("토큰 가져오기 완료: \(UserDefaults.standard.idToken!)")
+                    self.onErrorHandling?(.unAuthorized)
                 }
-                    
-                completion(error)
+                
+            default:
+              print("알수없는 에러가 발생했다.")
             }
-            
-            guard userData != nil else {
-                print("userData는; ", userData)
-                return
-            }
-            
-            print("회원가입성공")
-            
-            completion(error)
         }
     }
-    
-    func deleteUser(completion: @escaping(APIErrorCode?) -> Void) {
-        UserAPIService.withdrawalUser { userData, error in
-            print(error)
-            guard let error = error else {
-                return
-            }
-            
-            completion(error)
-            
-        }
-    }
-    
-    
-    
+
 }
 
