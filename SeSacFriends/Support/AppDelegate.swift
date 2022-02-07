@@ -14,10 +14,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     // 네트워크 연결 구축이나 데이터베이스 초기 접근 설정과 같은 앱 초기에 해야 할 초기화 작업을 작성하는데 좋다.
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+    
+        let appearance = UITabBarAppearance()
+        let tabBar = UITabBar()
         
-        UITabBar.appearance().barTintColor = UIColor.white
+        if #available(iOS 15.0, *) {
+            appearance.configureWithOpaqueBackground()
+            appearance.backgroundColor = .white
+            tabBar.standardAppearance = appearance;
+            UITabBar.appearance().scrollEdgeAppearance = appearance
+            
+        } else if #available(iOS 14.0, *) {
+            appearance.backgroundColor = .white
+            tabBar.standardAppearance = appearance
+            tabBar.tintColor = UIColor.brandColor(.green)
+        }
         UITabBar.appearance().tintColor = UIColor.brandColor(.green)
         UITabBar.appearance().unselectedItemTintColor = UIColor.grayColor(.gray6)
+        
         
         IQKeyboardManager.shared.enable = true
         FirebaseApp.configure()
