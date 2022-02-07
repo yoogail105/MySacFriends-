@@ -27,24 +27,45 @@ class MainCoordinator: Coordinator {
     }
 
     func start() {
+        print("mainCoordinator: start")
         let viewController = OnboardingViewController()
         navigationController.pushViewController(viewController, animated: true)
     }
     
     func pushToAuth() {
+        print("mainCoordinator: pushToAuth")
         let viewController = AuthViewController()
         navigationController.pushViewController(viewController, animated: true)
     }
     
     func pushToAuthSignUp() {
+        print("mainCoordinator: pushToAuthSignUp")
         let viewController = SignUpNicknameViewController()
         navigationController.pushViewController(viewController, animated: true)
     }
     
     func pushToMainTabbar() {
+        print("mainCoordinator: pushToMainTabbar")
         let viewController = MainTabBarController()
         navigationController.pushViewController(viewController, animated: true)
     }
+}
+
+class WithdrawalCoordinator: Coordinator {
+    var parentCoordinator: Coordinator?
+    var childCoordinators = [Coordinator]()
+    var navigationController: UINavigationController
+
+    init(navigationController: UINavigationController, parentCoordinator: Coordinator?) {
+        self.navigationController = navigationController
+        self.parentCoordinator = parentCoordinator
+    }
+    
+    func start() {
+        let viewController = withdrawalViewController()
+        navigationController.pushViewController(viewController, animated: true)
+    }
+
 }
 
 

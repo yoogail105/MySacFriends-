@@ -44,3 +44,4 @@ class HomeViewController: UIViewController {
         self.viewModel.getUser()
     }
 }
+ 

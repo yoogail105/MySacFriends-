@@ -77,13 +77,13 @@ class ProfileViewModel {
             switch result {
             case .ok:
                 print("탈퇴 성공: 온보딩화면으로")
+                self.onErrorHandling?(.ok)
             case .notAcceptable:
                 print("로그인정보가 없습니다. ->  온보딩화면으로")
                 self.onErrorHandling?(.notAcceptable)
                 
             default:
-                self.onErrorHandling?(
-                    .internalServerError)
+                print("알 수 없는 error: \(result)")
             }
         }
     }
