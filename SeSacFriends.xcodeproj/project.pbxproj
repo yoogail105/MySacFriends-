@@ -17,6 +17,10 @@
 		2323AEBA27A7048C00895CC7 /* NameTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2323AEB927A7048C00895CC7 /* NameTableViewCell.swift */; };
 		2323AEBC27A7193500895CC7 /* EX-ProfileCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2323AEBB27A7193500895CC7 /* EX-ProfileCardViewController.swift */; };
 		2323AEBE27A71F7300895CC7 /* ProfileCardCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2323AEBD27A71F7300895CC7 /* ProfileCardCollectionViewCell.swift */; };
+		232FCFF627B0B2CF00A2558C /* withdrawalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 232FCFF527B0B2CF00A2558C /* withdrawalViewController.swift */; };
+		232FCFF827B0C10600A2558C /* AlertText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 232FCFF727B0C10600A2558C /* AlertText.swift */; };
+		232FCFFA27B1022A00A2558C /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 232FCFF927B1022A00A2558C /* HomeView.swift */; };
+		232FCFFD27B1034900A2558C /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 232FCFFC27B1034900A2558C /* HomeViewModel.swift */; };
 		23335717279D580D0062A9E8 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23335716279D580D0062A9E8 /* Endpoint.swift */; };
 		23335719279DB2A90062A9E8 /* UserAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23335718279DB2A90062A9E8 /* UserAPIService.swift */; };
 		2333571B279DC6AE0062A9E8 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2333571A279DC6AE0062A9E8 /* User.swift */; };
@@ -106,6 +110,10 @@
 		2323AEB927A7048C00895CC7 /* NameTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameTableViewCell.swift; sourceTree = "<group>"; };
 		2323AEBB27A7193500895CC7 /* EX-ProfileCardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EX-ProfileCardViewController.swift"; sourceTree = "<group>"; };
 		2323AEBD27A71F7300895CC7 /* ProfileCardCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCardCollectionViewCell.swift; sourceTree = "<group>"; };
+		232FCFF527B0B2CF00A2558C /* withdrawalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = withdrawalViewController.swift; sourceTree = "<group>"; };
+		232FCFF727B0C10600A2558C /* AlertText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertText.swift; sourceTree = "<group>"; };
+		232FCFF927B1022A00A2558C /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		232FCFFC27B1034900A2558C /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		23335716279D580D0062A9E8 /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
 		23335718279DB2A90062A9E8 /* UserAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAPIService.swift; sourceTree = "<group>"; };
 		2333571A279DC6AE0062A9E8 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -201,6 +209,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		232FCFFB27B1022F00A2558C /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				237B9F1527A35237008A6E06 /* HomeViewController.swift */,
+				232FCFFC27B1034900A2558C /* HomeViewModel.swift */,
+				232FCFF927B1022A00A2558C /* HomeView.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
 		23335720279DF8AC0062A9E8 /* CustomView */ = {
 			isa = PBXGroup;
 			children = (
@@ -220,6 +238,7 @@
 				2333572E27A09EF20062A9E8 /* MyPageView.swift */,
 				237B9F0D27A262BD008A6E06 /* MyPageViewCell.swift */,
 				23ADC14527AB746100101C43 /* Profile */,
+				232FCFF527B0B2CF00A2558C /* withdrawalViewController.swift */,
 			);
 			path = MyPage;
 			sourceTree = "<group>";
@@ -246,6 +265,7 @@
 				23AF965827A1A0470078A204 /* TabBarText.swift */,
 				2323AEAD27A557CA00895CC7 /* ProfileCardText.swift */,
 				23ADC13B27AAFA9700101C43 /* UserTitleText.swift */,
+				232FCFF727B0C10600A2558C /* AlertText.swift */,
 			);
 			path = Text;
 			sourceTree = "<group>";
@@ -295,7 +315,7 @@
 				2333573127A09FCE0062A9E8 /* MainView.swift */,
 				23AF965227A19B210078A204 /* MainTabBarController.swift */,
 				237B9F1327A35232008A6E06 /* FriendsViewController.swift */,
-				237B9F1527A35237008A6E06 /* HomeViewController.swift */,
+				232FCFFB27B1022F00A2558C /* Home */,
 				237B9F1727A35239008A6E06 /* ShopViewController.swift */,
 			);
 			path = Main;
@@ -614,9 +634,11 @@
 				2323AEBC27A7193500895CC7 /* EX-ProfileCardViewController.swift in Sources */,
 				2389E1B027967B1200BE68E3 /* MainViewController.swift in Sources */,
 				23ADC14027AB03BB00101C43 /* TitleTableViewCell.swift in Sources */,
+				232FCFFD27B1034900A2558C /* HomeViewModel.swift in Sources */,
 				2323AEAE27A557CA00895CC7 /* ProfileCardText.swift in Sources */,
 				234CEC32279C95FF00983E20 /* SetEmailView.swift in Sources */,
 				23335719279DB2A90062A9E8 /* UserAPIService.swift in Sources */,
+				232FCFFA27B1022A00A2558C /* HomeView.swift in Sources */,
 				239960412796572C001C8EA4 /* String+Extension.swift in Sources */,
 				237B9F1227A2AA13008A6E06 /* PushCoordinator.swift in Sources */,
 				234E5FA627987EE900F5D2BB /* UIButton+Extension.swift in Sources */,
@@ -645,6 +667,7 @@
 				234DC38E27AD9B5A00132A36 /* ProfileViewModel.swift in Sources */,
 				237B9F1827A35239008A6E06 /* ShopViewController.swift in Sources */,
 				2333573227A09FCE0062A9E8 /* MainView.swift in Sources */,
+				232FCFF827B0C10600A2558C /* AlertText.swift in Sources */,
 				23335727279FB5650062A9E8 /* Date+Extension.swift in Sources */,
 				234CEC2C279C863F00983E20 /* BirthViewController.swift in Sources */,
 				23ADC13A27AAA17F00101C43 /* EX-ProfileCardCollectionViewHeader.swift in Sources */,
@@ -653,6 +676,7 @@
 				234CEC012799F76B00983E20 /* OnboardingCardView.swift in Sources */,
 				2389E1D32796A29F00BE68E3 /* AuthViewModel.swift in Sources */,
 				2308B0262799DEBF004145E2 /* ToastMessage.swift in Sources */,
+				232FCFF627B0B2CF00A2558C /* withdrawalViewController.swift in Sources */,
 				2399602D279656EB001C8EA4 /* AppDelegate.swift in Sources */,
 				234CEC09279AAD3A00983E20 /* OnboardingCardViewController.swift in Sources */,
 				234CEC22279C827F00983E20 /* SignUpNicknameViewController.swift in Sources */,

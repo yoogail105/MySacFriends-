@@ -10,7 +10,7 @@ import UIKit
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     var window: UIWindow?
-    var coordinator: MainCoordinator?
+    var appCoordinator: MainCoordinator?
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         
@@ -19,7 +19,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         appWindow.windowScene = windowScene
         
         let navigationController = UINavigationController()
-        coordinator = MainCoordinator(navigationController: navigationController, parentCoordinator: coordinator)
+        appCoordinator = MainCoordinator(navigationController: navigationController, parentCoordinator: appCoordinator)
         
         let startModeString = UserDefaults.standard.startMode
         let startMode = StartMode(rawValue: startModeString) ?? .onBoarding
@@ -27,14 +27,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         switch startMode {
            
         case .onBoarding:
-            coordinator?.start()
+            appCoordinator?.start()
         case .auth:
-            coordinator?.pushToAuth()
+            appCoordinator?.pushToAuth()
         case .signUp:
-            coordinator?.pushToAuthSignUp()
+            appCoordinator?.pushToAuthSignUp()
         case .main:
             print("go to main")
-            coordinator?.pushToMainTabbar()
+            appCoordinator?.pushToMainTabbar()
         }
 
        // let layout = UICollectionViewFlowLayout()

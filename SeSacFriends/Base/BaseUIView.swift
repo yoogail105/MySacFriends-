@@ -14,6 +14,8 @@ class BaseUIView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         backgroundColor = .white
+        
+        addViews()
         configuration()
         constraints()
         
@@ -24,6 +26,9 @@ class BaseUIView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    func addViews() {
+        
+    }
     
     
     func configuration() {
@@ -33,4 +38,6 @@ class BaseUIView: UIView {
     func constraints() {
         
     }
+    
+
 }
