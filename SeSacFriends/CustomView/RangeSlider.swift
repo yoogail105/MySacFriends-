@@ -8,6 +8,7 @@
 import UIKit
 
 class RangeSlider: UIControl {
+
   override var frame: CGRect {
     didSet {
       updateLayerFrames()
@@ -20,19 +21,19 @@ class RangeSlider: UIControl {
     }
   }
   
-    var maximumValue: CGFloat = 1 {
+    var maximumValue: CGFloat = 47 {
     didSet {
       updateLayerFrames()
     }
   }
   
-    var lowerValue: CGFloat = 0.2 {
+    var lowerValue: CGFloat = 0 {
     didSet {
-      updateLayerFrames()
+        updateLayerFrames()
     }
   }
   
-    var upperValue: CGFloat = 0.8 {
+    var upperValue: CGFloat = 47 {
     didSet {
       updateLayerFrames()
     }
@@ -98,7 +99,7 @@ class RangeSlider: UIControl {
     CATransaction.begin()
     CATransaction.setDisableActions(true)
 
-    trackLayer.frame = bounds.insetBy(dx: 0.0, dy: bounds.height / 3)
+      trackLayer.frame = bounds.insetBy(dx: 0.0, dy: bounds.height / 3)
     trackLayer.setNeedsDisplay()
     lowerThumbImageView.frame = CGRect(origin: thumbOriginForValue(lowerValue),
                                        size: thumbImage!.size)
@@ -108,7 +109,7 @@ class RangeSlider: UIControl {
   }
   // 2
   func positionForValue(_ value: CGFloat) -> CGFloat {
-    return bounds.width * value
+      return (bounds.width * value) / 47.0
   }
   // 3
   private func thumbOriginForValue(_ value: CGFloat) -> CGPoint {
@@ -135,7 +136,9 @@ extension RangeSlider {
   
   override func continueTracking(_ touch: UITouch, with event: UIEvent?) -> Bool {
     let location = touch.location(in: self)
-      print("location: ", location)
+
+        print("location: ", location)
+
     
     // 1
     let deltaLocation = location.x - previousLocation.x

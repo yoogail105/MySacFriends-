@@ -73,7 +73,7 @@ class ProfileDetailView: BaseUIView {
     }
     
     
-    let ageLabel = UILabel().then {
+    var ageLabel = UILabel().then {
         $0.text = ProfileDetailText.partnerAge.rawValue
         $0.font = UIFont().Body4_R12
         

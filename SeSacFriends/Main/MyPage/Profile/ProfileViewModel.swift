@@ -9,20 +9,11 @@ import Foundation
 import RxSwift
 import RxRelay
 
-struct ProfileData {
-    var searchable: Int
-    var ageMin: Int
-    var ageMax: Int
-    var gender: Int
-    var hobby: String
-}
 
 class ProfileViewModel {
     var onErrorHandling: ((APIErrorCode) -> Void)?
     
     var menuTitles = ["","공지사항", "자주 묻는 질문", "1:1 문의", "알림 설정", "이용 약관"]
-
-    
     
     var profileData = (searchable: 1,
                        ageMin:18,
@@ -32,11 +23,14 @@ class ProfileViewModel {
 
     
     var searchableObserver = BehaviorRelay<Int>(value: 0)
-    
     var genderObserver = BehaviorRelay<Int>(value: 0)
     var hobbyObserer = BehaviorRelay<String>(value: "")
+    var lowerValueObserver = BehaviorRelay<Int>(value: 18)
+    var upperValueObserver = BehaviorRelay<Int>(value: 65)
     
     
+    
+    // MARK: APIService
     func getUser(_ completion: ((Result<Bool, APIErrorCode>) -> Void)? = nil) {
         UserAPIService.login { user, result  in
             
@@ -49,6 +43,7 @@ class ProfileViewModel {
                     self.profileData.gender = user?.gender! ?? UserDefaults.standard.gender
                     self.profileData.hobby = user?.hobby! ?? ""
                     print("profiledata는 :", self.profileData)
+                    
                     self.onErrorHandling?(.ok)
                     
                 case .notAcceptable:
@@ -65,7 +60,7 @@ class ProfileViewModel {
     
     func updateMypage( _ completion: ((Result<Bool, APIErrorCode>) -> Void)? = nil) {
 
-        UserAPIService.updateMyPage(searchable: profileData.searchable, ageMin: profileData.ageMin, ageMax: profileData.ageMax, gender: genderObserver.value, hobby: hobbyObserer.value) { user, result in
+        UserAPIService.updateMyPage(searchable: searchableObserver.value, ageMin: profileData.ageMin, ageMax: profileData.ageMax, gender: genderObserver.value, hobby: hobbyObserer.value) { user, result in
             print(result)
             guard let result = result else {
                 return

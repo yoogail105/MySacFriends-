@@ -21,7 +21,19 @@ class ProfileViewController: BaseViewController {
     var userTitles: [String] = []
     var sectionTitles: [String] = []
     
-
+    let rageSlider = RangeSlider()
+    
+    var ageMin = 18 {
+        didSet {
+           changeAgeValue()
+        }
+    }
+    
+    var ageMax = 65 {
+        didSet {
+            changeAgeValue()
+        }
+    }
     
     override func loadView() {
         print(#function)
@@ -29,7 +41,7 @@ class ProfileViewController: BaseViewController {
         
 
         let time = DispatchTime.now()
-        DispatchQueue.main.asyncAfter(deadline: time) {
+        DispatchQueue.main.asyncAfter(deadline: time + 0.1) {
             self.mainView.detailView.ageBar.trackHighlightTintColor = UIColor.brandColor(.green)
             self.mainView.detailView.ageBar.thumbImage = UIImage(named: AssetIcon.filterControl.rawValue)
         }
@@ -92,8 +104,12 @@ class ProfileViewController: BaseViewController {
         } else {
             detailView.searchableSwitch.isOn = false
         }
-        
+        print("lowerValue: \(RangeSlider().lowerValue), upperValeu: \(RangeSlider().upperValue)")
+        print("upperValue: \(viewModel.profileData.ageMax  - 18)")
         detailView.ageLabelSub.text = "\(profileData.ageMin)-\(profileData.ageMax)"
+        
+        detailView.ageBar.lowerValue = CGFloat(viewModel.profileData.ageMin) - 18
+        detailView.ageBar.upperValue = CGFloat(viewModel.profileData.ageMax) - 18
         
     }
     
@@ -183,14 +199,12 @@ class ProfileViewController: BaseViewController {
             .map { $0 ? 1 : 0 }
             .bind(to: viewModel.searchableObserver)
             .disposed(by: disposeBag)
-        
-        mainView.detailView.searchableSwitch.rx.isOn
-            .subscribe(onNext: { value in
-                print("searchable: \(self.viewModel.searchableObserver.value), \(value)는 벨류")
-            })
-            .disposed(by: disposeBag)
+    
+      
+        // MARK: sliderBar 수정 필요!
         
         
+        // withdawbutton 
         mainView.detailView.withdrawalButton.rx.tap
             .subscribe(onNext: { _ in
                 self.withdrawal()
@@ -198,6 +212,9 @@ class ProfileViewController: BaseViewController {
             .disposed(by: disposeBag)
     }
     
+    func changeAgeValue() {
+        mainView.detailView.ageLabelSub.text = "\(ageMin)-\(ageMax)"
+    }
     
     
     override func setupNavigationBar() {
@@ -226,6 +243,7 @@ class ProfileViewController: BaseViewController {
     
     
     override func addAction() {
+
         mainView.detailView.ageBar.addTarget(self, action: #selector(rangeSliderValueChanged(_:)),
                                   for: .valueChanged)
         
@@ -234,7 +252,13 @@ class ProfileViewController: BaseViewController {
     
     @objc func rangeSliderValueChanged(_ rangeSlider: RangeSlider) {
       let values = "(\(rangeSlider.lowerValue) \(rangeSlider.upperValue))"
+        ageMin = Int(rangeSlider.lowerValue) + 18
+        ageMax = Int(rangeSlider.upperValue) + 18
+        viewModel.profileData.ageMin = ageMin
+        viewModel.profileData.ageMax = ageMax
+        
       print("Range slider value changed: \(values)")
+        print("profiledata change: \(viewModel.profileData.ageMin),\(viewModel.profileData.ageMax)")
     }
 
     

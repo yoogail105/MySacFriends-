@@ -13,6 +13,7 @@ class MyPageViewController: BaseViewController {
     
     let mainView = MyPageView()
     let viewModel = ProfileViewModel()
+    
     var menuIcons = [""]
 
     
