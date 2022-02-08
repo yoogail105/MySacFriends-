@@ -5,7 +5,6 @@
 //  Created by 성민주민주 on 2022/01/23.
 //
 import UIKit
-import SnapKit
 
 
 class NicknameView: AuthView{
