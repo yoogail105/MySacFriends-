@@ -62,6 +62,7 @@ PODS:
     - nanopb/encode (= 2.30908.0)
   - nanopb/decode (2.30908.0)
   - nanopb/encode (2.30908.0)
+  - NMapsMap (3.14.1)
   - PromisesObjC (2.0.0)
   - R.swift (6.1.0):
     - R.swift.Library (~> 5.3.0)
@@ -72,6 +73,7 @@ PODS:
 DEPENDENCIES:
   - Firebase/Auth
   - Firebase/Messaging
+  - NMapsMap
   - R.swift
   - SwiftLint
   - Then
@@ -88,6 +90,7 @@ SPEC REPOS:
     - GoogleUtilities
     - GTMSessionFetcher
     - nanopb
+    - NMapsMap
     - PromisesObjC
     - R.swift
     - R.swift.Library
@@ -105,12 +108,13 @@ SPEC CHECKSUMS:
   GoogleUtilities: 684ee790a24f73ebb2d1d966e9711c203f2a4237
   GTMSessionFetcher: 43748f93435c2aa068b1cbe39655aaf600652e91
   nanopb: a0ba3315591a9ae0a16a309ee504766e90db0c96
+  NMapsMap: 79bae4e0d7cc5214dd6dabdb95687a1356616556
   PromisesObjC: 68159ce6952d93e17b2dfe273b8c40907db5ba58
   R.swift: ec98ff71c4ab2f6fd01dd077e5afd15e63a4834c
   R.swift.Library: 0fc583cb55a99e28901299cc451614cad1161962
   SwiftLint: 6bc52a21f0fd44cab9aa2dc8e534fb9f5e3ec507
   Then: acfe0be7e98221c6204e12f8161459606d5d822d
 
-PODFILE CHECKSUM: 4e6ed5d7dc1538f84705c349935f6820a99b7a0b
+PODFILE CHECKSUM: e3875f0c4f8a1e57a7adb85aca35c5de51f66135
 
 COCOAPODS: 1.11.2

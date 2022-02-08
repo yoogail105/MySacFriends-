@@ -12,5 +12,8 @@ pod 'Firebase/Auth'
 pod 'Then'
 pod 'R.swift'
 pod 'SwiftLint'
+pod 'NMapsMap'
+
+
 
 end
