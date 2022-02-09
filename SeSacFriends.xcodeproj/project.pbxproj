@@ -55,6 +55,7 @@
 		234E5FA427978FE700F5D2BB /* AuthVerificationCodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 234E5FA327978FE700F5D2BB /* AuthVerificationCodeView.swift */; };
 		234E5FA627987EE900F5D2BB /* UIButton+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 234E5FA527987EE900F5D2BB /* UIButton+Extension.swift */; };
 		234E5FAA27988F8D00F5D2BB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 234E5FA927988F8D00F5D2BB /* GoogleService-Info.plist */; };
+		236820C627B441B800C79EAC /* MyPageProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 236820C527B441B800C79EAC /* MyPageProfileTableViewCell.swift */; };
 		237B9F0E27A262BD008A6E06 /* MyPageViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 237B9F0D27A262BD008A6E06 /* MyPageViewCell.swift */; };
 		237B9F1227A2AA13008A6E06 /* PushCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 237B9F1127A2AA13008A6E06 /* PushCoordinator.swift */; };
 		237B9F1427A35233008A6E06 /* FriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 237B9F1327A35232008A6E06 /* FriendsViewController.swift */; };
@@ -147,6 +148,7 @@
 		234E5FA327978FE700F5D2BB /* AuthVerificationCodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthVerificationCodeView.swift; sourceTree = "<group>"; };
 		234E5FA527987EE900F5D2BB /* UIButton+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extension.swift"; sourceTree = "<group>"; };
 		234E5FA927988F8D00F5D2BB /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		236820C527B441B800C79EAC /* MyPageProfileTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageProfileTableViewCell.swift; sourceTree = "<group>"; };
 		237B9F0D27A262BD008A6E06 /* MyPageViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageViewCell.swift; sourceTree = "<group>"; };
 		237B9F1127A2AA13008A6E06 /* PushCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushCoordinator.swift; sourceTree = "<group>"; };
 		237B9F1327A35232008A6E06 /* FriendsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsViewController.swift; sourceTree = "<group>"; };
@@ -237,6 +239,7 @@
 				23AF965427A19BEC0078A204 /* MyPageViewController.swift */,
 				2333572E27A09EF20062A9E8 /* MyPageView.swift */,
 				237B9F0D27A262BD008A6E06 /* MyPageViewCell.swift */,
+				236820C527B441B800C79EAC /* MyPageProfileTableViewCell.swift */,
 				23ADC14527AB746100101C43 /* Profile */,
 				232FCFF527B0B2CF00A2558C /* withdrawalViewController.swift */,
 			);
@@ -674,6 +677,7 @@
 				234CEC28279C859300983E20 /* SignUpViewModel.swift in Sources */,
 				237B9F2027A53F8A008A6E06 /* QueueAPIService.swift in Sources */,
 				234CEC012799F76B00983E20 /* OnboardingCardView.swift in Sources */,
+				236820C627B441B800C79EAC /* MyPageProfileTableViewCell.swift in Sources */,
 				2389E1D32796A29F00BE68E3 /* AuthViewModel.swift in Sources */,
 				2308B0262799DEBF004145E2 /* ToastMessage.swift in Sources */,
 				232FCFF627B0B2CF00A2558C /* withdrawalViewController.swift in Sources */,

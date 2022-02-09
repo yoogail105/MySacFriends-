@@ -355,20 +355,20 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
 }
 
 
-struct ProfileDetailViewControllerPreview: PreviewProvider {
-    static var previews: some View {
-        Container().edgesIgnoringSafeArea(.all)
-    }
-    
-    struct Container: UIViewControllerRepresentable {
-        func makeUIViewController(context: Context) -> UIViewController {
-            let controller = ProfileViewController()
-            return UINavigationController(rootViewController: controller)
-        }
-    
-        
-        func updateUIViewController(_ uiViewController: UIViewControllerType, context: Context) {}
-        
-        typealias UIViewControllerType = UIViewController
-    }
-}
+//struct ProfileDetailViewControllerPreview: PreviewProvider {
+//    static var previews: some View {
+//        Container().edgesIgnoringSafeArea(.all)
+//    }
+//
+//    struct Container: UIViewControllerRepresentable {
+//        func makeUIViewController(context: Context) -> UIViewController {
+//            let controller = ProfileViewController()
+//            return UINavigationController(rootViewController: controller)
+//        }
+//
+//
+//        func updateUIViewController(_ uiViewController: UIViewControllerType, context: Context) {}
+//
+//        typealias UIViewControllerType = UIViewController
+//    }
+//}

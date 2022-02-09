@@ -29,14 +29,14 @@ class AlertView: BaseUIView {
         $0.distribution = .equalSpacing
     }
     
-    let title = UILabel().then {
+    var title = UILabel().then {
         $0.text = "약속을 취소하시겠습니까?"
         $0.font = UIFont().Body1_M16
         $0.textColor = .black
         $0.numberOfLines = 0
     }
     
-    let subTitle = UILabel().then {
+    var subTitle = UILabel().then {
         $0.text = "약속을 취소하시면 패널티가 부과됩니다"
         $0.font = UIFont().Title4_R14
         $0.textColor = .black

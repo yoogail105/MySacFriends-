@@ -276,6 +276,8 @@ struct R: Rswift.Validatable {
     static let faq = Rswift.ImageResource(bundle: R.hostingBundle, name: "faq")
     /// Image `filter_control`.
     static let filter_control = Rswift.ImageResource(bundle: R.hostingBundle, name: "filter_control")
+    /// Image `finding`.
+    static let finding = Rswift.ImageResource(bundle: R.hostingBundle, name: "finding")
     /// Image `friendsAct`.
     static let friendsAct = Rswift.ImageResource(bundle: R.hostingBundle, name: "friendsAct")
     /// Image `friendsInact`.
@@ -288,8 +290,8 @@ struct R: Rswift.Validatable {
     static let homeInact = Rswift.ImageResource(bundle: R.hostingBundle, name: "homeInact")
     /// Image `man`.
     static let man = Rswift.ImageResource(bundle: R.hostingBundle, name: "man")
-    /// Image `message`.
-    static let message = Rswift.ImageResource(bundle: R.hostingBundle, name: "message")
+    /// Image `map_marker`.
+    static let map_marker = Rswift.ImageResource(bundle: R.hostingBundle, name: "map_marker")
     /// Image `more_arrow_down`.
     static let more_arrow_down = Rswift.ImageResource(bundle: R.hostingBundle, name: "more_arrow_down")
     /// Image `more_arrow_right`.
@@ -320,8 +322,6 @@ struct R: Rswift.Validatable {
     static let profile_img = Rswift.ImageResource(bundle: R.hostingBundle, name: "profile_img")
     /// Image `qna`.
     static let qna = Rswift.ImageResource(bundle: R.hostingBundle, name: "qna")
-    /// Image `search`.
-    static let search = Rswift.ImageResource(bundle: R.hostingBundle, name: "search")
     /// Image `sendAct`.
     static let sendAct = Rswift.ImageResource(bundle: R.hostingBundle, name: "sendAct")
     /// Image `sendInact`.
@@ -442,6 +442,13 @@ struct R: Rswift.Validatable {
     #endif
 
     #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "finding", bundle: ..., traitCollection: ...)`
+    static func finding(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.finding, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
     /// `UIImage(named: "friendsAct", bundle: ..., traitCollection: ...)`
     static func friendsAct(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.friendsAct, compatibleWith: traitCollection)
@@ -484,9 +491,9 @@ struct R: Rswift.Validatable {
     #endif
 
     #if os(iOS) || os(tvOS)
-    /// `UIImage(named: "message", bundle: ..., traitCollection: ...)`
-    static func message(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.message, compatibleWith: traitCollection)
+    /// `UIImage(named: "map_marker", bundle: ..., traitCollection: ...)`
+    static func map_marker(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.map_marker, compatibleWith: traitCollection)
     }
     #endif
 
@@ -592,13 +599,6 @@ struct R: Rswift.Validatable {
     /// `UIImage(named: "qna", bundle: ..., traitCollection: ...)`
     static func qna(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.qna, compatibleWith: traitCollection)
-    }
-    #endif
-
-    #if os(iOS) || os(tvOS)
-    /// `UIImage(named: "search", bundle: ..., traitCollection: ...)`
-    static func search(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.search, compatibleWith: traitCollection)
     }
     #endif
 

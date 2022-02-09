@@ -97,6 +97,12 @@ class HomeCoordinator: Coordinator1 {
         
         return navigationController
     }
+    
+    func pushToRequestLocation() {
+        
+        let viewController = requestLocationPermissionViewController()
+        navigationController.pushViewController(viewController, animated: true)
+    }
 }
 
 

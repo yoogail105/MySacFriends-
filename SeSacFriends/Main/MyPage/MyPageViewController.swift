@@ -35,15 +35,9 @@ class MyPageViewController: BaseViewController {
         view.backgroundColor = .white
        // title = TabBarTitle.myPage.rawValue
         
-        tableView.delegate = self
         tableView.dataSource = self
-       // tableView.register(MyPageTableViewCell.self, forCellReuseIdentifier: MyPageTableViewCell.identifier)
-        tableView.rowHeight = UITableView.automaticDimension
-        tableView.backgroundColor = .white
-        tableView.separatorStyle = .singleLine
-        tableView.isScrollEnabled = false
-        
-        
+        tableView.delegate = self
+
     }
     
     override func bind() {
@@ -51,7 +45,7 @@ class MyPageViewController: BaseViewController {
     }
     
     override func setupNavigationBar() {
-//        navigationController?.navigationBar.isHidden = true
+
     }
     
     func getProfileData() {
@@ -66,46 +60,41 @@ extension MyPageViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-//        guard let cell = tableView.dequeueReusableCell(withIdentifier: MyPageTableViewCell.identifier, for: indexPath) as? MyPageTableViewCell else {
-//            return UITableViewCell()
-//        }
-
-        let cell = UITableViewCell()
-        var content = cell.defaultContentConfiguration()
         let row = indexPath.row
-        
-        content.text = viewModel.menuTitles[row]
-        cell.selectionStyle = .none
-        
-        
         if row == 0 {
-    
-            content.image = UIImage(named: AssetIcon.profileIcon.rawValue)
-            content.attributedText = NSAttributedString(string: UserDefaults.standard.nickname, attributes: [ .font: UIFont().Title1_M16, .foregroundColor: UIColor.black ])
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: MyPageProfileTableViewCell.identifier, for: indexPath) as? MyPageProfileTableViewCell else {
+            return UITableViewCell() }
             
+            
+            cell.selectionStyle = .none
+            return cell
+        
         } else {
+            let cell = UITableViewCell()
+            var content = cell.defaultContentConfiguration()
+            
+            content.text = viewModel.menuTitles[row]
             print("icon: \(menuIcons[row])")
             content.image = UIImage(named: menuIcons[row])
             content.attributedText = NSAttributedString(string: viewModel.menuTitles[row], attributes: [ .font: UIFont().Title2_R16, .foregroundColor: UIColor.black ])
+            cell.separatorInset = UIEdgeInsets(top: 10, left: 16, bottom: 10, right: 16)
+            cell.contentConfiguration = content
+            cell.selectionStyle = .none
+            return cell
         }
-
-        cell.separatorInset = UIEdgeInsets(top: 10, left: 16, bottom: 10, right: 16)
-        cell.contentConfiguration = content
-      
-        return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if indexPath.row == 0{
+        if indexPath.row == 0 {
+            print("selected")
             let vc = ProfileViewController()
             self.navigationController?.pushViewController(vc, animated: true)
         }
+        print("셀렉티드")
         
     }
-
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 80
-    }
     
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+         return 80
+     }
 }

@@ -70,7 +70,8 @@ enum BackgroundImage: String {
 }
 
 enum homeIcon: String {
-case search
-case finding
-case message
+    case search
+    case finding
+    case message
+    case marker = "map_marker"
 }

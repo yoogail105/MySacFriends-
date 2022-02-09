@@ -10,12 +10,14 @@ import SnapKit
 
 class MyPageView: UIView {
     
-    
-    let tableView: UITableView = {
-       let table = UITableView()
-       // table.register(MyPageTableViewCell.self, forCellReuseIdentifier: MyPageTableViewCell.identifier)
-        return table
-    }()
+    let viewModel = ProfileViewModel()
+    let tableView = UITableView().then {
+        $0.rowHeight = UITableView.automaticDimension
+        $0.backgroundColor = .white
+        $0.separatorStyle = .singleLine
+        $0.isScrollEnabled = false
+        $0.register(MyPageProfileTableViewCell.self, forCellReuseIdentifier: MyPageProfileTableViewCell.identifier)
+    }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -42,7 +44,5 @@ class MyPageView: UIView {
             $0.top.bottom.leading.trailing.equalTo(self.safeAreaLayoutGuide)
         }
     }
-
-    
     
 }

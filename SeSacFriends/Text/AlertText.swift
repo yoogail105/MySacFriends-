@@ -22,4 +22,7 @@ enum AlertText: String {
     
     case logoutTitle = "정말 로그아웃 하시겠습니까?"
 
+    case requestLocationPermissionTitle = "위치 서비스를 사용할 수 없습니다."
+    case requestLocationPermissionSubtitle = "현재 위치를 기반으로 주변에 있는 새싹 친구들을 검색하고, 취미를 공유하기 위해서 위치 정보에 대한 접근 허용이 필요합니다."
+    case moveToSetting = "설정으로 이동"
 }

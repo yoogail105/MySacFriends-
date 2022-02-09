@@ -9,6 +9,7 @@ import UIKit
 import MapKit
 
 class HomeView: BaseUIView {
+
     
     let mapView = MKMapView().then {
         $0.mapType = MKMapType.standard
@@ -44,27 +45,43 @@ class HomeView: BaseUIView {
         $0.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
     }
     
-    let placeButton = BaseButton().then {
+    let gpsButton = BaseButton().then {
         $0.setImage(UIImage(named: AssetIcon.place.rawValue), for: .normal)
         $0.backgroundColor = .white
         $0.addShadow()
         $0.imageEdgeInsets = UIEdgeInsets(top: 14, left: 14, bottom: 14, right: 14)
     }
     
-    let searchButton = UIButton().then {
+    let floatingButton = UIButton().then {
         $0.setImage(UIImage(named: homeIcon.search.rawValue), for: .normal)
         $0.addShadow()
     }
     
+    let marker = UIImageView().then {
+        $0.image = UIImage(named: homeIcon.marker.rawValue)
+    }
+    
+    var requestLocationPermissionAlertView = AlertView().then {
+        $0.title.text = AlertText.requestLocationPermissionTitle.rawValue
+        $0.subTitle.text = AlertText.requestLocationPermissionSubtitle.rawValue
+        $0.okButton.setTitle(AlertText.moveToSetting.rawValue, for: .normal)
+    }
+    
+    
+    override func configuration() {
+        mapView.delegate = self
+    }
     
      override func addViews() {
-        [mapView, stackView, placeButton, searchButton].forEach {
+    
+        [mapView, stackView, gpsButton, floatingButton, marker].forEach {
             addSubview($0)
         }
          
          [allButton, manButton, womanButton].forEach {
              stackView.addArrangedSubview($0)
          }
+        
     }
     
     
@@ -82,17 +99,47 @@ class HomeView: BaseUIView {
             $0.width.equalTo(48)
         }
         
-        placeButton.snp.makeConstraints {
+        gpsButton.snp.makeConstraints {
             $0.top.equalTo(stackView.snp.bottom).offset(16)
             $0.leading.equalTo(stackView.snp.leading)
             $0.width.height.equalTo(48)
         }
         
-        searchButton.snp.makeConstraints {
+        floatingButton.snp.makeConstraints {
             $0.height.width.equalTo(64)
             $0.trailing.bottom.equalTo(self.safeAreaLayoutGuide).offset(-16)
+        }
+        
+        marker.snp.makeConstraints {
+            $0.centerY.centerX.equalToSuperview()
+            $0.height.width.equalTo(48)
         }
     }
     
 
+}
+
+extension HomeView: MKMapViewDelegate {
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        guard !annotation.isKind(of: MKUserLocation.self) else {
+            return nil
+        }
+        
+        var annotationView = self.mapView.dequeueReusableAnnotationView(withIdentifier: "custom")
+        if annotationView == nil {
+            annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: "custom")
+            annotationView?.canShowCallout = true
+            
+            
+            let miniButton = UIButton(frame: CGRect(x: 0, y: 0, width: 20, height: 20))
+            miniButton.setImage(UIImage(named: "person"), for: .normal)
+            miniButton.tintColor = .blue
+            annotationView?.rightCalloutAccessoryView = miniButton
+        } else {
+            annotationView?.annotation = annotation
+        }
+        
+        annotationView?.image = UIImage(named: "circle")
+        return annotationView
+    }
 }
