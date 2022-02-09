@@ -68,3 +68,9 @@ enum BackgroundImage: String {
     case black = "sesac_bg_black"
     case color = "sesac_bg_color"
 }
+
+enum homeIcon: String {
+case search
+case finding
+case message
+}

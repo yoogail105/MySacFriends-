@@ -7,6 +7,12 @@
 
 import UIKit
 
+enum ButtonTitle: String {
+    case all = "전체"
+    case man = "남자"
+    case woman = "여자"
+}
+
 
 enum CustomButton: String {
     case inactive
@@ -14,6 +20,7 @@ enum CustomButton: String {
     case outline
     case cancel
     case disable
+    case white
 }
 
 
@@ -51,6 +58,11 @@ extension UIButton {
             setTitle(title, for: .normal)
             setTitleColor(UIColor.grayColor(.gray3), for: .normal)
             backgroundColor = UIColor.grayColor(.gray6)
+        
+        case .white:
+            setTitle(title, for: .normal)
+            setTitleColor(UIColor.black, for: .normal)
+            backgroundColor = UIColor.white
         }
     }
     
@@ -81,8 +93,13 @@ extension UIButton {
         case .disable:
             setTitleColor(UIColor.grayColor(.gray3), for: .normal)
             backgroundColor = UIColor.grayColor(.gray6)
+            
+        case .white:
+            setTitleColor(UIColor.black, for: .normal)
+            backgroundColor = UIColor.white
         }
     }
+    
     
     
 }
@@ -101,9 +118,12 @@ class BaseButton: UIButton {
 
         func configuration() {
             layer.cornerRadius = 8
-            clipsToBounds = true
+            layer.masksToBounds = false
+            translatesAutoresizingMaskIntoConstraints = false
         }
 }
+
+
 
 class IconButton: BaseButton {
     override init(frame: CGRect) {

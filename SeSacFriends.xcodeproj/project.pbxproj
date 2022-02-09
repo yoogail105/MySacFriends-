@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		2308B0242799D83D004145E2 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2308B0232799D83D004145E2 /* UIViewController+Extension.swift */; };
 		2308B0262799DEBF004145E2 /* ToastMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2308B0252799DEBF004145E2 /* ToastMessage.swift */; };
-		231B446727B2712F008B0EDE /* Pods_SeSacFriends.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 231B446627B2712F008B0EDE /* Pods_SeSacFriends.framework */; };
 		2323AEAE27A557CA00895CC7 /* ProfileCardText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2323AEAD27A557CA00895CC7 /* ProfileCardText.swift */; };
 		2323AEB027A5BDDB00895CC7 /* RangeSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2323AEAF27A5BDDB00895CC7 /* RangeSlider.swift */; };
 		2323AEB427A6CE0600895CC7 /* RangeSliderTrackLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2323AEB327A6CE0600895CC7 /* RangeSliderTrackLayer.swift */; };
@@ -97,12 +96,12 @@
 		23AF965927A1A0470078A204 /* TabBarText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23AF965827A1A0470078A204 /* TabBarText.swift */; };
 		23AF965F27A1B5F70078A204 /* CoordinatorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23AF965E27A1B5F70078A204 /* CoordinatorProtocol.swift */; };
 		23C97FC527ADC36A0087A239 /* AlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23C97FC427ADC36A0087A239 /* AlertView.swift */; };
+		C49287EEFCE42EC786F501AD /* Pods_SeSacFriends.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A2386A5B47D046269816745 /* Pods_SeSacFriends.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		2308B0232799D83D004145E2 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 		2308B0252799DEBF004145E2 /* ToastMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastMessage.swift; sourceTree = "<group>"; };
-		231B446627B2712F008B0EDE /* Pods_SeSacFriends.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Pods_SeSacFriends.framework; sourceTree = "<group>"; };
 		2323AEAD27A557CA00895CC7 /* ProfileCardText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCardText.swift; sourceTree = "<group>"; };
 		2323AEAF27A5BDDB00895CC7 /* RangeSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RangeSlider.swift; sourceTree = "<group>"; };
 		2323AEB327A6CE0600895CC7 /* RangeSliderTrackLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RangeSliderTrackLayer.swift; sourceTree = "<group>"; };
@@ -188,8 +187,9 @@
 		23AF965827A1A0470078A204 /* TabBarText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarText.swift; sourceTree = "<group>"; };
 		23AF965E27A1B5F70078A204 /* CoordinatorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordinatorProtocol.swift; sourceTree = "<group>"; };
 		23C97FC427ADC36A0087A239 /* AlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertView.swift; sourceTree = "<group>"; };
-		9572E12858A55EBFCC1C35D7 /* Pods-SeSacFriends.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SeSacFriends.release.xcconfig"; path = "Target Support Files/Pods-SeSacFriends/Pods-SeSacFriends.release.xcconfig"; sourceTree = "<group>"; };
-		9BBCF280B84855A5CAAFA8C2 /* Pods-SeSacFriends.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SeSacFriends.debug.xcconfig"; path = "Target Support Files/Pods-SeSacFriends/Pods-SeSacFriends.debug.xcconfig"; sourceTree = "<group>"; };
+		7A2386A5B47D046269816745 /* Pods_SeSacFriends.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SeSacFriends.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C584B296B19472A3F18B679E /* Pods-SeSacFriends.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SeSacFriends.debug.xcconfig"; path = "Target Support Files/Pods-SeSacFriends/Pods-SeSacFriends.debug.xcconfig"; sourceTree = "<group>"; };
+		C796E0F7F09D377CEE048C5D /* Pods-SeSacFriends.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SeSacFriends.release.xcconfig"; path = "Target Support Files/Pods-SeSacFriends/Pods-SeSacFriends.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -202,7 +202,7 @@
 				2389E1D127969CDD00BE68E3 /* RxSwift in Frameworks */,
 				2389E1CF27969CDD00BE68E3 /* RxRelay in Frameworks */,
 				234CEC37279C9A1000983E20 /* IQKeyboardManagerSwift in Frameworks */,
-				231B446727B2712F008B0EDE /* Pods_SeSacFriends.framework in Frameworks */,
+				C49287EEFCE42EC786F501AD /* Pods_SeSacFriends.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -377,7 +377,7 @@
 				2399602B279656EB001C8EA4 /* SeSacFriends */,
 				2399602A279656EB001C8EA4 /* Products */,
 				8B8E1CDF8DC589E54C103147 /* Pods */,
-				8023CFE4CD218A28AD01A12A /* Frameworks */,
+				D6BA1CE5CBCBC1066BD8ABB5 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -456,21 +456,21 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		8023CFE4CD218A28AD01A12A /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				231B446627B2712F008B0EDE /* Pods_SeSacFriends.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 		8B8E1CDF8DC589E54C103147 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				9BBCF280B84855A5CAAFA8C2 /* Pods-SeSacFriends.debug.xcconfig */,
-				9572E12858A55EBFCC1C35D7 /* Pods-SeSacFriends.release.xcconfig */,
+				C584B296B19472A3F18B679E /* Pods-SeSacFriends.debug.xcconfig */,
+				C796E0F7F09D377CEE048C5D /* Pods-SeSacFriends.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		D6BA1CE5CBCBC1066BD8ABB5 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				7A2386A5B47D046269816745 /* Pods_SeSacFriends.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -480,12 +480,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2399603D279656EC001C8EA4 /* Build configuration list for PBXNativeTarget "SeSacFriends" */;
 			buildPhases = (
-				DB914C9358BB5E97EA5AF78C /* [CP] Check Pods Manifest.lock */,
+				15886134E4EB33D6641AD4E4 /* [CP] Check Pods Manifest.lock */,
 				237B9F2127A53FA3008A6E06 /* ShellScript */,
 				23996025279656EB001C8EA4 /* Sources */,
 				23996026279656EB001C8EA4 /* Frameworks */,
 				23996027279656EB001C8EA4 /* Resources */,
-				0948630EF0AC5659988E1A61 /* [CP] Embed Pods Frameworks */,
+				A9211B11334DBF62A9D1D3BD /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -557,21 +557,26 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		0948630EF0AC5659988E1A61 /* [CP] Embed Pods Frameworks */ = {
+		15886134E4EB33D6641AD4E4 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 8;
+			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-SeSacFriends/Pods-SeSacFriends-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			name = "[CP] Embed Pods Frameworks";
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-SeSacFriends/Pods-SeSacFriends-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
-			runOnlyForDeploymentPostprocessing = 1;
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-SeSacFriends-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SeSacFriends/Pods-SeSacFriends-frameworks.sh\"\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		237B9F2127A53FA3008A6E06 /* ShellScript */ = {
@@ -593,26 +598,21 @@
 			shellPath = /bin/sh;
 			shellScript = "\"$PODS_ROOT/R.swift/rswift\" generate \"$SRCROOT/R.generated.swift\"\n";
 		};
-		DB914C9358BB5E97EA5AF78C /* [CP] Check Pods Manifest.lock */ = {
+		A9211B11334DBF62A9D1D3BD /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SeSacFriends/Pods-SeSacFriends-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
+			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-SeSacFriends-checkManifestLockResult.txt",
+				"${PODS_ROOT}/Target Support Files/Pods-SeSacFriends/Pods-SeSacFriends-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SeSacFriends/Pods-SeSacFriends-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -755,7 +755,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
-				EXCLUDED_ARCHS = "Any iOS Simulator SDK - arm64";
+				EXCLUDED_ARCHS = "";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -777,6 +777,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				VALIDATE_PRODUCT = YES;
 			};
 			name = Debug;
 		};
@@ -817,7 +818,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				EXCLUDED_ARCHS = "Any iOS Simulator SDK - arm64";
+				EXCLUDED_ARCHS = "";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -839,7 +840,7 @@
 		};
 		2399603E279656EC001C8EA4 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9BBCF280B84855A5CAAFA8C2 /* Pods-SeSacFriends.debug.xcconfig */;
+			baseConfigurationReference = C584B296B19472A3F18B679E /* Pods-SeSacFriends.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -847,7 +848,8 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 2EZ5QWFYX2;
-				EXCLUDED_ARCHS = arm64;
+				EXCLUDED_ARCHS = "";
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -876,7 +878,7 @@
 		};
 		2399603F279656EC001C8EA4 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9572E12858A55EBFCC1C35D7 /* Pods-SeSacFriends.release.xcconfig */;
+			baseConfigurationReference = C796E0F7F09D377CEE048C5D /* Pods-SeSacFriends.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -884,7 +886,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 2EZ5QWFYX2;
-				EXCLUDED_ARCHS = arm64;
+				EXCLUDED_ARCHS = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
