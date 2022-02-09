@@ -24,8 +24,8 @@ class QueueAPIService {
         URLSession.requestWithCodable(endpoint: request, completion: completion)
     }
     
-    
-    static func searchFriends(completion: @escaping (User?, APIErrorCode?) -> Void) {
+    // 새싹어노테이션띄우기
+    static func searchFriends(region: Int, lat: Double, long: Double, completion: @escaping (User?, APIErrorCode?) -> Void) {
         let userDefaults = UserDefaults.standard
         
         var request = URLRequest(url: QueueEndpoint.onQueue.url)
@@ -35,7 +35,7 @@ class QueueAPIService {
         request.setValue(idToken, forHTTPHeaderField: HTTPString.idtoken.rawValue)
         request.setValue(HTTPHeaderValue.contentType.rawValue, forHTTPHeaderField: HTTPString.ContentType.rawValue)
         
-        request.httpBody = "\(QueueBodyPara.region.rawValue)=\(userDefaults.searchable)&\(QueueBodyPara.lat.rawValue)=\(userDefaults.ageMin)&\(QueueBodyPara.long.rawValue)=\(userDefaults.ageMax)".data(using: .utf8, allowLossyConversion: false)
+        request.httpBody = "\(QueueBodyPara.region.rawValue)=\(region)&\(QueueBodyPara.lat.rawValue)=\(lat)&\(QueueBodyPara.long.rawValue)=\(long)".data(using: .utf8, allowLossyConversion: false)
         
         
         URLSession.requestWithCodable(endpoint: request, completion: completion)

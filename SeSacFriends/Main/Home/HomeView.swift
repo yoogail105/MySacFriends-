@@ -53,7 +53,20 @@ class HomeView: BaseUIView {
     }
     
     let floatingButton = UIButton().then {
-        $0.setImage(UIImage(named: homeIcon.search.rawValue), for: .normal)
+    
+        var matchingStatus = MatchingStatus(rawValue: UserDefaults.standard.matchingStatus!)
+        var imageName = ""
+        
+        switch matchingStatus {
+        case .ing:
+            imageName = homeIcon.finding.rawValue
+        case .done:
+            imageName = homeIcon.message.rawValue
+        default:
+            imageName = homeIcon.search.rawValue
+        }
+        
+        $0.setImage(UIImage(named: imageName), for: .normal)
         $0.addShadow()
     }
     

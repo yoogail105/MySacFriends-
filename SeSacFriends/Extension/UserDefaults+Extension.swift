@@ -21,6 +21,12 @@ enum Gender: Int {
     case none = -1
 }
 
+enum MatchingStatus: String {
+    case normal
+    case ing
+    case done
+}
+
 extension UserDefaults {
     
     private enum UserDefaultsKeys: String, CaseIterable {
@@ -37,6 +43,7 @@ extension UserDefaults {
         case ageMin
         case ageMax
         case hobby
+        case matchingStatus
 
     }
 
@@ -70,12 +77,6 @@ extension UserDefaults {
         set { setValue(newValue, forKey: UserDefaultsKeys.nickname.rawValue)}
     }
     
-    
-//    var birth: Date? {
-//        get { return UserDefaults.standard.object(forKey: UserDefaultsKeys.birth.rawValue) as? Date }
-//        set { setValue(newValue, forKey: UserDefaultsKeys.birth.rawValue)}
-//    }
-//
     var birth: String? {
         get { string(forKey: UserDefaultsKeys.birth.rawValue)}
         set { setValue(newValue, forKey: UserDefaultsKeys.birth.rawValue)}
@@ -120,4 +121,10 @@ extension UserDefaults {
         get { string(forKey: UserDefaultsKeys.hobby.rawValue)}
         set { setValue(newValue, forKey: UserDefaultsKeys.hobby.rawValue)}
     }
+
+    var matchingStatus: String? {
+        get { string(forKey: UserDefaultsKeys.matchingStatus.rawValue) ?? MatchingStatus.normal.rawValue}
+        set { setValue(newValue, forKey: UserDefaultsKeys.matchingStatus.rawValue)}
+    }
+    
 }

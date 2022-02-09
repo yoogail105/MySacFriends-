@@ -16,7 +16,8 @@ import SnapKit
 class HomeViewController: UIViewController {
     
     var coordinator: MainCoordinator?
-    let viewModel = AuthViewModel()
+    let authViewModel = AuthViewModel()
+    let viewModel = SearchViewModel()
     let mainView = HomeView()
     let disposeBag = DisposeBag()
     
@@ -43,8 +44,10 @@ class HomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("HomeViewController: \(#function)")
         checkUser() // 유저 상태 체크하기
         
+        viewModel.searchFriends()
         mapView = mainView.mapView
         mapView?.center = mainView.center
         
@@ -53,6 +56,7 @@ class HomeViewController: UIViewController {
         
         // 싹 영등포 캠퍼스 주변: 37.51786407953752, 126.88672749597067
         // mapView.setRegion(MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 37.51786407953752, longitude: 126.88672749597067), span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)), animated: true)
+        
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.requestWhenInUseAuthorization()
@@ -69,11 +73,20 @@ class HomeViewController: UIViewController {
                 self.findMyLocation()
             }
             .disposed(by: disposeBag)
+        
+        mainView.floatingButton.rx.tap
+            .bind {
+                self.moveToSearching()
+            }
+            .disposed(by: disposeBag)
+        
+        
+
     }
     
     func checkUser() {
         print("")
-        viewModel.onErrorHandling = { error in
+        authViewModel.onErrorHandling = { error in
             if error == .notAcceptable {
                 UserDefaults.standard.startMode = StartMode.auth.rawValue
                 print("로그인 새로 해야함")
@@ -84,7 +97,7 @@ class HomeViewController: UIViewController {
                 self.coordinator?.pushToAuthSignUp()
             }
         }
-        self.viewModel.getUser()
+        self.authViewModel.getUser()
     }
     
     private func setUserLocation(latitudeValue: CLLocationDegrees, longitudeValue: CLLocationDegrees, delta span: Double) -> CLLocationCoordinate2D {
@@ -96,6 +109,11 @@ class HomeViewController: UIViewController {
         return locationValue
     }
     
+    func moveToSearching() {
+        let vc = SearchViewController()
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
     private func addUserPin() {
         let pin = MKPointAnnotation()
         pin.coordinate = defaultCoordinate
@@ -104,7 +122,6 @@ class HomeViewController: UIViewController {
     
     private func findMyLocation() {
         guard let currentLocation = locationManager.location else {
-            print("위치 접근권한 허용안함")
             requestLocationPermissionAlert()
             return
         }
@@ -112,6 +129,8 @@ class HomeViewController: UIViewController {
         mapView?.showsUserLocation = true
         mapView?.setUserTrackingMode(.follow, animated: true)
     }
+    
+    
     func requestLocationPermissionAlert() {
         let alertView = mainView.requestLocationPermissionAlertView
         view.addSubview(alertView)
@@ -121,17 +140,17 @@ class HomeViewController: UIViewController {
         }
         alertView.isUserInteractionEnabled = true
         alertView.cancelButton.rx.tap
-            .bind{
-                print("zmfflr")
+            .subscribe(onNext: {
                 alertView.removeFromSuperview()
-            }
+            })
             .disposed(by: disposeBag)
         
         alertView.okButton.rx.tap
-            .bind {
+            .subscribe(onNext: {
                 self.moveToSetting()
                 alertView.removeFromSuperview()
-            }
+            })
+            .disposed(by: disposeBag)
     }
     
     func moveToSetting() {
@@ -144,8 +163,6 @@ class HomeViewController: UIViewController {
         }
     }
     
-    
-    
 }
 
 extension HomeViewController: CLLocationManagerDelegate {
@@ -154,30 +171,31 @@ extension HomeViewController: CLLocationManagerDelegate {
         self.locationManager.requestWhenInUseAuthorization()
     }
     
-    func reddquestLocationPermissionAlert() {
-
-//        showAlert(title: "위치 서비스를 사용할 수 없습니다.", message: "지도에서 내 위치를 확인하여 정확한 날씨 정보를 얻기 위해 '설정 > 개인정보 보호'에서 위치 서비스를 켜주세요.", okTitle: "허용하기") {
-//            guard let url = URL(string: UIApplication.openSettingsURLString) else {
-//                return
-//            }
-//            if UIApplication.shared.canOpenURL(url){
-//                UIApplication.shared.open(url) { success in
-//                }
-//            }
-//
-//        }
+    func checkUsersLocationServicesAuthorization() {
+        let authorizationStatus: CLAuthorizationStatus
+        if #available(iOS 14.0, *) {
+            authorizationStatus = locationManager.authorizationStatus
+        } else {
+            authorizationStatus = CLLocationManager.authorizationStatus()
+        }
+        
+        if CLLocationManager.locationServicesEnabled() {
+            checkCurrentLocationAuthorization(authorizationStatus: authorizationStatus)
+        }
+        
     }
-    
-    
-    func checkUsersLocationServicesAuthorization(authorizationStatus: CLAuthorizationStatus) {
+
+    func checkCurrentLocationAuthorization(authorizationStatus: CLAuthorizationStatus) {
         switch authorizationStatus {
         case .authorizedAlways, .authorizedWhenInUse:
             print("GPS 권한 설정됨")
             self.locationManager.startUpdatingLocation()
-        case .restricted, .notDetermined:
+        case .notDetermined:
             print("GPS 권한 설정되지 않음")
-            getLocationUsagePermission()
-        case .denied:
+            locationManager.desiredAccuracy = kCLLocationAccuracyBest
+            locationManager.requestWhenInUseAuthorization()
+            locationManager.startUpdatingLocation()
+        case .restricted, .denied:
             print("GPS 권한 요청 거부됨")
             requestLocationPermissionAlert()
         default:
@@ -197,11 +215,13 @@ extension HomeViewController: CLLocationManagerDelegate {
         }
     }
     
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        let location: CLLocation = locations[locations.count - 1]
-        let longitude: CLLocationDegrees = location.coordinate.longitude
-        let latitude: CLLocationDegrees = location.coordinate.latitude
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        print("위치 접근 실패: \(error)")
+        // 위치접근 실패: error alert
     }
     
+    func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
+        checkUsersLocationServicesAuthorization()
+    }
 
 }

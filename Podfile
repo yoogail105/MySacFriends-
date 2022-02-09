@@ -10,10 +10,13 @@ target 'SeSacFriends' do
 pod 'Firebase/Messaging'
 pod 'Firebase/Auth'
 pod 'Then'
-pod 'R.swift'
 pod 'SwiftLint'
 pod 'NMapsMap'
-
+pod 'Moya', '~> 15.0'
+pod 'SnapKit', '~> 5.0.0'
+pod 'RxSwift', '6.5.0'
+pod 'RxCocoa', '6.5.0'
+pod 'IQKeyboardManagerSwift'
 
 
 end
