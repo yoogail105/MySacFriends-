@@ -17,7 +17,7 @@ class HomeViewController: UIViewController {
     
     var coordinator: MainCoordinator?
     let authViewModel = AuthViewModel()
-    let viewModel = SearchViewModel()
+    let viewModel = QueueViewModel()
     let mainView = HomeView()
     let disposeBag = DisposeBag()
     
@@ -42,12 +42,13 @@ class HomeViewController: UIViewController {
         self.navigationController?.isNavigationBarHidden = false
     }
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         print("HomeViewController: \(#function)")
         checkUser() // 유저 상태 체크하기
         
-        viewModel.searchFriends()
+        
         mapView = mainView.mapView
         mapView?.center = mainView.center
         
@@ -62,7 +63,8 @@ class HomeViewController: UIViewController {
         locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
         mapView?.showsUserLocation = true
-        defaultCoordinate = setUserLocation(latitudeValue: 37.51786407953752, longitudeValue: 126.88672749597067, delta: 0.01)
+        
+        viewModel.searchFriends()
         
         bind()
     }
@@ -81,7 +83,7 @@ class HomeViewController: UIViewController {
             .disposed(by: disposeBag)
         
         
-
+        
     }
     
     func checkUser() {
@@ -110,6 +112,7 @@ class HomeViewController: UIViewController {
     }
     
     func moveToSearching() {
+        UserDefaults.standard.matchingStatus = MatchingStatus.ing.rawValue
         let vc = SearchViewController()
         self.navigationController?.pushViewController(vc, animated: true)
     }

@@ -56,7 +56,7 @@ class AuthAPIService {
             if let error = error {
                 completion(.verificationTokenNotMatched)
              
-                    if let errCode = AuthErrorCode(rawValue: error._code) {
+                    if let _ = AuthErrorCode(rawValue: error._code) {
                         print("check verification User Error: \(error)")
                         
                     }

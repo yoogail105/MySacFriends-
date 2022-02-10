@@ -41,6 +41,8 @@ enum Method: String {
     case PUT
     case DELETE
 }
+
+
 enum Endpoint {
     case user
     case deleteUser

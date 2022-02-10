@@ -58,8 +58,9 @@
 		236820CA27B4579500C79EAC /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 236820C927B4579500C79EAC /* SearchView.swift */; };
 		236820CC27B457A400C79EAC /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 236820CB27B457A400C79EAC /* SearchViewController.swift */; };
 		236820CF27B4582600C79EAC /* HomeText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 236820CE27B4582600C79EAC /* HomeText.swift */; };
-		236820D127B460D800C79EAC /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 236820D027B460D800C79EAC /* SearchViewModel.swift */; };
+		236820D127B460D800C79EAC /* QueueViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 236820D027B460D800C79EAC /* QueueViewModel.swift */; };
 		236820D327B4659200C79EAC /* Friends.swift in Sources */ = {isa = PBXBuildFile; fileRef = 236820D227B4659200C79EAC /* Friends.swift */; };
+		236820D527B47C4C00C79EAC /* QueueAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 236820D427B47C4C00C79EAC /* QueueAPI.swift */; };
 		237B9F0E27A262BD008A6E06 /* MyPageViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 237B9F0D27A262BD008A6E06 /* MyPageViewCell.swift */; };
 		237B9F1227A2AA13008A6E06 /* PushCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 237B9F1127A2AA13008A6E06 /* PushCoordinator.swift */; };
 		237B9F1427A35233008A6E06 /* FriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 237B9F1327A35232008A6E06 /* FriendsViewController.swift */; };
@@ -152,8 +153,9 @@
 		236820C927B4579500C79EAC /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		236820CB27B457A400C79EAC /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		236820CE27B4582600C79EAC /* HomeText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeText.swift; sourceTree = "<group>"; };
-		236820D027B460D800C79EAC /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
+		236820D027B460D800C79EAC /* QueueViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueueViewModel.swift; sourceTree = "<group>"; };
 		236820D227B4659200C79EAC /* Friends.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Friends.swift; sourceTree = "<group>"; };
+		236820D427B47C4C00C79EAC /* QueueAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueueAPI.swift; sourceTree = "<group>"; };
 		237B9F0D27A262BD008A6E06 /* MyPageViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageViewCell.swift; sourceTree = "<group>"; };
 		237B9F1127A2AA13008A6E06 /* PushCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushCoordinator.swift; sourceTree = "<group>"; };
 		237B9F1327A35232008A6E06 /* FriendsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsViewController.swift; sourceTree = "<group>"; };
@@ -332,7 +334,7 @@
 				236820C927B4579500C79EAC /* SearchView.swift */,
 				236820D227B4659200C79EAC /* Friends.swift */,
 				236820CB27B457A400C79EAC /* SearchViewController.swift */,
-				236820D027B460D800C79EAC /* SearchViewModel.swift */,
+				236820D027B460D800C79EAC /* QueueViewModel.swift */,
 			);
 			path = Search;
 			sourceTree = "<group>";
@@ -383,6 +385,7 @@
 				2333571A279DC6AE0062A9E8 /* User.swift */,
 				2333572C27A08D630062A9E8 /* APIErrorMessage.swift */,
 				237B9F1F27A53F8A008A6E06 /* QueueAPIService.swift */,
+				236820D427B47C4C00C79EAC /* QueueAPI.swift */,
 			);
 			path = APIService;
 			sourceTree = "<group>";
@@ -662,6 +665,7 @@
 				237B9F2027A53F8A008A6E06 /* QueueAPIService.swift in Sources */,
 				234CEC012799F76B00983E20 /* OnboardingCardView.swift in Sources */,
 				236820C627B441B800C79EAC /* MyPageProfileTableViewCell.swift in Sources */,
+				236820D527B47C4C00C79EAC /* QueueAPI.swift in Sources */,
 				2389E1D32796A29F00BE68E3 /* AuthViewModel.swift in Sources */,
 				2308B0262799DEBF004145E2 /* ToastMessage.swift in Sources */,
 				232FCFF627B0B2CF00A2558C /* withdrawalViewController.swift in Sources */,
@@ -685,7 +689,7 @@
 				234CEC1B279C51C700983E20 /* Text.swift in Sources */,
 				234CEC0B279AB3D500983E20 /* UIView+Extension.swift in Sources */,
 				2323AEBA27A7048C00895CC7 /* NameTableViewCell.swift in Sources */,
-				236820D127B460D800C79EAC /* SearchViewModel.swift in Sources */,
+				236820D127B460D800C79EAC /* QueueViewModel.swift in Sources */,
 				23ADC14227AB1F3F00101C43 /* ReviewTableViewCell.swift in Sources */,
 				237B9F1627A35237008A6E06 /* HomeViewController.swift in Sources */,
 				2389E1C8279697E200BE68E3 /* UITextField+Extension.swift in Sources */,

@@ -37,11 +37,11 @@ class ProfileViewModel {
                 switch result {
                     
                 case .ok:
-                    self.profileData.searchable = user?.searchable! ?? 0
-                    self.profileData.ageMin = user?.ageMin! ?? 18
-                    self.profileData.ageMax = user?.ageMax! ?? 65
-                    self.profileData.gender = user?.gender! ?? UserDefaults.standard.gender
-                    self.profileData.hobby = user?.hobby! ?? ""
+                    self.profileData.searchable = user?.searchable ?? 0
+                    self.profileData.ageMin = user?.ageMin ?? 18
+                    self.profileData.ageMax = user?.ageMax ?? 65
+                    self.profileData.gender = user?.gender ?? UserDefaults.standard.gender
+                    self.profileData.hobby = user?.hobby ?? ""
                     print("profiledata는 :", self.profileData)
                     
                     self.onErrorHandling?(.ok)

@@ -80,6 +80,8 @@ class HomeView: BaseUIView {
         $0.okButton.setTitle(AlertText.moveToSetting.rawValue, for: .normal)
     }
     
+    var 
+    
     
     override func configuration() {
         mapView.delegate = self
