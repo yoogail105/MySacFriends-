@@ -18,7 +18,7 @@ struct FromQueueDB: Codable {
     let lat, long: Double
     let reputation: [Int]
     let hf, reviews: [String]
-    let gender, type, sesac, background: Int
+    var gender, type, sesac, background: Int
     //sesac: 새싹이미지
 }
 

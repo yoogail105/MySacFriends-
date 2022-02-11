@@ -29,6 +29,8 @@ class AuthViewModel {
         return textFieldObserver.map { $0.isValidCertificationCode()}
     }
     
+    
+    
     func postVerificationCode(completion: @escaping (APIErrorMessage?) -> Void)  {
         let phoneNumber = UserDefaults.standard.phoneNumber
         
@@ -78,6 +80,7 @@ class AuthViewModel {
                 case .ok:
                     UserDefaults.standard.startMode = StartMode.main.rawValue
                     print(UserDefaults.standard.startMode)
+                    self.onErrorHandling?(.ok)
                     
 //                case .unAuthorized:
 //                    print("토큰 새로 발급하기")

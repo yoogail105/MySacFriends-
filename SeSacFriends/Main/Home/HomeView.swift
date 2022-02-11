@@ -9,7 +9,11 @@ import UIKit
 import MapKit
 
 class HomeView: BaseUIView {
+    
+    var manAnnotations: [MKAnnotation] = []
+    var womanAnnotations: [MKAnnotation] = []
 
+    var userSesacImageName = SesacIcon.face1.rawValue
     
     let mapView = MKMapView().then {
         $0.mapType = MKMapType.standard
@@ -28,18 +32,21 @@ class HomeView: BaseUIView {
     }
     
     
-    let allButton = BaseButton().then {
+    let totalButton = BaseButton().then {
+        $0.tag = 2
         $0.buttonMode(.fill, title: ButtonTitle.all.rawValue)
         $0.titleLabel?.font = UIFont().Title4_R14
         $0.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
     }
     
     let manButton = UIButton().then {
+        $0.tag = 1
         $0.buttonMode(.white, title: ButtonTitle.man.rawValue)
         $0.titleLabel?.font = UIFont().Title4_R14
     }
     
     let womanButton = BaseButton().then {
+        $0.tag = 0
         $0.buttonMode(.white, title: ButtonTitle.woman.rawValue)
         $0.titleLabel?.font = UIFont().Title4_R14
         $0.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
@@ -80,11 +87,9 @@ class HomeView: BaseUIView {
         $0.okButton.setTitle(AlertText.moveToSetting.rawValue, for: .normal)
     }
     
-    var 
-    
     
     override func configuration() {
-        mapView.delegate = self
+        
     }
     
      override func addViews() {
@@ -93,7 +98,7 @@ class HomeView: BaseUIView {
             addSubview($0)
         }
          
-         [allButton, manButton, womanButton].forEach {
+         [totalButton, manButton, womanButton].forEach {
              stackView.addArrangedSubview($0)
          }
         
@@ -132,29 +137,4 @@ class HomeView: BaseUIView {
     }
     
 
-}
-
-extension HomeView: MKMapViewDelegate {
-    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-        guard !annotation.isKind(of: MKUserLocation.self) else {
-            return nil
-        }
-        
-        var annotationView = self.mapView.dequeueReusableAnnotationView(withIdentifier: "custom")
-        if annotationView == nil {
-            annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: "custom")
-            annotationView?.canShowCallout = true
-            
-            
-            let miniButton = UIButton(frame: CGRect(x: 0, y: 0, width: 20, height: 20))
-            miniButton.setImage(UIImage(named: "person"), for: .normal)
-            miniButton.tintColor = .blue
-            annotationView?.rightCalloutAccessoryView = miniButton
-        } else {
-            annotationView?.annotation = annotation
-        }
-        
-        annotationView?.image = UIImage(named: "circle")
-        return annotationView
-    }
 }

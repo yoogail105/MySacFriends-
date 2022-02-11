@@ -121,9 +121,9 @@ extension URLSession {
     static func requestWithCodable<T: Decodable>(_ session: URLSession = .shared, endpoint: URLRequest, completion: @escaping (T?, APIErrorCode?) -> Void) {
         
         session.dataTask(endpoint) { data, response, error in
-            let str = String(decoding: data!, as: UTF8.self)
-            print("data: ",str)
-            print("결과:::::::\n response: \(response)\n error: \(error)")
+            //let str = String(decoding: data!, as: UTF8.self)
+            //print("data: ",str)
+            //print("결과:::::::\n response: \(response)\n error: \(error)")
             
             DispatchQueue.main.async {
                 guard error == nil else {
@@ -156,7 +156,7 @@ extension URLSession {
                     case APIErrorCode.notAcceptable.rawValue: //406
                         completion(nil, .notAcceptable)
                     default:
-                        print("error: \(str)")
+                        //print("error: \(str)")
                         completion(nil, .internalServerError)
                     }
                     return

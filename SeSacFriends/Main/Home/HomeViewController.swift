@@ -12,6 +12,7 @@ import CoreLocation
 import RxSwift
 import RxCocoa
 import SnapKit
+import SwiftUI
 
 class HomeViewController: UIViewController {
     
@@ -23,6 +24,8 @@ class HomeViewController: UIViewController {
     
     var mapView: MKMapView?
     let locationManager = CLLocationManager()
+    var selectedGender: SelectedGender = .total
+    
     
     var defaultCoordinate = CLLocationCoordinate2D(latitude: 37.51818789942772, longitude: 126.88541765534976)
     
@@ -32,7 +35,7 @@ class HomeViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+        updateFriends(gender: viewModel.genderObservable.value)
         self.navigationController?.isNavigationBarHidden = true
     }
     
@@ -48,28 +51,25 @@ class HomeViewController: UIViewController {
         print("HomeViewController: \(#function)")
         checkUser() // 유저 상태 체크하기
         
-        
         mapView = mainView.mapView
         mapView?.center = mainView.center
-        
+        mapView?.delegate = self
         let navigationController = self.navigationController
         coordinator = MainCoordinator(navigationController: navigationController!, parentCoordinator: coordinator)
         
-        // 싹 영등포 캠퍼스 주변: 37.51786407953752, 126.88672749597067
-        // mapView.setRegion(MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 37.51786407953752, longitude: 126.88672749597067), span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)), animated: true)
         
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
         mapView?.showsUserLocation = true
-        
-        viewModel.searchFriends()
+        mapView?.setRegion(MKCoordinateRegion(center: defaultCoordinate, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)), animated: true)
         
         bind()
     }
     
     func bind() {
+        
         mainView.gpsButton.rx.tap
             .bind {
                 self.findMyLocation()
@@ -82,9 +82,36 @@ class HomeViewController: UIViewController {
             }
             .disposed(by: disposeBag)
         
+        Observable.merge(
+            mainView.totalButton.rx.tap.map { _ in SelectedGender.total},
+            mainView.manButton.rx.tap.map { _ in SelectedGender.man},
+            mainView.womanButton.rx.tap.map { _ in SelectedGender.woman}
+        ).bind(to: viewModel.genderObservable)
+            .disposed(by: disposeBag)
         
         
+        viewModel.genderObservable
+            .subscribe(onNext: {
+                self.mainView.totalButton.buttonModeColor(.white)
+                self.mainView.manButton.buttonModeColor(.white)
+                self.mainView.womanButton.buttonModeColor(.white)
+                switch $0 {
+                case .total:
+                    
+                    self.mainView.totalButton.buttonModeColor(.fill)
+                case .man:
+                    self.mainView.manButton.buttonModeColor(.fill)
+                case .woman:
+                    self.mainView.womanButton.buttonModeColor(.fill)
+                }
+                self.selectAnnotations(gender: self.viewModel.genderObservable.value)
+            })
+            .disposed(by: disposeBag)
+        
+        
+ 
     }
+    
     
     func checkUser() {
         print("")
@@ -128,9 +155,68 @@ class HomeViewController: UIViewController {
             requestLocationPermissionAlert()
             return
         }
-        
+        updateFriends(gender: viewModel.genderObservable.value)
         mapView?.showsUserLocation = true
         mapView?.setUserTrackingMode(.follow, animated: true)
+    }
+    
+    func updateFriends(gender: SelectedGender) {
+        viewModel.onErrorHandling = { result in
+            if result == .ok {
+                print("ok입니다.")
+                
+                self.addAnnotation(friends: self.viewModel.totalFriends)
+                self.selectAnnotations(gender: self.viewModel.genderObservable.value)
+                
+            }
+        }
+        viewModel.searchFriends()
+    }
+    
+    private func addAnnotation(friends: [FromQueueDB?]) {
+        print(#function)
+        
+        for friend in friends {
+            mainView.womanAnnotations = []
+            mainView.manAnnotations = []
+            let annotation = MKPointAnnotation()
+            annotation.coordinate = CLLocationCoordinate2D(latitude: friend?.lat ?? defaultCoordinate.latitude, longitude: friend?.long ?? defaultCoordinate.longitude)
+            
+            mainView.userSesacImageName = viewModel.setFriendSesacImage(friend: friend!)
+            switch friend?.gender {
+            case 0:
+                mainView.womanAnnotations.append(annotation)
+            default:
+                mainView.manAnnotations.append(annotation)
+            }
+            mapView?.addAnnotation(annotation)
+            print("mam: \(self.mainView.manAnnotations.count), woman: \(self.mainView.womanAnnotations.count)")
+        }
+    }
+    
+    func selectAnnotations(gender: SelectedGender) {
+        print(#function)
+        switch gender {
+        case .total:
+            showSelectedAnnotation(hideManAnnotations: false, hideWomanAnnotations: false)
+        case .man:
+            showSelectedAnnotation(hideManAnnotations: false, hideWomanAnnotations: true)
+        case .woman:
+            showSelectedAnnotation(hideManAnnotations: true, hideWomanAnnotations: false)
+        }
+    }
+    
+    func showSelectedAnnotation(hideManAnnotations: Bool, hideWomanAnnotations: Bool) {
+        print(#function)
+        
+        for manAnnotation in mainView.manAnnotations {
+            print(mainView.manAnnotations)
+            mapView?.view(for: manAnnotation)?.isHidden = hideManAnnotations
+        }
+        
+        for womanAnnotation in mainView.womanAnnotations {
+            mapView?.view(for: womanAnnotation)?.isHidden = hideWomanAnnotations
+        }
     }
     
     
@@ -187,7 +273,7 @@ extension HomeViewController: CLLocationManagerDelegate {
         }
         
     }
-
+    
     func checkCurrentLocationAuthorization(authorizationStatus: CLAuthorizationStatus) {
         switch authorizationStatus {
         case .authorizedAlways, .authorizedWhenInUse:
@@ -225,6 +311,40 @@ extension HomeViewController: CLLocationManagerDelegate {
     
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
         checkUsersLocationServicesAuthorization()
+        
+        
     }
+}
 
+
+extension HomeViewController: MKMapViewDelegate {
+    
+    
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        
+        guard !annotation.isKind(of: MKUserLocation.self) else {
+            return nil
+        }
+        
+        var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: "custom")
+        
+        if annotationView == nil {
+            annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: "custom")
+        } else {
+            annotationView?.annotation = annotation
+        }
+        
+        annotationView?.image = UIImage(named: SesacIcon.face0.rawValue)
+        
+        return annotationView
+    }
+    
+    func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
+        mapView.removeAnnotations(mapView.annotations)
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.08) {
+            self.updateFriends(gender: self.viewModel.genderObservable.value)
+        }
+        
+    }
 }
