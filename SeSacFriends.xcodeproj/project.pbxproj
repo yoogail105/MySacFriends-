@@ -102,6 +102,7 @@
 		23BE83F027B70F4700416C6E /* QueueRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23BE83EF27B70F4700416C6E /* QueueRequest.swift */; };
 		23BE83F227B724C000416C6E /* ResponseData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23BE83F127B724C000416C6E /* ResponseData.swift */; };
 		23BE83F427B7AC9C00416C6E /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23BE83F327B7AC9C00416C6E /* UserService.swift */; };
+		23BE83F627B7AE4600416C6E /* UserRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23BE83F527B7AE4600416C6E /* UserRequest.swift */; };
 		23C97FC527ADC36A0087A239 /* AlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23C97FC427ADC36A0087A239 /* AlertView.swift */; };
 		5C93FDF7CAC2E24622416FBC /* Pods_SeSacFriends.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9567CF4BC81C9EA3D52C0EEB /* Pods_SeSacFriends.framework */; };
 /* End PBXBuildFile section */
@@ -205,6 +206,7 @@
 		23BE83EF27B70F4700416C6E /* QueueRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueueRequest.swift; sourceTree = "<group>"; };
 		23BE83F127B724C000416C6E /* ResponseData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseData.swift; sourceTree = "<group>"; };
 		23BE83F327B7AC9C00416C6E /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
+		23BE83F527B7AE4600416C6E /* UserRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRequest.swift; sourceTree = "<group>"; };
 		23C97FC427ADC36A0087A239 /* AlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertView.swift; sourceTree = "<group>"; };
 		2A124371AB832A99FA8DE1C1 /* Pods-SeSacFriends.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SeSacFriends.release.xcconfig"; path = "Target Support Files/Pods-SeSacFriends/Pods-SeSacFriends.release.xcconfig"; sourceTree = "<group>"; };
 		2E6F0FA978ABC44499D16217 /* Pods-SeSacFriends.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SeSacFriends.debug.xcconfig"; path = "Target Support Files/Pods-SeSacFriends/Pods-SeSacFriends.debug.xcconfig"; sourceTree = "<group>"; };
@@ -385,14 +387,11 @@
 			children = (
 				23335716279D580D0062A9E8 /* Endpoint.swift */,
 				2389E1D42796A2AD00BE68E3 /* AuthAPIService.swift */,
-				23335718279DB2A90062A9E8 /* UserAPIService.swift */,
 				2333572C27A08D630062A9E8 /* APIErrorMessage.swift */,
-				237B9F1F27A53F8A008A6E06 /* QueueAPIService.swift */,
-				236820D427B47C4C00C79EAC /* QueueService.swift */,
-				23BE83EF27B70F4700416C6E /* QueueRequest.swift */,
-				23BE83ED27B705ED00416C6E /* GeneralAPIComponents.swift */,
 				23BE83F127B724C000416C6E /* ResponseData.swift */,
-				23BE83F327B7AC9C00416C6E /* UserService.swift */,
+				23BE83F727B7AFE400416C6E /* User */,
+				23BE83F827B7AFEE00416C6E /* Queue */,
+				23BE83ED27B705ED00416C6E /* GeneralAPIComponents.swift */,
 			);
 			path = APIService;
 			sourceTree = "<group>";
@@ -512,6 +511,26 @@
 				236820C527B441B800C79EAC /* MyPageProfileTableViewCell.swift */,
 			);
 			path = MyPage;
+			sourceTree = "<group>";
+		};
+		23BE83F727B7AFE400416C6E /* User */ = {
+			isa = PBXGroup;
+			children = (
+				23335718279DB2A90062A9E8 /* UserAPIService.swift */,
+				23BE83F327B7AC9C00416C6E /* UserService.swift */,
+				23BE83F527B7AE4600416C6E /* UserRequest.swift */,
+			);
+			path = User;
+			sourceTree = "<group>";
+		};
+		23BE83F827B7AFEE00416C6E /* Queue */ = {
+			isa = PBXGroup;
+			children = (
+				237B9F1F27A53F8A008A6E06 /* QueueAPIService.swift */,
+				236820D427B47C4C00C79EAC /* QueueService.swift */,
+				23BE83EF27B70F4700416C6E /* QueueRequest.swift */,
+			);
+			path = Queue;
 			sourceTree = "<group>";
 		};
 		811D8BB137963E8F8764C7F7 /* Frameworks */ = {
@@ -720,6 +739,7 @@
 				23AF965327A19B210078A204 /* MainTabBarController.swift in Sources */,
 				23ADC13827AA9A7200101C43 /* EX-ProfileCollectionViewController.swift in Sources */,
 				234CEC052799FAC300983E20 /* BaseUIView.swift in Sources */,
+				23BE83F627B7AE4600416C6E /* UserRequest.swift in Sources */,
 				2323AEB427A6CE0600895CC7 /* RangeSliderTrackLayer.swift in Sources */,
 				2389E1D52796A2AD00BE68E3 /* AuthAPIService.swift in Sources */,
 				23335717279D580D0062A9E8 /* Endpoint.swift in Sources */,

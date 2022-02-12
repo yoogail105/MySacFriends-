@@ -27,6 +27,7 @@ enum APIErrorCode: Int, Error {
     case unAuthorized = 401 //firebase idtoken
     case internalServerError = 405
     case notAcceptable = 406 // already deleted user. 미가입회원
+    case decodableError 
 }
 
 enum APIErrorMessage: String, Error {

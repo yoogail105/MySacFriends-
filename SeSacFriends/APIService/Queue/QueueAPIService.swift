@@ -17,21 +17,8 @@ final class QueueAPIService {
     static func searchHobbyFriends(param: OnQueueRequest, completion: @escaping (Friends?, APIErrorCode?) -> Void) {
         
         provider.request(.onQueue(param: param)) { result in
-//            print("온큐결과", result)
-//            switch result {
-//            case .success(let response):
-//                let result = try?  response.map(Friends.self)
-//                print("성공: ", response)
-//                completion(result, nil)
-//            case .failure(let error):
-//                print("시류ㅐ: ", error)
-//                completion(nil, APIErrorCode(rawValue: error.response!.statusCode))
-//                      }
-            
-            
             switch ResponseData<Friends>.processJSONResponse(result) {
             case .success(let model):
-                print("api통신은 성고헀슴: ", model)
                 return completion(model, nil)
             case .failure(let error):
                 return completion(nil, error)

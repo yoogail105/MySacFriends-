@@ -10,8 +10,12 @@ import Moya
 
 
 enum QueueService {
-    case queue(param: QueueRequest)
+    case requestFindHobbyFriends(param: QueueRequest)
     case onQueue(param: OnQueueRequest)
+    case hobbyRequest(param: HobbyRequest)
+    case hobbyAccept(param: HobbyRequest)
+    case myQueueState
+    case stopFindingHobbyFriends
 }
 
 
@@ -23,24 +27,35 @@ extension QueueService: TargetType {
     
     var path: String {
         switch self {
-        case .queue:
+        case .requestFindHobbyFriends, .stopFindingHobbyFriends:
             return "queue"
         case .onQueue:
-            return "queue/onQueue"
+            return "queue/onqueue"
+        case .hobbyRequest:
+            return "queue/hobbyrequest"
+        case .hobbyAccept:
+            return "queue/hobbyaccept"
+        case .myQueueState:
+            return "queue/myQueueState"
+
             
         }
     }
     
     var method: Moya.Method {
         switch self {
-        case .queue, .onQueue:
+        case .requestFindHobbyFriends, .onQueue,  .hobbyRequest, .hobbyAccept:
             return .post
+        case .myQueueState:
+            return .get
+        case .stopFindingHobbyFriends:
+            return .delete
         }
     }
     
     var task: Task {
         switch self {
-        case .queue(let param):
+        case .requestFindHobbyFriends(let param):
             return .requestJSONEncodable(param)
             
         case .onQueue(let param):
@@ -49,7 +64,13 @@ extension QueueService: TargetType {
                 "lat": param.lat,
                 "long": param.long
             ], encoding: URLEncoding.default)
-
+        case .hobbyRequest(let param), .hobbyAccept(let param):
+            return .requestParameters(parameters: [
+                "otheruid": param.otheruid
+            ], encoding: URLEncoding.default)
+            
+        case .myQueueState, .stopFindingHobbyFriends:
+            return .requestPlain
             
         }
     }

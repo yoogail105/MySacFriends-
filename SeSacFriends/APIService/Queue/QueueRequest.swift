@@ -7,6 +7,7 @@
 
 import Foundation
 
+
 struct QueueRequest: Codable {
     var type: Int
     var region: Int
@@ -35,3 +36,13 @@ struct OnQueueRequest: Codable {
 
     }
 }
+
+struct HobbyRequest: Codable {
+    var otheruid: String
+    
+    init(otheruid: String) {
+        self.otheruid = otheruid
+    }
+}
+
+
