@@ -35,7 +35,7 @@ class ProfileCardTitleTableViewCell: UITableViewCell {
         self.collectionView.dataSource = self
         self.collectionView.delegate = self
         
-        collectionView.register(ProfileCardCollectionViewCell.self, forCellWithReuseIdentifier: ProfileCardCollectionViewCell.identifier)
+        collectionView.register(TitleCollectionViewCell.self, forCellWithReuseIdentifier: TitleCollectionViewCell.identifier)
         
         collectionView.collectionViewLayout = layout()
         constraints()
@@ -94,9 +94,9 @@ extension ProfileCardTitleTableViewCell: UICollectionViewDelegate, UICollectionV
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ProfileCardCollectionViewCell.identifier, for: indexPath) as? ProfileCardCollectionViewCell else { return UICollectionViewCell() }
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TitleCollectionViewCell.identifier, for: indexPath) as? TitleCollectionViewCell else { return UICollectionViewCell() }
         
-        cell.userTitleButton.setTitle(userTitles[indexPath.row], for: .normal)
+        cell.titleButton.setTitle(userTitles[indexPath.row], for: .normal)
         return cell
     }
     

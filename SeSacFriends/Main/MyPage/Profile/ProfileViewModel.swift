@@ -76,6 +76,7 @@ class ProfileViewModel {
             
             switch result {
             case .ok:
+                UserDefaults.standard.reset()
                 print("탈퇴 성공: 온보딩화면으로")
                 self.onErrorHandling?(.ok)
             case .notAcceptable:

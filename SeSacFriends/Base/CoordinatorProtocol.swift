@@ -52,6 +52,11 @@ class MainCoordinator: Coordinator {
 }
 
 class WithdrawalCoordinator: Coordinator {
+    
+    //var withdrawalCoordinator: WithdrawalCoordinator?
+    // MARK:coordinator
+    //withdrawalCoordinator = WithdrawalCoordinator(navigationController: self.navigationController!, parentCoordinator: coordinator)
+    
     var parentCoordinator: Coordinator?
     var childCoordinators = [Coordinator]()
     var navigationController: UINavigationController
@@ -63,6 +68,8 @@ class WithdrawalCoordinator: Coordinator {
     
     func start() {
         let viewController = withdrawalViewController()
+        viewController.modalPresentationStyle = .overCurrentContext
+        viewController.modalTransitionStyle = .crossDissolve
         navigationController.pushViewController(viewController, animated: true)
     }
 

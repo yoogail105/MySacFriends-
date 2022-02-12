@@ -12,7 +12,7 @@ import RxSwift
 
 class ProfileViewController: BaseViewController {
     
-    var withdrawalCoordinator: WithdrawalCoordinator?
+    
 
     let mainView = ProfileView()
     lazy var withdrawalAlert = AlertView()
@@ -54,8 +54,7 @@ class ProfileViewController: BaseViewController {
         print(#function)
         
         getProfileData()
-    // MARK:coordinator
-        withdrawalCoordinator = WithdrawalCoordinator(navigationController: self.navigationController!, parentCoordinator: coordinator)
+
         self.title = TabBarTitle.detail.rawValue
         
         for userTitle in UserTitleText.allCases {
@@ -246,8 +245,7 @@ class ProfileViewController: BaseViewController {
 
         mainView.detailView.ageBar.addTarget(self, action: #selector(rangeSliderValueChanged(_:)),
                                   for: .valueChanged)
-        
-        
+
     }
     
     @objc func rangeSliderValueChanged(_ rangeSlider: RangeSlider) {
@@ -265,7 +263,6 @@ class ProfileViewController: BaseViewController {
     func withdrawal() {
         print(#function)
         
-
         let vc = withdrawalViewController()
         vc.modalPresentationStyle = .overCurrentContext
         vc.modalTransitionStyle = .crossDissolve
@@ -354,7 +351,7 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
     }
 }
 
-
+// MARK: PREVIEW
 //struct ProfileDetailViewControllerPreview: PreviewProvider {
 //    static var previews: some View {
 //        Container().edgesIgnoringSafeArea(.all)

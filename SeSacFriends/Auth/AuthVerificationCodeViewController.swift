@@ -123,10 +123,8 @@ class AuthVerificationCodeViewController: BaseViewController {
             } else {
                 // 2. 인증번호가 일치하면 FirebaseIDToken 가져오기
                 self.viewModel.fetchIDToken {
-                    print("id토큰가져오기 완료")
                     //3. idToken가져오면 서버에 유저 등록되어있는지 확인하기
                     self.viewModel.getUser{ _ in
-                        print("유저 있으니까 메인 탭바로 이동한다.")
                         self.coordinator?.pushToMainTabbar()
                     }
                 }

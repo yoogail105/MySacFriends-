@@ -13,28 +13,33 @@ import RxSwift
 import RxCocoa
 import SnapKit
 import SwiftUI
+import Moya
 
 class HomeViewController: UIViewController {
     
     var coordinator: MainCoordinator?
-    let authViewModel = AuthViewModel()
     let viewModel = QueueViewModel()
     let mainView = HomeView()
     let disposeBag = DisposeBag()
     
+  
+    
     var mapView: MKMapView?
     let locationManager = CLLocationManager()
     var selectedGender: SelectedGender = .total
+    var userSesacImageName = SesacIcon.face0.rawValue
     
     
     var defaultCoordinate = CLLocationCoordinate2D(latitude: 37.51818789942772, longitude: 126.88541765534976)
     
     override func loadView() {
+        print(#function)
         self.view = mainView
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        print(#function)
         updateFriends(gender: viewModel.genderObservable.value)
         self.navigationController?.isNavigationBarHidden = true
     }
@@ -48,6 +53,7 @@ class HomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        print(#function)
         print("HomeViewController: \(#function)")
         checkUser() // 유저 상태 체크하기
         
@@ -97,7 +103,6 @@ class HomeViewController: UIViewController {
                 self.mainView.womanButton.buttonModeColor(.white)
                 switch $0 {
                 case .total:
-                    
                     self.mainView.totalButton.buttonModeColor(.fill)
                 case .man:
                     self.mainView.manButton.buttonModeColor(.fill)
@@ -108,13 +113,29 @@ class HomeViewController: UIViewController {
             })
             .disposed(by: disposeBag)
         
+        //home뷰에서 알아서 바뀌나?
+        viewModel.matchingStatusObservable
+            .subscribe(onNext: { status in
+                var imageName = ""
+                switch status {
+                case .normal:
+                    imageName = homeIcon.finding.rawValue
+                case .done:
+                    imageName = homeIcon.message.rawValue
+                case .ing:
+                    imageName = homeIcon.search.rawValue
+                }
+                self.mainView.floatingButton.setImage(UIImage(named: imageName), for: .normal)
+            })
+            .disposed(by: disposeBag)
+        
         
  
     }
     
     
     func checkUser() {
-        print("")
+        let authViewModel = AuthViewModel()
         authViewModel.onErrorHandling = { error in
             if error == .notAcceptable {
                 UserDefaults.standard.startMode = StartMode.auth.rawValue
@@ -126,7 +147,13 @@ class HomeViewController: UIViewController {
                 self.coordinator?.pushToAuthSignUp()
             }
         }
-        self.authViewModel.getUser()
+        authViewModel.getUser()
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){
+
+          self.view.endEditing(true)
+
     }
     
     private func setUserLocation(latitudeValue: CLLocationDegrees, longitudeValue: CLLocationDegrees, delta span: Double) -> CLLocationCoordinate2D {
@@ -140,7 +167,7 @@ class HomeViewController: UIViewController {
     
     func moveToSearching() {
         UserDefaults.standard.matchingStatus = MatchingStatus.ing.rawValue
-        let vc = SearchViewController()
+        let vc = SearchHobbyViewController()
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
@@ -182,7 +209,8 @@ class HomeViewController: UIViewController {
             let annotation = MKPointAnnotation()
             annotation.coordinate = CLLocationCoordinate2D(latitude: friend?.lat ?? defaultCoordinate.latitude, longitude: friend?.long ?? defaultCoordinate.longitude)
             
-            mainView.userSesacImageName = viewModel.setFriendSesacImage(friend: friend!)
+            userSesacImageName = viewModel.setFriendSesacImage(friend: friend!)
+            
             switch friend?.gender {
             case 0:
                 mainView.womanAnnotations.append(annotation)
@@ -190,7 +218,6 @@ class HomeViewController: UIViewController {
                 mainView.manAnnotations.append(annotation)
             }
             mapView?.addAnnotation(annotation)
-            print("mam: \(self.mainView.manAnnotations.count), woman: \(self.mainView.womanAnnotations.count)")
         }
     }
     
@@ -334,7 +361,7 @@ extension HomeViewController: MKMapViewDelegate {
             annotationView?.annotation = annotation
         }
         
-        annotationView?.image = UIImage(named: SesacIcon.face0.rawValue)
+        annotationView?.image = UIImage(named: userSesacImageName)
         
         return annotationView
     }

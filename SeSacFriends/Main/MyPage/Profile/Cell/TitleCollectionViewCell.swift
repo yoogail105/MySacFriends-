@@ -8,10 +8,10 @@
 import UIKit
 import SnapKit
 
-class ProfileCardCollectionViewCell: UICollectionViewCell {
+class TitleCollectionViewCell: UICollectionViewCell {
     static let identifier = "ProfileCollectionViewCell"
     
-    let userTitleButton = BaseButton().then {
+    let titleButton = BaseButton().then {
         $0.buttonMode(.inactive, title: UserTitleText.title1.rawValue)
         $0.titleLabel?.font = UIFont().Title4_R14
     }
@@ -35,8 +35,8 @@ class ProfileCardCollectionViewCell: UICollectionViewCell {
     }
     
     func constraints() {
-        contentView.addSubview(userTitleButton)
-        userTitleButton.snp.makeConstraints {
+        contentView.addSubview(titleButton)
+        titleButton.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
     }

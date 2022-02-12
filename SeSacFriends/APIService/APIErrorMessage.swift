@@ -45,12 +45,3 @@ enum APIErrorMessage: String, Error {
     case deletedUser = "이미 탈퇴한 회원입니다."
 
 }
-
-
-enum StatusCode: String {
-    case E201 = "이미 가입한 계정입니다."
-    case E202 = "사용할 수 없는 닉네임입니다."
-    case E401 = "파이어 베이스 토큰 에러"
-    case E500 = "ServerError"
-    case E501 = "ClientError"
-}

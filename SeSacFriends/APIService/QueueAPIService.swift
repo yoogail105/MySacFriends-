@@ -7,25 +7,42 @@
 
 import Foundation
 import Moya
-class QueueAPIService {
+
+final class QueueAPIService {
     
+    static private let provider = MoyaProvider<QueueService>()
     
-    static func requestFriends(region: Int, lat: Double, long: Double, hf: [String], completion: @escaping ([Friends]?, APIErrorCode?) -> Void) {
-        let userDefaults = UserDefaults.standard
-        var request = URLRequest(url: QueueEndpoint.queue.url)
-        request.httpMethod = Method.POST.rawValue
+    // MARK: queue
+
+    static func searchHobbyFriends(param: OnQueueRequest, completion: @escaping (Friends?, APIErrorCode?) -> Void) {
         
-        let idToken = userDefaults.idToken!
-        request.setValue(idToken, forHTTPHeaderField: HTTPString.idtoken.rawValue)
-        request.setValue(HTTPHeaderValue.contentType.rawValue, forHTTPHeaderField: HTTPString.ContentType.rawValue)
-        
-        request.httpBody = "\(QueueBodyPara.friendsGender.rawValue)=2&\(QueueBodyPara.region.rawValue)=\(region)&\(QueueBodyPara.long.rawValue)=\(lat)&\(QueueBodyPara.lat.rawValue)=\(long)&\(QueueBodyPara.hobbyArray.rawValue)=\(hf)".data(using: .utf8, allowLossyConversion: false)
-        
-        
-        URLSession.requestWithCodable(endpoint: request, completion: completion)
+        provider.request(.onQueue(param: param)) { result in
+//            print("온큐결과", result)
+//            switch result {
+//            case .success(let response):
+//                let result = try?  response.map(Friends.self)
+//                print("성공: ", response)
+//                completion(result, nil)
+//            case .failure(let error):
+//                print("시류ㅐ: ", error)
+//                completion(nil, APIErrorCode(rawValue: error.response!.statusCode))
+//                      }
+            
+            
+            switch ResponseData<Friends>.processJSONResponse(result) {
+            case .success(let model):
+                print("api통신은 성고헀슴: ", model)
+                return completion(model, nil)
+            case .failure(let error):
+                return completion(nil, error)
+            }
+        }
     }
     
+    // MARK: onQueue
     // 새싹어노테이션띄우기
+    
+    
     static func searchFriends(region: Int, lat: Double, long: Double, completion: @escaping (Friends?, APIErrorCode?) -> Void) {
         let userDefaults = UserDefaults.standard
         
@@ -51,7 +68,7 @@ class QueueAPIService {
         
         request.httpMethod = Method.DELETE.rawValue
         request.setValue(idToken, forHTTPHeaderField: HTTPString.idtoken.rawValue)
-
+        
         URLSession.requestWithCodable(endpoint: request, completion: completion)
     }
     

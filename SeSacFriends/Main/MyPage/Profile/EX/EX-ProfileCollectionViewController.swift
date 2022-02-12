@@ -32,7 +32,7 @@ class ProfileCollectionViewController:  UICollectionViewController {
         
     
         //collectionViewItem(cell) 설 설정
-        collectionView.register(ProfileCardCollectionViewCell.self, forCellWithReuseIdentifier: ProfileCardCollectionViewCell.identifier)
+        collectionView.register(TitleCollectionViewCell.self, forCellWithReuseIdentifier: TitleCollectionViewCell.identifier)
         collectionView.register(ProfileCardCollectionViewHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: ProfileCardCollectionViewHeader.identifier)
         
         collectionView.collectionViewLayout = layout()
@@ -88,9 +88,9 @@ extension ProfileCollectionViewController {
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ProfileCardCollectionViewCell.identifier, for: indexPath) as? ProfileCardCollectionViewCell else { return UICollectionViewCell() }
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TitleCollectionViewCell.identifier, for: indexPath) as? TitleCollectionViewCell else { return UICollectionViewCell() }
         
-        cell.userTitleButton.setTitle(userTitles[indexPath.row], for: .normal)
+        cell.titleButton.setTitle(userTitles[indexPath.row], for: .normal)
         return cell
     }
     
@@ -123,21 +123,21 @@ extension ProfileCollectionViewController {
 
 // 미리보기
 
-struct ProfileCollectionViewController_Preview: PreviewProvider {
-    static var previews: some View {
-        Container().edgesIgnoringSafeArea(.all)
-    }
-    
-    struct Container: UIViewControllerRepresentable {
-        func makeUIViewController(context: Context) -> UIViewController {
-            let layout = UICollectionViewLayout()
-            let controller = ProfileCollectionViewController(collectionViewLayout: layout)
-            return UINavigationController(rootViewController: controller)
-        }
-    
-        
-        func updateUIViewController(_ uiViewController: UIViewControllerType, context: Context) {}
-        
-        typealias UIViewControllerType = UIViewController
-    }
-}
+//struct ProfileCollectionViewController_Preview: PreviewProvider {
+//    static var previews: some View {
+//        Container().edgesIgnoringSafeArea(.all)
+//    }
+//
+//    struct Container: UIViewControllerRepresentable {
+//        func makeUIViewController(context: Context) -> UIViewController {
+//            let layout = UICollectionViewLayout()
+//            let controller = ProfileCollectionViewController(collectionViewLayout: layout)
+//            return UINavigationController(rootViewController: controller)
+//        }
+//
+//
+//        func updateUIViewController(_ uiViewController: UIViewControllerType, context: Context) {}
+//
+//        typealias UIViewControllerType = UIViewController
+//    }
+//}

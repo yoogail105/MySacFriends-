@@ -8,6 +8,7 @@
 import Foundation
 import RxRelay
 import MapKit
+import Moya
 
 
 enum SelectedGender {
@@ -19,62 +20,69 @@ enum SelectedGender {
 class QueueViewModel {
     var onErrorHandling: ((APIErrorCode) -> Void)?
     
+    var totalFriends: [FromQueueDB] = []
+    var requestedFriends: [FromQueueDB] = []
+    var fromRecommendList: [String] = []
+    
+    
+    var userData: Friends?
     
     var latObservable = BehaviorRelay<Double>(value: 37.517819364682694)
     var longObservable = BehaviorRelay<Double>(value: 126.88647317074734)
     
-    let manButtonObservable = PublishRelay<Void>()
-    let womanButtonObservable = PublishRelay<Void>()
-    let allButtonObservable = PublishRelay<Void>()
-    
     var genderObservable = BehaviorRelay<SelectedGender>(value: .woman)
     
-    var totalFriends: [FromQueueDB?] = []
-    var requestedFriends: [FromQueueDB] = []
+    var matchingStatusObservable = BehaviorRelay<MatchingStatus>(value: MatchingStatus(rawValue: UserDefaults.standard.matchingStatus!) ?? .normal)
     
     func searchFriends(_ completion: ((Result<Bool, APIErrorCode>) -> Void)? = nil) {
+        
         totalFriends = []
         requestedFriends = []
         let latitude = latObservable.value
         let longitude = longObservable.value
         let resultRegion = calculateRegion(lat: latitude, long: longitude)
         
-        QueueAPIService.searchFriends(region:resultRegion, lat: latitude, long: longitude) { user, result in
-            switch result {
-            case .ok:
-                if user?.fromQueueDB.count == 0 {
-
-                } else {
-                    for friend in [user?.fromQueueDB] {
-                        self.totalFriends.append(contentsOf: friend!)
-                        print("totalFriends는: \(friend!)")
-                    }
-                }
-
-                
-                if user?.fromQueueDBRequested.count == 0 {
-                    
-                } else {
-                    for requestedFriend in [user?.fromQueueDBRequested] {
-                        self.requestedFriends.append(contentsOf: requestedFriend!)
-                        print("requestedFriend는: \(requestedFriend!)")
-                    }
-                }
-                self.onErrorHandling?(.ok)
-                
-                
+        let request = OnQueueRequest(region: resultRegion, lat: latitude, long: longitude)
+        
+        QueueAPIService.searchHobbyFriends(param: request) { friends, error in
+            guard let friends = friends else {
+                return
+            }
+            
+            switch error {
             default:
                 self.onErrorHandling?(.internalServerError)
+ 
             }
+            print("온큐에러는: \(error)")
+            
+            if friends.fromQueueDB.count != 0 {
+                for friend in [friends.fromQueueDB] {
+                    self.totalFriends.append(contentsOf: friend)
+                    print("totalFriends는: \(friend)")
+                }
+            }
+            if friends.fromQueueDBRequested.count != 0 {
+                for requestedFriend in [friends.fromQueueDBRequested] {
+                    self.requestedFriends.append(contentsOf: requestedFriend)
+                    print("requestedFriend는: \(requestedFriend)")
+                }
+            }
+            
+            
+            print("errorHandling: ok", friends)
+            self.onErrorHandling?(.ok)
         }
     }
+    
+    
     
     func setFriendSesacImage(friend: FromQueueDB) -> String {
         switch friend.sesac {
         case 1:
             return SesacIcon.face1.rawValue
         case 2:
-             return SesacIcon.face2.rawValue
+            return SesacIcon.face2.rawValue
         case 3:
             return SesacIcon.face3.rawValue
         case 4:

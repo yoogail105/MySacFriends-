@@ -1,9 +1,9 @@
 //
-//  ProfileTableView.swift
+//  ProfileCardView.swift
 //  SeSacFriends
 //
 //  Created by 성민주민주 on 2022/01/31.
-//
+//  새싹 카드 테이블 뷰
 
 import UIKit
 
@@ -13,6 +13,7 @@ class ProfileCardView: BaseUIView {
     var userTitles: [String] = []
     
     let headerView = ProfileHeaderView()
+    
     let tableView = UITableView().then {
         $0.layer.cornerRadius = 8
         $0.clipsToBounds = true
@@ -20,13 +21,12 @@ class ProfileCardView: BaseUIView {
         $0.layer.borderWidth = 1
 
     }
-
     
     let titleCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
         let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        cv.register(ProfileCardCollectionViewCell.self, forCellWithReuseIdentifier: ProfileCardCollectionViewCell.identifier)
+        cv.register(TitleCollectionViewCell.self, forCellWithReuseIdentifier: TitleCollectionViewCell.identifier)
        return cv
     }()
     
@@ -56,12 +56,6 @@ class ProfileCardView: BaseUIView {
             
         }
         
-//        colorView.snp.makeConstraints {
-//            $0.height.equalTo(58)
-//            $0.leading.trailing.equalTo(tableView)
-//            $0.bottom.equalToSuperview()
-//            
-//        }
     }
  
 }

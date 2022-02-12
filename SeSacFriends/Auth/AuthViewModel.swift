@@ -53,11 +53,13 @@ class AuthViewModel {
     
     func checkVerificationCode(verificationCode: String, completion: @escaping (APIErrorMessage?) -> Void) {
         AuthAPIService.checkVerificationCode(verificationCode: verificationCode) { error in
+            
             if error != nil {
                 if error == .verificationTokenNotMatched {
                     completion(error)
                 }
             }
+            
             UserDefaults.standard.startMode = StartMode.signUp.rawValue
             completion(nil)
         }
@@ -81,13 +83,6 @@ class AuthViewModel {
                     UserDefaults.standard.startMode = StartMode.main.rawValue
                     print(UserDefaults.standard.startMode)
                     self.onErrorHandling?(.ok)
-                    
-//                case .unAuthorized:
-//                    print("토큰 새로 발급하기")
-//                    self.fetchIDToken {
-//                        print("new tocken 완료")
-//                    }
-//                    self.onErrorHandling?(.unAuthorized)
                     
                 case .notAcceptable:
                     UserDefaults.standard.startMode = StartMode.signUp.rawValue

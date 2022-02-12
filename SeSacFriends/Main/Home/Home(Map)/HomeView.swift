@@ -13,7 +13,6 @@ class HomeView: BaseUIView {
     var manAnnotations: [MKAnnotation] = []
     var womanAnnotations: [MKAnnotation] = []
 
-    var userSesacImageName = SesacIcon.face1.rawValue
     
     let mapView = MKMapView().then {
         $0.mapType = MKMapType.standard
