@@ -27,7 +27,6 @@ class HomeViewController: UIViewController {
     var mapView: MKMapView?
     let locationManager = CLLocationManager()
     var selectedGender: SelectedGender = .total
-    var userSesacImageName = SesacIcon.face0.rawValue
     
     
     var defaultCoordinate = CLLocationCoordinate2D(latitude: 37.51818789942772, longitude: 126.88541765534976)
@@ -40,6 +39,7 @@ class HomeViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         print(#function)
+        
         updateFriends(gender: viewModel.genderObservable.value)
         self.navigationController?.isNavigationBarHidden = true
     }
@@ -60,6 +60,7 @@ class HomeViewController: UIViewController {
         mapView = mainView.mapView
         mapView?.center = mainView.center
         mapView?.delegate = self
+        
         let navigationController = self.navigationController
         coordinator = MainCoordinator(navigationController: navigationController!, parentCoordinator: coordinator)
         
@@ -109,7 +110,8 @@ class HomeViewController: UIViewController {
                 case .woman:
                     self.mainView.womanButton.buttonModeColor(.fill)
                 }
-                self.selectAnnotations(gender: self.viewModel.genderObservable.value)
+                
+                self.updateFriends(gender: self.viewModel.genderObservable.value)
             })
             .disposed(by: disposeBag)
         
@@ -128,9 +130,6 @@ class HomeViewController: UIViewController {
                 self.mainView.floatingButton.setImage(UIImage(named: imageName), for: .normal)
             })
             .disposed(by: disposeBag)
-        
-        
- 
     }
     
     
@@ -142,18 +141,12 @@ class HomeViewController: UIViewController {
                 print("로그인 새로 해야함")
                 self.coordinator?.pushToAuthSignUp()
                 // 토스트 메세지: 로그인을 해주세요
-            } else if error == .unAuthorized {
+            } else if error  == .unAuthorized {
                 print("errorHandling: 로그인 새로 해야함")
                 self.coordinator?.pushToAuthSignUp()
             }
         }
         authViewModel.getUser()
-    }
-    
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){
-
-          self.view.endEditing(true)
-
     }
     
     private func setUserLocation(latitudeValue: CLLocationDegrees, longitudeValue: CLLocationDegrees, delta span: Double) -> CLLocationCoordinate2D {
@@ -171,11 +164,7 @@ class HomeViewController: UIViewController {
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
-    private func addUserPin() {
-        let pin = MKPointAnnotation()
-        pin.coordinate = defaultCoordinate
-        mapView?.addAnnotation(pin)
-    }
+ 
     
     private func findMyLocation() {
         guard let currentLocation = locationManager.location else {
@@ -191,34 +180,29 @@ class HomeViewController: UIViewController {
         viewModel.onErrorHandling = { result in
             if result == .ok {
                 print("ok입니다.")
-                
+                self.mapView?.removeAnnotations((self.mapView?.annotations)!)
                 self.addAnnotation(friends: self.viewModel.totalFriends)
-                self.selectAnnotations(gender: self.viewModel.genderObservable.value)
-                
+               // self.selectAnnotations(gender: self.viewModel.genderObservable.value)
             }
         }
         viewModel.searchFriends()
     }
     
-    private func addAnnotation(friends: [FromQueueDB?]) {
+    private func addAnnotation(friends: [Friend?]) {
         print(#function)
         
         for friend in friends {
-            mainView.womanAnnotations = []
-            mainView.manAnnotations = []
-            let annotation = MKPointAnnotation()
-            annotation.coordinate = CLLocationCoordinate2D(latitude: friend?.lat ?? defaultCoordinate.latitude, longitude: friend?.long ?? defaultCoordinate.longitude)
-            
-            userSesacImageName = viewModel.setFriendSesacImage(friend: friend!)
-            
-            switch friend?.gender {
-            case 0:
-                mainView.womanAnnotations.append(annotation)
-            default:
-                mainView.manAnnotations.append(annotation)
-            }
+            let userLocation = CLLocationCoordinate2D(latitude: friend?.lat ?? defaultCoordinate.latitude, longitude: friend?.long ?? defaultCoordinate.longitude)
+            let userSesacImageName = viewModel.setFriendSesacImage(imgaeNumber: friend!.sesac)
+            let annotation = CustomPointAnnotation(coordinate: userLocation, imageName: userSesacImageName)
             mapView?.addAnnotation(annotation)
         }
+    }
+    
+    private func addUsreAnnotation() {
+        let pin = MKPointAnnotation()
+        pin.coordinate = defaultCoordinate
+        mapView?.addAnnotation(pin)
     }
     
     func selectAnnotations(gender: SelectedGender) {
@@ -353,21 +337,23 @@ extension HomeViewController: MKMapViewDelegate {
             return nil
         }
         
-        var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: "custom")
+        var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: CustomPointAnnotation.identifier)
         
         if annotationView == nil {
-            annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: "custom")
+            annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: CustomPointAnnotation.identifier)
+            annotationView?.canShowCallout = false
         } else {
             annotationView?.annotation = annotation
         }
         
-        annotationView?.image = UIImage(named: userSesacImageName)
-        
+        let pin = annotation as? CustomPointAnnotation
+        annotationView?.image = UIImage(named: pin!.imageName)
         return annotationView
     }
     
+    
+    
     func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
-        mapView.removeAnnotations(mapView.annotations)
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.08) {
             self.updateFriends(gender: self.viewModel.genderObservable.value)

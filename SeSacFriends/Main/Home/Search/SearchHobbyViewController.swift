@@ -32,6 +32,8 @@ class SearchHobbyViewController: UIViewController {
         self.navigationController?.isNavigationBarHidden = false
     }
     
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -42,6 +44,14 @@ class SearchHobbyViewController: UIViewController {
         
         let cities = ["London", "Vienna", "Lisbon"]
     }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){
+
+          self.view.endEditing(true)
+
+    }
 }
+
+
 
 //TitleTableViewCell

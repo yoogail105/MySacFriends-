@@ -9,11 +9,11 @@ import Foundation
 
 
 struct Friends: Codable {
-    let fromQueueDB, fromQueueDBRequested: [FromQueueDB]
+    let fromQueueDB, fromQueueDBRequested: [Friend]
     let fromRecommend: [String]
 }
 
-struct FromQueueDB: Codable {
+struct Friend: Codable {
     let uid, nick: String
     let lat, long: Double
     let reputation: [Int]

@@ -13,21 +13,37 @@ import Foundation
 그럼에도 안묶이는 것들에 대해서는 개별적으로 처리를 한다.
 */
 
+// user: 회원가입: 201이미가입유저, 202 사용못하는닉네임
+//report 신고하기:
+
+//queue: 201, 203, 204, 205, 206,
+// hobbyRequest: 201, 202새싹찾기중단
+// hobbyaccep: 201, 202상대방새싹찾기중단한상태, 203,
+// myqueuestatse: 201
+// rate: 리뷰작성:
+// dodge: 201 잘못된 otheruid 취미약속취소
+//
+
+//chat: 채팅내용요청 -> realm
+
 enum APIErrorCode: Int, Error {
+    case ok = 200
+    case unAuthorized = 401 //firebase idtoken
+    case notAcceptable = 406 // already deleted user. 미가입회원
+    case internalServerError = 500
+    case developerError = 501
+    
     case failed
     case noData
     case invalidData
-    case ok = 200
-    //case created = 201 // already existed user
-    case invalidNickname = 202
+    
+    case created = 201
+    case invalidRequest = 202
     case firstPenalty = 203
     case secondPenalty = 204
     case finalPenalty = 205
     case emptyGender = 206
-    case unAuthorized = 401 //firebase idtoken
-    case internalServerError = 405
-    case notAcceptable = 406 // already deleted user. 미가입회원
-    case decodableError 
+    case decodableError
 }
 
 enum APIErrorMessage: String, Error {

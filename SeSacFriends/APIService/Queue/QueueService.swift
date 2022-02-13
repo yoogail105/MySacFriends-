@@ -56,7 +56,13 @@ extension QueueService: TargetType {
     var task: Task {
         switch self {
         case .requestFindHobbyFriends(let param):
-            return .requestJSONEncodable(param)
+            return .requestParameters(parameters: [
+                "type": param.type,
+                "region": param.region,
+                "long": param.long,
+                "lat": param.lat,
+                "hf": param.hf
+            ], encoding: URLEncoding.default)
             
         case .onQueue(let param):
             return .requestParameters(parameters: [

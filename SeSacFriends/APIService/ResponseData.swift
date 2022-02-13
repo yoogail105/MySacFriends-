@@ -22,49 +22,41 @@ struct ResponseData<Model: Codable> {
         let result: Model
     }
     
-    static func processResponse(_ result: Result<Response, MoyaError>) -> Result<Model, Error> {
+    static func processResponse(_ result: Result<Response, MoyaError>) -> Result<Model?, APIErrorCode> {
         switch result {
+            
         case .success(let response):
-            do {
-                
-                _ = try response.filterSuccessfulStatusCodes()
-                
-                let commonResponse = try JSONDecoder().decode(CommonResponse.self, from: response.data)
-                print("processResponse:", commonResponse.result)
-                return .success(commonResponse.result)
-                
-            } catch {
-                //  return .failure(.internalServerError)
-                return .failure(error)
-            }
+            return .success(nil)
             
         case .failure(let error):
             let statusCode = error.response?.statusCode
+            print("API Error Code: \(error.errorCode)")
+            
             switch statusCode {
-            case APIErrorCode.invalidNickname.rawValue:
-                //return .failure(.invalidNickname)
-                return.failure(error)
                 
+            // MARK: firebase error
             case APIErrorCode.unAuthorized.rawValue:
                 AuthAPIService.fetchIDToken {
-                    print("토큰새로 발급 완료")
                 }
-                // return .failure(.unAuthorized)
-                print("토큰오류: ", error)
-                return.failure(error)
+                return .failure(.unAuthorized)
                 
-            case APIErrorCode.notAcceptable.rawValue: //406: 미가입회원
-                // return .failure(.notAcceptable)
-                return.failure(error)
+            case APIErrorCode.notAcceptable.rawValue:
+                //406: 미가입회원 -> 로그인 화면(번호인증화면)
+                return .failure(.notAcceptable)
+                
+            case APIErrorCode.internalServerError.rawValue:
+                return .failure(.internalServerError)
+                
+            case APIErrorCode.developerError.rawValue:
+                return .failure(.developerError)
                 
             default:
-                //      return .failure(.internalServerError)
-                return.failure(error)
+                return .failure(APIErrorCode(rawValue: statusCode!) ?? .developerError)
             }
         }
     }
     
-    //200, 401, 406, 500, 501
+    // 200성공, 401, 406, 500, 501
     static func processJSONResponse(_ result: Result<Response, MoyaError>) -> Result<Model?, APIErrorCode> {
         switch result {
             
@@ -78,23 +70,31 @@ struct ResponseData<Model: Codable> {
             
         case .failure(let error):
             let statusCode = error.response?.statusCode
+            print("API Error Code: \(error.response?.statusCode)")
             
             switch statusCode {
                 
-            case APIErrorCode.invalidNickname.rawValue:
-                return .failure(.invalidNickname)
-                
+            // MARK: firebase error
             case APIErrorCode.unAuthorized.rawValue:
                 AuthAPIService.fetchIDToken {
                 }
                 return .failure(.unAuthorized)
                 
-            case APIErrorCode.notAcceptable.rawValue: //406: 미가입회원
+            case APIErrorCode.notAcceptable.rawValue:
+                //406: 미가입회원 -> 로그인 화면(번호인증화면)
                 return .failure(.notAcceptable)
                 
-            default:
+            case APIErrorCode.internalServerError.rawValue:
                 return .failure(.internalServerError)
+                
+            case APIErrorCode.developerError.rawValue:
+                return .failure(.developerError)
+                
+            default:
+                return .failure(APIErrorCode(rawValue: statusCode! ?? 501)!)
             }
         }
     }
 }
+
+

@@ -7,13 +7,26 @@
 
 import Foundation
 import Moya
+import RxSwift
 
 final class QueueAPIService {
     
     static private let provider = MoyaProvider<QueueService>()
     
-    // MARK: queue
-
+    // queue
+    static func requestFindHobbyFriends(param: QueueRequest, completion: @escaping (Friends?, APIErrorCode?) -> Void) {
+        
+        provider.request(.requestFindHobbyFriends(param: param)) { result in
+            switch ResponseData<Friends>.processResponse(result) {
+            case .success(let model):
+                return completion(model, nil)
+            case .failure(let error):
+                return completion(nil, error)
+            }
+        }
+    }
+    
+    // onqueue
     static func searchHobbyFriends(param: OnQueueRequest, completion: @escaping (Friends?, APIErrorCode?) -> Void) {
         
         provider.request(.onQueue(param: param)) { result in
@@ -26,37 +39,64 @@ final class QueueAPIService {
         }
     }
     
-    // MARK: onQueue
-    // 새싹어노테이션띄우기
-    
-    
-    static func searchFriends(region: Int, lat: Double, long: Double, completion: @escaping (Friends?, APIErrorCode?) -> Void) {
-        let userDefaults = UserDefaults.standard
+    static func requestTogether(param: HobbyRequest, completion: @escaping (Friends?, APIErrorCode?) -> Void) {
         
-        
-        var request = URLRequest(url: QueueEndpoint.onQueue.url)
-        request.httpMethod = Method.POST.rawValue
-        
-        let idToken = userDefaults.idToken!
-        request.setValue(idToken, forHTTPHeaderField: HTTPString.idtoken.rawValue)
-        request.setValue(HTTPHeaderValue.contentType.rawValue, forHTTPHeaderField: HTTPString.ContentType.rawValue)
-        
-        request.httpBody = "\(QueueBodyPara.region.rawValue)=\(region)&\(QueueBodyPara.lat.rawValue)=\(lat)&\(QueueBodyPara.long.rawValue)=\(long)".data(using: .utf8, allowLossyConversion: false)
-        
-        URLSession.requestWithCodable(endpoint: request, completion: completion)
+        provider.request(.hobbyRequest(param: param)) { result in
+            switch ResponseData<Friends>.processResponse(result) {
+            case .success(let model):
+                return completion(model, nil)
+            case .failure(let error):
+                return completion(nil, error)
+            }
+        }
     }
     
-    
-    
-    static func stopSearchFriends(completion: @escaping (User?, APIErrorCode?) -> Void) {
-        let userDefaults = UserDefaults.standard
-        let idToken = userDefaults.idToken!
-        var request = URLRequest(url: QueueEndpoint.queue.url)
+    static func acceptTogether(param: HobbyRequest, completion: @escaping (Friends?, APIErrorCode?) -> Void) {
         
-        request.httpMethod = Method.DELETE.rawValue
-        request.setValue(idToken, forHTTPHeaderField: HTTPString.idtoken.rawValue)
+        provider.request(.hobbyAccept(param: param)) { result in
+            switch ResponseData<Friends>.processResponse(result) {
+            case .success(let model):
+                return completion(model, nil)
+            case .failure(let error):
+                return completion(nil, error)
+            }
+        }
+    }
+    
+    static func myQueueStatus( completion: @escaping (Friends?, APIErrorCode?) -> Void) {
         
-        URLSession.requestWithCodable(endpoint: request, completion: completion)
+        provider.request(.myQueueState) { result in
+            switch ResponseData<Friends>.processJSONResponse(result) {
+            case .success(let model):
+                return completion(model, nil)
+            case .failure(let error):
+                return completion(nil, error)
+            }
+        }
+    }
+    
+    static func stopFindingHobbyFriends( completion: @escaping (Friends?, APIErrorCode?) -> Void) {
+        
+        provider.request(.stopFindingHobbyFriends) { result in
+            switch ResponseData<Friends>.processJSONResponse(result) {
+            case .success(let model):
+                return completion(model, nil)
+            case .failure(let error):
+                return completion(nil, error)
+            }
+        }
+    }
+    
+    static func stopSearchFriends( completion: @escaping (Friends?, APIErrorCode?) -> Void) {
+        
+        provider.request(.stopFindingHobbyFriends) { result in
+            switch ResponseData<Friends>.processJSONResponse(result) {
+            case .success(let model):
+                return completion(model, nil)
+            case .failure(let error):
+                return completion(nil, error)
+            }
+        }
     }
     
 }

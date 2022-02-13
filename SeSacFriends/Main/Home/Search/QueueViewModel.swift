@@ -9,6 +9,7 @@ import Foundation
 import RxRelay
 import MapKit
 import Moya
+import RxSwift
 
 
 enum SelectedGender {
@@ -20,8 +21,8 @@ enum SelectedGender {
 class QueueViewModel {
     var onErrorHandling: ((APIErrorCode) -> Void)?
     
-    var totalFriends: [FromQueueDB] = []
-    var requestedFriends: [FromQueueDB] = []
+    var totalFriends: [Friend] = []
+    var requestedFriends: [Friend] = []
     var fromRecommendList: [String] = []
     
     
@@ -30,14 +31,27 @@ class QueueViewModel {
     var latObservable = BehaviorRelay<Double>(value: 37.517819364682694)
     var longObservable = BehaviorRelay<Double>(value: 126.88647317074734)
     
-    var genderObservable = BehaviorRelay<SelectedGender>(value: .woman)
+    var genderObservable = BehaviorRelay<SelectedGender>(value: .total)
     
     var matchingStatusObservable = BehaviorRelay<MatchingStatus>(value: MatchingStatus(rawValue: UserDefaults.standard.matchingStatus!) ?? .normal)
+    
+    func selectedGender(gender: SelectedGender) -> Int {
+        switch gender {
+        case .total:
+            return 2
+        case .man:
+            return 1
+        case .woman:
+            return 0
+        }
+    }
     
     func searchFriends(_ completion: ((Result<Bool, APIErrorCode>) -> Void)? = nil) {
         
         totalFriends = []
         requestedFriends = []
+        
+        let selectedGender = selectedGender(gender: genderObservable.value)
         let latitude = latObservable.value
         let longitude = longObservable.value
         let resultRegion = calculateRegion(lat: latitude, long: longitude)
@@ -51,34 +65,54 @@ class QueueViewModel {
             
             switch error {
             default:
+                print("searchFriends", error)
                 self.onErrorHandling?(.internalServerError)
- 
             }
-            print("온큐에러는: \(error)")
             
-            if friends.fromQueueDB.count != 0 {
-                for friend in [friends.fromQueueDB] {
-                    self.totalFriends.append(contentsOf: friend)
-                    print("totalFriends는: \(friend)")
+            switch self.genderObservable.value {
+            case .total:
+                for friend in friends.fromQueueDB {
+                    self.totalFriends.append(contentsOf: [friend])
+                }
+                for requestedFriend in friends.fromQueueDBRequested {
+                    self.requestedFriends.append(contentsOf: [requestedFriend])
+                }
+            default:
+                for friend in friends.fromQueueDB {
+                    if friend.gender == selectedGender {
+                        self.totalFriends.append(contentsOf: [friend])
+                    }
+                }
+                for requestedFriend in friends.fromQueueDBRequested {
+                    if requestedFriend.gender == selectedGender {
+                        self.requestedFriends.append(contentsOf: [requestedFriend])
+                    }
                 }
             }
-            if friends.fromQueueDBRequested.count != 0 {
-                for requestedFriend in [friends.fromQueueDBRequested] {
-                    self.requestedFriends.append(contentsOf: requestedFriend)
-                    print("requestedFriend는: \(requestedFriend)")
-                }
-            }
-            
-            
-            print("errorHandling: ok", friends)
+//
+//            if friends.fromQueueDB.count != 0 {
+//                for friend in friends.fromQueueDB {
+//                    if friend.gender == selectedGender {
+//                        self.totalFriends.append(contentsOf: [friend])
+//                    }
+//                }
+//            }
+//
+//            if friends.fromQueueDBRequested.count != 0 {
+//                for requestedFriend in friends.fromQueueDBRequested {
+//                    if requestedFriend.gender == selectedGender {
+//                        self.requestedFriends.append(contentsOf: [requestedFriend])
+//                    }
+//                }
+//            }
+            print("total: \(self.totalFriends), requested: \(self.requestedFriends)")
             self.onErrorHandling?(.ok)
         }
     }
     
     
-    
-    func setFriendSesacImage(friend: FromQueueDB) -> String {
-        switch friend.sesac {
+    func setFriendSesacImage(imgaeNumber: Int) -> String {
+        switch imgaeNumber {
         case 1:
             return SesacIcon.face1.rawValue
         case 2:

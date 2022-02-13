@@ -145,8 +145,8 @@ extension URLSession {
                 guard response.statusCode == APIErrorCode.ok.rawValue else {
                     let statusCode = response.statusCode
                     switch statusCode {
-                    case APIErrorCode.invalidNickname.rawValue: //202
-                        completion(nil, .invalidNickname)
+                    case APIErrorCode.invalidRequest.rawValue: //202
+                        completion(nil, .invalidRequest)
                     case APIErrorCode.unAuthorized.rawValue: //401
                         AuthAPIService.fetchIDToken {
                             print("토큰 새로 발급 완료")
@@ -206,8 +206,8 @@ extension URLSession {
                 guard response.statusCode == APIErrorCode.ok.rawValue else {
                     let statusCode = response.statusCode
                     switch statusCode {
-                    case APIErrorCode.invalidNickname.rawValue: //202
-                        completion(nil, .invalidNickname)
+                    case APIErrorCode.invalidRequest.rawValue: //202
+                        completion(nil, .invalidRequest)
                     case APIErrorCode.unAuthorized.rawValue: //401
                         AuthAPIService.fetchIDToken {
                             print("토큰 새로 발급 완료")

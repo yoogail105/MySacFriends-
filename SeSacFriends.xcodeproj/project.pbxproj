@@ -30,6 +30,7 @@
 		2333572D27A08D630062A9E8 /* APIErrorMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2333572C27A08D630062A9E8 /* APIErrorMessage.swift */; };
 		2333572F27A09EF20062A9E8 /* MyPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2333572E27A09EF20062A9E8 /* MyPageView.swift */; };
 		2333573227A09FCE0062A9E8 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2333573127A09FCE0062A9E8 /* MainView.swift */; };
+		233D799527B9272900BA0671 /* class CustomPointAnnotation- MKPointAnnotation {     var imageName- Str .swift in Sources */ = {isa = PBXBuildFile; fileRef = 233D799427B9272900BA0671 /* class CustomPointAnnotation- MKPointAnnotation {     var imageName- Str .swift */; };
 		234CEC012799F76B00983E20 /* OnboardingCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 234CEC002799F76B00983E20 /* OnboardingCardView.swift */; };
 		234CEC032799F7F600983E20 /* OnboardingImages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 234CEC022799F7F600983E20 /* OnboardingImages.swift */; };
 		234CEC052799FAC300983E20 /* BaseUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 234CEC042799FAC300983E20 /* BaseUIView.swift */; };
@@ -131,6 +132,7 @@
 		2333572C27A08D630062A9E8 /* APIErrorMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIErrorMessage.swift; sourceTree = "<group>"; };
 		2333572E27A09EF20062A9E8 /* MyPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageView.swift; sourceTree = "<group>"; };
 		2333573127A09FCE0062A9E8 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		233D799427B9272900BA0671 /* class CustomPointAnnotation- MKPointAnnotation {     var imageName- Str .swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "class CustomPointAnnotation- MKPointAnnotation {     var imageName- Str .swift"; sourceTree = "<group>"; };
 		234CEC002799F76B00983E20 /* OnboardingCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCardView.swift; sourceTree = "<group>"; };
 		234CEC022799F7F600983E20 /* OnboardingImages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingImages.swift; sourceTree = "<group>"; };
 		234CEC042799FAC300983E20 /* BaseUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseUIView.swift; sourceTree = "<group>"; };
@@ -256,6 +258,32 @@
 			path = MyPage;
 			sourceTree = "<group>";
 		};
+		233D799127B8DF2600BA0671 /* Shop */ = {
+			isa = PBXGroup;
+			children = (
+				237B9F1727A35239008A6E06 /* ShopViewController.swift */,
+			);
+			path = Shop;
+			sourceTree = "<group>";
+		};
+		233D799227B8DF3600BA0671 /* Friends */ = {
+			isa = PBXGroup;
+			children = (
+				237B9F1327A35232008A6E06 /* FriendsViewController.swift */,
+			);
+			path = Friends;
+			sourceTree = "<group>";
+		};
+		233D799327B8DF4300BA0671 /* TabBar */ = {
+			isa = PBXGroup;
+			children = (
+				2389E1AF27967B1200BE68E3 /* MainViewController.swift */,
+				2333573127A09FCE0062A9E8 /* MainView.swift */,
+				23AF965227A19B210078A204 /* MainTabBarController.swift */,
+			);
+			path = TabBar;
+			sourceTree = "<group>";
+		};
 		234CEBFF2799F75500983E20 /* Onboarding */ = {
 			isa = PBXGroup;
 			children = (
@@ -324,12 +352,10 @@
 		234CEC26279C835500983E20 /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				233D799327B8DF4300BA0671 /* TabBar */,
 				2333573027A09EF70062A9E8 /* MyPage */,
-				2389E1AF27967B1200BE68E3 /* MainViewController.swift */,
-				2333573127A09FCE0062A9E8 /* MainView.swift */,
-				23AF965227A19B210078A204 /* MainTabBarController.swift */,
-				237B9F1327A35232008A6E06 /* FriendsViewController.swift */,
-				237B9F1727A35239008A6E06 /* ShopViewController.swift */,
+				233D799227B8DF3600BA0671 /* Friends */,
+				233D799127B8DF2600BA0671 /* Shop */,
 				232FCFFB27B1022F00A2558C /* Home */,
 			);
 			path = Main;
@@ -498,6 +524,7 @@
 				237B9F1527A35237008A6E06 /* HomeViewController.swift */,
 				232FCFFC27B1034900A2558C /* HomeViewModel.swift */,
 				232FCFF927B1022A00A2558C /* HomeView.swift */,
+				233D799427B9272900BA0671 /* class CustomPointAnnotation- MKPointAnnotation {     var imageName- Str .swift */,
 			);
 			path = "Home(Map)";
 			sourceTree = "<group>";
@@ -676,6 +703,7 @@
 				2333572F27A09EF20062A9E8 /* MyPageView.swift in Sources */,
 				2323AEB627A6F2E500895CC7 /* ProfileCardView.swift in Sources */,
 				23ADC14427AB2EED00101C43 /* ProfileView.swift in Sources */,
+				233D799527B9272900BA0671 /* class CustomPointAnnotation- MKPointAnnotation {     var imageName- Str .swift in Sources */,
 				2323AEBC27A7193500895CC7 /* EX-ProfileCardViewController.swift in Sources */,
 				2389E1B027967B1200BE68E3 /* MainViewController.swift in Sources */,
 				23ADC14027AB03BB00101C43 /* TitleTableViewCell.swift in Sources */,
