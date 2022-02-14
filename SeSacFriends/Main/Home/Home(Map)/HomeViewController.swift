@@ -85,6 +85,7 @@ class HomeViewController: UIViewController {
         
         mainView.floatingButton.rx.tap
             .bind {
+                self.updateFriends(gender: self.viewModel.genderObservable.value)
                 self.moveToSearching()
             }
             .disposed(by: disposeBag)

@@ -10,7 +10,7 @@ import SwiftUI
 import RxCocoa
 import RxSwift
 
-class ProfileViewController: BaseViewController {
+final class ProfileViewController: BaseViewController {
     
     
 
@@ -68,7 +68,7 @@ class ProfileViewController: BaseViewController {
         
         let tableView = mainView.cardView.tableView
         tableView.register(NameTableViewCell.self, forCellReuseIdentifier: NameTableViewCell.identifier)
-        tableView.register(ProfileCardTitleTableViewCell.self, forCellReuseIdentifier: ProfileCardTitleTableViewCell.identifier)
+        tableView.register(TitleTableViewCell.self, forCellReuseIdentifier: TitleTableViewCell.identifier)
         tableView.register(ProfileCardReviewTableViewCell.self, forCellReuseIdentifier: ProfileCardReviewTableViewCell.identifier)
         tableView.delegate = self
         tableView.dataSource = self
@@ -326,7 +326,7 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
             cell.selectionStyle = .none
             return cell
         case [1, 0]:
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: ProfileCardTitleTableViewCell.identifier, for: indexPath) as? ProfileCardTitleTableViewCell else { return UITableViewCell()}
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: TitleTableViewCell.identifier, for: indexPath) as? TitleTableViewCell else { return UITableViewCell()}
             cell.selectionStyle = .none
             return cell
         case [2, 0]:

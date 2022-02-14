@@ -10,7 +10,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-class withdrawalViewController: UIViewController {
+final class withdrawalViewController: UIViewController {
     
     let mainView = AlertView()
     let viewModel = ProfileViewModel()

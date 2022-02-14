@@ -30,7 +30,10 @@
 		2333572D27A08D630062A9E8 /* APIErrorMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2333572C27A08D630062A9E8 /* APIErrorMessage.swift */; };
 		2333572F27A09EF20062A9E8 /* MyPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2333572E27A09EF20062A9E8 /* MyPageView.swift */; };
 		2333573227A09FCE0062A9E8 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2333573127A09FCE0062A9E8 /* MainView.swift */; };
-		233D799527B9272900BA0671 /* class CustomPointAnnotation- MKPointAnnotation {     var imageName- Str .swift in Sources */ = {isa = PBXBuildFile; fileRef = 233D799427B9272900BA0671 /* class CustomPointAnnotation- MKPointAnnotation {     var imageName- Str .swift */; };
+		233D799527B9272900BA0671 /* CustomPointAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 233D799427B9272900BA0671 /* CustomPointAnnotation.swift */; };
+		233D799927B9ADAA00BA0671 /* TitleWithXCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 233D799827B9ADAA00BA0671 /* TitleWithXCollectionViewCell.swift */; };
+		233D799D27B9B50100BA0671 /* HobbyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 233D799C27B9B50100BA0671 /* HobbyTableViewCell.swift */; };
+		233D799F27B9E08D00BA0671 /* RecommendCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 233D799E27B9E08D00BA0671 /* RecommendCollectionViewCell.swift */; };
 		234CEC012799F76B00983E20 /* OnboardingCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 234CEC002799F76B00983E20 /* OnboardingCardView.swift */; };
 		234CEC032799F7F600983E20 /* OnboardingImages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 234CEC022799F7F600983E20 /* OnboardingImages.swift */; };
 		234CEC052799FAC300983E20 /* BaseUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 234CEC042799FAC300983E20 /* BaseUIView.swift */; };
@@ -98,7 +101,6 @@
 		23AF965527A19BEC0078A204 /* MyPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23AF965427A19BEC0078A204 /* MyPageViewController.swift */; };
 		23AF965927A1A0470078A204 /* TabBarText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23AF965827A1A0470078A204 /* TabBarText.swift */; };
 		23AF965F27A1B5F70078A204 /* CoordinatorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23AF965E27A1B5F70078A204 /* CoordinatorProtocol.swift */; };
-		23BE83E927B6F10400416C6E /* SectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23BE83E827B6F10400416C6E /* SectionModel.swift */; };
 		23BE83EE27B705ED00416C6E /* GeneralAPIComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23BE83ED27B705ED00416C6E /* GeneralAPIComponents.swift */; };
 		23BE83F027B70F4700416C6E /* QueueRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23BE83EF27B70F4700416C6E /* QueueRequest.swift */; };
 		23BE83F227B724C000416C6E /* ResponseData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23BE83F127B724C000416C6E /* ResponseData.swift */; };
@@ -132,7 +134,10 @@
 		2333572C27A08D630062A9E8 /* APIErrorMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIErrorMessage.swift; sourceTree = "<group>"; };
 		2333572E27A09EF20062A9E8 /* MyPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageView.swift; sourceTree = "<group>"; };
 		2333573127A09FCE0062A9E8 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
-		233D799427B9272900BA0671 /* class CustomPointAnnotation- MKPointAnnotation {     var imageName- Str .swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "class CustomPointAnnotation- MKPointAnnotation {     var imageName- Str .swift"; sourceTree = "<group>"; };
+		233D799427B9272900BA0671 /* CustomPointAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPointAnnotation.swift; sourceTree = "<group>"; };
+		233D799827B9ADAA00BA0671 /* TitleWithXCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleWithXCollectionViewCell.swift; sourceTree = "<group>"; };
+		233D799C27B9B50100BA0671 /* HobbyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HobbyTableViewCell.swift; sourceTree = "<group>"; };
+		233D799E27B9E08D00BA0671 /* RecommendCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendCollectionViewCell.swift; sourceTree = "<group>"; };
 		234CEC002799F76B00983E20 /* OnboardingCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCardView.swift; sourceTree = "<group>"; };
 		234CEC022799F7F600983E20 /* OnboardingImages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingImages.swift; sourceTree = "<group>"; };
 		234CEC042799FAC300983E20 /* BaseUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseUIView.swift; sourceTree = "<group>"; };
@@ -203,7 +208,6 @@
 		23AF965427A19BEC0078A204 /* MyPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageViewController.swift; sourceTree = "<group>"; };
 		23AF965827A1A0470078A204 /* TabBarText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarText.swift; sourceTree = "<group>"; };
 		23AF965E27A1B5F70078A204 /* CoordinatorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordinatorProtocol.swift; sourceTree = "<group>"; };
-		23BE83E827B6F10400416C6E /* SectionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionModel.swift; sourceTree = "<group>"; };
 		23BE83ED27B705ED00416C6E /* GeneralAPIComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralAPIComponents.swift; sourceTree = "<group>"; };
 		23BE83EF27B70F4700416C6E /* QueueRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueueRequest.swift; sourceTree = "<group>"; };
 		23BE83F127B724C000416C6E /* ResponseData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseData.swift; sourceTree = "<group>"; };
@@ -480,9 +484,12 @@
 			isa = PBXGroup;
 			children = (
 				2323AEBD27A71F7300895CC7 /* TitleCollectionViewCell.swift */,
+				233D799E27B9E08D00BA0671 /* RecommendCollectionViewCell.swift */,
+				233D799827B9ADAA00BA0671 /* TitleWithXCollectionViewCell.swift */,
 				23ADC14127AB1F3F00101C43 /* ReviewTableViewCell.swift */,
 				2323AEB927A7048C00895CC7 /* NameTableViewCell.swift */,
 				23ADC13F27AB03BB00101C43 /* TitleTableViewCell.swift */,
+				233D799C27B9B50100BA0671 /* HobbyTableViewCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -513,7 +520,6 @@
 			children = (
 				236820D227B4659200C79EAC /* Friends.swift */,
 				2333571A279DC6AE0062A9E8 /* User.swift */,
-				23BE83E827B6F10400416C6E /* SectionModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -524,7 +530,7 @@
 				237B9F1527A35237008A6E06 /* HomeViewController.swift */,
 				232FCFFC27B1034900A2558C /* HomeViewModel.swift */,
 				232FCFF927B1022A00A2558C /* HomeView.swift */,
-				233D799427B9272900BA0671 /* class CustomPointAnnotation- MKPointAnnotation {     var imageName- Str .swift */,
+				233D799427B9272900BA0671 /* CustomPointAnnotation.swift */,
 			);
 			path = "Home(Map)";
 			sourceTree = "<group>";
@@ -703,7 +709,7 @@
 				2333572F27A09EF20062A9E8 /* MyPageView.swift in Sources */,
 				2323AEB627A6F2E500895CC7 /* ProfileCardView.swift in Sources */,
 				23ADC14427AB2EED00101C43 /* ProfileView.swift in Sources */,
-				233D799527B9272900BA0671 /* class CustomPointAnnotation- MKPointAnnotation {     var imageName- Str .swift in Sources */,
+				233D799527B9272900BA0671 /* CustomPointAnnotation.swift in Sources */,
 				2323AEBC27A7193500895CC7 /* EX-ProfileCardViewController.swift in Sources */,
 				2389E1B027967B1200BE68E3 /* MainViewController.swift in Sources */,
 				23ADC14027AB03BB00101C43 /* TitleTableViewCell.swift in Sources */,
@@ -714,6 +720,7 @@
 				23335719279DB2A90062A9E8 /* UserAPIService.swift in Sources */,
 				232FCFFA27B1022A00A2558C /* HomeView.swift in Sources */,
 				239960412796572C001C8EA4 /* String+Extension.swift in Sources */,
+				233D799D27B9B50100BA0671 /* HobbyTableViewCell.swift in Sources */,
 				237B9F1227A2AA13008A6E06 /* PushCoordinator.swift in Sources */,
 				236820CA27B4579500C79EAC /* SearchHobbyView.swift in Sources */,
 				234E5FA627987EE900F5D2BB /* UIButton+Extension.swift in Sources */,
@@ -733,6 +740,7 @@
 				2389E1C42796862A00BE68E3 /* UIFont+Extension.swift in Sources */,
 				23ADC13C27AAFA9700101C43 /* UserTitleText.swift in Sources */,
 				234CEC15279B247800983E20 /* OnboardingView.swift in Sources */,
+				233D799927B9ADAA00BA0671 /* TitleWithXCollectionViewCell.swift in Sources */,
 				234CEC032799F7F600983E20 /* OnboardingImages.swift in Sources */,
 				23AF965527A19BEC0078A204 /* MyPageViewController.swift in Sources */,
 				23BE83F027B70F4700416C6E /* QueueRequest.swift in Sources */,
@@ -740,6 +748,7 @@
 				2333571B279DC6AE0062A9E8 /* User.swift in Sources */,
 				237B9F0E27A262BD008A6E06 /* MyPageViewCell.swift in Sources */,
 				2323AEB827A6F53D00895CC7 /* ProfileHeaderView.swift in Sources */,
+				233D799F27B9E08D00BA0671 /* RecommendCollectionViewCell.swift in Sources */,
 				236820D327B4659200C79EAC /* Friends.swift in Sources */,
 				2389E1DE2796D8C800BE68E3 /* AuthVerificationCodeViewController.swift in Sources */,
 				234DC38E27AD9B5A00132A36 /* ProfileViewModel.swift in Sources */,
@@ -777,7 +786,6 @@
 				234CEC0D279AF61500983E20 /* PageViewController.swift in Sources */,
 				234CEC1B279C51C700983E20 /* Text.swift in Sources */,
 				234CEC0B279AB3D500983E20 /* UIView+Extension.swift in Sources */,
-				23BE83E927B6F10400416C6E /* SectionModel.swift in Sources */,
 				2323AEBA27A7048C00895CC7 /* NameTableViewCell.swift in Sources */,
 				236820D127B460D800C79EAC /* QueueViewModel.swift in Sources */,
 				23BE83F427B7AC9C00416C6E /* UserService.swift in Sources */,

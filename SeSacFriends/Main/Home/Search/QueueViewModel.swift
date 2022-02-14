@@ -23,8 +23,16 @@ class QueueViewModel {
     
     var totalFriends: [Friend] = []
     var requestedFriends: [Friend] = []
-    var fromRecommendList: [String] = []
     
+    
+    var fromRecommendHobbyList: [String] = []
+    var friendsHobbyList: [String] = []
+    var myHobbyList: [String] = []
+    var friendsHobbyListOb: Observable<[String]>?
+    
+    
+    
+    let disposeBag = DisposeBag()
     
     var userData: Friends?
     
@@ -34,6 +42,9 @@ class QueueViewModel {
     var genderObservable = BehaviorRelay<SelectedGender>(value: .total)
     
     var matchingStatusObservable = BehaviorRelay<MatchingStatus>(value: MatchingStatus(rawValue: UserDefaults.standard.matchingStatus!) ?? .normal)
+    
+    
+    //var subject: BehaviorRelay<[HobbySection]> = BehaviorRelay(value: [])
     
     func selectedGender(gender: SelectedGender) -> Int {
         switch gender {
@@ -48,8 +59,13 @@ class QueueViewModel {
     
     func searchFriends(_ completion: ((Result<Bool, APIErrorCode>) -> Void)? = nil) {
         
+        //reset
         totalFriends = []
         requestedFriends = []
+        fromRecommendHobbyList = []
+        friendsHobbyList = []
+        myHobbyList = []
+        
         
         let selectedGender = selectedGender(gender: genderObservable.value)
         let latitude = latObservable.value
@@ -69,42 +85,48 @@ class QueueViewModel {
                 self.onErrorHandling?(.internalServerError)
             }
             
+            print(friends)
+            for hobby in friends.fromRecommend {
+                self.fromRecommendHobbyList.append(contentsOf: [hobby])
+            }
+            
             switch self.genderObservable.value {
             case .total:
                 for friend in friends.fromQueueDB {
                     self.totalFriends.append(contentsOf: [friend])
+                    for hobby in friend.hf {
+                        self.friendsHobbyList.append(hobby)
+                    }
+
                 }
                 for requestedFriend in friends.fromQueueDBRequested {
                     self.requestedFriends.append(contentsOf: [requestedFriend])
+                    for hobby in requestedFriend.hf {
+                        self.friendsHobbyList.append(hobby)
+                    }
                 }
             default:
                 for friend in friends.fromQueueDB {
                     if friend.gender == selectedGender {
                         self.totalFriends.append(contentsOf: [friend])
+                        for hobby in friend.hf {
+                            self.friendsHobbyList.append(hobby)
+                        }
                     }
                 }
                 for requestedFriend in friends.fromQueueDBRequested {
                     if requestedFriend.gender == selectedGender {
                         self.requestedFriends.append(contentsOf: [requestedFriend])
+                        for hobby in requestedFriend.hf {
+                            self.friendsHobbyList.append(hobby)
+                        }
                     }
                 }
             }
-//
-//            if friends.fromQueueDB.count != 0 {
-//                for friend in friends.fromQueueDB {
-//                    if friend.gender == selectedGender {
-//                        self.totalFriends.append(contentsOf: [friend])
-//                    }
-//                }
-//            }
-//
-//            if friends.fromQueueDBRequested.count != 0 {
-//                for requestedFriend in friends.fromQueueDBRequested {
-//                    if requestedFriend.gender == selectedGender {
-//                        self.requestedFriends.append(contentsOf: [requestedFriend])
-//                    }
-//                }
-//            }
+            
+            self.friendsHobbyListOb = Observable<[String]>.of(self.friendsHobbyList)
+            
+
             print("total: \(self.totalFriends), requested: \(self.requestedFriends)")
             self.onErrorHandling?(.ok)
         }

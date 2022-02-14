@@ -1,21 +1,20 @@
 //
-//  ProfileCollectionViewCell.swift
+//  RecommendCollectionViewCell.swift
 //  SeSacFriends
 //
-//  Created by 성민주민주 on 2022/01/31.
+//  Created by 성민주민주 on 2022/02/14.
 //
 
 import UIKit
 import SnapKit
 
-class TitleCollectionViewCell: UICollectionViewCell {
-    static let identifier = "TitleCollectionViewCell"
+class RecommendCollectionViewCell: UICollectionViewCell {
+    static let identifier = "RecommendCollectionViewCell"
     
     var titleLabel = UILabel().then {
         
         $0.font = UIFont().Title4_R14
-//        $0.textColor = UIColor.brandColor(.green)
-        $0.textColor = UIColor.black
+        $0.textColor = UIColor.systemColor(.error)
         $0.textAlignment = .center
     }
     
@@ -38,8 +37,8 @@ class TitleCollectionViewCell: UICollectionViewCell {
         self.clipsToBounds = true
         self.layer.cornerRadius = 8
         self.layer.borderWidth = 1
-//        self.layer.borderColor = UIColor.brandColor(.green).cgColor
-        self.layer.borderColor = UIColor.grayColor(.gray3).cgColor
+        
+        self.layer.borderColor = UIColor.systemColor(.error).cgColor
     }
     
     func constraints() {

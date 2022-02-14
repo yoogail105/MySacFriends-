@@ -1,5 +1,5 @@
 //
-//  class CustomPointAnnotation- MKPointAnnotation {     var imageName- Str .swift
+//  class CustomPointAnnotation
 //  SeSacFriends
 //
 //  Created by 성민주민주 on 2022/02/13.

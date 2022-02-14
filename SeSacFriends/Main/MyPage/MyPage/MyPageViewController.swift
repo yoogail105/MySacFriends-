@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-class MyPageViewController: BaseViewController {
+final class MyPageViewController: BaseViewController {
     
     
     let mainView = MyPageView()

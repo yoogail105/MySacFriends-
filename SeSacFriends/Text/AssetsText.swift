@@ -15,6 +15,7 @@ enum AssetIcon: String {
     case check
     case closeBig = "close_big"
     case closeSmall = "close_small"
+    case closeSmallGreen = "close_small_green"
     case filterControl = "filter_control"
     case friendsPlus = "friends_plus"
     case man

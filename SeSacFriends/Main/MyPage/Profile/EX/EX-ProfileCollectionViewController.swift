@@ -33,7 +33,7 @@ class ProfileCollectionViewController:  UICollectionViewController {
     
         //collectionViewItem(cell) 설 설정
         collectionView.register(TitleCollectionViewCell.self, forCellWithReuseIdentifier: TitleCollectionViewCell.identifier)
-        collectionView.register(ProfileCardCollectionViewHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: ProfileCardCollectionViewHeader.identifier)
+        collectionView.register(collectionHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: collectionHeaderView.identifier)
         
         collectionView.collectionViewLayout = layout()
     }
@@ -90,7 +90,7 @@ extension ProfileCollectionViewController {
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TitleCollectionViewCell.identifier, for: indexPath) as? TitleCollectionViewCell else { return UICollectionViewCell() }
         
-        cell.titleButton.setTitle(userTitles[indexPath.row], for: .normal)
+        cell.titleLabel.text =  userTitles[indexPath.row]
         return cell
     }
     
@@ -107,7 +107,7 @@ extension ProfileCollectionViewController {
     // 헤더뷰 설정
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         if kind == UICollectionView.elementKindSectionHeader {
-            guard let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: ProfileCardCollectionViewHeader.identifier, for: indexPath) as? ProfileCardCollectionViewHeader else {
+            guard let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: collectionHeaderView.identifier, for: indexPath) as? collectionHeaderView else {
                 fatalError("Could not find dequeue header")
             }
             
@@ -121,23 +121,23 @@ extension ProfileCollectionViewController {
    
 }
 
-// 미리보기
+ //미리보기
 
-//struct ProfileCollectionViewController_Preview: PreviewProvider {
-//    static var previews: some View {
-//        Container().edgesIgnoringSafeArea(.all)
-//    }
-//
-//    struct Container: UIViewControllerRepresentable {
-//        func makeUIViewController(context: Context) -> UIViewController {
-//            let layout = UICollectionViewLayout()
-//            let controller = ProfileCollectionViewController(collectionViewLayout: layout)
-//            return UINavigationController(rootViewController: controller)
-//        }
-//
-//
-//        func updateUIViewController(_ uiViewController: UIViewControllerType, context: Context) {}
-//
-//        typealias UIViewControllerType = UIViewController
-//    }
-//}
+struct ProfileCollectionViewController_Preview: PreviewProvider {
+    static var previews: some View {
+        Container().edgesIgnoringSafeArea(.all)
+    }
+
+    struct Container: UIViewControllerRepresentable {
+        func makeUIViewController(context: Context) -> UIViewController {
+            let layout = UICollectionViewLayout()
+            let controller = ProfileCollectionViewController(collectionViewLayout: layout)
+            return UINavigationController(rootViewController: controller)
+        }
+
+
+        func updateUIViewController(_ uiViewController: UIViewControllerType, context: Context) {}
+
+        typealias UIViewControllerType = UIViewController
+    }
+}

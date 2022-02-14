@@ -9,7 +9,7 @@ import UIKit
 import SnapKit
 
 
-class ProfileCardTitleTableViewCell: UITableViewCell {
+class TitleTableViewCell: UITableViewCell {
     
     static let identifier = "ProfileCardTitleTableViewCell"
     
@@ -83,7 +83,7 @@ class ProfileCardTitleTableViewCell: UITableViewCell {
     
 }
 
-extension ProfileCardTitleTableViewCell: UICollectionViewDelegate, UICollectionViewDataSource {
+extension TitleTableViewCell: UICollectionViewDelegate, UICollectionViewDataSource {
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
@@ -96,7 +96,7 @@ extension ProfileCardTitleTableViewCell: UICollectionViewDelegate, UICollectionV
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TitleCollectionViewCell.identifier, for: indexPath) as? TitleCollectionViewCell else { return UICollectionViewCell() }
         
-        cell.titleButton.setTitle(userTitles[indexPath.row], for: .normal)
+        cell.titleLabel.text = userTitles[indexPath.row]
         return cell
     }
     
@@ -104,6 +104,4 @@ extension ProfileCardTitleTableViewCell: UICollectionViewDelegate, UICollectionV
         let sectionName = userTitles[indexPath.row]
         print("Test: \(sectionName) 섹션 선택됨.")
     }
- 
-    
 }
