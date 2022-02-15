@@ -40,10 +40,14 @@ enum APIErrorCode: Int, Error {
     case created = 201
     case invalidRequest = 202
     case firstPenalty = 203
+
     case secondPenalty = 204
     case finalPenalty = 205
     case emptyGender = 206
-    case decodableError
+    
+    case decodableError = 600
+    case unKnownError = 700
+    
 }
 
 enum APIErrorMessage: String, Error {

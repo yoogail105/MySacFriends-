@@ -13,10 +13,29 @@ final class QueueAPIService {
     
     static private let provider = MoyaProvider<QueueService>()
     
+    static func requestFindHobbyFriends(completion: @escaping (User?, APIErrorCode?) -> Void) {
+        
+        
+        let idToken = UserDefaults.standard.idToken!
+        print("signup에서 idtoken: ", idToken)
+        var request = URLRequest(url: QueueEndpoint.queue.url)
+        
+        request.httpMethod = Method.POST.rawValue
+        
+        request.setValue(idToken, forHTTPHeaderField: HTTPString.idtoken.rawValue)
+        request.setValue(HTTPHeaderValue.contentType.rawValue, forHTTPHeaderField: HTTPString.ContentType.rawValue)
+        request.httpBody = "type=2&region=1274830692&long=126.92983890550006&lat= 37.482733667903865&hf=[]".data(using: .utf8, allowLossyConversion: false)
+       
+        URLSession.request(endpoint: request, completion: completion)
+    
+    }
+    
     // queue
-    static func requestFindHobbyFriends(param: QueueRequest, completion: @escaping (Friends?, APIErrorCode?) -> Void) {
+    static func r2equestFindHobbyFriends(param: QueueRequest, completion: @escaping (Friends?, APIErrorCode?) -> Void) {
         
         provider.request(.requestFindHobbyFriends(param: param)) { result in
+            
+            print("결과:", result)
             switch ResponseData<Friends>.processResponse(result) {
             case .success(let model):
                 return completion(model, nil)

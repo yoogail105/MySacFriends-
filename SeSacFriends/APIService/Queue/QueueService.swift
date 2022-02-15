@@ -44,7 +44,7 @@ extension QueueService: TargetType {
     
     var method: Moya.Method {
         switch self {
-        case .requestFindHobbyFriends, .onQueue,  .hobbyRequest, .hobbyAccept:
+        case .requestFindHobbyFriends, .onQueue, .hobbyRequest, .hobbyAccept:
             return .post
         case .myQueueState:
             return .get
@@ -59,8 +59,8 @@ extension QueueService: TargetType {
             return .requestParameters(parameters: [
                 "type": param.type,
                 "region": param.region,
-                "long": param.long,
                 "lat": param.lat,
+                "long": param.long,
                 "hf": param.hf
             ], encoding: URLEncoding.default)
             
@@ -83,6 +83,9 @@ extension QueueService: TargetType {
     
     var headers: [String : String]? {
         switch self {
+        case .requestFindHobbyFriends:
+            return [APIHeader.idtoken.rawValue : GeneralAPIComponents.idToken]
+            
         default:
             return [
                 APIHeader.idtoken.rawValue : GeneralAPIComponents.idToken,

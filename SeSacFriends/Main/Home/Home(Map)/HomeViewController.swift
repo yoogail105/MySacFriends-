@@ -133,7 +133,6 @@ class HomeViewController: UIViewController {
             .disposed(by: disposeBag)
     }
     
-    
     func checkUser() {
         let authViewModel = AuthViewModel()
         authViewModel.onErrorHandling = { error in
@@ -164,8 +163,6 @@ class HomeViewController: UIViewController {
         let vc = SearchHobbyViewController()
         self.navigationController?.pushViewController(vc, animated: true)
     }
-    
- 
     
     private func findMyLocation() {
         guard let currentLocation = locationManager.location else {
@@ -356,9 +353,15 @@ extension HomeViewController: MKMapViewDelegate {
     
     func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.08) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) {
             self.updateFriends(gender: self.viewModel.genderObservable.value)
         }
         
     }
+}
+
+
+struct Match: Codable {
+    let dodged, matched, reviewed: Int
+    let matchedNick, matchedUid: String
 }

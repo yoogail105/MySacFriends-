@@ -41,10 +41,11 @@ class RecommendCollectionViewCell: UICollectionViewCell {
         self.layer.borderColor = UIColor.systemColor(.error).cgColor
     }
     
-    func constraints() {
+    private func constraints() {
         contentView.addSubview(titleLabel)
         titleLabel.snp.makeConstraints {
-            $0.edges.equalToSuperview()
+            $0.top.bottom.equalToSuperview().inset(5)
+            $0.leading.trailing.equalToSuperview().inset(16)
         }
     }
 }

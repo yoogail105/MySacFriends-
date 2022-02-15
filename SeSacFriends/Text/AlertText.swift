@@ -26,3 +26,5 @@ enum AlertText: String {
     case requestLocationPermissionSubtitle = "현재 위치를 기반으로 주변에 있는 새싹 친구들을 검색하고, 취미를 공유하기 위해서 위치 정보에 대한 접근 허용이 필요합니다."
     case moveToSetting = "설정으로 이동"
 }
+
+

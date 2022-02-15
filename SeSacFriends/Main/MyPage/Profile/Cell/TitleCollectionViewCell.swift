@@ -11,10 +11,20 @@ import SnapKit
 class TitleCollectionViewCell: UICollectionViewCell {
     static let identifier = "TitleCollectionViewCell"
     
-    var titleLabel = UILabel().then {
+    static func fittingSize(availableHeight: CGFloat, name: String?) -> CGSize {
+     let cell = TitleCollectionViewCell()
+        cell.setTitle(name: name)
         
+        let targetSize = CGSize(width: UIView.layoutFittingExpandedSize.width, height: availableHeight)
+        return cell.contentView.systemLayoutSizeFitting(targetSize, withHorizontalFittingPriority: .fittingSizeLevel, verticalFittingPriority: .required)
+    }
+    
+    private func setTitle(name: String?) {
+        titleLabel.text = name
+    }
+    
+    let titleLabel = UILabel().then {
         $0.font = UIFont().Title4_R14
-//        $0.textColor = UIColor.brandColor(.green)
         $0.textColor = UIColor.black
         $0.textAlignment = .center
     }
@@ -23,7 +33,7 @@ class TitleCollectionViewCell: UICollectionViewCell {
         contentView.backgroundColor = .white
     }
     
-    override init(frame: CGRect) {
+    private override init(frame: CGRect) {
         super.init(frame: .zero)
         
         configure()
@@ -34,18 +44,22 @@ class TitleCollectionViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configure() {
+    private func configure() {
         self.clipsToBounds = true
         self.layer.cornerRadius = 8
         self.layer.borderWidth = 1
-//        self.layer.borderColor = UIColor.brandColor(.green).cgColor
         self.layer.borderColor = UIColor.grayColor(.gray3).cgColor
     }
     
-    func constraints() {
+    private func constraints() {
         contentView.addSubview(titleLabel)
         titleLabel.snp.makeConstraints {
-            $0.edges.equalToSuperview()
+            $0.top.bottom.equalToSuperview().inset(5)
+            $0.leading.trailing.equalToSuperview().inset(16)
         }
     }
 }
+
+
+
+

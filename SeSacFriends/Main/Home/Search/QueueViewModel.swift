@@ -124,10 +124,46 @@ class QueueViewModel {
                 }
             }
             
-            self.friendsHobbyListOb = Observable<[String]>.of(self.friendsHobbyList)
+            self.onErrorHandling?(.ok)
+        }
+    }
+    
+    func requestFindHobbyFriends(_ completion: ((Result<Bool, APIErrorCode>) -> Void)? = nil) {
+        
+        let latitude = latObservable.value
+        let longitude = longObservable.value
+        let resultRegion = calculateRegion(lat: latitude, long: longitude)
+        
+//        let request = QueueRequest(type: 2, region: resultRegion, lat: latitude, long: longitude, hf: self.myHobbyList)
+        
+//        print("UrlSession request: ",request)
+        QueueAPIService.requestFindHobbyFriends { result, error in
             
-
-            print("total: \(self.totalFriends), requested: \(self.requestedFriends)")
+        
+//        QueueAPIService.r2equestFindHobbyFriends(param: request, completion: {friends, error in
+            switch error?.rawValue {
+            case 201:
+                self.onErrorHandling?(.created)
+                return
+            case 203:
+                self.onErrorHandling?(.firstPenalty)
+                return
+            case 204:
+                self.onErrorHandling?(.secondPenalty)
+                return
+            case 205:
+                self.onErrorHandling?(.finalPenalty)
+                return
+            case 206:
+                self.onErrorHandling?(.emptyGender)
+                return
+            default:
+                print("searchFriends", error)
+//                self.onErrorHandling?(.internalServerError)
+                return
+            }
+            
+            print("새싹찾기 요청 성공했습니다ㅏ. 화면 전환하기")
             self.onErrorHandling?(.ok)
         }
     }

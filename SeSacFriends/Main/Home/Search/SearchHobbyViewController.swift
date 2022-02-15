@@ -9,16 +9,17 @@ import UIKit
 import RxSwift
 import RxCocoa
 import RxDataSources
-import simd
 
 
 
-final class SearchHobbyViewController: UIViewController {
+final class SearchHobbyViewController: BaseViewController {
     
     let mainView = SearchHobbyView()
     let viewModel = QueueViewModel()
-    let disposeBag = DisposeBag()
+    
+    let searchBar = UISearchBar()
     var collectionView: UICollectionView?
+    let disposeBag = DisposeBag()
     
 
     override func loadView() {
@@ -28,33 +29,53 @@ final class SearchHobbyViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-        self.navigationController?.isNavigationBarHidden = true
+        tabBarController?.tabBar.isHidden = true
         updateHobby()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        
-        self.navigationController?.isNavigationBarHidden = false
+        tabBarController?.tabBar.isHidden = false
     }
-    
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+               
         collectionView = mainView.collectionView
         collectionView?.dataSource = self
         collectionView?.delegate = self
+        
+        if let flowLayout = collectionView?.collectionViewLayout as? UICollectionViewFlowLayout {
+              flowLayout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
+            }
+        //collectionView = UICollectionView(frame: .zero, collectionViewLayout: self.flowLayout)
+
         
         collectionView?.register(collectionHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: collectionHeaderView.identifier)
         collectionView?.register(RecommendCollectionViewCell.self, forCellWithReuseIdentifier: RecommendCollectionViewCell.identifier)
         collectionView?.register(TitleCollectionViewCell.self, forCellWithReuseIdentifier: TitleCollectionViewCell.identifier)
         collectionView?.register(TitleWithXCollectionViewCell.self, forCellWithReuseIdentifier: TitleWithXCollectionViewCell.identifier)
-        
-        bind()
+    
+        let singleTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(MyTapMethod))
+        singleTapGestureRecognizer.numberOfTapsRequired = 1
+        singleTapGestureRecognizer.isEnabled = true
+        singleTapGestureRecognizer.cancelsTouchesInView = false
+        self.view.addGestureRecognizer(singleTapGestureRecognizer)
     }
+    
+    override func setupNavigationBar() {
+        super.setupNavigationBar()
+        searchBar.placeholder = HomeText.searchBarPlaceholder.rawValue
+        self.navigationItem.titleView = searchBar
+        
+    }
+    
+    @objc func MyTapMethod(sender: UITapGestureRecognizer) {
+        print("터치함")
+            self.searchBar.endEditing(true)
+        }
+    
     
     func updateHobby() {
         viewModel.onErrorHandling = { result in
@@ -71,32 +92,106 @@ final class SearchHobbyViewController: UIViewController {
        
     }
     
-    func bind() {
-        mainView.searchBar.rx.text
+    override func bind() {
+        searchBar.rx.text
             .orEmpty
-            .subscribe(onNext: { value in
-                self.viewModel.myHobbyList.append(value)
-                print(value)
+            .subscribe(onNext: { hobbies in
+                if hobbies.contains(" ") {
+                hobbies.components(separatedBy: " ").forEach {
+                    if $0.count > 8 {
+                        self.showToast(message: "최소 한 자 이상, 최대 8글자까지 작성 가능합니다")
+                    } else if self.viewModel.myHobbyList.contains($0) {
+                       // if self.searchBar.text == "\($0) " {
+                        self.showToastWithAction(message: "이미 등록된 취미입니다.") {
+                            self.searchBar.text = self.searchBar.text?.trimmingCharacters(in: .whitespacesAndNewlines)
+                        }
+                        
+                        
+                    }
+                }//viewmodel에서 벨리드 조건 확인하기
+                }
+            }).disposed(by: disposeBag)
+        
+        searchBar.rx.searchButtonClicked
+            .subscribe(onNext: {
+                let input = self.searchBar.text
+                if input != "" {
+                    let hobbiesArray = input?.components(separatedBy: " ")
+                    if hobbiesArray!.count + self.viewModel.myHobbyList.count > 8 {
+                        self.showToast(message: "취미는 8개를 넘을 수 없어요.")
+                    } else {
+                        self.searchBar.text = ""
+                        hobbiesArray?.forEach({
+                            if $0 != "" {
+                            self.viewModel.myHobbyList.append($0)
+                            }
+                        })
+                        self.collectionView?.reloadData()
+                    }
+                }
+                print(self.viewModel.myHobbyList)
             })
-            .disposed(by: disposeBag)
+        
+        mainView.searchButton.rx.tap
+            .bind {
+                self.searchButtonClicked()
+            }
+        
     }
     
     
+    func searchButtonClicked() {
+        print("시작")
+        viewModel.onErrorHandling = { result in
+            switch result {
+            case .ok:
+                print("화면이동함")
+                let vc = FriendsViewController()
+                self.navigationController?.pushViewController(vc, animated: true)
+            case .unAuthorized:
+                self.searchButtonClicked()
+            case .created:
+                self.showToast(message: RequestFriendToast.created.rawValue)
+            case .firstPenalty:
+                self.showToast(message: RequestFriendToast.firstPenalty.rawValue)
+            case .secondPenalty:
+                self.showToast(message: RequestFriendToast.secondPenalty.rawValue)
+            case .finalPenalty:
+                self.showToast(message: RequestFriendToast.finalPenalty.rawValue)
+            case .emptyGender:
+                self.showToastWithAction(message: RequestFriendToast.emptyGender.rawValue, action: {
+                    //화면전환
+                })
+            default:
+                print(result)
+            }
+            
+        }
+        viewModel.requestFindHobbyFriends()
+    }
     
- 
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){
-        
-        self.view.endEditing(true)
-        
+    self.view.endEditing(true)
     }
+    
+    
 }
 
-extension SearchHobbyViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+extension SearchHobbyViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 2
     }
     
+//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+//        return 4
+//    }
+//
+//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+//        return 4
+//    }
+//
+
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
          guard let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: collectionHeaderView.identifier, for: indexPath) as? collectionHeaderView else {
              return UICollectionReusableView()
@@ -121,10 +216,24 @@ extension SearchHobbyViewController: UICollectionViewDelegate, UICollectionViewD
         }
     }
     
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        switch indexPath.section {
+        case 0:
+            if indexPath.item <= self.viewModel.fromRecommendHobbyList.count-1 {
+                return TitleCollectionViewCell.fittingSize(availableHeight: 32, name: viewModel.fromRecommendHobbyList[indexPath.item])
+            } else {
+                return TitleCollectionViewCell.fittingSize(availableHeight: 32, name: viewModel.friendsHobbyList[indexPath.item])
+            }
+        default:
+            return TitleCollectionViewCell.fittingSize(availableHeight: 32, name: viewModel.myHobbyList[indexPath.item])
+        }
+
+    }
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         switch indexPath.section {
         case 0:
-            if indexPath.item <= 2 {
+            if indexPath.item <= self.viewModel.fromRecommendHobbyList.count-1 {
                 guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: RecommendCollectionViewCell.identifier, for: indexPath) as? RecommendCollectionViewCell else { return UICollectionViewCell() }
             
                 cell.titleLabel.text = viewModel.fromRecommendHobbyList[indexPath.item]
@@ -138,9 +247,8 @@ extension SearchHobbyViewController: UICollectionViewDelegate, UICollectionViewD
             
         default:
            
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TitleCollectionViewCell.identifier, for: indexPath) as? TitleCollectionViewCell else { return UICollectionViewCell() }
-            
-           // cell.titleLabel.text = viewModel.myHobbyList[indexPath.item]
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TitleWithXCollectionViewCell.identifier, for: indexPath) as? TitleWithXCollectionViewCell else { return UICollectionViewCell() }
+                cell.titleLabel.text = viewModel.myHobbyList[indexPath.item]
             return cell
             }
         
@@ -148,15 +256,38 @@ extension SearchHobbyViewController: UICollectionViewDelegate, UICollectionViewD
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let sectionName = "모뫄"
-        print("Test: \(sectionName) 섹션 선택됨.")
+        if indexPath.section == 1{
+            collectionView.deleteItems(at: [IndexPath(row: indexPath.row, section: indexPath.section)])
+            self.viewModel.myHobbyList.remove(at: indexPath.row)
+
+            let sectionName = "모뫄"
+            print("Test: \(sectionName) 섹션 선택됨.")
+        }
+        
     }
+    
+//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+//
+//      if collectionView.numberOfItems(inSection: section) == 1 {
+//
+//           let flowLayout = collectionViewLayout as! UICollectionViewFlowLayout
+//
+//          return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: collectionView.frame.width - flowLayout.itemSize.width)
+//
+//      }
+//
+//      return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+//
+//  }
+//    
+
+    
 }
 
-extension SearchHobbyViewController: UITextFieldDelegate {
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        
-        //hhobbyview추가
-    }
+extension SearchHobbyViewController: UIScrollViewDelegate {
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView){
+            self.searchBar.endEditing(true)
+        }
 }
+
+

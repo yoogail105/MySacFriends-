@@ -56,8 +56,10 @@ class TitleWithXCollectionViewCell: UICollectionViewCell {
         
         cancelImage.snp.makeConstraints {
             $0.centerY.equalToSuperview()
+            $0.leading.equalToSuperview().inset(16)
             $0.trailing.equalToSuperview().offset(-16)
         }
         
     }
 }
+

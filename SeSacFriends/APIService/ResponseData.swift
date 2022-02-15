@@ -20,13 +20,33 @@ import Moya
 struct ResponseData<Model: Codable> {
     struct CommonResponse: Codable {
         let result: Model
+
     }
     
     static func processResponse(_ result: Result<Response, MoyaError>) -> Result<Model?, APIErrorCode> {
+        
+        print("모야 Result: \(result)")
         switch result {
             
         case .success(let response):
-            return .success(nil)
+            do {
+                print("statusCode: \(response.statusCode)")
+                print("data: \(response.data)")
+                print("requeste: \(String(describing: response.request))")
+                print("response: \(String(describing: response.response))")
+                print("debug: \(response.debugDescription)")
+                //let str = Str ing(decoding: response.data, as: UTF8.self)
+            //    print("data: ",str)
+            
+            _ = try response.filterSuccessfulStatusCodes()
+
+            let commonResponse = try JSONDecoder().decode(CommonResponse.self, from: response.data)
+            print(commonResponse.result)
+                return .success(commonResponse.result)
+        } catch {
+            print("Codable실패?")
+            return .failure(.unKnownError)
+        }
             
         case .failure(let error):
             let statusCode = error.response?.statusCode
@@ -51,15 +71,15 @@ struct ResponseData<Model: Codable> {
                 return .failure(.developerError)
                 
             default:
-                return .failure(APIErrorCode(rawValue: statusCode!) ?? .developerError)
+                return .failure(APIErrorCode(rawValue: statusCode ?? 700) ?? .unKnownError)
             }
         }
     }
     
     // 200성공, 401, 406, 500, 501
     static func processJSONResponse(_ result: Result<Response, MoyaError>) -> Result<Model?, APIErrorCode> {
+        
         switch result {
-            
         case .success(let response):
             do {
                 let model = try JSONDecoder().decode(Model.self, from: response.data)
@@ -69,8 +89,10 @@ struct ResponseData<Model: Codable> {
             }
             
         case .failure(let error):
+            
             let statusCode = error.response?.statusCode
-            print("API Error Code: \(error.response?.statusCode)")
+            print("API Error Code: \(error)")
+            
             
             switch statusCode {
                 
@@ -91,10 +113,10 @@ struct ResponseData<Model: Codable> {
                 return .failure(.developerError)
                 
             default:
-                return .failure(APIErrorCode(rawValue: statusCode! ?? 501)!)
+                return .failure(APIErrorCode(rawValue: statusCode ?? 700) ?? .unKnownError)
             }
         }
     }
+    
 }
-
 
