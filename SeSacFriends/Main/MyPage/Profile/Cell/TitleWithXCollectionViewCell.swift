@@ -10,7 +10,6 @@ import SnapKit
 class TitleWithXCollectionViewCell: UICollectionViewCell {
     static let identifier = "TitleWithXCollectionViewCell"
 
-    
     let titleLabel = UILabel().then {
         $0.textAlignment = .center
         $0.textColor = UIColor.brandColor(.green)
@@ -56,7 +55,7 @@ class TitleWithXCollectionViewCell: UICollectionViewCell {
         
         cancelImage.snp.makeConstraints {
             $0.centerY.equalToSuperview()
-            $0.leading.equalToSuperview().inset(16)
+            $0.width.height.equalTo(16)
             $0.trailing.equalToSuperview().offset(-16)
         }
         

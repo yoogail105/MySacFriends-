@@ -39,26 +39,8 @@ enum RequestFriendToast: String {
     case emptyGender = "새싹을 찾기 위해서는 성별 입력이 필요합니다."
 }
 
-/*
-enum HTTPCode: Int {
-        case OK = 200
-        case NOT_MODIFY = 304
-        case SERVER_ERROR = 500
-
-        var value: String {
-                return "HTTP number is \(self.rawValue)"
-        }
-
-        func getDescription () -> String {
-                switch self {
-                case .OK :
-                        return "HTTP 코드는 \(self.rawValue)" 입니다
-                }
-                ....
-        }
-        
-        static func getName() -> String {
-                return "이건 ~~"
-        }
+enum AddMyHobbyToast: String {
+    case lengthLimit = "최소 한 자 이상, 최대 8글자까지 작성 가능합니다"
+    case existedHobby = "이미 등록된 취미입니다."
+    case numberLimit = "취미는 8개를 넘을 수 없어요."
 }
-*/

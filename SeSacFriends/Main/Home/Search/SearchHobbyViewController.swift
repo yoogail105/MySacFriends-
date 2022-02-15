@@ -66,7 +66,7 @@ final class SearchHobbyViewController: BaseViewController {
     
     override func setupNavigationBar() {
         super.setupNavigationBar()
-        searchBar.placeholder = HomeText.searchBarPlaceholder.rawValue
+        searchBar.placeholder = HobbyViewText.searchBarPlaceholder.rawValue
         self.navigationItem.titleView = searchBar
         
     }
@@ -96,7 +96,6 @@ final class SearchHobbyViewController: BaseViewController {
         searchBar.rx.text
             .orEmpty
             .subscribe(onNext: { hobbies in
-                if hobbies.contains(" ") {
                 hobbies.components(separatedBy: " ").forEach {
                     if $0.count > 8 {
                         self.showToast(message: "최소 한 자 이상, 최대 8글자까지 작성 가능합니다")
@@ -108,7 +107,7 @@ final class SearchHobbyViewController: BaseViewController {
                         
                         
                     }
-                }//viewmodel에서 벨리드 조건 확인하기
+                //viewmodel에서 벨리드 조건 확인하기
                 }
             }).disposed(by: disposeBag)
         
@@ -183,14 +182,6 @@ extension SearchHobbyViewController: UICollectionViewDelegate, UICollectionViewD
         return 2
     }
     
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-//        return 4
-//    }
-//
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-//        return 4
-//    }
-//
 
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
          guard let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: collectionHeaderView.identifier, for: indexPath) as? collectionHeaderView else {
@@ -198,9 +189,9 @@ extension SearchHobbyViewController: UICollectionViewDelegate, UICollectionViewD
          }
         switch indexPath.section {
         case 0:
-            headerView.sectionNameLabel.text = "지금 주변에는"
+            headerView.sectionNameLabel.text = HobbyViewText.collectionViewHeader01.rawValue
         default:
-            headerView.sectionNameLabel.text = "내가 하고싶은"
+            headerView.sectionNameLabel.text = HobbyViewText.collectionViewHeader02.rawValue
         }
          return headerView
      }
@@ -256,7 +247,7 @@ extension SearchHobbyViewController: UICollectionViewDelegate, UICollectionViewD
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if indexPath.section == 1{
+        if indexPath.section == 1 {
             collectionView.deleteItems(at: [IndexPath(row: indexPath.row, section: indexPath.section)])
             self.viewModel.myHobbyList.remove(at: indexPath.row)
 
@@ -266,24 +257,19 @@ extension SearchHobbyViewController: UICollectionViewDelegate, UICollectionViewD
         
     }
     
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-//
-//      if collectionView.numberOfItems(inSection: section) == 1 {
-//
-//           let flowLayout = collectionViewLayout as! UICollectionViewFlowLayout
-//
-//          return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: collectionView.frame.width - flowLayout.itemSize.width)
-//
-//      }
-//
-//      return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-//
-//  }
-//    
-
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+           
+           let width: CGFloat = collectionView.frame.width
+           let height: CGFloat = 18
+           return CGSize(width: width, height: height)
+       }
+       
+       func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+           
+           return UIEdgeInsets.init(top: 16, left: 0, bottom: 16, right: 0)
+       }
     
 }
-
 extension SearchHobbyViewController: UIScrollViewDelegate {
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView){
             self.searchBar.endEditing(true)

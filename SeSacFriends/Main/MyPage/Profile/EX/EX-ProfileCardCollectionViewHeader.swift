@@ -26,7 +26,6 @@ class collectionHeaderView: UICollectionReusableView {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        backgroundColor = .red
         sectionNameLabel.font = UIFont().Body1_M16
         sectionNameLabel.textColor = .black
         sectionNameLabel.sizeToFit()
