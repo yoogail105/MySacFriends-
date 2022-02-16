@@ -78,7 +78,6 @@ class UserAPIService {
     
     // 내정보 업데이트
     static func updateMyPage(searchable: Int, ageMin: Int, ageMax: Int, gender: Int, hobby: String, completion: @escaping (User?, APIErrorCode?) -> Void) {
-        let userDefaults = UserDefaults.standard
         
         var request = URLRequest(url: Endpoint.updateMyPage.url)
         request.httpMethod = Method.POST.rawValue

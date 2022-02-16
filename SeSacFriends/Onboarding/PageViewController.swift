@@ -75,7 +75,7 @@ extension PageViewController: UIPageViewControllerDataSource {
     
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
         
-        if let viewControllerIndex = self.pages.index(of: viewController) { //현재(넘기기 전의 인덱스)
+        if let viewControllerIndex = self.pages.firstIndex(of: viewController) { //현재(넘기기 전의 인덱스)
             print("before viewControllerIndex:", viewControllerIndex)
             print(self.initialPage)
             if viewControllerIndex == 0 {
@@ -90,7 +90,7 @@ extension PageViewController: UIPageViewControllerDataSource {
     }
     
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
-        if let viewControllerIndex = self.pages.index(of: viewController) {
+        if let viewControllerIndex = self.pages.firstIndex(of: viewController) {
             if viewControllerIndex < self.pages.count - 1 {
                 // go to next page in array
                 return self.pages[viewControllerIndex + 1]

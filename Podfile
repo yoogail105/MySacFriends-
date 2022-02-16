@@ -18,5 +18,5 @@ pod 'RxSwift', '6.5.0'
 pod 'RxCocoa', '6.5.0'
 pod 'IQKeyboardManagerSwift'
 pod 'RxDataSources', '~> 5.0'
-
+pod 'Tabman', '~> 2.11.0'
 end

@@ -45,7 +45,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 options: authOptions,
                 completionHandler: {_, _ in })
         } else {
-            let settings: UIUserNotificationSettings = UIUserNotificationSettings(
+            let _: UIUserNotificationSettings = UIUserNotificationSettings(
                 types: [.alert, .sound, .badge],
                 categories: nil)
             application.registerForRemoteNotifications()

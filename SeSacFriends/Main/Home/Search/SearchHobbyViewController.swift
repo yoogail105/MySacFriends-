@@ -50,9 +50,10 @@ final class SearchHobbyViewController: BaseViewController {
               flowLayout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
             }
         //collectionView = UICollectionView(frame: .zero, collectionViewLayout: self.flowLayout)
-
+//willShow
         
-        collectionView?.register(collectionHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: collectionHeaderView.identifier)
+        collectionView?.register(CollectionHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: CollectionHeaderView.identifier)
+        
         collectionView?.register(RecommendCollectionViewCell.self, forCellWithReuseIdentifier: RecommendCollectionViewCell.identifier)
         collectionView?.register(TitleCollectionViewCell.self, forCellWithReuseIdentifier: TitleCollectionViewCell.identifier)
         collectionView?.register(TitleWithXCollectionViewCell.self, forCellWithReuseIdentifier: TitleWithXCollectionViewCell.identifier)
@@ -76,7 +77,7 @@ final class SearchHobbyViewController: BaseViewController {
             self.searchBar.endEditing(true)
         }
     
-    
+
     func updateHobby() {
         viewModel.onErrorHandling = { result in
             if result == .ok {
@@ -130,11 +131,13 @@ final class SearchHobbyViewController: BaseViewController {
                 }
                 print(self.viewModel.myHobbyList)
             })
+            .disposed(by: disposeBag)
         
         mainView.searchButton.rx.tap
             .bind {
                 self.searchButtonClicked()
             }
+            .disposed(by: disposeBag)
         
     }
     
@@ -184,7 +187,7 @@ extension SearchHobbyViewController: UICollectionViewDelegate, UICollectionViewD
     
 
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-         guard let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: collectionHeaderView.identifier, for: indexPath) as? collectionHeaderView else {
+         guard let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: CollectionHeaderView.identifier, for: indexPath) as? CollectionHeaderView else {
              return UICollectionReusableView()
          }
         switch indexPath.section {

@@ -11,8 +11,6 @@ import RxCocoa
 import RxSwift
 
 final class ProfileViewController: BaseViewController {
-    
-    
 
     let mainView = ProfileView()
     lazy var withdrawalAlert = AlertView()
@@ -65,7 +63,6 @@ final class ProfileViewController: BaseViewController {
             sectionTitles.append(sectionTitle.rawValue)
         }
 
-        
         let tableView = mainView.cardView.tableView
         tableView.register(NameTableViewCell.self, forCellReuseIdentifier: NameTableViewCell.identifier)
         tableView.register(TitleTableViewCell.self, forCellReuseIdentifier: TitleTableViewCell.identifier)
@@ -135,8 +132,7 @@ final class ProfileViewController: BaseViewController {
         // MARK: genderButton
         let womanButton = mainView.detailView.womanButton
         let manButton = mainView.detailView.manButton
-        let genderButtons = [womanButton, manButton]
-        
+    
       
         viewModel.genderObserver
             .map { $0 == 0 ? CustomButton.fill : CustomButton.inactive }
@@ -153,7 +149,7 @@ final class ProfileViewController: BaseViewController {
             })
             .disposed(by: disposeBag)
         
-        var gender = viewModel.profileData.gender
+        let gender = viewModel.profileData.gender
         
         womanButton.rx.tap
             .scan(gender) { lastSelected, _ in

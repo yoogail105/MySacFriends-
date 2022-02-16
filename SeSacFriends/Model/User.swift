@@ -34,3 +34,6 @@ struct  User: Codable {
     var searchable: Int
     let createdAt: String
 }
+
+
+// 앱 꺼질 때쯤에

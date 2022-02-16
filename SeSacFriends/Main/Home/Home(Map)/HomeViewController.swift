@@ -165,7 +165,7 @@ class HomeViewController: UIViewController {
     }
     
     private func findMyLocation() {
-        guard let currentLocation = locationManager.location else {
+        guard locationManager.location != nil else {
             requestLocationPermissionAlert()
             return
         }

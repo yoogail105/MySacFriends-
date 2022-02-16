@@ -31,7 +31,7 @@ final class QueueAPIService {
     }
     
     // queue
-    static func r2equestFindHobbyFriends(param: QueueRequest, completion: @escaping (Friends?, APIErrorCode?) -> Void) {
+    static func requestFindHobbyFriends2(param: QueueRequest, completion: @escaping (Friends?, APIErrorCode?) -> Void) {
         
         provider.request(.requestFindHobbyFriends(param: param)) { result in
             
@@ -82,10 +82,11 @@ final class QueueAPIService {
         }
     }
     
-    static func myQueueStatus( completion: @escaping (Friends?, APIErrorCode?) -> Void) {
+    // myQueueStatus
+    static func myQueueStatus( completion: @escaping (MyQueueState?, APIErrorCode?) -> Void) {
         
         provider.request(.myQueueState) { result in
-            switch ResponseData<Friends>.processJSONResponse(result) {
+            switch ResponseData<MyQueueState>.processJSONResponse(result) {
             case .success(let model):
                 return completion(model, nil)
             case .failure(let error):
@@ -93,6 +94,7 @@ final class QueueAPIService {
             }
         }
     }
+    
     
     static func stopFindingHobbyFriends( completion: @escaping (Friends?, APIErrorCode?) -> Void) {
         

@@ -6,3 +6,11 @@
 //
 
 import Foundation
+
+final class FindView: BaseUIView {
+    override func configuration() {
+        self.backgroundColor = .white
+    }
+    
+    
+}

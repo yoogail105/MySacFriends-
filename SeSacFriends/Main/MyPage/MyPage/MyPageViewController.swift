@@ -74,7 +74,6 @@ extension MyPageViewController: UITableViewDelegate, UITableViewDataSource {
             var content = cell.defaultContentConfiguration()
             
             content.text = viewModel.menuTitles[row]
-            print("icon: \(menuIcons[row])")
             content.image = UIImage(named: menuIcons[row])
             content.attributedText = NSAttributedString(string: viewModel.menuTitles[row], attributes: [ .font: UIFont().Title2_R16, .foregroundColor: UIColor.black ])
             cell.separatorInset = UIEdgeInsets(top: 10, left: 16, bottom: 10, right: 16)
@@ -86,11 +85,10 @@ extension MyPageViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.row == 0 {
-            print("selected")
             let vc = ProfileViewController()
             self.navigationController?.pushViewController(vc, animated: true)
         }
-        print("셀렉티드")
+    
         
     }
     

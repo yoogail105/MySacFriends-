@@ -61,8 +61,8 @@ class ProfileViewModel {
     func updateMypage( _ completion: ((Result<Bool, APIErrorCode>) -> Void)? = nil) {
 
         UserAPIService.updateMyPage(searchable: searchableObserver.value, ageMin: profileData.ageMin, ageMax: profileData.ageMax, gender: genderObserver.value, hobby: hobbyObserer.value) { user, result in
-            print(result)
-            guard let result = result else {
+            //print(result)
+            guard result != nil else {
                 return
             }
             print("저장 성공했습니다.")
@@ -84,7 +84,8 @@ class ProfileViewModel {
                 self.onErrorHandling?(.notAcceptable)
                 
             default:
-                print("알 수 없는 error: \(result)")
+                let error = String(describing: result)
+                print("알 수 없는 error: \(error)")
             }
         }
     }

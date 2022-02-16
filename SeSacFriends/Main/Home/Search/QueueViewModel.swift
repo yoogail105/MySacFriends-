@@ -81,7 +81,7 @@ class QueueViewModel {
             
             switch error {
             default:
-                print("searchFriends", error)
+                //print("searchFriends", error)
                 self.onErrorHandling?(.internalServerError)
             }
             
@@ -130,17 +130,18 @@ class QueueViewModel {
     
     func requestFindHobbyFriends(_ completion: ((Result<Bool, APIErrorCode>) -> Void)? = nil) {
         
-        let latitude = latObservable.value
-        let longitude = longObservable.value
-        let resultRegion = calculateRegion(lat: latitude, long: longitude)
-        
+//        let latitude = latObservable.value
+//        let longitude = longObservable.value
+//        let resultRegion = calculateRegion(lat: latitude, long: longitude)
+//
 //        let request = QueueRequest(type: 2, region: resultRegion, lat: latitude, long: longitude, hf: self.myHobbyList)
-        
-//        print("UrlSession request: ",request)
+//        QueueAPIService.requestFindHobbyFriends2(param: request, completion: {friends, error in
         QueueAPIService.requestFindHobbyFriends { result, error in
-            
         
-//        QueueAPIService.r2equestFindHobbyFriends(param: request, completion: {friends, error in
+            if error == nil {
+                self.onErrorHandling?(.ok)
+            }
+
             switch error?.rawValue {
             case 201:
                 self.onErrorHandling?(.created)
@@ -158,13 +159,9 @@ class QueueViewModel {
                 self.onErrorHandling?(.emptyGender)
                 return
             default:
-                print("searchFriends", error)
-//                self.onErrorHandling?(.internalServerError)
+                self.onErrorHandling?(.internalServerError)
                 return
             }
-            
-            print("새싹찾기 요청 성공했습니다ㅏ. 화면 전환하기")
-            self.onErrorHandling?(.ok)
         }
     }
     

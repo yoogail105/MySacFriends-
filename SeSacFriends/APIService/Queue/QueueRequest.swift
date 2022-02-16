@@ -45,4 +45,10 @@ struct HobbyRequest: Codable {
     }
 }
 
+struct RateRequest: Codable {
+    var otheruid: String
+    var reputation: [String]
+    var comment: String
+}
+
 

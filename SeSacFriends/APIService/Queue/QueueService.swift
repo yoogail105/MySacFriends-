@@ -16,6 +16,8 @@ enum QueueService {
     case hobbyAccept(param: HobbyRequest)
     case myQueueState
     case stopFindingHobbyFriends
+    case cancelAppointment(param: HobbyRequest)
+    case rate(param: RateRequest)
 }
 
 
@@ -37,6 +39,11 @@ extension QueueService: TargetType {
             return "queue/hobbyaccept"
         case .myQueueState:
             return "queue/myQueueState"
+        case .cancelAppointment:
+            return "queue/dodge"
+        // 수정: 요청패쓰 : 상대방 유저 아이디
+        case .rate:
+            return "queue/rate/{id}"
 
             
         }
@@ -44,7 +51,7 @@ extension QueueService: TargetType {
     
     var method: Moya.Method {
         switch self {
-        case .requestFindHobbyFriends, .onQueue, .hobbyRequest, .hobbyAccept:
+        case .requestFindHobbyFriends, .onQueue, .hobbyRequest, .hobbyAccept, .cancelAppointment, .rate:
             return .post
         case .myQueueState:
             return .get
@@ -70,11 +77,17 @@ extension QueueService: TargetType {
                 "lat": param.lat,
                 "long": param.long
             ], encoding: URLEncoding.default)
-        case .hobbyRequest(let param), .hobbyAccept(let param):
+        case .hobbyRequest(let param), .hobbyAccept(let param), .cancelAppointment(let param):
             return .requestParameters(parameters: [
                 "otheruid": param.otheruid
             ], encoding: URLEncoding.default)
             
+        case .rate(let param):
+            return .requestParameters(parameters: [
+                "otheruid": param.otheruid,
+                "reputation": param.reputation,
+                "comment": param.comment
+            ], encoding: URLEncoding.default)
         case .myQueueState, .stopFindingHobbyFriends:
             return .requestPlain
             
