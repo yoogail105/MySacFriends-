@@ -17,7 +17,7 @@ class CollectionHeaderView: UICollectionReusableView {
     
     override init(frame: CGRect) {
            super.init(frame: frame)
-        layoutSubviews()
+            layoutSubviews()
        }
        
        required init?(coder: NSCoder) {
@@ -26,7 +26,6 @@ class CollectionHeaderView: UICollectionReusableView {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        backgroundColor = .red
         sectionNameLabel.font = UIFont().Body1_M16
         sectionNameLabel.textColor = .black
         sectionNameLabel.sizeToFit()

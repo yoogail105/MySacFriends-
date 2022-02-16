@@ -147,7 +147,7 @@ extension URLSession {
                     case APIErrorCode.invalidRequest.rawValue: //202
                         completion(nil, .invalidRequest)
                     case APIErrorCode.unAuthorized.rawValue: //401
-                        AuthAPIService.fetchIDToken {
+                        AuthAPIService.fetchIDToken {_ in
                             print("토큰 새로 발급 완료")
                             completion(nil, .unAuthorized)
                         }
@@ -205,7 +205,7 @@ extension URLSession {
                     switch statusCode {
                         
                     case APIErrorCode.unAuthorized.rawValue:
-                        AuthAPIService.fetchIDToken {
+                        AuthAPIService.fetchIDToken {_ in 
                             completion(nil, .unAuthorized)
                         }
                     case APIErrorCode.notAcceptable.rawValue:
@@ -222,9 +222,12 @@ extension URLSession {
                         
                     default:
                         completion(nil, APIErrorCode(rawValue: statusCode ))
+                    }
+                    return
                 }
-                    return completion(nil, .ok)
-                }
+                
+                print("통신ok")
+                return completion(nil, .ok)
                 
                                                      
                 

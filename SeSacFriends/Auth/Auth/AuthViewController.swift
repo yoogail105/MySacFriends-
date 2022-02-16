@@ -32,14 +32,10 @@ class AuthViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // 네트워크 확인
-        if NetworkMonitor.shared.isConnected {
-            print("연결오키")
-        } else {
-            print("연결안됨 얼럿띄우삼")
-        }
         
-        //userDefaults.startMode = StartMode.main.rawValue
+        if !NetworkMonitor.shared.isConnected {
+            self.showToast(message: NetworkErrorMessage.notConnected.rawValue)
+        }
     }
     
     override func setupNavigationBar() {
@@ -73,8 +69,10 @@ class AuthViewController: BaseViewController {
             .disposed(by: disposeBag)
         
         viewModel.isValidPhoneNumber
-            .map { $0 ? UIColor.brandColor(.green) : UIColor.grayColor(.gray3)}
-            .bind(to: mainView.nextButton.rx.backgroundColor)
+            .map { $0 ? CustomButton.fill : CustomButton.disable}
+            .subscribe(onNext: { mode in
+                self.mainView.nextButton.buttonModeColor(mode)
+            })
             .disposed(by: disposeBag)
         
         mainView.nextButton.rx.tap

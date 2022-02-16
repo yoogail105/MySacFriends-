@@ -86,6 +86,12 @@ class HomeView: BaseUIView {
         $0.okButton.setTitle(AlertText.moveToSetting.rawValue, for: .normal)
     }
     
+    var moveToProfileAlertView = AlertView().then {
+        $0.title.text = AlertText.requestLocationPermissionTitle.rawValue
+        $0.subTitle.text = AlertText.requestLocationPermissionSubtitle.rawValue
+        $0.okButton.setTitle(AlertText.moveToSetting.rawValue, for: .normal)
+    }
+    
     
     override func configuration() {
         

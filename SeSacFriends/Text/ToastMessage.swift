@@ -7,6 +7,10 @@
 
 import Foundation
 
+enum NetworkErrorMessage: String {
+    case notConnected = "네트워크 연결이 원활하지 않습니다. 연결상태 확인 후 다시 시도해 주세요!"
+}
+
 enum requestVerificationCodeToast: String {
     case isValid = "전화 번호 인증 시작"
     case invalidPhoneFormat = "잘못된 전화번호 형식입니다."
@@ -43,4 +47,8 @@ enum AddMyHobbyToast: String {
     case lengthLimit = "최소 한 자 이상, 최대 8글자까지 작성 가능합니다"
     case existedHobby = "이미 등록된 취미입니다."
     case numberLimit = "취미는 8개를 넘을 수 없어요."
+}
+
+enum HomeViewToast: String {
+    case genderError = "새싹 찾기 기능을 이용하기 위해서는 성별이 필요해요!"
 }

@@ -33,6 +33,8 @@ enum APIErrorCode: Int, Error {
     case internalServerError = 500
     case developerError = 501
     
+    
+    case verificationCodeError
     case failed
     case noData
     case invalidData

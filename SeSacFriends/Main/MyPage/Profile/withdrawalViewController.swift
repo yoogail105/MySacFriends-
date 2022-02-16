@@ -23,7 +23,7 @@ final class withdrawalViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        coordinator = MainCoordinator(navigationController: self.navigationController ?? UINavigationController(), parentCoordinator: coordinator)
+        coordinator = MainCoordinator(navigationController: self.navigationController ?? UINavigationController())
         
         configure()
         bind()
@@ -54,7 +54,8 @@ final class withdrawalViewController: UIViewController {
             print(#function)
             if result == .ok || result == .notAcceptable {
                 print("회원탈퇴완료되었습니다. 뷰컨")
-                self.coordinator?.start()
+               let vc = OnboardingViewController()
+            self.navigationController?.pushViewController(vc, animated: true)
             }
         }
         self.viewModel.withdrawalUser()

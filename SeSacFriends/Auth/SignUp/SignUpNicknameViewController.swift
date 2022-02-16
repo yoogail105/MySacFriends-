@@ -23,11 +23,6 @@ class SignUpNicknameViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        userDefaults.startMode = StartMode.auth.rawValue
-        print("nickname: viewdidload")
-        print("nickname: \(UserDefaults.standard.nickname)")
-
-    
     }
     
     override func bind() {

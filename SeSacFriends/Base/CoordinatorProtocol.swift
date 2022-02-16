@@ -8,44 +8,40 @@
 import UIKit
 
 protocol Coordinator: AnyObject {
-  var parentCoordinator: Coordinator? { get set }
+ // var parentCoordinator: Coordinator? { get set } // 패런츠가없음. 자기자신.
   var childCoordinators: [Coordinator] { get set }
   var navigationController: UINavigationController { get set }
   
   func start()
-
+ 
 }
 
 class MainCoordinator: Coordinator {
-    var parentCoordinator: Coordinator?
+   // var parentCoordinator: Coordinator?
     var childCoordinators = [Coordinator]()
     var navigationController: UINavigationController
 
-    init(navigationController: UINavigationController, parentCoordinator: Coordinator?) {
+    init(navigationController: UINavigationController) {
         self.navigationController = navigationController
-        self.parentCoordinator = parentCoordinator
     }
 
     func start() {
-        print("mainCoordinator: start")
         let viewController = OnboardingViewController()
+        viewController.coordinator = self
         navigationController.pushViewController(viewController, animated: true)
     }
     
     func pushToAuth() {
-        print("mainCoordinator: pushToAuth")
         let viewController = AuthViewController()
         navigationController.pushViewController(viewController, animated: true)
     }
     
     func pushToAuthSignUp() {
-        print("mainCoordinator: pushToAuthSignUp")
         let viewController = SignUpNicknameViewController()
         navigationController.pushViewController(viewController, animated: true)
     }
     
-    func pushToMainTabbar() {
-        print("mainCoordinator: pushToMainTabbar")
+    func pushToMainTabBar() {
         let viewController = MainTabBarController()
         navigationController.pushViewController(viewController, animated: true)
     }

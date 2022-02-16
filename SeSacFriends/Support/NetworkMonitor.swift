@@ -5,6 +5,15 @@
 //  Created by 성민주민주 on 2022/02/16.
 //
 
+/*
+ 네트워크 연결상태 확인
+ if NetworkMonitor.shared.isConnected {
+     print("여기는 홈뷰 연결오키")
+ } else {
+     print("연결안됨 얼럿띄우삼")
+ }
+*/
+
 import UIKit
 import Network
 
@@ -38,8 +47,7 @@ final class NetworkMonitor {
             if self?.isConnected == true{
                 print("네트워크 연결 ok")
             }else{
-                print("연결 alaert")
-                
+                print("네트워크 연결 x")
             }
         }
     }

@@ -23,7 +23,7 @@ class BaseViewController: UIViewController {
         setupConstraints()
         setupNavigationBar()
         
-        coordinator = MainCoordinator(navigationController: self.navigationController!, parentCoordinator: coordinator)
+        coordinator = MainCoordinator(navigationController: self.navigationController!)
     }
     
     
@@ -62,8 +62,5 @@ class BaseViewController: UIViewController {
     
     @objc func back() {
         self.navigationController?.popViewController(animated: true)
-        
     }
-    
-    
 }

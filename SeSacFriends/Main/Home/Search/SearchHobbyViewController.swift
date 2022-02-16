@@ -101,7 +101,6 @@ final class SearchHobbyViewController: BaseViewController {
                     if $0.count > 8 {
                         self.showToast(message: "최소 한 자 이상, 최대 8글자까지 작성 가능합니다")
                     } else if self.viewModel.myHobbyList.contains($0) {
-                       // if self.searchBar.text == "\($0) " {
                         self.showToastWithAction(message: "이미 등록된 취미입니다.") {
                             self.searchBar.text = self.searchBar.text?.trimmingCharacters(in: .whitespacesAndNewlines)
                         }

@@ -105,34 +105,54 @@ class AuthVerificationCodeViewController: BaseViewController {
             }
         }
     }
-    
+    // self.coordinator?.pushToAuthSignUp() : ok이면 화면이동하기
     func verifyButtonClicked() {
+        print(#function)
         // 1. firebase인증번호확인
-        
-        self.viewModel.onErrorHandling = { error in
-            if error == .notAcceptable {
-                print("온헨들링에서 에러는 \(error) -> 회원가입뷰로 넘어가기")
-                self.coordinator?.pushToAuthSignUp()
-            }
-        }
-        
-        self.viewModel.checkVerificationCode(verificationCode: mainView.numberTextField.text!) { error in
-            if error == .verificationTokenNotMatched {
+        self.viewModel.onErrorHandling = { result in
+            switch result {
+            case .ok:
+                self.getFirebaseIDToken()
+            case .verificationCodeError:
                 self.showToast(message: APIErrorMessage.verificationTokenNotMatched.rawValue)
-                return
-            } else {
-                // 2. 인증번호가 일치하면 FirebaseIDToken 가져오기
-                self.viewModel.fetchIDToken {
-                    //3. idToken가져오면 서버에 유저 등록되어있는지 확인하기
-                    self.viewModel.getUser{ _ in
-                        self.coordinator?.pushToMainTabbar()
-                    }
-                }
+            default:
+                print("알수없는 에러")
             }
         }
-        
+        self.viewModel.checkVerificationCode(verificationCode: mainView.numberTextField.text!)
+    }
+                            
+    func getFirebaseIDToken() {
+        print(#function)
+        viewModel.onErrorHandling = { result in
+            switch result {
+            case .ok:
+                //서버에서 유저 확인하기
+                self.checkAlreadyExist()
+            case .unAuthorized:
+                //무한반복..?
+                self.viewModel.fetchIDToken()
+            default:
+                print("알수없는 에러")
+            }
+        }
+        self.viewModel.fetchIDToken()
     }
     
+    func checkAlreadyExist() {
+        print(#function)
+        viewModel.onErrorHandling = {result in
+            switch result {
+            case .ok:
+                self.coordinator?.pushToMainTabBar()
+            case .notAcceptable:
+                self.coordinator?.pushToAuthSignUp()
+            default:
+                print("알 수 없는 에러")
+            }
+        }
+        self.viewModel.getUser()
+    }
     
     // 회원가입 or 메인화면
     func selectNextView() {
@@ -142,7 +162,7 @@ class AuthVerificationCodeViewController: BaseViewController {
         if mode == StartMode.signUp.rawValue {
             self.coordinator?.pushToAuthSignUp()
         } else {
-            self.coordinator?.pushToMainTabbar()
+            self.coordinator?.pushToMainTabBar()
         }
     }
     

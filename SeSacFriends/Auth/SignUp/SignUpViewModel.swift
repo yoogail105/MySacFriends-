@@ -38,7 +38,7 @@ class SignUpViewModel {
                 self.onErrorHandling?(.ok)
                 
             case .unAuthorized:
-                AuthAPIService.fetchIDToken {
+                AuthAPIService.fetchIDToken {_ in 
                     print("토큰 가져오기 완료: \(UserDefaults.standard.idToken!)")
                     self.onErrorHandling?(.unAuthorized)
                 }

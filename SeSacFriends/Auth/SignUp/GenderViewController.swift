@@ -122,7 +122,7 @@ class GenderViewController: BaseViewController {
             
             switch result {
             case .ok:
-                self.coordinator?.pushToMainTabbar()
+                self.coordinator?.pushToMainTabBar()
             case .unAuthorized:
                 self.showToast(message: "오류가 생겼습니다.\n다시 버튼을 눌러주세요.")
                 
@@ -141,7 +141,7 @@ class GenderViewController: BaseViewController {
 //        
 //        //print("gender: \(userDefaults.gender)")
 //        //print("fcm: \()")
-        coordinator?.pushToMainTabbar()
+        coordinator?.pushToMainTabBar()
     }
     
 }

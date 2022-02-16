@@ -19,7 +19,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         appWindow.windowScene = windowScene
         
         let navigationController = UINavigationController()
-        appCoordinator = MainCoordinator(navigationController: navigationController, parentCoordinator: appCoordinator)
+        appCoordinator = MainCoordinator(navigationController: navigationController)
         
         let startModeString = UserDefaults.standard.startMode
         let startMode = StartMode(rawValue: startModeString) ?? .onBoarding
@@ -34,11 +34,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             appCoordinator?.pushToAuthSignUp()
         case .main:
             print("go to main")
-            appCoordinator?.pushToMainTabbar()
+            appCoordinator?.pushToMainTabBar()
         }
 
-       // let layout = UICollectionViewFlowLayout()
-        //let vc = ProfileCollectionViewController(collectionViewLayout: layout)
         appWindow.rootViewController = navigationController
         appWindow.makeKeyAndVisible()
         

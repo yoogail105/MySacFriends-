@@ -36,40 +36,39 @@ class AuthViewModel {
         
         AuthAPIService.sendVerificationCode(phoneNumber: phoneNumber) { error in
             
-//            if error != nil {
-//                switch error {
-//                case .tooManyRequests:
-//                    BaseViewController().showToast(message: APIError.tooManyRequests.rawValue)
-//                    return
-//                default:
-//                    BaseViewController().showToast(message: APIError.failed.rawValue)
-//                    return
-//                }
-//            }
-            
             completion(error)
         }
     }
     
-    func checkVerificationCode(verificationCode: String, completion: @escaping (APIErrorMessage?) -> Void) {
+    func checkVerificationCode(verificationCode: String, _ completion: ((Result<Bool, APIErrorCode>) -> Void)? = nil) {
         AuthAPIService.checkVerificationCode(verificationCode: verificationCode) { error in
+            guard let error = error else {
+                return
+            }
             
-            if error != nil {
-                if error == .verificationTokenNotMatched {
-                    completion(error)
-                }
+            if error == .verificationCodeError {
+                self.onErrorHandling?(.verificationCodeError)
+                return
             }
             
             UserDefaults.standard.startMode = StartMode.signUp.rawValue
-            completion(nil)
+            print("인증번호확인완료")
+            self.onErrorHandling?(.ok)
         }
     }
     
-    func fetchIDToken(completion: @escaping () -> Void) {
-        AuthAPIService.fetchIDToken {
+    func fetchIDToken(_ completion: ((Result<Bool, APIErrorCode>) -> Void)? = nil) {
+        AuthAPIService.fetchIDToken { error in
+            guard let error = error else {
+                return
+            }
             
-            print("토큰 가져오기 완료: \(UserDefaults.standard.idToken!)")
-            completion()
+            //여기 에러핸들링..
+            if error == .unAuthorized {
+                self.onErrorHandling?(.unAuthorized)
+            }
+            print("토큰가져오기 완료")
+            self.onErrorHandling?(.ok)
         }
     }
     
@@ -77,21 +76,20 @@ class AuthViewModel {
         //later in the code
         UserAPIService.login { user, result  in
 
-            
-                switch result {
-                case .ok:
-                    UserDefaults.standard.startMode = StartMode.main.rawValue
-                    print(UserDefaults.standard.startMode)
-                    self.onErrorHandling?(.ok)
-                    
-                case .notAcceptable:
-                    UserDefaults.standard.startMode = StartMode.signUp.rawValue
-                    self.onErrorHandling?(.notAcceptable)
-                    
-                default:
-                    self.onErrorHandling?(.internalServerError)
-                    
-                }
+            switch result {
+            case .ok:
+                UserDefaults.standard.startMode = StartMode.main.rawValue
+                print(UserDefaults.standard.startMode)
+                self.onErrorHandling?(.ok)
+                
+            case .notAcceptable:
+                UserDefaults.standard.startMode = StartMode.signUp.rawValue
+                self.onErrorHandling?(.notAcceptable)
+                
+            default:
+                self.onErrorHandling?(.internalServerError)
+                
+            }
         }
     }
 }

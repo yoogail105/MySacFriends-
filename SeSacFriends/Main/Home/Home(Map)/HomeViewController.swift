@@ -23,11 +23,11 @@ class HomeViewController: UIViewController {
     let disposeBag = DisposeBag()
     
   
-    
+    let userDefaults = UserDefaults.standard
     var mapView: MKMapView?
     let locationManager = CLLocationManager()
     var selectedGender: SelectedGender = .total
-    
+    var locationAuth = false
     
     var defaultCoordinate = CLLocationCoordinate2D(latitude: 37.51818789942772, longitude: 126.88541765534976)
     
@@ -38,9 +38,7 @@ class HomeViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        print(#function)
-        
-        updateFriends(gender: viewModel.genderObservable.value)
+        print("HomeViewController", #function)
         self.navigationController?.isNavigationBarHidden = true
     }
     
@@ -54,12 +52,6 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if NetworkMonitor.shared.isConnected {
-            print("연결오키")
-        } else {
-            print("연결안됨 얼럿띄우삼")
-        }
-        
         print(#function)
         print("HomeViewController: \(#function)")
         checkUser() // 유저 상태 체크하기
@@ -69,14 +61,13 @@ class HomeViewController: UIViewController {
         mapView?.delegate = self
         
         let navigationController = self.navigationController
-        coordinator = MainCoordinator(navigationController: navigationController!, parentCoordinator: coordinator)
-        
+        coordinator = MainCoordinator(navigationController: navigationController!)
         
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
-        mapView?.showsUserLocation = true
+//        mapView?.showsUserLocation = true
         mapView?.setRegion(MKCoordinateRegion(center: defaultCoordinate, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)), animated: true)
         
         bind()
@@ -91,10 +82,13 @@ class HomeViewController: UIViewController {
             .disposed(by: disposeBag)
         
         mainView.floatingButton.rx.tap
-            .bind {
-                self.updateFriends(gender: self.viewModel.genderObservable.value)
-                self.moveToSearching()
-            }
+            .subscribe(onNext: {
+                if self.locationAuth {
+                    self.floatingButtonClicked()
+                } else {
+                    self.checkUsersLocationServicesAuthorization()
+                }
+            })
             .disposed(by: disposeBag)
         
         Observable.merge(
@@ -103,7 +97,6 @@ class HomeViewController: UIViewController {
             mainView.womanButton.rx.tap.map { _ in SelectedGender.woman}
         ).bind(to: viewModel.genderObservable)
             .disposed(by: disposeBag)
-        
         
         viewModel.genderObservable
             .subscribe(onNext: {
@@ -118,8 +111,8 @@ class HomeViewController: UIViewController {
                 case .woman:
                     self.mainView.womanButton.buttonModeColor(.fill)
                 }
-                
-                self.updateFriends(gender: self.viewModel.genderObservable.value)
+                print("viewModel.genderObservable")
+                self.updateFriends()
             })
             .disposed(by: disposeBag)
         
@@ -156,6 +149,20 @@ class HomeViewController: UIViewController {
         authViewModel.getUser()
     }
     
+    private func floatingButtonClicked() {
+        print("유조닾ㅎㄹ투",userDefaults.gender)
+        if self.userDefaults.gender == -1 {
+            self.showToastWithAction(message: HomeViewToast.genderError.rawValue) {
+                let vc = ProfileViewController()
+                self.navigationController?.pushViewController(vc, animated: true)
+            }
+        } else {
+            print(#function)
+            self.updateFriends()
+            self.moveToSearching()
+        }
+    }
+    
     private func setUserLocation(latitudeValue: CLLocationDegrees, longitudeValue: CLLocationDegrees, delta span: Double) -> CLLocationCoordinate2D {
         
         let locationValue = CLLocationCoordinate2D(latitude: latitudeValue, longitude: longitudeValue)
@@ -172,24 +179,28 @@ class HomeViewController: UIViewController {
     }
     
     private func findMyLocation() {
+        print(#function)
         guard locationManager.location != nil else {
             requestLocationPermissionAlert()
             return
         }
-        updateFriends(gender: viewModel.genderObservable.value)
+        updateFriends()
         mapView?.showsUserLocation = true
         mapView?.setUserTrackingMode(.follow, animated: true)
     }
     
-    func updateFriends(gender: SelectedGender) {
+    func updateFriends() {
+        print(#function)
+        viewModel.searchFriends()
         viewModel.onErrorHandling = { result in
+            print("onErrorHandling")
             if result == .ok {
                 self.mapView?.removeAnnotations((self.mapView?.annotations)!)
                 self.addAnnotation(friends: self.viewModel.totalFriends)
                // self.selectAnnotations(gender: self.viewModel.genderObservable.value)
             }
         }
-        viewModel.searchFriends()
+       
     }
     
     private func addAnnotation(friends: [Friend?]) {
@@ -262,6 +273,14 @@ class HomeViewController: UIViewController {
         }
     }
     
+    
+    func moveToProfile() {
+        print("profile")
+        view.addSubview(AlertView())
+        //let vc = ProfileViewController()
+        //self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
 }
 
 extension HomeViewController: CLLocationManagerDelegate {
@@ -285,8 +304,10 @@ extension HomeViewController: CLLocationManagerDelegate {
     }
     
     func checkCurrentLocationAuthorization(authorizationStatus: CLAuthorizationStatus) {
+        locationAuth = false
         switch authorizationStatus {
         case .authorizedAlways, .authorizedWhenInUse:
+            locationAuth = true
             print("GPS 권한 설정됨")
             self.locationManager.startUpdatingLocation()
         case .notDetermined:
@@ -316,13 +337,12 @@ extension HomeViewController: CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         print("위치 접근 실패: \(error)")
-        // 위치접근 실패: error alert
     }
     
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
         checkUsersLocationServicesAuthorization()
-        
-        
+        print(#function)
+        updateFriends()
     }
 }
 
@@ -361,9 +381,12 @@ extension HomeViewController: MKMapViewDelegate {
     
     
     func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
-        
+        print(#function)
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) {
-            self.updateFriends(gender: self.viewModel.genderObservable.value)
+            let currentLocation = mapView.centerCoordinate
+            self.viewModel.currentLatitude = currentLocation.latitude
+            self.viewModel.currentLongitude = currentLocation.longitude
+            self.updateFriends()
         }
         
     }

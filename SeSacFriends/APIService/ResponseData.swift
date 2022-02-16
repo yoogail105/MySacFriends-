@@ -56,7 +56,7 @@ struct ResponseData<Model: Codable> {
                 
             // MARK: firebase error
             case APIErrorCode.unAuthorized.rawValue:
-                AuthAPIService.fetchIDToken {
+                AuthAPIService.fetchIDToken {_ in
                 }
                 return .failure(.unAuthorized)
                 
@@ -98,7 +98,7 @@ struct ResponseData<Model: Codable> {
                 
             // MARK: firebase error
             case APIErrorCode.unAuthorized.rawValue:
-                AuthAPIService.fetchIDToken {
+                AuthAPIService.fetchIDToken {_ in
                 }
                 return .failure(.unAuthorized)
                 

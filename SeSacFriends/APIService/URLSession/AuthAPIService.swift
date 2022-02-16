@@ -41,7 +41,7 @@ class AuthAPIService {
     }
     
     
-    static func checkVerificationCode(verificationCode: String, completion: @escaping (APIErrorMessage?) -> Void) {
+    static func checkVerificationCode(verificationCode: String, completion: @escaping (APIErrorCode?) -> Void) {
         
         let verificationID = UserDefaults.standard.authVerificationID!
         print("입력한 verifiacationCode는 \(verificationCode)입니다.")
@@ -54,7 +54,7 @@ class AuthAPIService {
         //request
         Auth.auth().signIn(with: credential) { authResult, error in
             if let error = error {
-                completion(.verificationTokenNotMatched)
+                completion(.verificationCodeError)
              
                     if let _ = AuthErrorCode(rawValue: error._code) {
                         print("check verification User Error: \(error)")
@@ -71,42 +71,29 @@ class AuthAPIService {
                         displayNameString += " "
                     }
                 } else {
-                    print("인증번호 인증 에러: ", error.localizedDescription)
-                    //self.showMessagePrompt(error.localizedDescription)
                     return
                 }
-                // ...
                 return
             }
-            // User is signed in
             
-            print("firebase 로그인 완료(인증번호확인완료)!")
             UserDefaults.standard.startMode = StartMode.signUp.rawValue
-            print("verificationID: \(UserDefaults.standard.authVerificationID!)")
-            
-            completion(nil)
-            
-            // ...
+            completion(.ok)
         }
-        
-        
     }
     
     //firebase idtocken발급
-    static func fetchIDToken(completion: @escaping () ->  Void) {
+    static func fetchIDToken(completion: @escaping (APIErrorCode?) ->  Void) {
         print(#function)
         let currentUser = Auth.auth().currentUser
         currentUser?.getIDTokenForcingRefresh(true) { idToken, error in
-            
             if let error = error {
-                print("error: \(error)")
-                return;
+                completion(.unAuthorized)
+                print("fetchIDTocken error: \(error)")
+                return
             }
             
             UserDefaults.standard.idToken = idToken
-            print("idToken", UserDefaults.standard.idToken!)
-            
-            completion()
+            completion(.ok)
         }
     }
 

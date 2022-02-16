@@ -28,17 +28,12 @@ class QueueViewModel {
     var fromRecommendHobbyList: [String] = []
     var friendsHobbyList: [String] = []
     var myHobbyList: [String] = []
-    var friendsHobbyListOb: Observable<[String]>?
-    
-    
     
     let disposeBag = DisposeBag()
     
     var userData: Friends?
-    
-    var latObservable = BehaviorRelay<Double>(value: 37.517819364682694)
-    var longObservable = BehaviorRelay<Double>(value: 126.88647317074734)
-    
+    var currentLatitude = 37.517819364682694
+    var currentLongitude = 126.88647317074734
     var genderObservable = BehaviorRelay<SelectedGender>(value: .total)
     
     var matchingStatusObservable = BehaviorRelay<MatchingStatus>(value: MatchingStatus(rawValue: UserDefaults.standard.matchingStatus!) ?? .normal)
@@ -57,8 +52,9 @@ class QueueViewModel {
         }
     }
     
+    //onqueue
     func searchFriends(_ completion: ((Result<Bool, APIErrorCode>) -> Void)? = nil) {
-        
+        print(#function)
         totalFriends = []
         requestedFriends = []
         fromRecommendHobbyList = []
@@ -66,10 +62,8 @@ class QueueViewModel {
         myHobbyList = []
         
         let selectedGender = selectedGender(gender: genderObservable.value)
-        let latitude = latObservable.value
-        let longitude = longObservable.value
-        let resultRegion = calculateRegion(lat: latitude, long: longitude)
-        let request = OnQueueRequest(region: resultRegion, lat: latitude, long: longitude)
+        let resultRegion = calculateRegion(lat: currentLatitude, long: currentLongitude)
+        let request = OnQueueRequest(region: resultRegion, lat: currentLatitude, long: currentLongitude)
         
         QueueAPIService.searchHobbyFriends(param: request) { friends, error in
             guard let friends = friends else {
@@ -78,11 +72,10 @@ class QueueViewModel {
             
             switch error {
             default:
-                //print("searchFriends", error)
                 self.onErrorHandling?(.internalServerError)
             }
             
-            print(friends)
+            print("searchHobbyFriends:", friends)
             for hobby in friends.fromRecommend {
                 self.fromRecommendHobbyList.append(contentsOf: [hobby])
             }
@@ -177,16 +170,18 @@ class QueueViewModel {
         }
     }
     
+    func checkUserStatus() {
+       
+    }
+    
     // 10자리로 변환하는 함수
     func calculateRegion(lat: Double, long: Double) -> Int {
-        print("0. latitudeString: \(lat), longitudeString: \(long)")
         var latitudeString = String(lat + 90.0)
         var longitudeString = String(long + 180.0)
         latitudeString = latitudeString.replacingOccurrences(of: ".", with: "")
         longitudeString = longitudeString.replacingOccurrences(of: ".", with: "")
         
         let region = "\(latitudeString.prefix(5))\(longitudeString.prefix(5))"
-        print("region:",region)
         
         return Int(region)!
     }

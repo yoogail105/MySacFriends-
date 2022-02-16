@@ -8,6 +8,7 @@
 import Foundation
 import RxSwift
 import RxRelay
+import Pageboy
 
 
 class ProfileViewModel {
@@ -33,7 +34,6 @@ class ProfileViewModel {
     // MARK: APIService
     func getUser(_ completion: ((Result<Bool, APIErrorCode>) -> Void)? = nil) {
         UserAPIService.login { user, result  in
-            
                 switch result {
                     
                 case .ok:
@@ -66,6 +66,10 @@ class ProfileViewModel {
                 return
             }
             print("저장 성공했습니다.")
+            
+            UserDefaults.standard.searchable = self.searchableObserver.value
+            UserDefaults.standard.gender = self.genderObserver.value
+            UserDefaults.standard.hobby = self.hobbyObserer.value
 
         }
     }
@@ -77,12 +81,14 @@ class ProfileViewModel {
             switch result {
             case .ok:
                 UserDefaults.standard.reset()
+                UserDefaults.standard.startMode = StartMode.onBoarding.rawValue
+                print("탈퇴:\(UserDefaults.standard.nickname)")
                 print("탈퇴 성공: 온보딩화면으로")
                 self.onErrorHandling?(.ok)
             case .notAcceptable:
                 print("로그인정보가 없습니다. ->  온보딩화면으로")
+                UserDefaults.standard.startMode = StartMode.onBoarding.rawValue
                 self.onErrorHandling?(.notAcceptable)
-                
             default:
                 let error = String(describing: result)
                 print("알 수 없는 error: \(error)")
