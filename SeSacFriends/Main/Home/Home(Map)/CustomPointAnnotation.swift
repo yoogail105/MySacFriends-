@@ -18,6 +18,8 @@ class CustomPointAnnotation: NSObject, MKAnnotation {
         self.coordinate = coordinate
         self.imageName = imageName
     }
+    
+    
 }
 
 

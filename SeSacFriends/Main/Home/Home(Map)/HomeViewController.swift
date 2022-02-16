@@ -177,7 +177,6 @@ class HomeViewController: UIViewController {
     func updateFriends(gender: SelectedGender) {
         viewModel.onErrorHandling = { result in
             if result == .ok {
-                print("ok입니다.")
                 self.mapView?.removeAnnotations((self.mapView?.annotations)!)
                 self.addAnnotation(friends: self.viewModel.totalFriends)
                // self.selectAnnotations(gender: self.viewModel.genderObservable.value)
@@ -196,12 +195,7 @@ class HomeViewController: UIViewController {
             mapView?.addAnnotation(annotation)
         }
     }
-    
-    private func addUsreAnnotation() {
-        let pin = MKPointAnnotation()
-        pin.coordinate = defaultCoordinate
-        mapView?.addAnnotation(pin)
-    }
+
     
     func selectAnnotations(gender: SelectedGender) {
         print(#function)
@@ -345,7 +339,15 @@ extension HomeViewController: MKMapViewDelegate {
         }
         
         let pin = annotation as? CustomPointAnnotation
-        annotationView?.image = UIImage(named: pin!.imageName)
+        let size = CGSize(width: 83, height: 83)
+        UIGraphicsBeginImageContext(size)
+        let pinImage = UIImage(named: pin!.imageName)
+        
+        pinImage!.draw(in: CGRect(x: 0, y: 0, width: size.width, height: size.height))
+        let resizedImage = UIGraphicsGetImageFromCurrentImageContext()
+        annotationView?.image = resizedImage
+        
+        
         return annotationView
     }
     
