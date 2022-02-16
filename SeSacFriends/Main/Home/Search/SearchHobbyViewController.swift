@@ -49,7 +49,6 @@ final class SearchHobbyViewController: BaseViewController {
         if let flowLayout = collectionView?.collectionViewLayout as? UICollectionViewFlowLayout {
               flowLayout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
             }
-        //collectionView = UICollectionView(frame: .zero, collectionViewLayout: self.flowLayout)
 //willShow
         
         collectionView?.register(CollectionHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: CollectionHeaderView.identifier)
@@ -94,20 +93,18 @@ final class SearchHobbyViewController: BaseViewController {
     }
     
     override func bind() {
+        //viewmodel에서 벨리드 조건 확인하기
         searchBar.rx.text
             .orEmpty
             .subscribe(onNext: { hobbies in
                 hobbies.components(separatedBy: " ").forEach {
                     if $0.count > 8 {
-                        self.showToast(message: "최소 한 자 이상, 최대 8글자까지 작성 가능합니다")
+                        self.showToast(message: AddMyHobbyToast.lengthLimit.rawValue)
                     } else if self.viewModel.myHobbyList.contains($0) {
-                        self.showToastWithAction(message: "이미 등록된 취미입니다.") {
+                        self.showToastWithAction(message: AddMyHobbyToast.existedHobby.rawValue) {
                             self.searchBar.text = self.searchBar.text?.trimmingCharacters(in: .whitespacesAndNewlines)
                         }
-                        
-                        
                     }
-                //viewmodel에서 벨리드 조건 확인하기
                 }
             }).disposed(by: disposeBag)
         
@@ -117,11 +114,11 @@ final class SearchHobbyViewController: BaseViewController {
                 if input != "" {
                     let hobbiesArray = input?.components(separatedBy: " ")
                     if hobbiesArray!.count + self.viewModel.myHobbyList.count > 8 {
-                        self.showToast(message: "취미는 8개를 넘을 수 없어요.")
+                        self.showToast(message: AddMyHobbyToast.numberLimit.rawValue)
                     } else {
                         self.searchBar.text = ""
                         hobbiesArray?.forEach({
-                            if $0 != "" {
+                            if $0 != "", !self.viewModel.myHobbyList.contains($0) {
                             self.viewModel.myHobbyList.append($0)
                             }
                         })
@@ -249,14 +246,38 @@ extension SearchHobbyViewController: UICollectionViewDelegate, UICollectionViewD
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if indexPath.section == 1 {
-            collectionView.deleteItems(at: [IndexPath(row: indexPath.row, section: indexPath.section)])
-            self.viewModel.myHobbyList.remove(at: indexPath.row)
-
-            let sectionName = "모뫄"
-            print("Test: \(sectionName) 섹션 선택됨.")
-        }
+        let row = indexPath.row
         
+        switch indexPath.section {
+        case 0:
+            if viewModel.myHobbyList.count == 8 {
+                showToast(message: AddMyHobbyToast.numberLimit.rawValue)
+                return
+            }
+            
+            var selectedHobby = ""
+            if indexPath.item <= self.viewModel.fromRecommendHobbyList.count-1 {
+                guard let cell = collectionView.cellForItem(at: indexPath) as? RecommendCollectionViewCell else{ return }
+                selectedHobby = cell.titleLabel.text!
+                
+            } else {
+                guard let cell = collectionView.cellForItem(at: indexPath) as? TitleCollectionViewCell else{ return }
+                selectedHobby = cell.titleLabel.text!
+            }
+            
+            if !self.viewModel.myHobbyList.contains(selectedHobby){
+                self.viewModel.myHobbyList.append(selectedHobby)
+            } else {
+                showToast(message: AddMyHobbyToast.existedHobby.rawValue)
+            }
+            
+            //collectionView.reloadSections(IndexSet(integer: 1))
+            collectionView.reloadData()
+        default:
+            collectionView.deleteItems(at: [IndexPath(row: row, section: 1)])
+            self.viewModel.myHobbyList.remove(at: row)
+
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {

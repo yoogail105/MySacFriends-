@@ -83,7 +83,7 @@ class GenderViewController: BaseViewController {
         
         mainView.nextButton.rx.tap
             .subscribe(onNext: { _ in
-                self.signUpSerer()
+                self.signUpServer()
             })
             .disposed(by: disposeBag)
 
@@ -117,17 +117,26 @@ class GenderViewController: BaseViewController {
         }
     }
     
-    private func signUpSerer() {
+    private func signUpServer() {
         viewModel.onErrorHandling = { result in
             
             switch result {
             case .ok:
                 self.coordinator?.pushToMainTabBar()
+            case .created:
+                self.showToastWithAction(message: APIErrorMessage.alreadyExisted.rawValue) {
+                    self.coordinator?.pushToMainTabBar()
+                }
+            case .invalidRequest:
+                self.showToastWithAction(message: APIErrorMessage.invalidNickname.rawValue) {
+                    self.coordinator?.pushToAuthSignUp()
+                }
             case .unAuthorized:
-                self.showToast(message: "오류가 생겼습니다.\n다시 버튼을 눌러주세요.")
-                
+                self.signUpServer()
+            case .networkError:
+                self.showToast(message: APIErrorMessage.networkError.rawValue)
             default:
-                self.showToast(message: "오류가 생겼습니다.\n다시 버튼을 눌러주세요.")
+                self.showToast(message: "알 수 없는 오류가 생겼습니다.\n다시 버튼을 눌러주세요.")
             }
         }
             

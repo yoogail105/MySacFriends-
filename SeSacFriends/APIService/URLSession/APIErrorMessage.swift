@@ -33,7 +33,7 @@ enum APIErrorCode: Int, Error {
     case internalServerError = 500
     case developerError = 501
     
-    
+    case networkError
     case verificationCodeError
     case failed
     case noData
@@ -55,6 +55,7 @@ enum APIErrorCode: Int, Error {
 enum APIErrorMessage: String, Error {
     case invalidResponse
     case noData
+    case networkError = "네트워크 연결이 원활하지 않습니다. 연결상태 확인 후 다시 시도해 주세요!"
     case failed = "에러가 발생했습니다. 다시 시도해주세요."
     case invalidData
     case unAuthorized = "확인되지 않은 사용자입니다." //406
@@ -66,5 +67,6 @@ enum APIErrorMessage: String, Error {
     case tooManyRequests = "과도한 인증 시도가 있었습니다. 나중에 다시 시도해 주세요."
     case verificationTokenNotMatched = "인증번호가 일치하지 않습니다."
     case deletedUser = "이미 탈퇴한 회원입니다."
+    case unKnownError = "알 수 없는 오류가 발생했습니다. 다시 시도해 주세요."
 
 }

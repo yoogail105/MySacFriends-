@@ -29,18 +29,29 @@ class AuthViewModel {
         return textFieldObserver.map { $0.isValidCertificationCode()}
     }
     
-    
+    func checkNetworking() {
+        if !NetworkMonitor.shared.isConnected {
+            self.onErrorHandling?(.networkError)
+            return
+        }
+    }
     
     func postVerificationCode(completion: @escaping (APIErrorMessage?) -> Void)  {
+        if !NetworkMonitor.shared.isConnected {
+            completion(.networkError)
+        }
+        
         let phoneNumber = UserDefaults.standard.phoneNumber
         
         AuthAPIService.sendVerificationCode(phoneNumber: phoneNumber) { error in
-            
             completion(error)
         }
     }
     
     func checkVerificationCode(verificationCode: String, _ completion: ((Result<Bool, APIErrorCode>) -> Void)? = nil) {
+        
+        checkNetworking()
+        
         AuthAPIService.checkVerificationCode(verificationCode: verificationCode) { error in
             guard let error = error else {
                 return
@@ -58,6 +69,7 @@ class AuthViewModel {
     }
     
     func fetchIDToken(_ completion: ((Result<Bool, APIErrorCode>) -> Void)? = nil) {
+        checkNetworking()
         AuthAPIService.fetchIDToken { error in
             guard let error = error else {
                 return
@@ -73,6 +85,7 @@ class AuthViewModel {
     }
     
     func getUser(_ completion: ((Result<Bool, APIErrorCode>) -> Void)? = nil) {
+        checkNetworking()
         //later in the code
         UserAPIService.login { user, result  in
 

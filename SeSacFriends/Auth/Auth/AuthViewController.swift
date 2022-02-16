@@ -110,6 +110,8 @@ class AuthViewController: BaseViewController {
                     case .tooManyRequests:
                         self.showToast(message: APIErrorMessage.tooManyRequests.rawValue)
                         return
+                    case .networkError:
+                        self.showToast(message: APIErrorMessage.tooManyRequests.rawValue)
                     default:
                         self.showToast(message: APIErrorMessage.failed.rawValue)
                         return

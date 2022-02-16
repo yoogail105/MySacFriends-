@@ -40,6 +40,12 @@ class QueueViewModel {
     
     
     //var subject: BehaviorRelay<[HobbySection]> = BehaviorRelay(value: [])
+    func checkNetworking() {
+        if !NetworkMonitor.shared.isConnected {
+            self.onErrorHandling?(.networkError)
+            return
+        }
+    }
     
     func selectedGender(gender: SelectedGender) -> Int {
         switch gender {
@@ -54,6 +60,7 @@ class QueueViewModel {
     
     //onqueue
     func searchFriends(_ completion: ((Result<Bool, APIErrorCode>) -> Void)? = nil) {
+        checkNetworking()
         print(#function)
         totalFriends = []
         requestedFriends = []
@@ -85,7 +92,9 @@ class QueueViewModel {
                 for friend in friends.fromQueueDB {
                     self.totalFriends.append(contentsOf: [friend])
                     for hobby in friend.hf {
+                        if !self.friendsHobbyList.contains(hobby){
                         self.friendsHobbyList.append(hobby)
+                        }
                     }
                     
                 }
@@ -119,6 +128,7 @@ class QueueViewModel {
     }
     
     func requestFindHobbyFriends(_ completion: ((Result<Bool, APIErrorCode>) -> Void)? = nil) {
+        checkNetworking()
         
         //        let latitude = latObservable.value
         //        let longitude = longObservable.value
@@ -128,11 +138,15 @@ class QueueViewModel {
         //        QueueAPIService.requestFindHobbyFriends2(param: request, completion: {friends, error in
         QueueAPIService.requestFindHobbyFriends { result, error in
             
-            if error == nil {
-                self.onErrorHandling?(.ok)
-            }
+//            if error == nil {
+//                self.onErrorHandling?(.ok)
+//                return
+//            }
             
             switch error?.rawValue {
+            case 200:
+                self.onErrorHandling?(.ok)
+                return
             case 201:
                 self.onErrorHandling?(.created)
                 return

@@ -52,10 +52,17 @@ final class withdrawalViewController: UIViewController {
     func okButtonClicked() {
         viewModel.onErrorHandling = { result in
             print(#function)
-            if result == .ok || result == .notAcceptable {
+            switch result {
+            case .ok, .notAcceptable:
                 print("회원탈퇴완료되었습니다. 뷰컨")
-               let vc = OnboardingViewController()
-            self.navigationController?.pushViewController(vc, animated: true)
+                let vc = OnboardingViewController()
+                self.navigationController?.pushViewController(vc, animated: true)
+            case .unAuthorized:
+                self.okButtonClicked()
+            case .networkError:
+                self.showToast(message: APIErrorMessage.networkError.rawValue)
+            default:
+                self.showToast(message: APIErrorMessage.unKnownError.rawValue)
             }
         }
         self.viewModel.withdrawalUser()

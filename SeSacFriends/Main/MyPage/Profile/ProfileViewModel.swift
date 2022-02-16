@@ -29,11 +29,18 @@ class ProfileViewModel {
     var lowerValueObserver = BehaviorRelay<Int>(value: 18)
     var upperValueObserver = BehaviorRelay<Int>(value: 65)
     
-    
+    func checkNetworking() {
+        if !NetworkMonitor.shared.isConnected {
+            self.onErrorHandling?(.networkError)
+            return
+        }
+    }
     
     // MARK: APIService
     func getUser(_ completion: ((Result<Bool, APIErrorCode>) -> Void)? = nil) {
+        checkNetworking()
         UserAPIService.login { user, result  in
+            
                 switch result {
                     
                 case .ok:
@@ -59,7 +66,7 @@ class ProfileViewModel {
     }
     
     func updateMypage( _ completion: ((Result<Bool, APIErrorCode>) -> Void)? = nil) {
-
+        checkNetworking()
         UserAPIService.updateMyPage(searchable: searchableObserver.value, ageMin: profileData.ageMin, ageMax: profileData.ageMax, gender: genderObserver.value, hobby: hobbyObserer.value) { user, result in
             //print(result)
             guard result != nil else {
@@ -75,11 +82,14 @@ class ProfileViewModel {
     }
     
     func withdrawalUser(_ completion: ((Result<Bool, APIErrorCode>) -> Void)? = nil) {
-        
+        checkNetworking()
         UserAPIService.withdrawalUser { user, result  in
             
             switch result {
             case .ok:
+                AuthAPIService.deleteUserAuth {
+                    print("파이어베이스 사용자 삭제 성공")
+                }
                 UserDefaults.standard.reset()
                 UserDefaults.standard.startMode = StartMode.onBoarding.rawValue
                 print("탈퇴:\(UserDefaults.standard.nickname)")

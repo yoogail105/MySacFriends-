@@ -145,10 +145,14 @@ class AuthVerificationCodeViewController: BaseViewController {
             switch result {
             case .ok:
                 self.coordinator?.pushToMainTabBar()
+            case .unAuthorized:
+                self.checkAlreadyExist()
             case .notAcceptable:
                 self.coordinator?.pushToAuthSignUp()
+            case .networkError:
+                self.showToast(message: APIErrorMessage.networkError.rawValue)
             default:
-                print("알 수 없는 에러")
+                self.showToast(message: APIErrorMessage.unKnownError.rawValue)
             }
         }
         self.viewModel.getUser()

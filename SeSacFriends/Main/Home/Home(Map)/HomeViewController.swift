@@ -69,7 +69,7 @@ class HomeViewController: UIViewController {
         locationManager.startUpdatingLocation()
 //        mapView?.showsUserLocation = true
         mapView?.setRegion(MKCoordinateRegion(center: defaultCoordinate, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)), animated: true)
-        
+        checkUsersLocationServicesAuthorization()
         bind()
     }
     
@@ -84,7 +84,7 @@ class HomeViewController: UIViewController {
         mainView.floatingButton.rx.tap
             .subscribe(onNext: {
                 if self.locationAuth {
-                    self.floatingButtonClicked()
+                    self.checkGenderStatus()
                 } else {
                     self.checkUsersLocationServicesAuthorization()
                 }
@@ -149,8 +149,8 @@ class HomeViewController: UIViewController {
         authViewModel.getUser()
     }
     
-    private func floatingButtonClicked() {
-        print("유조닾ㅎㄹ투",userDefaults.gender)
+    private func checkGenderStatus() {
+        print("젠더",userDefaults.gender)
         if self.userDefaults.gender == -1 {
             self.showToastWithAction(message: HomeViewToast.genderError.rawValue) {
                 let vc = ProfileViewController()
@@ -198,7 +198,10 @@ class HomeViewController: UIViewController {
                 self.mapView?.removeAnnotations((self.mapView?.annotations)!)
                 self.addAnnotation(friends: self.viewModel.totalFriends)
                // self.selectAnnotations(gender: self.viewModel.genderObservable.value)
+            } else if result == .networkError {
+                self.showToast(message: APIErrorMessage.networkError.rawValue)
             }
+            
         }
        
     }
