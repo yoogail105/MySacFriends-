@@ -18,14 +18,12 @@ import RxCocoa
 
 class AuthViewController: BaseViewController {
     
-    
-    
     let mainView = AuthView()
     var viewModel = AuthViewModel()
+    
     let disposeBag = DisposeBag()
     var verifyID: String?
     var isValid = false
-    
     
     override func loadView() {
         self.view = mainView
@@ -34,6 +32,12 @@ class AuthViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        // 네트워크 확인
+        if NetworkMonitor.shared.isConnected {
+            print("연결오키")
+        } else {
+            print("연결안됨 얼럿띄우삼")
+        }
         
         //userDefaults.startMode = StartMode.main.rawValue
     }

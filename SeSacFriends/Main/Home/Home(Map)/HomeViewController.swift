@@ -53,6 +53,13 @@ class HomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if NetworkMonitor.shared.isConnected {
+            print("연결오키")
+        } else {
+            print("연결안됨 얼럿띄우삼")
+        }
+        
         print(#function)
         print("HomeViewController: \(#function)")
         checkUser() // 유저 상태 체크하기

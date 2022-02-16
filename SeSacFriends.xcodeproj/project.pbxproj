@@ -111,6 +111,7 @@
 		23CC363C27BC6D4F005FE3F0 /* NearByNearByViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23CC363B27BC6D4F005FE3F0 /* NearByNearByViewController.swift */; };
 		23CC363E27BC6DA0005FE3F0 /* RequestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23CC363D27BC6DA0005FE3F0 /* RequestViewController.swift */; };
 		23CC364027BC9953005FE3F0 /* CollectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23CC363F27BC9953005FE3F0 /* CollectionHeaderView.swift */; };
+		23CC364227BCA9D7005FE3F0 /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23CC364127BCA9D7005FE3F0 /* NetworkMonitor.swift */; };
 		5C93FDF7CAC2E24622416FBC /* Pods_SeSacFriends.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9567CF4BC81C9EA3D52C0EEB /* Pods_SeSacFriends.framework */; };
 /* End PBXBuildFile section */
 
@@ -222,6 +223,7 @@
 		23CC363B27BC6D4F005FE3F0 /* NearByNearByViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearByNearByViewController.swift; sourceTree = "<group>"; };
 		23CC363D27BC6DA0005FE3F0 /* RequestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestViewController.swift; sourceTree = "<group>"; };
 		23CC363F27BC9953005FE3F0 /* CollectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionHeaderView.swift; sourceTree = "<group>"; };
+		23CC364127BCA9D7005FE3F0 /* NetworkMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMonitor.swift; sourceTree = "<group>"; };
 		2A124371AB832A99FA8DE1C1 /* Pods-SeSacFriends.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SeSacFriends.release.xcconfig"; path = "Target Support Files/Pods-SeSacFriends/Pods-SeSacFriends.release.xcconfig"; sourceTree = "<group>"; };
 		2E6F0FA978ABC44499D16217 /* Pods-SeSacFriends.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SeSacFriends.debug.xcconfig"; path = "Target Support Files/Pods-SeSacFriends/Pods-SeSacFriends.debug.xcconfig"; sourceTree = "<group>"; };
 		9567CF4BC81C9EA3D52C0EEB /* Pods_SeSacFriends.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SeSacFriends.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -368,6 +370,7 @@
 			children = (
 				2399602C279656EB001C8EA4 /* AppDelegate.swift */,
 				2399602E279656EB001C8EA4 /* SceneDelegate.swift */,
+				23CC364127BCA9D7005FE3F0 /* NetworkMonitor.swift */,
 			);
 			path = Support;
 			sourceTree = "<group>";
@@ -765,6 +768,7 @@
 				2389E1DB2796B6FF00BE68E3 /* UserDefaults+Extension.swift in Sources */,
 				234CEC34279C971F00983E20 /* EmailViewController.swift in Sources */,
 				23AF965927A1A0470078A204 /* TabBarText.swift in Sources */,
+				23CC364227BCA9D7005FE3F0 /* NetworkMonitor.swift in Sources */,
 				234CEC17279B39AC00983E20 /* OnboardingViewController.swift in Sources */,
 				2389E1C42796862A00BE68E3 /* UIFont+Extension.swift in Sources */,
 				23ADC13C27AAFA9700101C43 /* UserTitleText.swift in Sources */,

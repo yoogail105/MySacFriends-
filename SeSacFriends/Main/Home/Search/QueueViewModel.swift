@@ -59,19 +59,16 @@ class QueueViewModel {
     
     func searchFriends(_ completion: ((Result<Bool, APIErrorCode>) -> Void)? = nil) {
         
-        //reset
         totalFriends = []
         requestedFriends = []
         fromRecommendHobbyList = []
         friendsHobbyList = []
         myHobbyList = []
         
-        
         let selectedGender = selectedGender(gender: genderObservable.value)
         let latitude = latObservable.value
         let longitude = longObservable.value
         let resultRegion = calculateRegion(lat: latitude, long: longitude)
-        
         let request = OnQueueRequest(region: resultRegion, lat: latitude, long: longitude)
         
         QueueAPIService.searchHobbyFriends(param: request) { friends, error in
@@ -97,7 +94,7 @@ class QueueViewModel {
                     for hobby in friend.hf {
                         self.friendsHobbyList.append(hobby)
                     }
-
+                    
                 }
                 for requestedFriend in friends.fromQueueDBRequested {
                     self.requestedFriends.append(contentsOf: [requestedFriend])
@@ -130,18 +127,18 @@ class QueueViewModel {
     
     func requestFindHobbyFriends(_ completion: ((Result<Bool, APIErrorCode>) -> Void)? = nil) {
         
-//        let latitude = latObservable.value
-//        let longitude = longObservable.value
-//        let resultRegion = calculateRegion(lat: latitude, long: longitude)
-//
-//        let request = QueueRequest(type: 2, region: resultRegion, lat: latitude, long: longitude, hf: self.myHobbyList)
-//        QueueAPIService.requestFindHobbyFriends2(param: request, completion: {friends, error in
+        //        let latitude = latObservable.value
+        //        let longitude = longObservable.value
+        //        let resultRegion = calculateRegion(lat: latitude, long: longitude)
+        //
+        //        let request = QueueRequest(type: 2, region: resultRegion, lat: latitude, long: longitude, hf: self.myHobbyList)
+        //        QueueAPIService.requestFindHobbyFriends2(param: request, completion: {friends, error in
         QueueAPIService.requestFindHobbyFriends { result, error in
-        
+            
             if error == nil {
                 self.onErrorHandling?(.ok)
             }
-
+            
             switch error?.rawValue {
             case 201:
                 self.onErrorHandling?(.created)
@@ -164,7 +161,6 @@ class QueueViewModel {
             }
         }
     }
-    
     
     func setFriendSesacImage(imgaeNumber: Int) -> String {
         switch imgaeNumber {
