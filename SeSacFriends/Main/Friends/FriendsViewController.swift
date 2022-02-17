@@ -14,6 +14,7 @@ class FriendsViewController: UIViewController {
         super.viewDidLoad()
         
         self.title = TabBarTitle.friends.rawValue
-        view.backgroundColor = .red
+        view.backgroundColor = .yellow
+
     }
 }

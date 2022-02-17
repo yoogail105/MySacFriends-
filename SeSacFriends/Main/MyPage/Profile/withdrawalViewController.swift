@@ -23,7 +23,7 @@ final class withdrawalViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        coordinator = MainCoordinator(navigationController: self.navigationController ?? UINavigationController())
+       // coordinator = MainCoordinator(navigationController: self.navigationController ?? UINavigationController())
         
         configure()
         bind()

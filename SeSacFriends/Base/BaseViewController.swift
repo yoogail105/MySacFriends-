@@ -23,7 +23,7 @@ class BaseViewController: UIViewController {
         setupConstraints()
         setupNavigationBar()
         
-        coordinator = MainCoordinator(navigationController: self.navigationController!)
+       // coordinator = MainCoordinator(navigationController: self.navigationController!)
     }
     
     

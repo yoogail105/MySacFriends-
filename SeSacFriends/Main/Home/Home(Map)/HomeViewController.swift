@@ -60,14 +60,10 @@ class HomeViewController: UIViewController {
         mapView?.center = mainView.center
         mapView?.delegate = self
         
-        let navigationController = self.navigationController
-        coordinator = MainCoordinator(navigationController: navigationController!)
-        
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
-//        mapView?.showsUserLocation = true
         mapView?.setRegion(MKCoordinateRegion(center: defaultCoordinate, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)), animated: true)
         checkUsersLocationServicesAuthorization()
         bind()
