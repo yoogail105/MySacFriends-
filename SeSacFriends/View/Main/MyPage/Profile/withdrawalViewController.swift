@@ -15,7 +15,7 @@ final class withdrawalViewController: UIViewController {
     let mainView = AlertView()
     let viewModel = ProfileViewModel()
     let disposeBag = DisposeBag()
-    var coordinator: MainCoordinator?
+    var coordinator: MyPageCoordinator?
     override func loadView() {
         self.view = mainView
     }
@@ -55,8 +55,9 @@ final class withdrawalViewController: UIViewController {
             switch result {
             case .ok, .notAcceptable:
                 print("회원탈퇴완료되었습니다. 뷰컨")
-                let vc = OnboardingViewController()
-                self.navigationController?.pushViewController(vc, animated: true)
+                self.coordinator?.pushToOnboarding()
+//                let vc = OnboardingViewController()
+//                self.navigationController?.pushViewController(vc, animated: true)
             case .unAuthorized:
                 self.okButtonClicked()
             case .networkError:

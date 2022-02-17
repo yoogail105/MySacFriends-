@@ -67,6 +67,14 @@
 		236820D127B460D800C79EAC /* QueueViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 236820D027B460D800C79EAC /* QueueViewModel.swift */; };
 		236820D327B4659200C79EAC /* Friends.swift in Sources */ = {isa = PBXBuildFile; fileRef = 236820D227B4659200C79EAC /* Friends.swift */; };
 		236820D527B47C4C00C79EAC /* QueueService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 236820D427B47C4C00C79EAC /* QueueService.swift */; };
+		236BE66E27BE6009008E4040 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 236BE66D27BE6009008E4040 /* Coordinator.swift */; };
+		236BE67027BE6033008E4040 /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 236BE66F27BE6033008E4040 /* MainCoordinator.swift */; };
+		236BE67227BE6057008E4040 /* TabBarCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 236BE67127BE6057008E4040 /* TabBarCoordinator.swift */; };
+		236BE67427BE6089008E4040 /* HomeCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 236BE67327BE6089008E4040 /* HomeCoordinator.swift */; };
+		236BE67627BE60B7008E4040 /* FriendsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 236BE67527BE60B7008E4040 /* FriendsCoordinator.swift */; };
+		236BE67827BE60C5008E4040 /* ShopCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 236BE67727BE60C5008E4040 /* ShopCoordinator.swift */; };
+		236BE67A27BE60EC008E4040 /* MyPageCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 236BE67927BE60EC008E4040 /* MyPageCoordinator.swift */; };
+		236BE67C27BE6135008E4040 /* AuthCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 236BE67B27BE6135008E4040 /* AuthCoordinator.swift */; };
 		237B9F0E27A262BD008A6E06 /* MyPageViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 237B9F0D27A262BD008A6E06 /* MyPageViewCell.swift */; };
 		237B9F1227A2AA13008A6E06 /* PushCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 237B9F1127A2AA13008A6E06 /* PushCoordinator.swift */; };
 		237B9F1427A35233008A6E06 /* FriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 237B9F1327A35232008A6E06 /* FriendsViewController.swift */; };
@@ -176,6 +184,14 @@
 		236820D027B460D800C79EAC /* QueueViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueueViewModel.swift; sourceTree = "<group>"; };
 		236820D227B4659200C79EAC /* Friends.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Friends.swift; sourceTree = "<group>"; };
 		236820D427B47C4C00C79EAC /* QueueService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueueService.swift; sourceTree = "<group>"; };
+		236BE66D27BE6009008E4040 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
+		236BE66F27BE6033008E4040 /* MainCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinator.swift; sourceTree = "<group>"; };
+		236BE67127BE6057008E4040 /* TabBarCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarCoordinator.swift; sourceTree = "<group>"; };
+		236BE67327BE6089008E4040 /* HomeCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCoordinator.swift; sourceTree = "<group>"; };
+		236BE67527BE60B7008E4040 /* FriendsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsCoordinator.swift; sourceTree = "<group>"; };
+		236BE67727BE60C5008E4040 /* ShopCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopCoordinator.swift; sourceTree = "<group>"; };
+		236BE67927BE60EC008E4040 /* MyPageCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageCoordinator.swift; sourceTree = "<group>"; };
+		236BE67B27BE6135008E4040 /* AuthCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthCoordinator.swift; sourceTree = "<group>"; };
 		237B9F0D27A262BD008A6E06 /* MyPageViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageViewCell.swift; sourceTree = "<group>"; };
 		237B9F1127A2AA13008A6E06 /* PushCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushCoordinator.swift; sourceTree = "<group>"; };
 		237B9F1327A35232008A6E06 /* FriendsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsViewController.swift; sourceTree = "<group>"; };
@@ -342,7 +358,6 @@
 			children = (
 				234CEC042799FAC300983E20 /* BaseUIView.swift */,
 				2389E1D62796A31800BE68E3 /* BaseViewController.swift */,
-				23AF965E27A1B5F70078A204 /* CoordinatorProtocol.swift */,
 				237B9F1127A2AA13008A6E06 /* PushCoordinator.swift */,
 			);
 			path = Base;
@@ -396,6 +411,46 @@
 				23CC363F27BC9953005FE3F0 /* CollectionHeaderView.swift */,
 			);
 			path = Search;
+			sourceTree = "<group>";
+		};
+		236BE66A27BE5F90008E4040 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				234CEBFF2799F75500983E20 /* Onboarding */,
+				23CC363727BC6781005FE3F0 /* Auth */,
+				234CEC26279C835500983E20 /* Main */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		236BE66B27BE5FA1008E4040 /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				236BE66C27BE5FF4008E4040 /* Coordinator */,
+				2389E1C1279685A800BE68E3 /* Fonts */,
+				234CEC23279C82AD00983E20 /* Base */,
+				234CEC1E279C728300983E20 /* Text */,
+				2389E1C9279697E700BE68E3 /* Extension */,
+				23BE83E727B6F0C500416C6E /* Model */,
+				23335720279DF8AC0062A9E8 /* CustomView */,
+			);
+			path = Util;
+			sourceTree = "<group>";
+		};
+		236BE66C27BE5FF4008E4040 /* Coordinator */ = {
+			isa = PBXGroup;
+			children = (
+				236BE66D27BE6009008E4040 /* Coordinator.swift */,
+				23AF965E27A1B5F70078A204 /* CoordinatorProtocol.swift */,
+				236BE67727BE60C5008E4040 /* ShopCoordinator.swift */,
+				236BE67527BE60B7008E4040 /* FriendsCoordinator.swift */,
+				236BE66F27BE6033008E4040 /* MainCoordinator.swift */,
+				236BE67127BE6057008E4040 /* TabBarCoordinator.swift */,
+				236BE67327BE6089008E4040 /* HomeCoordinator.swift */,
+				236BE67927BE60EC008E4040 /* MyPageCoordinator.swift */,
+				236BE67B27BE6135008E4040 /* AuthCoordinator.swift */,
+			);
+			path = Coordinator;
 			sourceTree = "<group>";
 		};
 		2389E1C1279685A800BE68E3 /* Fonts */ = {
@@ -469,18 +524,11 @@
 			isa = PBXGroup;
 			children = (
 				234E5FA927988F8D00F5D2BB /* GoogleService-Info.plist */,
-				2389E1C1279685A800BE68E3 /* Fonts */,
 				2389E1AC27967A3A00BE68E3 /* SeSacFriends.entitlements */,
 				234CEC25279C830E00983E20 /* Support */,
 				2389E1DC2796C81800BE68E3 /* APIService */,
-				234CEC23279C82AD00983E20 /* Base */,
-				234CEC1E279C728300983E20 /* Text */,
-				2389E1C9279697E700BE68E3 /* Extension */,
-				23BE83E727B6F0C500416C6E /* Model */,
-				23335720279DF8AC0062A9E8 /* CustomView */,
-				234CEBFF2799F75500983E20 /* Onboarding */,
-				23CC363727BC6781005FE3F0 /* Auth */,
-				234CEC26279C835500983E20 /* Main */,
+				236BE66B27BE5FA1008E4040 /* Util */,
+				236BE66A27BE5F90008E4040 /* View */,
 				23996035279656EC001C8EA4 /* Assets.xcassets */,
 				23996037279656EC001C8EA4 /* LaunchScreen.storyboard */,
 				2399603A279656EC001C8EA4 /* Info.plist */,
@@ -734,12 +782,14 @@
 				234CEC1D279C61F700983E20 /* NicknameView.swift in Sources */,
 				23C97FC527ADC36A0087A239 /* AlertView.swift in Sources */,
 				234CEC20279C729800983E20 /* AssetsText.swift in Sources */,
+				236BE67A27BE60EC008E4040 /* MyPageCoordinator.swift in Sources */,
 				2323AEBE27A71F7300895CC7 /* TitleCollectionViewCell.swift in Sources */,
 				2308B0242799D83D004145E2 /* UIViewController+Extension.swift in Sources */,
 				2389E1D72796A31800BE68E3 /* BaseViewController.swift in Sources */,
 				2333572F27A09EF20062A9E8 /* MyPageView.swift in Sources */,
 				2323AEB627A6F2E500895CC7 /* ProfileCardView.swift in Sources */,
 				23ADC14427AB2EED00101C43 /* ProfileView.swift in Sources */,
+				236BE67627BE60B7008E4040 /* FriendsCoordinator.swift in Sources */,
 				233D799527B9272900BA0671 /* CustomPointAnnotation.swift in Sources */,
 				2389E1B027967B1200BE68E3 /* MainViewController.swift in Sources */,
 				23ADC14027AB03BB00101C43 /* TitleTableViewCell.swift in Sources */,
@@ -752,6 +802,7 @@
 				232FCFFA27B1022A00A2558C /* HomeView.swift in Sources */,
 				239960412796572C001C8EA4 /* String+Extension.swift in Sources */,
 				233D799D27B9B50100BA0671 /* HobbyTableViewCell.swift in Sources */,
+				236BE67427BE6089008E4040 /* HomeCoordinator.swift in Sources */,
 				237B9F1227A2AA13008A6E06 /* PushCoordinator.swift in Sources */,
 				236820CA27B4579500C79EAC /* SearchHobbyView.swift in Sources */,
 				234E5FA627987EE900F5D2BB /* UIButton+Extension.swift in Sources */,
@@ -797,7 +848,10 @@
 				234CEC012799F76B00983E20 /* OnboardingCardView.swift in Sources */,
 				236820C627B441B800C79EAC /* MyPageProfileTableViewCell.swift in Sources */,
 				236820D527B47C4C00C79EAC /* QueueService.swift in Sources */,
+				236BE67827BE60C5008E4040 /* ShopCoordinator.swift in Sources */,
+				236BE67C27BE6135008E4040 /* AuthCoordinator.swift in Sources */,
 				2389E1D32796A29F00BE68E3 /* AuthViewModel.swift in Sources */,
+				236BE67227BE6057008E4040 /* TabBarCoordinator.swift in Sources */,
 				2308B0262799DEBF004145E2 /* ToastMessage.swift in Sources */,
 				232FCFF627B0B2CF00A2558C /* withdrawalViewController.swift in Sources */,
 				2399602D279656EB001C8EA4 /* AppDelegate.swift in Sources */,
@@ -816,12 +870,14 @@
 				236820CC27B457A400C79EAC /* SearchHobbyViewController.swift in Sources */,
 				2323AEB027A5BDDB00895CC7 /* RangeSlider.swift in Sources */,
 				237B9F1C27A3FB3F008A6E06 /* ProfileViewController.swift in Sources */,
+				236BE67027BE6033008E4040 /* MainCoordinator.swift in Sources */,
 				23439AE927BB2A0900F79318 /* FindViewController.swift in Sources */,
 				234CEC0D279AF61500983E20 /* PageViewController.swift in Sources */,
 				234CEC1B279C51C700983E20 /* Text.swift in Sources */,
 				23CC363E27BC6DA0005FE3F0 /* RequestViewController.swift in Sources */,
 				234CEC0B279AB3D500983E20 /* UIView+Extension.swift in Sources */,
 				2323AEBA27A7048C00895CC7 /* NameTableViewCell.swift in Sources */,
+				236BE66E27BE6009008E4040 /* Coordinator.swift in Sources */,
 				236820D127B460D800C79EAC /* QueueViewModel.swift in Sources */,
 				23BE83F427B7AC9C00416C6E /* UserService.swift in Sources */,
 				23ADC14227AB1F3F00101C43 /* ReviewTableViewCell.swift in Sources */,

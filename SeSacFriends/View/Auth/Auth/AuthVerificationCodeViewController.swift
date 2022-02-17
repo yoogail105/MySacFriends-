@@ -17,6 +17,8 @@ class AuthVerificationCodeViewController: BaseViewController {
     let viewModel = AuthViewModel()
     let disposeBag = DisposeBag()
     
+    weak var coordinator: MainCoordinator?
+    
     override func loadView() {
         self.view = mainView
     }
@@ -156,18 +158,6 @@ class AuthVerificationCodeViewController: BaseViewController {
             }
         }
         self.viewModel.getUser()
-    }
-    
-    // 회원가입 or 메인화면
-    func selectNextView() {
-        print(#function, "to signUpNicknameVC, mode: \(UserDefaults.standard.startMode)")
-        let mode = UserDefaults.standard.startMode
-        
-        if mode == StartMode.signUp.rawValue {
-            self.coordinator?.pushToAuthSignUp()
-        } else {
-            self.coordinator?.pushToMainTabBar()
-        }
     }
     
     

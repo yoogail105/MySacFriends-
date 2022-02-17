@@ -14,9 +14,14 @@ class GenderViewController: BaseViewController {
     
     //weak var coordinator: HomeCoordinator?
     
+
+    //withdrawalCoordinator = WithdrawalCoordinator(navigationController: self.navigationController!, parentCoordinator: coordinator)
+    
     let mainView = GenderView()
     let viewModel = SignUpViewModel()
+    weak var coordinator: MainCoordinator?
     let disposeBag = DisposeBag()
+    
     var gender = UserDefaults.standard.gender
     var woman = false
     var man = false
@@ -34,7 +39,7 @@ class GenderViewController: BaseViewController {
     }
     
     override func bind() {
-        
+        coordinator = MainCoordinator(navigationController: self.navigationController!)
         viewModel.genderObserver
             .map { $0 == .woman ? UIColor.brandColor(.whitegreen) : UIColor.white }
             .bind(to: mainView.button00.rx.backgroundColor)

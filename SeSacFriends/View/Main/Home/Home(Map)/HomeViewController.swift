@@ -17,7 +17,7 @@ import Moya
 
 class HomeViewController: UIViewController {
     
-    var coordinator: MainCoordinator?
+    var coordinator: TabBarCoordinator?
     let viewModel = QueueViewModel()
     let mainView = HomeView()
     let disposeBag = DisposeBag()
@@ -135,11 +135,11 @@ class HomeViewController: UIViewController {
             if error == .notAcceptable {
                 UserDefaults.standard.startMode = StartMode.auth.rawValue
                 print("로그인 새로 해야함")
-                self.coordinator?.pushToAuthSignUp()
+               // self.coordinator?.pushToAuthSignUp()
                 // 토스트 메세지: 로그인을 해주세요
             } else if error  == .unAuthorized {
                 print("errorHandling: 로그인 새로 해야함")
-                self.coordinator?.pushToAuthSignUp()
+                //self.coordinator?.pushToAuthSignUp()
             }
         }
         authViewModel.getUser()

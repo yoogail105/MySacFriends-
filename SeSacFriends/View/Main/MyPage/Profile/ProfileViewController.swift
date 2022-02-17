@@ -15,6 +15,8 @@ final class ProfileViewController: BaseViewController {
     let mainView = ProfileView()
     lazy var withdrawalAlert = AlertView()
     
+    weak var coordinator: MyPageCoordinator?
+    
     let viewModel = ProfileViewModel()
     let disposeBag = DisposeBag()
     
@@ -259,10 +261,12 @@ final class ProfileViewController: BaseViewController {
     func withdrawal() {
         print(#function)
         
-        let vc = withdrawalViewController()
-        vc.modalPresentationStyle = .overCurrentContext
-        vc.modalTransitionStyle = .crossDissolve
-        present(vc, animated: true, completion: nil)
+        self.coordinator?.pushToWithdrawal()
+        
+//        let vc = withdrawalViewController()
+//        vc.modalPresentationStyle = .overCurrentContext
+//        vc.modalTransitionStyle = .crossDissolve
+//        present(vc, animated: true, completion: nil)
        
     }
 }

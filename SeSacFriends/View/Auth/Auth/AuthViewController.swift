@@ -20,6 +20,7 @@ class AuthViewController: BaseViewController {
     
     let mainView = AuthView()
     var viewModel = AuthViewModel()
+    weak var coordinator: MainCoordinator?
     
     let disposeBag = DisposeBag()
     var verifyID: String?
@@ -104,7 +105,6 @@ class AuthViewController: BaseViewController {
         
         showToastWithAction(message: requestVerificationCodeToast.isValid.rawValue) {
             self.viewModel.postVerificationCode { error in
-                
                 if error != nil {
                     switch error {
                     case .tooManyRequests:
@@ -120,6 +120,7 @@ class AuthViewController: BaseViewController {
                 if error != nil {
                     return
                 }
+                //self.coordinator?.pushToAuthVerificationCode()
                 let vc = AuthVerificationCodeViewController()
                 self.navigationController?.pushViewController(vc, animated: true)
                 print("화면 옮기기")

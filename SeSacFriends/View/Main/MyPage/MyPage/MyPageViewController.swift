@@ -18,17 +18,15 @@ final class MyPageViewController: BaseViewController {
     override func loadView() {
         self.view = mainView
     }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-       // self.navigationController?.navigationBar.isHidden = true
-       //self.navigationController?.setNavigationBarHidden(true, animated: animated)
-        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
-        //self.navigationController?.isNavigationBarHidden = false
+        self.navigationController?.title = TabBarTitle.myPage.rawValue
     }
     
     override func viewDidLoad() {

@@ -30,7 +30,6 @@ class SignUpViewModel {
     
     func postSignUp( _ completion: ((Result<Bool, APIErrorCode>) -> Void)? = nil) {
         UserAPIService.signUp { user, result in
-            
             switch result {
                 
             case .ok:
@@ -41,8 +40,11 @@ class SignUpViewModel {
                 AuthAPIService.fetchIDToken {_ in 
                     print("토큰 가져오기 완료: \(UserDefaults.standard.idToken!)")
                     self.onErrorHandling?(.unAuthorized)
+
                 }
-                
+            case .created:
+                print("이미 가입된 유저")
+                self.onErrorHandling?(.created)
             default:
               print("알수없는 에러가 발생했다.")
             }

@@ -11,13 +11,11 @@ import RxSwift
 import RxCocoa
 
 class OnboardingViewController: BaseViewController  {
-
-    
-    //weak var coordinator: PushAuthCoordinator?
     
     let mainView = OnboardingView()
     let cardViewController = PageViewController()
     let disposBag = DisposeBag()
+    weak var coordinator: MainCoordinator?
     
     
     override func loadView() {

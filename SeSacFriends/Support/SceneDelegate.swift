@@ -29,8 +29,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         case .onBoarding:
             appCoordinator?.start()
         case .auth:
+//            appCoordinator?.start()
             appCoordinator?.pushToAuth()
         case .signUp:
+//            appCoordinator?.start()
             appCoordinator?.pushToAuthSignUp()
         case .main:
             print("go to main")

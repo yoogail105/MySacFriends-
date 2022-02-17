@@ -14,6 +14,7 @@ class SignUpNicknameViewController: BaseViewController {
     let mainView = NicknameView()
     let viewModel = SignUpViewModel()
     let disposeBag = DisposeBag()
+    weak var coordinator: MainCoordinator?
     
     
     override func loadView() {

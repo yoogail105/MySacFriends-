@@ -12,7 +12,6 @@ import RxCocoa
 class BaseViewController: UIViewController {
 
     let userDefaults = UserDefaults.standard
-    var coordinator: MainCoordinator?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,8 +21,6 @@ class BaseViewController: UIViewController {
         addAction()
         setupConstraints()
         setupNavigationBar()
-        
-       // coordinator = MainCoordinator(navigationController: self.navigationController!)
     }
     
     
