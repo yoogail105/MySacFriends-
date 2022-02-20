@@ -8,12 +8,14 @@
 import UIKit
 
 class FriendsCoordinator: Coordinator {
+    
+    var childCoordinators = [Coordinator]()
     weak var parentCoordinator: TabBarCoordinator?
-    var childCoordinators: [Coordinator] = []
+    
     var navigationController: UINavigationController
     
-    init(navigationController: UINavigationController) {
-        self.navigationController = navigationController
+    init() {
+        self.navigationController = .init()
     }
     
     func start() {
@@ -21,9 +23,9 @@ class FriendsCoordinator: Coordinator {
     }
     
     func startPush() -> UINavigationController {
-        let rootViewController = FriendsViewController()
-        rootViewController.title = TabBarTitle.friends.rawValue
-        navigationController = UINavigationController(rootViewController: rootViewController)
+        let friendsCoordinator = FriendsViewController()
+        navigationController.setViewControllers([friendsCoordinator], animated: false)
         return navigationController
     }
 }
+

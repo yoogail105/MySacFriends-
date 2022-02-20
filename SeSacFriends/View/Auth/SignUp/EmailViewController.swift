@@ -14,7 +14,7 @@ class EmailViewController: BaseViewController {
     let mainView = setEmailView()
     let viewModel = SignUpViewModel()
     let disposeBag = DisposeBag()
-    
+    weak var coordinator: AuthCoordinator?
     override func loadView() {
         self.view = mainView
     }
@@ -58,14 +58,11 @@ class EmailViewController: BaseViewController {
             })
             .disposed(by: disposeBag)
         
-        
-        
     }
     
     private func moveToNext() {
         UserDefaults.standard.email = mainView.textField.text!
         print("email: \(userDefaults.email)")
-        let vc = GenderViewController()
-        self.navigationController?.pushViewController(vc, animated: true)
+        coordinator?.pushToGender()
     }
 }

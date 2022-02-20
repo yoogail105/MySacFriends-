@@ -17,7 +17,7 @@ class AuthVerificationCodeViewController: BaseViewController {
     let viewModel = AuthViewModel()
     let disposeBag = DisposeBag()
     
-    weak var coordinator: MainCoordinator?
+    weak var coordinator: AuthCoordinator?
     
     override func loadView() {
         self.view = mainView
@@ -146,11 +146,13 @@ class AuthVerificationCodeViewController: BaseViewController {
         viewModel.onErrorHandling = {result in
             switch result {
             case .ok:
-                self.coordinator?.pushToMainTabBar()
+                
+                print("self.coordinator?.pushToMainTabBar()")
             case .unAuthorized:
                 self.checkAlreadyExist()
             case .notAcceptable:
-                self.coordinator?.pushToAuthSignUp()
+                
+                print("self.coordinator?.pushToAuthSignUp()")
             case .networkError:
                 self.showToast(message: APIErrorMessage.networkError.rawValue)
             default:

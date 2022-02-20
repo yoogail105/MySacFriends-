@@ -8,14 +8,13 @@
 import UIKit
 
 class HomeCoordinator: Coordinator {
-    
+    var childCoordinators = [Coordinator]()
     weak var parentCoordinator: TabBarCoordinator?
-    var childCoordinators: [Coordinator] = []
+    
     var navigationController: UINavigationController
     
-    
-    init(navigationController: UINavigationController) {
-        self.navigationController = navigationController
+    init() {
+        self.navigationController = .init()
     }
     
     func start() {
@@ -23,11 +22,12 @@ class HomeCoordinator: Coordinator {
     }
     
     func startPush() -> UINavigationController {
-        let rootViewController = HomeViewController()
-        rootViewController.title = TabBarTitle.home.rawValue
-        navigationController = UINavigationController(rootViewController: rootViewController)
+        let homeViewController = HomeViewController()
+        homeViewController.title = TabBarTitle.home.rawValue
+        navigationController.setViewControllers([homeViewController], animated: false)
+        
         return navigationController
     }
     
-    
 }
+

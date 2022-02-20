@@ -11,7 +11,7 @@ import SnapKit
 final class MyPageViewController: BaseViewController {
     let mainView = MyPageView()
     let viewModel = ProfileViewModel()
-    
+    weak var coordinator: MyPageCoordinator?
     var menuIcons = [""]
 
     
@@ -90,8 +90,10 @@ extension MyPageViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.row == 0 {
-            let vc = ProfileViewController()
-            self.navigationController?.pushViewController(vc, animated: true)
+            
+            coordinator?.pushToProfile()
+//            let vc = ProfileViewController()
+//            self.navigationController?.pushViewController(vc, animated: true)
         }
     
         

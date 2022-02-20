@@ -19,7 +19,8 @@ class GenderViewController: BaseViewController {
     
     let mainView = GenderView()
     let viewModel = SignUpViewModel()
-    weak var coordinator: MainCoordinator?
+    
+    weak var coordinator: AuthCoordinator?
     let disposeBag = DisposeBag()
     
     var gender = UserDefaults.standard.gender
@@ -39,7 +40,7 @@ class GenderViewController: BaseViewController {
     }
     
     override func bind() {
-        coordinator = MainCoordinator(navigationController: self.navigationController!)
+      //  coordinator = MainCoordinator(navigationController: self.navigationController!)
         viewModel.genderObserver
             .map { $0 == .woman ? UIColor.brandColor(.whitegreen) : UIColor.white }
             .bind(to: mainView.button00.rx.backgroundColor)
@@ -127,14 +128,16 @@ class GenderViewController: BaseViewController {
             
             switch result {
             case .ok:
-                self.coordinator?.pushToMainTabBar()
+                self.moveToNext()
+                
             case .created:
                 self.showToastWithAction(message: APIErrorMessage.alreadyExisted.rawValue) {
-                    self.coordinator?.pushToMainTabBar()
+                    self.moveToNext()
+                    // self.coordinator?.pushToMainTabBar()
                 }
             case .invalidRequest:
                 self.showToastWithAction(message: APIErrorMessage.invalidNickname.rawValue) {
-                    self.coordinator?.pushToAuthSignUp()
+                    self.coordinator?.pushToEmail()
                 }
             case .unAuthorized:
                 self.signUpServer()
@@ -155,7 +158,9 @@ class GenderViewController: BaseViewController {
 //        
 //        //print("gender: \(userDefaults.gender)")
 //        //print("fcm: \()")
-        coordinator?.pushToMainTabBar()
+        coordinator?.finish()
+    
+        
     }
     
 }

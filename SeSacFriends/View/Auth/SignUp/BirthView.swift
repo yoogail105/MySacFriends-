@@ -18,6 +18,10 @@ class BirthView: AuthView{
         datePicker.timeZone = .autoupdatingCurrent
         datePicker.translatesAutoresizingMaskIntoConstraints = false
         datePicker.backgroundColor = .white
+        DateFormatter().dateFormat = "yyyy-MM-dd"
+        let defaultDate = DateFormatter().date(from: "1990-01-01")
+        datePicker.setDate(Date(), animated: true)
+        
         return datePicker
     }() 
     

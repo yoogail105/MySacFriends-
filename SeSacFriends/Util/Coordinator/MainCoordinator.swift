@@ -22,18 +22,22 @@ class MainCoordinator: Coordinator {
     }
     
     func pushToAuth() {
-        let viewController = AuthViewController()
-        navigationController.pushViewController(viewController, animated: true)
-        
-//        let child = AuthCoordinator(navigationController: navigationController)
-//        child.parentCoordinator = self
-//        childCoordinators.append(child)
-//        child.start()
+        navigationController.viewControllers.removeAll()
+        navigationController.isToolbarHidden = true
+
+        let child = AuthCoordinator(navigationController: navigationController)
+        child.parentCoordinator = self
+        childCoordinators.append(child)
+        child.pushToAuth()
     }
     
     func pushToAuthSignUp() {
-        let viewController = SignUpNicknameViewController()
-        navigationController.pushViewController(viewController, animated: true)
+        navigationController.viewControllers.removeAll()
+        navigationController.isToolbarHidden = true
+        let child = AuthCoordinator(navigationController: navigationController)
+        child.parentCoordinator = self
+        childCoordinators.append(child)
+        child.pushToSignUp()
     }
     
     func pushToMainTabBar() {
@@ -57,11 +61,11 @@ class MainCoordinator: Coordinator {
         }
     }
 }
-
-extension MainCoordinator {
-//    func pushToAuthVerificationCode() {
-//        let rootViewController = AuthVerificationCodeViewController()
-//        rootViewController.mainCoordinator = self
-//        navigationController.pushViewController(rootViewController, animated: true)
-//    }
-}
+//
+//extension MainCoordinator {
+//        func pushToAuthVerificationCode() {
+//            let rootViewController = AuthVerificationCodeViewController()
+//            rootViewController.mainCoordinator = self
+//            navigationController.pushViewController(rootViewController, animated: true)
+//        }
+//}

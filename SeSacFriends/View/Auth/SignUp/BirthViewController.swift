@@ -16,7 +16,7 @@ class BirthViewController: BaseViewController {
     let disposeBag = DisposeBag()
     let calendar = Calendar.current
     let dateFormatter = DateFormatter()
-
+    var coordinator: AuthCoordinator?
     override func loadView() {
         self.view = mainView
     }
@@ -65,11 +65,10 @@ class BirthViewController: BaseViewController {
 //    }
     
     private func moveToNext() {
-    
+        
         let birth = mainView.datePicker.date.birthFormat()
         UserDefaults.standard.birth = birth
         print("저장된 날짜: \(birth)")
-        let vc = EmailViewController()
-        self.navigationController?.pushViewController(vc, animated: true)
+        coordinator?.pushToEmail()
     }
 }

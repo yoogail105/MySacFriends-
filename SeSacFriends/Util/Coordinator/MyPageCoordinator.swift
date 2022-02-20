@@ -9,12 +9,13 @@ import UIKit
 
 class MyPageCoordinator: Coordinator {
     
+    var childCoordinators = [Coordinator]()
     weak var parentCoordinator: TabBarCoordinator?
-    var childCoordinators: [Coordinator] = []
+    
     var navigationController: UINavigationController
     
-    init(navigationController: UINavigationController) {
-        self.navigationController = navigationController
+    init() {
+        self.navigationController = .init()
     }
     
     func start() {
@@ -22,22 +23,29 @@ class MyPageCoordinator: Coordinator {
     }
     
     func startPush() -> UINavigationController {
-        
-        let rootViewController = MyPageViewController()
-        rootViewController.title = TabBarTitle.myPage.rawValue
-        navigationController = UINavigationController(rootViewController: rootViewController)
-        //navigationController.setViewControllers([homeViewController], animated: false)
+        let myPageViewController = MyPageViewController()
+        myPageViewController.title = TabBarTitle.myPage.rawValue
+        myPageViewController.coordinator = self
+        navigationController.setViewControllers([myPageViewController], animated: false)
         return navigationController
     }
     
-    func pushToWithdrawal() {
-        let rootViewController = withdrawalViewController()
-        rootViewController.coordinator = self
-        rootViewController.modalPresentationStyle = .overCurrentContext
-        rootViewController.modalTransitionStyle = .crossDissolve
-        navigationController.present(rootViewController, animated: true, completion: nil)
+    func pushToProfile() {
+        let rootViewController = ProfileViewController()
+        self.navigationController.pushViewController(rootViewController, animated: true)
+    }
+    
 
-//        navigationController.pushViewController(rootViewController, animated: true)
+    
+    func pushToWithdrawal() {
+        print("코디네이터")
+        let rootViewController = withdrawalViewController()
+        //rootViewController.coordinator = self
+//        rootViewController.modalPresentationStyle = .overCurrentContext
+//        rootViewController.modalTransitionStyle = .crossDissolve
+//        navigationController.present(rootViewController, animated: true, completion: nil)
+
+        navigationController.pushViewController(rootViewController, animated: true)
     }
     
     func pushToOnboarding() {

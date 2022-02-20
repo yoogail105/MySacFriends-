@@ -14,16 +14,28 @@ class SignUpNicknameViewController: BaseViewController {
     let mainView = NicknameView()
     let viewModel = SignUpViewModel()
     let disposeBag = DisposeBag()
-    weak var coordinator: MainCoordinator?
     
+    weak var coordinator: AuthCoordinator?
     
     override func loadView() {
         self.view = mainView
         
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.isNavigationBarHidden = true
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.navigationController?.isNavigationBarHidden = false
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        //coordinator = AuthCoordinator(navigationController: self.navigationController!)
+        
     }
     
     override func bind() {
@@ -72,8 +84,10 @@ class SignUpNicknameViewController: BaseViewController {
     private func moveToNext() {
         UserDefaults.standard.nickname = mainView.textField.text!
         print("nick: \(userDefaults.nickname)")
-        let vc = BirthViewController()
-        self.navigationController?.pushViewController(vc, animated: true)
+       
+        coordinator?.pushToBirth()
+//        let vc = BirthViewController()
+//        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     private func limitNicknameTextField(_ nickname: String) {

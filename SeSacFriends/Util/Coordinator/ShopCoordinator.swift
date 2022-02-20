@@ -9,22 +9,22 @@ import UIKit
 
 class ShopCoordinator: Coordinator {
     
+    var childCoordinators = [Coordinator]()
     weak var parentCoordinator: TabBarCoordinator?
-    var childCoordinators: [Coordinator] = []
+    
     var navigationController: UINavigationController
     
-    init(navigationController: UINavigationController) {
-        self.navigationController = navigationController
+    init() {
+        self.navigationController = .init()
     }
     
     func start() {
         
     }
-    
     func startPush() -> UINavigationController {
-        let rootViewController = ShopViewController()
-        navigationController = UINavigationController(rootViewController: rootViewController)
-        rootViewController.title = TabBarTitle.shop.rawValue
+        let shopViewController = ShopViewController()
+        navigationController.setViewControllers([shopViewController], animated: false)
         return navigationController
     }
 }
+

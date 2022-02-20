@@ -64,21 +64,6 @@ class GenderView: AuthView {
         return label
     }()
     
-//    let genderButton01: GenderButton = {
-//        let button = GenderButton()
-//        button.buttonImage.image = UIImage(named: AssetIcon.man.rawValue)
-//        button.buttonTitle.text = "남자"
-//        return button
-//    }()
-//
-//    let genderButton00: GenderButton = {
-//        let button = GenderButton()
-//        button.buttonImage.image = UIImage(named: AssetIcon.woman.rawValue)
-//        button.buttonTitle.text = "여자"
-//        return button
-//    }()
-    
-    
     override func configuration() {
         
         mainLabel.text = SignUpText.setGender.rawValue
