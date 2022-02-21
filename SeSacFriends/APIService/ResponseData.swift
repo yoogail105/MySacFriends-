@@ -29,9 +29,11 @@ struct ResponseData<Model: Codable> {
         switch result {
             
         case .success(let response):
+            
             do {
                 print("statusCode: \(response.statusCode)")
-                print("data: \(response.data)")
+                let str = String(decoding: response.data, as: UTF8.self)
+                print("data: \(str)")
                 print("requeste: \(String(describing: response.request))")
                 print("response: \(String(describing: response.response))")
                 print("debug: \(response.debugDescription)")
@@ -57,8 +59,10 @@ struct ResponseData<Model: Codable> {
             // MARK: firebase error
             case APIErrorCode.unAuthorized.rawValue:
                 AuthAPIService.fetchIDToken {_ in
+                    print("재발급 완료")
                 }
                 return .failure(.unAuthorized)
+                
                 
             case APIErrorCode.notAcceptable.rawValue:
                 //406: 미가입회원 -> 로그인 화면(번호인증화면)
@@ -81,11 +85,45 @@ struct ResponseData<Model: Codable> {
         
         switch result {
         case .success(let response):
+            print("성공")
             do {
+                print("statusCode: \(response.statusCode)")
+                let str = String(decoding: response.data, as: UTF8.self)
+                print("data: \(str)")
+                print("requeste: \(String(describing: response.request))")
+                print("response: \(String(describing: response.response))")
+                print("debug: \(response.debugDescription)")
+                
                 let model = try JSONDecoder().decode(Model.self, from: response.data)
                 return .success(model)
             } catch {
-                return .failure(.decodableError)
+                print("실패")
+                
+                let statusCode = response.statusCode
+                print("API Error Code: \(error)")
+                
+                
+                switch statusCode {
+                    
+                // MARK: firebase error
+                case APIErrorCode.unAuthorized.rawValue:
+//                    AuthAPIService.fetchIDToken {_ in
+//                    }
+                    return .failure(.unAuthorized)
+                    
+                case APIErrorCode.notAcceptable.rawValue:
+                    //406: 미가입회원 -> 로그인 화면(번호인증화면)
+                    return .failure(.notAcceptable)
+                    
+                case APIErrorCode.internalServerError.rawValue:
+                    return .failure(.internalServerError)
+                    
+                case APIErrorCode.developerError.rawValue:
+                    return .failure(.developerError)
+                    
+                default:
+                    return .failure(APIErrorCode(rawValue: statusCode ) ?? .unKnownError)
+                }
             }
             
         case .failure(let error):

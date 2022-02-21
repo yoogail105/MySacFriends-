@@ -261,12 +261,12 @@ final class ProfileViewController: BaseViewController {
     func withdrawal() {
         print(#function)
         
-        self.coordinator?.pushToWithdrawal()
+        //self.coordinator?.pushToWithdrawal()
         
-//        let vc = withdrawalViewController()
-//        vc.modalPresentationStyle = .overCurrentContext
-//        vc.modalTransitionStyle = .crossDissolve
-//        present(vc, animated: true, completion: nil)
+        let vc = withdrawalViewController()
+        vc.modalPresentationStyle = .overCurrentContext
+        vc.modalTransitionStyle = .crossDissolve
+        present(vc, animated: true, completion: nil)
        
     }
 }

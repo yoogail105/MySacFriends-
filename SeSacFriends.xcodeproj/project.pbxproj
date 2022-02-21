@@ -109,6 +109,7 @@
 		23AF965527A19BEC0078A204 /* MyPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23AF965427A19BEC0078A204 /* MyPageViewController.swift */; };
 		23AF965927A1A0470078A204 /* TabBarText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23AF965827A1A0470078A204 /* TabBarText.swift */; };
 		23AF965F27A1B5F70078A204 /* CoordinatorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23AF965E27A1B5F70078A204 /* CoordinatorProtocol.swift */; };
+		23B7A36327C34EDF00B9CED3 /* SignUpCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23B7A36227C34EDF00B9CED3 /* SignUpCoordinator.swift */; };
 		23BE83EE27B705ED00416C6E /* GeneralAPIComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23BE83ED27B705ED00416C6E /* GeneralAPIComponents.swift */; };
 		23BE83F027B70F4700416C6E /* QueueRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23BE83EF27B70F4700416C6E /* QueueRequest.swift */; };
 		23BE83F227B724C000416C6E /* ResponseData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23BE83F127B724C000416C6E /* ResponseData.swift */; };
@@ -229,6 +230,7 @@
 		23AF965427A19BEC0078A204 /* MyPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageViewController.swift; sourceTree = "<group>"; };
 		23AF965827A1A0470078A204 /* TabBarText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarText.swift; sourceTree = "<group>"; };
 		23AF965E27A1B5F70078A204 /* CoordinatorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordinatorProtocol.swift; sourceTree = "<group>"; };
+		23B7A36227C34EDF00B9CED3 /* SignUpCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpCoordinator.swift; sourceTree = "<group>"; };
 		23BE83ED27B705ED00416C6E /* GeneralAPIComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralAPIComponents.swift; sourceTree = "<group>"; };
 		23BE83EF27B70F4700416C6E /* QueueRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueueRequest.swift; sourceTree = "<group>"; };
 		23BE83F127B724C000416C6E /* ResponseData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseData.swift; sourceTree = "<group>"; };
@@ -449,6 +451,7 @@
 				236BE67327BE6089008E4040 /* HomeCoordinator.swift */,
 				236BE67927BE60EC008E4040 /* MyPageCoordinator.swift */,
 				236BE67B27BE6135008E4040 /* AuthCoordinator.swift */,
+				23B7A36227C34EDF00B9CED3 /* SignUpCoordinator.swift */,
 			);
 			path = Coordinator;
 			sourceTree = "<group>";
@@ -887,6 +890,7 @@
 				2389E1C8279697E200BE68E3 /* UITextField+Extension.swift in Sources */,
 				234CEC39279C9CEA00983E20 /* GenderViewController.swift in Sources */,
 				2333571F279DF89E0062A9E8 /* genderBoxView.swift in Sources */,
+				23B7A36327C34EDF00B9CED3 /* SignUpCoordinator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

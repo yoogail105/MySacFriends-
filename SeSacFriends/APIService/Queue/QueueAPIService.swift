@@ -8,6 +8,7 @@
 import Foundation
 import Moya
 import RxSwift
+import CoreData
 
 final class QueueAPIService {
     
@@ -49,6 +50,7 @@ final class QueueAPIService {
     static func searchHobbyFriends(param: OnQueueRequest, completion: @escaping (Friends?, APIErrorCode?) -> Void) {
         
         provider.request(.onQueue(param: param)) { result in
+            
             switch ResponseData<Friends>.processJSONResponse(result) {
             case .success(let model):
                 return completion(model, nil)

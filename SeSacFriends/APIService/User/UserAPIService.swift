@@ -6,14 +6,29 @@
 //
 
 import Foundation
+import Moya
+import simd
 
 class UserAPIService {
     
     let userDefaults = UserDefaults.standard
+    static private let provider = MoyaProvider<UserService>()
     
+    static func login(_ completion: @escaping (User?, APIErrorCode?) -> Void) {
+        provider.request(.signIn) { result in
+        
+            switch ResponseData<User>.processJSONResponse(result) {
+            case .success(let model):
+                print("login: \(model)")
+                return completion(model, nil)
+            case .failure(let error):
+                return completion(nil, error)
+            }
+        }
+    }
     
     // 로그인하기: 번호인증 후, 로그인이 안되어있다면
-    static func login(completion: @escaping (User?, APIErrorCode?) -> Void ) {
+    static func login2(completion: @escaping (User?, APIErrorCode?) -> Void ) {
         
         let idToken = UserDefaults.standard.idToken!
         print("fetchUser idToken: \(idToken)")

@@ -31,3 +31,12 @@ class HomeCoordinator: Coordinator {
     
 }
 
+extension HomeCoordinator{
+    
+    func pushToSearchHobby() {
+        let rootViewController = SearchHobbyViewController()
+        self.navigationController.pushViewController(rootViewController, animated: true)
+        
+    }
+}
+

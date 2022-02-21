@@ -15,7 +15,7 @@ class SignUpNicknameViewController: BaseViewController {
     let viewModel = SignUpViewModel()
     let disposeBag = DisposeBag()
     
-    weak var coordinator: AuthCoordinator?
+    weak var coordinator: SignUpCoordinator?
     
     override func loadView() {
         self.view = mainView
@@ -57,8 +57,10 @@ class SignUpNicknameViewController: BaseViewController {
             .disposed(by: disposeBag)
         
         viewModel.isValidNickname
-            .map { $0 ? UIColor.brandColor(.green) : UIColor.grayColor(.gray3)}
-            .bind(to: mainView.nextButton.rx.backgroundColor)
+            .map { $0 ? CustomButton.fill: CustomButton.disable}
+            .subscribe(onNext: { mode in
+                self.mainView.nextButton.buttonModeColor(mode)
+            })
             .disposed(by: disposeBag)
         
         

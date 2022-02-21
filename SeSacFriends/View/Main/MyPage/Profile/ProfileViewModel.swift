@@ -37,7 +37,38 @@ class ProfileViewModel {
     }
     
     // MARK: APIService
+    
     func getUser(_ completion: ((Result<Bool, APIErrorCode>) -> Void)? = nil) {
+        checkNetworking()
+        
+        UserAPIService.login { user, error in
+            if error != nil {
+            switch error {
+            case .notAcceptable:
+                print("getUser: notAcceptable")
+                UserDefaults.standard.startMode = StartMode.signUp.rawValue
+                self.onErrorHandling?(.notAcceptable)
+                
+            default:
+                print("getUser: internalServerError")
+                self.onErrorHandling?(.internalServerError)
+            }
+            }
+            
+            guard let user = user else {
+                return
+            }
+            self.profileData.searchable = user.searchable
+            self.profileData.ageMin = user.ageMin
+            self.profileData.ageMax = user.ageMax
+            self.profileData.gender = user.gender
+            self.profileData.hobby = user.hobby
+            print("profiledata는 :", self.profileData)
+            self.onErrorHandling?(.ok)
+        }
+    }
+    
+    func getUser2(_ completion: ((Result<Bool, APIErrorCode>) -> Void)? = nil) {
         checkNetworking()
         UserAPIService.login { user, result  in
             

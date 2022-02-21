@@ -151,8 +151,7 @@ class AuthVerificationCodeViewController: BaseViewController {
             case .unAuthorized:
                 self.checkAlreadyExist()
             case .notAcceptable:
-                
-                print("self.coordinator?.pushToAuthSignUp()")
+                self.coordinator?.finish()
             case .networkError:
                 self.showToast(message: APIErrorMessage.networkError.rawValue)
             default:

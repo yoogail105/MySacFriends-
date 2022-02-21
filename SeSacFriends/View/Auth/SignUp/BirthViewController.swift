@@ -16,7 +16,8 @@ class BirthViewController: BaseViewController {
     let disposeBag = DisposeBag()
     let calendar = Calendar.current
     let dateFormatter = DateFormatter()
-    var coordinator: AuthCoordinator?
+    
+    weak var coordinator: SignUpCoordinator?
     override func loadView() {
         self.view = mainView
     }
@@ -36,6 +37,7 @@ class BirthViewController: BaseViewController {
                     self.mainView.yearView.textField.text = String(self.calendar.component(.year, from: date))
                     self.mainView.monthView.textField.text = String(self.calendar.component(.month, from: date))
                     self.mainView.dayView.textField.text = String(self.calendar.component(.day, from: date))
+                    self.mainView.nextButton.buttonModeColor(.fill)
                 }
             })
             .disposed(by: disposeBag)
@@ -45,6 +47,8 @@ class BirthViewController: BaseViewController {
                 self.moveToNext()
             })
             .disposed(by: disposeBag)
+        
+           
         
         
     }
@@ -68,7 +72,9 @@ class BirthViewController: BaseViewController {
         
         let birth = mainView.datePicker.date.birthFormat()
         UserDefaults.standard.birth = birth
-        print("저장된 날짜: \(birth)")
+        if coordinator == nil {
+            print("nil")
+        }
         coordinator?.pushToEmail()
     }
 }

@@ -74,7 +74,6 @@ class AuthViewModel {
             guard let error = error else {
                 return
             }
-            
             //여기 에러핸들링..
             if error == .unAuthorized {
                 self.onErrorHandling?(.unAuthorized)
@@ -95,6 +94,8 @@ class AuthViewModel {
                 print(UserDefaults.standard.startMode)
                 self.onErrorHandling?(.ok)
                 
+            case .unAuthorized:
+                self.onErrorHandling?(.unAuthorized)
             case .notAcceptable:
                 UserDefaults.standard.startMode = StartMode.signUp.rawValue
                 self.onErrorHandling?(.notAcceptable)

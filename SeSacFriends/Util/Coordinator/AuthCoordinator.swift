@@ -28,41 +28,10 @@ class AuthCoordinator: Coordinator {
         rootViewController.coordinator = self
         navigationController.pushViewController(rootViewController, animated: true)
     }
-    
-    func pushToSignUp() {
-        let rootViewController = SignUpNicknameViewController()
-        rootViewController.coordinator = self
-        navigationController.pushViewController(rootViewController, animated: true)
-    }
 
     func finish() {
-
         parentCoordinator?.childDidFinish(self)
-        self.parentCoordinator?.pushToMainTabBar()
-
+        self.parentCoordinator?.pushToAuthSignUp()
     }
    
-}
-extension AuthCoordinator {
-    
-    func pushToName() {
-        let rootViewController = SignUpNicknameViewController()
-        navigationController.pushViewController(rootViewController, animated: true)
-    }
-    
-    
-    func pushToBirth() {
-        let rootViewController = BirthViewController()
-        navigationController.pushViewController(rootViewController, animated: true)
-    }
-    
-    func pushToEmail() {
-        let rootViewController = EmailViewController()
-        navigationController.pushViewController(rootViewController, animated: true)
-    }
-    
-    func pushToGender() {
-        let rootViewController = GenderViewController()
-        navigationController.pushViewController(rootViewController, animated: true)
-    }
 }

@@ -12,7 +12,7 @@ import RxDataSources
 
 
 
-final class SearchHobbyViewController: BaseViewController {
+class SearchHobbyViewController: BaseViewController {
     
     let mainView = SearchHobbyView()
     let viewModel = QueueViewModel()
@@ -80,10 +80,10 @@ final class SearchHobbyViewController: BaseViewController {
     func updateHobby() {
         viewModel.onErrorHandling = { result in
             if result == .ok {
+                print("reloadData ok")
                 self.collectionView?.reloadData()
             }
         }
-        
     viewModel.searchFriends()
         
     }
@@ -199,7 +199,7 @@ extension SearchHobbyViewController: UICollectionViewDelegate, UICollectionViewD
         switch section {
         case 0:
             // 지금 주변에는
-            return viewModel.friendsHobbyList.count
+            return viewModel.fromRecommendHobbyList.count + viewModel.friendsHobbyList.count
         default:
             // 내가 하고 싶은
             return viewModel.myHobbyList.count
@@ -225,7 +225,7 @@ extension SearchHobbyViewController: UICollectionViewDelegate, UICollectionViewD
         case 0:
             if indexPath.item <= self.viewModel.fromRecommendHobbyList.count-1 {
                 guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: RecommendCollectionViewCell.identifier, for: indexPath) as? RecommendCollectionViewCell else { return UICollectionViewCell() }
-            
+                
                 cell.titleLabel.text = viewModel.fromRecommendHobbyList[indexPath.item]
                 return cell
             } else {

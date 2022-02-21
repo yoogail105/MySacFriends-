@@ -34,7 +34,7 @@ class MainCoordinator: Coordinator {
     func pushToAuthSignUp() {
         navigationController.viewControllers.removeAll()
         navigationController.isToolbarHidden = true
-        let child = AuthCoordinator(navigationController: navigationController)
+        let child = SignUpCoordinator(navigationController: navigationController)
         child.parentCoordinator = self
         childCoordinators.append(child)
         child.pushToSignUp()

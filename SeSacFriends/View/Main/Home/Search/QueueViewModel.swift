@@ -32,8 +32,8 @@ class QueueViewModel {
     let disposeBag = DisposeBag()
     
     var userData: Friends?
-    var currentLatitude = 37.517819364682694
-    var currentLongitude = 126.88647317074734
+    var currentLatitude = 37.482733667903865
+    var currentLongitude = 126.92983890550006
     var genderObservable = BehaviorRelay<SelectedGender>(value: .total)
     
     var matchingStatusObservable = BehaviorRelay<MatchingStatus>(value: MatchingStatus(rawValue: UserDefaults.standard.matchingStatus!) ?? .normal)
@@ -71,17 +71,27 @@ class QueueViewModel {
         let selectedGender = selectedGender(gender: genderObservable.value)
         let resultRegion = calculateRegion(lat: currentLatitude, long: currentLongitude)
         let request = OnQueueRequest(region: resultRegion, lat: currentLatitude, long: currentLongitude)
+        print("searchFriends request:", request)
         
         QueueAPIService.searchHobbyFriends(param: request) { friends, error in
+            
+            if error != nil {
+                switch error {
+                case .unAuthorized:
+                    self.onErrorHandling?(.unAuthorized)
+                default:
+                    self.onErrorHandling?(.internalServerError)
+                    print("error: \(error)")
+                    
+                }
+            }
+            
+            
             guard let friends = friends else {
                 return
             }
-            
-            switch error {
-            default:
-                self.onErrorHandling?(.internalServerError)
-            }
-            
+
+        
             print("searchHobbyFriends:", friends)
             for hobby in friends.fromRecommend {
                 self.fromRecommendHobbyList.append(contentsOf: [hobby])
@@ -93,7 +103,7 @@ class QueueViewModel {
                     self.totalFriends.append(contentsOf: [friend])
                     for hobby in friend.hf {
                         if !self.friendsHobbyList.contains(hobby){
-                        self.friendsHobbyList.append(hobby)
+                            self.friendsHobbyList.append(hobby)
                         }
                     }
                     
@@ -124,6 +134,9 @@ class QueueViewModel {
             }
             
             self.onErrorHandling?(.ok)
+            
+            
+      
         }
     }
     
@@ -138,10 +151,11 @@ class QueueViewModel {
         //        QueueAPIService.requestFindHobbyFriends2(param: request, completion: {friends, error in
         QueueAPIService.requestFindHobbyFriends { result, error in
             
-//            if error == nil {
-//                self.onErrorHandling?(.ok)
-//                return
-//            }
+            //            if error == nil {
+            //                self.onErrorHandling?(.ok)
+            //                return
+            //            }
+            print("requestFindHobbyFriends error: \(error?.rawValue)")
             
             switch error?.rawValue {
             case 200:
@@ -185,7 +199,7 @@ class QueueViewModel {
     }
     
     func checkUserStatus() {
-       
+        
     }
     
     // 10자리로 변환하는 함수

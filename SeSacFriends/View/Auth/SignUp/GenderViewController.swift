@@ -20,7 +20,7 @@ class GenderViewController: BaseViewController {
     let mainView = GenderView()
     let viewModel = SignUpViewModel()
     
-    weak var coordinator: AuthCoordinator?
+    weak var coordinator: SignUpCoordinator?
     let disposeBag = DisposeBag()
     
     var gender = UserDefaults.standard.gender

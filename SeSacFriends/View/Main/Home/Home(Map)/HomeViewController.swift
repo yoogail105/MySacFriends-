@@ -17,7 +17,7 @@ import Moya
 
 class HomeViewController: UIViewController {
     
-    var coordinator: TabBarCoordinator?
+    var coordinator: HomeCoordinator?
     let viewModel = QueueViewModel()
     let mainView = HomeView()
     let disposeBag = DisposeBag()
@@ -29,7 +29,7 @@ class HomeViewController: UIViewController {
     var selectedGender: SelectedGender = .total
     var locationAuth = false
     
-    var defaultCoordinate = CLLocationCoordinate2D(latitude: 37.51818789942772, longitude: 126.88541765534976)
+    var defaultCoordinate = CLLocationCoordinate2D(latitude: 37.482733667903865, longitude: 126.92983890550006)
     
     override func loadView() {
         print(#function)
@@ -44,7 +44,6 @@ class HomeViewController: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        
         self.navigationController?.isNavigationBarHidden = false
     }
     
@@ -138,6 +137,7 @@ class HomeViewController: UIViewController {
                // self.coordinator?.pushToAuthSignUp()
                 // 토스트 메세지: 로그인을 해주세요
             } else if error  == .unAuthorized {
+                self.checkUser()
                 print("errorHandling: 로그인 새로 해야함")
                 //self.coordinator?.pushToAuthSignUp()
             }
@@ -190,14 +190,21 @@ class HomeViewController: UIViewController {
         viewModel.searchFriends()
         viewModel.onErrorHandling = { result in
             print("onErrorHandling")
-            if result == .ok {
+            switch result {
+            case .ok:
                 self.mapView?.removeAnnotations((self.mapView?.annotations)!)
                 self.addAnnotation(friends: self.viewModel.totalFriends)
-               // self.selectAnnotations(gender: self.viewModel.genderObservable.value)
-            } else if result == .networkError {
-                self.showToast(message: APIErrorMessage.networkError.rawValue)
-            }
+                // self.selectAnnotations(gender: self.viewModel.genderObservable.value)
             
+            case .unAuthorized:
+                print("재요청")
+                self.updateFriends()
+            case .networkError:
+                self.showToast(message: APIErrorMessage.networkError.rawValue)
+            default:
+                self.showToast(message: APIErrorMessage.unKnownError.rawValue)
+                
+            }
         }
        
     }
@@ -276,8 +283,7 @@ class HomeViewController: UIViewController {
     func moveToProfile() {
         print("profile")
         view.addSubview(AlertView())
-        //let vc = ProfileViewController()
-        //self.navigationController?.pushViewController(vc, animated: true)
+        coordinator?.pushToSearchHobby()
     }
     
 }

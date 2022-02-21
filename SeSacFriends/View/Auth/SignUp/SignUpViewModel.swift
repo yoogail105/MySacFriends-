@@ -26,8 +26,6 @@ class SignUpViewModel {
         return nicknameObserver.map { $0 != "" ? true : false }
      }
     
-    
-    
     func postSignUp( _ completion: ((Result<Bool, APIErrorCode>) -> Void)? = nil) {
         UserAPIService.signUp { user, result in
             switch result {
