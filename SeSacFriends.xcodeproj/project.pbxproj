@@ -110,6 +110,7 @@
 		23AF965927A1A0470078A204 /* TabBarText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23AF965827A1A0470078A204 /* TabBarText.swift */; };
 		23AF965F27A1B5F70078A204 /* CoordinatorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23AF965E27A1B5F70078A204 /* CoordinatorProtocol.swift */; };
 		23B7A36327C34EDF00B9CED3 /* SignUpCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23B7A36227C34EDF00B9CED3 /* SignUpCoordinator.swift */; };
+		23B7A36527C476FE00B9CED3 /* NearByView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23B7A36427C476FE00B9CED3 /* NearByView.swift */; };
 		23BE83EE27B705ED00416C6E /* GeneralAPIComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23BE83ED27B705ED00416C6E /* GeneralAPIComponents.swift */; };
 		23BE83F027B70F4700416C6E /* QueueRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23BE83EF27B70F4700416C6E /* QueueRequest.swift */; };
 		23BE83F227B724C000416C6E /* ResponseData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23BE83F127B724C000416C6E /* ResponseData.swift */; };
@@ -231,6 +232,7 @@
 		23AF965827A1A0470078A204 /* TabBarText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarText.swift; sourceTree = "<group>"; };
 		23AF965E27A1B5F70078A204 /* CoordinatorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordinatorProtocol.swift; sourceTree = "<group>"; };
 		23B7A36227C34EDF00B9CED3 /* SignUpCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpCoordinator.swift; sourceTree = "<group>"; };
+		23B7A36427C476FE00B9CED3 /* NearByView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearByView.swift; sourceTree = "<group>"; };
 		23BE83ED27B705ED00416C6E /* GeneralAPIComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralAPIComponents.swift; sourceTree = "<group>"; };
 		23BE83EF27B70F4700416C6E /* QueueRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueueRequest.swift; sourceTree = "<group>"; };
 		23BE83F127B724C000416C6E /* ResponseData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseData.swift; sourceTree = "<group>"; };
@@ -320,6 +322,7 @@
 			isa = PBXGroup;
 			children = (
 				23439AE827BB2A0900F79318 /* FindViewController.swift */,
+				23B7A36427C476FE00B9CED3 /* NearByView.swift */,
 				23CC363B27BC6D4F005FE3F0 /* NearByNearByViewController.swift */,
 				23CC363D27BC6DA0005FE3F0 /* RequestViewController.swift */,
 				23439AEA27BB2A0F00F79318 /* FindView.swift */,
@@ -855,6 +858,7 @@
 				236BE67C27BE6135008E4040 /* AuthCoordinator.swift in Sources */,
 				2389E1D32796A29F00BE68E3 /* AuthViewModel.swift in Sources */,
 				236BE67227BE6057008E4040 /* TabBarCoordinator.swift in Sources */,
+				23B7A36527C476FE00B9CED3 /* NearByView.swift in Sources */,
 				2308B0262799DEBF004145E2 /* ToastMessage.swift in Sources */,
 				232FCFF627B0B2CF00A2558C /* withdrawalViewController.swift in Sources */,
 				2399602D279656EB001C8EA4 /* AppDelegate.swift in Sources */,

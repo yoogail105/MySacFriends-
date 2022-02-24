@@ -9,8 +9,6 @@ import Foundation
 import RxSwift
 import RxRelay
 
-
-
 class AuthViewModel {
     
     var onErrorHandling: ((APIErrorCode) -> Void)?

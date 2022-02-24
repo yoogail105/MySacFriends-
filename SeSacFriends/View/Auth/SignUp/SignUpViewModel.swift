@@ -27,25 +27,30 @@ class SignUpViewModel {
      }
     
     func postSignUp( _ completion: ((Result<Bool, APIErrorCode>) -> Void)? = nil) {
-        UserAPIService.signUp { user, result in
-            switch result {
-                
-            case .ok:
+        
+        let request = SignUpRequest(phoneNumber: UserDefaults.standard.phoneNumber, FCMtoken: UserDefaults.standard.FCMToken!, nick: UserDefaults.standard.nickname, birth: UserDefaults.standard.birth!, email: UserDefaults.standard.email, gender: UserDefaults.standard.gender)
+        
+        UserAPIService.signUp(param: request) { user, error in
+            if let error = error {
+                switch error {
+                case .unAuthorized:
+                    AuthAPIService.fetchIDToken {_ in
+                        print("토큰 가져오기 완료: \(UserDefaults.standard.idToken!)")
+                        self.onErrorHandling?(.unAuthorized)
+
+                    }
+                case .created:
+                    print("이미 가입된 유저")
+                    self.onErrorHandling?(.created)
+                default:
+                  print("알수없는 에러가 발생했다.")
+                }
+            } else {
+                print("postSignUp: OK")
                 UserDefaults.standard.startMode = StartMode.main.rawValue
                 self.onErrorHandling?(.ok)
-                
-            case .unAuthorized:
-                AuthAPIService.fetchIDToken {_ in 
-                    print("토큰 가져오기 완료: \(UserDefaults.standard.idToken!)")
-                    self.onErrorHandling?(.unAuthorized)
-
-                }
-            case .created:
-                print("이미 가입된 유저")
-                self.onErrorHandling?(.created)
-            default:
-              print("알수없는 에러가 발생했다.")
             }
+           
         }
     }
 

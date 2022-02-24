@@ -28,42 +28,67 @@ class UserAPIService {
     }
     
     // 로그인하기: 번호인증 후, 로그인이 안되어있다면
-    static func login2(completion: @escaping (User?, APIErrorCode?) -> Void ) {
+//    static func login2(completion: @escaping (User?, APIErrorCode?) -> Void ) {
+//
+//        let idToken = UserDefaults.standard.idToken!
+//        print("fetchUser idToken: \(idToken)")
+//        var request = URLRequest(url: Endpoint.user.url)
+//
+//        request.httpMethod = Method.GET.rawValue
+//
+//        request.setValue(idToken, forHTTPHeaderField: HTTPString.idtoken.rawValue)
+//       // request.setValue(HTTPHeaderValue.contentType.rawValue, forHTTPHeaderField: HTTPString.ContentType.rawValue)
+//
+//        URLSession.requestWithCodable(endpoint: request, completion: completion)
+//    }
+    
+    static func signUp(param: SignUpRequest, _ completion: @escaping (User?, APIErrorCode?) -> Void) {
+        provider.request(.signUp(param: param)) { result in
         
-        let idToken = UserDefaults.standard.idToken!
-        print("fetchUser idToken: \(idToken)")
-        var request = URLRequest(url: Endpoint.user.url)
-        
-        request.httpMethod = Method.GET.rawValue
-        
-        request.setValue(idToken, forHTTPHeaderField: HTTPString.idtoken.rawValue)
-       // request.setValue(HTTPHeaderValue.contentType.rawValue, forHTTPHeaderField: HTTPString.ContentType.rawValue)
-        
-        URLSession.requestWithCodable(endpoint: request, completion: completion)
+            switch ResponseData<User>.processResponse(result) {
+            case .success(let model):
+                print("signUp: \(model)")
+                return completion(model, nil)
+            case .failure(let error):
+                return completion(nil, error)
+            }
+        }
     }
     
     
-    static func signUp(completion: @escaping (User?, APIErrorCode?) -> Void) {
-        
-        
-        let idToken = UserDefaults.standard.idToken!
-        print("signup에서 idtoken: ", idToken)
-        var request = URLRequest(url: Endpoint.user.url)
-        
-        request.httpMethod = Method.POST.rawValue
-        
-        request.setValue(idToken, forHTTPHeaderField: HTTPString.idtoken.rawValue)
-        request.setValue(HTTPHeaderValue.contentType.rawValue, forHTTPHeaderField: HTTPString.ContentType.rawValue)
- 
-        request.httpBody = "\(UserBodyPara.phoneNumber.rawValue)=\(UserDefaults.standard.phoneNumber)&\(UserBodyPara.FCMtoken.rawValue)=\(UserDefaults.standard.FCMToken!)&\(UserBodyPara.nick.rawValue)=\(UserDefaults.standard.nickname)&\(UserBodyPara.birth.rawValue)=\(UserDefaults.standard.birth!)&\(UserBodyPara.email.rawValue)=\(UserDefaults.standard.email)&\(UserBodyPara.gender.rawValue)=\(UserDefaults.standard.gender)".data(using: .utf8, allowLossyConversion: false)
-       
-        print("\(UserBodyPara.phoneNumber.rawValue)=\(UserDefaults.standard.phoneNumber)\n&\(UserBodyPara.FCMtoken)=\(UserDefaults.standard.FCMToken!)\n&\(UserBodyPara.nick.rawValue)=\(UserDefaults.standard.nickname)\n&\(UserBodyPara.birth.rawValue)=\(UserDefaults.standard.birth!)\n&\(UserBodyPara.email.rawValue)=\(UserDefaults.standard.email)\n&\(UserBodyPara.gender.rawValue)=\(UserDefaults.standard.gender)")
-       
-        URLSession.request(endpoint: request, completion: completion)
-        
-    }
+//    static func signUp(completion: @escaping (User?, APIErrorCode?) -> Void) {
+//
+//
+//        let idToken = UserDefaults.standard.idToken!
+//        print("signup에서 idtoken: ", idToken)
+//        var request = URLRequest(url: Endpoint.user.url)
+//
+//        request.httpMethod = Method.POST.rawValue
+//
+//        request.setValue(idToken, forHTTPHeaderField: HTTPString.idtoken.rawValue)
+//        request.setValue(HTTPHeaderValue.contentType.rawValue, forHTTPHeaderField: HTTPString.ContentType.rawValue)
+//
+//        request.httpBody = "\(UserBodyPara.phoneNumber.rawValue)=\(UserDefaults.standard.phoneNumber)&\(UserBodyPara.FCMtoken.rawValue)=\(UserDefaults.standard.FCMToken!)&\(UserBodyPara.nick.rawValue)=\(UserDefaults.standard.nickname)&\(UserBodyPara.birth.rawValue)=\(UserDefaults.standard.birth!)&\(UserBodyPara.email.rawValue)=\(UserDefaults.standard.email)&\(UserBodyPara.gender.rawValue)=\(UserDefaults.standard.gender)".data(using: .utf8, allowLossyConversion: false)
+//
+//        print("\(UserBodyPara.phoneNumber.rawValue)=\(UserDefaults.standard.phoneNumber)\n&\(UserBodyPara.FCMtoken)=\(UserDefaults.standard.FCMToken!)\n&\(UserBodyPara.nick.rawValue)=\(UserDefaults.standard.nickname)\n&\(UserBodyPara.birth.rawValue)=\(UserDefaults.standard.birth!)\n&\(UserBodyPara.email.rawValue)=\(UserDefaults.standard.email)\n&\(UserBodyPara.gender.rawValue)=\(UserDefaults.standard.gender)")
+//
+//        URLSession.request(endpoint: request, completion: completion)
+//
+//    }
     
     // 회원 삭제하기 -> FCM 토큰 강제 갱신해줘야 한다.
+    static func withdrawalUser(_ completion: @escaping (User?, APIErrorCode?) -> Void) {
+        provider.request(.withdraw) { result in
+            switch ResponseData<User>.processResponse(result) {
+            case .success(let model):
+                print("signUp: \(model)")
+                return completion(model, nil)
+            case .failure(let error):
+                return completion(nil, error)
+            }
+        }
+    }
+    
     static func withdrawalUser(completion: @escaping (User?, APIErrorCode?) -> Void) {
         let idToken = UserDefaults.standard.idToken!
         let fcmToken = UserDefaults.standard.FCMToken!

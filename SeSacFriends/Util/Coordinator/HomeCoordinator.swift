@@ -24,6 +24,7 @@ class HomeCoordinator: Coordinator {
     func startPush() -> UINavigationController {
         let homeViewController = HomeViewController()
         homeViewController.title = TabBarTitle.home.rawValue
+        homeViewController.coordinator = self
         navigationController.setViewControllers([homeViewController], animated: false)
         
         return navigationController
@@ -33,8 +34,13 @@ class HomeCoordinator: Coordinator {
 
 extension HomeCoordinator{
     
-    func pushToSearchHobby() {
+    func pushToSearchHobby(lat: Double, long: Double) {
+        print(#function)
         let rootViewController = SearchHobbyViewController()
+        rootViewController.coordinator = self
+        rootViewController.viewModel.currentLatitude = lat
+        rootViewController.viewModel.currentLongitude = long
+        print("lat:\(lat), long: \(long)")
         self.navigationController.pushViewController(rootViewController, animated: true)
         
     }

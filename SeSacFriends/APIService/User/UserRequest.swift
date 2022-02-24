@@ -8,14 +8,14 @@
 import Foundation
 
 struct SignUpRequest: Codable {
-    var phoneNumber: Int
-    var FCMtoken: Int
-    var nick: Double
-    var birth: Double
-    var email: [String]
+    var phoneNumber: String
+    var FCMtoken: String
+    var nick: String
+    var birth: String
+    var email: String
     var gender: Int
     
-    internal init(phoneNumber: Int, FCMtoken: Int, nick: Double, birth: Double, email: [String], gender: Int) {
+    internal init(phoneNumber: String, FCMtoken: String, nick: String, birth: String, email: String, gender: Int) {
         self.phoneNumber = phoneNumber
         self.FCMtoken = FCMtoken
         self.nick = nick

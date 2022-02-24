@@ -33,6 +33,8 @@ enum AssetIcon: String {
     case bagde
     case sesacImg
     case profileIcon = "profile_img"
+    case refresh = "refresh"
+    case sesacBlack
 }
 
 enum TabBarIcon: String {

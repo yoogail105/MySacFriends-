@@ -28,8 +28,8 @@ class HomeViewController: UIViewController {
     let locationManager = CLLocationManager()
     var selectedGender: SelectedGender = .total
     var locationAuth = false
-    
-    var defaultCoordinate = CLLocationCoordinate2D(latitude: 37.482733667903865, longitude: 126.92983890550006)
+
+    var defaultCoordinate = CLLocationCoordinate2D(latitude: 37.5178608029317, longitude: 126.88639321689574)
     
     override func loadView() {
         print(#function)
@@ -137,7 +137,6 @@ class HomeViewController: UIViewController {
                // self.coordinator?.pushToAuthSignUp()
                 // 토스트 메세지: 로그인을 해주세요
             } else if error  == .unAuthorized {
-                self.checkUser()
                 print("errorHandling: 로그인 새로 해야함")
                 //self.coordinator?.pushToAuthSignUp()
             }
@@ -169,9 +168,11 @@ class HomeViewController: UIViewController {
     }
     
     func moveToSearching() {
+        print(#function)
         UserDefaults.standard.matchingStatus = MatchingStatus.ing.rawValue
-        let vc = SearchHobbyViewController()
-        self.navigationController?.pushViewController(vc, animated: true)
+        coordinator?.pushToSearchHobby(lat: viewModel.currentLatitude, long: viewModel.currentLongitude)
+//        let vc = SearchHobbyViewController()
+//        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     private func findMyLocation() {
@@ -180,7 +181,7 @@ class HomeViewController: UIViewController {
             requestLocationPermissionAlert()
             return
         }
-        updateFriends()
+        //updateFriends()
         mapView?.showsUserLocation = true
         mapView?.setUserTrackingMode(.follow, animated: true)
     }
@@ -198,7 +199,7 @@ class HomeViewController: UIViewController {
             
             case .unAuthorized:
                 print("재요청")
-                self.updateFriends()
+//                self.updateFriends()
             case .networkError:
                 self.showToast(message: APIErrorMessage.networkError.rawValue)
             default:
@@ -283,7 +284,7 @@ class HomeViewController: UIViewController {
     func moveToProfile() {
         print("profile")
         view.addSubview(AlertView())
-        coordinator?.pushToSearchHobby()
+        coordinator?.pushToSearchHobby(lat: viewModel.currentLatitude, long: viewModel.currentLongitude)
     }
     
 }
@@ -387,7 +388,7 @@ extension HomeViewController: MKMapViewDelegate {
     
     func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
         print(#function)
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) { [self] in
             let currentLocation = mapView.centerCoordinate
             self.viewModel.currentLatitude = currentLocation.latitude
             self.viewModel.currentLongitude = currentLocation.longitude

@@ -46,8 +46,35 @@ struct ResponseData<Model: Codable> {
             print(commonResponse.result)
                 return .success(commonResponse.result)
         } catch {
-            print("Codable실패?")
-            return .failure(.unKnownError)
+            print("실패")
+            
+            let statusCode = response.statusCode
+            print("API Error Code: \(error)")
+            
+            
+            switch statusCode {
+                
+            // MARK: firebase error
+            case APIErrorCode.unAuthorized.rawValue:
+                AuthAPIService.fetchIDToken {_ in
+                    print("토큰 새로 발급함")
+                    
+                }
+                return .failure(.unAuthorized)
+                
+            case APIErrorCode.notAcceptable.rawValue:
+                //406: 미가입회원 -> 로그인 화면(번호인증화면)
+                return .failure(.notAcceptable)
+                
+            case APIErrorCode.internalServerError.rawValue:
+                return .failure(.internalServerError)
+                
+            case APIErrorCode.developerError.rawValue:
+                return .failure(.developerError)
+                
+            default:
+                return .failure(APIErrorCode(rawValue: statusCode ) ?? .unKnownError)
+            }
         }
             
         case .failure(let error):
@@ -107,8 +134,10 @@ struct ResponseData<Model: Codable> {
                     
                 // MARK: firebase error
                 case APIErrorCode.unAuthorized.rawValue:
-//                    AuthAPIService.fetchIDToken {_ in
-//                    }
+                    AuthAPIService.fetchIDToken {_ in
+                        print("토큰 새로 발급함")
+                        
+                    }
                     return .failure(.unAuthorized)
                     
                 case APIErrorCode.notAcceptable.rawValue:

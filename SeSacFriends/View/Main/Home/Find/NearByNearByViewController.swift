@@ -7,8 +7,9 @@
 
 import UIKit
 
-class NearByNearByViewController: UIViewController {
-    let mainView = FindView()
+class NearByViewController: UIViewController {
+    
+    let mainView = NearByView()
     
     
     override func loadView() {
@@ -18,4 +19,6 @@ class NearByNearByViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
     }
+    
+    
 }

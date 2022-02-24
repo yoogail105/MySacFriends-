@@ -21,6 +21,8 @@ class SearchHobbyViewController: BaseViewController {
     var collectionView: UICollectionView?
     let disposeBag = DisposeBag()
     
+    weak var coordinator: HomeCoordinator?
+    
 
     override func loadView() {
         self.view = mainView
@@ -30,18 +32,17 @@ class SearchHobbyViewController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         tabBarController?.tabBar.isHidden = true
-        updateHobby()
+        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
         tabBarController?.tabBar.isHidden = false
     }
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-               
+        updateHobby()
         collectionView = mainView.collectionView
         collectionView?.dataSource = self
         collectionView?.delegate = self
@@ -78,13 +79,26 @@ class SearchHobbyViewController: BaseViewController {
     
 
     func updateHobby() {
+        print(#function)
+        viewModel.searchFriends()
         viewModel.onErrorHandling = { result in
-            if result == .ok {
-                print("reloadData ok")
+            switch result {
+            case .ok:
+                print("updateHobby ok")
+                print("friendsHobbyList",self.viewModel.friendsHobbyList)
+                print("fromRecommendHobbyList",self.viewModel.fromRecommendHobbyList)
                 self.collectionView?.reloadData()
+            
+            case .unAuthorized:
+                print("재요청")
+//                self.updateFriends()
+            case .networkError:
+                self.showToast(message: APIErrorMessage.networkError.rawValue)
+            default:
+                self.showToast(message: APIErrorMessage.unKnownError.rawValue)
             }
         }
-    viewModel.searchFriends()
+    
         
     }
     
@@ -144,7 +158,7 @@ class SearchHobbyViewController: BaseViewController {
             switch result {
             case .ok:
                 print("화면이동함")
-                let vc = FriendsViewController()
+                let vc = FindViewController()
                 self.navigationController?.pushViewController(vc, animated: true)
             case .unAuthorized:
                 self.searchButtonClicked()
@@ -199,7 +213,9 @@ extension SearchHobbyViewController: UICollectionViewDelegate, UICollectionViewD
         switch section {
         case 0:
             // 지금 주변에는
+            print("지금주변에는 갯수: ", viewModel.fromRecommendHobbyList.count + viewModel.friendsHobbyList.count)
             return viewModel.fromRecommendHobbyList.count + viewModel.friendsHobbyList.count
+            
         default:
             // 내가 하고 싶은
             return viewModel.myHobbyList.count
@@ -209,9 +225,13 @@ extension SearchHobbyViewController: UICollectionViewDelegate, UICollectionViewD
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         switch indexPath.section {
         case 0:
+            print("indexPaht:",indexPath.count)
             if indexPath.item <= self.viewModel.fromRecommendHobbyList.count-1 {
+                
+                print(indexPath.item)
                 return TitleCollectionViewCell.fittingSize(availableHeight: 32, name: viewModel.fromRecommendHobbyList[indexPath.item])
             } else {
+                print(indexPath.item)
                 return TitleCollectionViewCell.fittingSize(availableHeight: 32, name: viewModel.friendsHobbyList[indexPath.item])
             }
         default:

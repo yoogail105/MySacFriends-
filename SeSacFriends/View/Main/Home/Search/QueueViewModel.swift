@@ -32,7 +32,8 @@ class QueueViewModel {
     let disposeBag = DisposeBag()
     
     var userData: Friends?
-    var currentLatitude = 37.482733667903865
+    
+    var currentLatitude = 37.51781675120152
     var currentLongitude = 126.92983890550006
     var genderObservable = BehaviorRelay<SelectedGender>(value: .total)
     
@@ -132,7 +133,6 @@ class QueueViewModel {
                     }
                 }
             }
-            
             self.onErrorHandling?(.ok)
             
             
