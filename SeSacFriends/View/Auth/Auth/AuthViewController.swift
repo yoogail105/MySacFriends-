@@ -20,7 +20,7 @@ class AuthViewController: BaseViewController {
     
     let mainView = AuthView()
     var viewModel = AuthViewModel()
-    weak var coordinator: AuthCoordinator?
+    weak var coordinator: VerificationCoordinator?
     
     let disposeBag = DisposeBag()
     var verifyID: String?

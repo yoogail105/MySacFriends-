@@ -9,7 +9,7 @@ import UIKit
 
 class SignUpCoordinator: Coordinator {
     
-    weak var parentCoordinator: MainCoordinator?
+    weak var parentCoordinator: AuthCoordinator?
     var childCoordinators: [Coordinator] = []
     var navigationController: UINavigationController
     
@@ -56,10 +56,9 @@ class SignUpCoordinator: Coordinator {
     }
 
     func finish() {
-
         parentCoordinator?.childDidFinish(self)
-        self.parentCoordinator?.pushToMainTabBar()
-
+        self.parentCoordinator?.childDidFinish(self.parentCoordinator)
+        self.parentCoordinator?.parentCoordinator?.start()
     }
    
 }

@@ -83,24 +83,6 @@ struct ResponseData<Model: Codable> {
             
             switch statusCode {
                 
-            // MARK: firebase error
-            case APIErrorCode.unAuthorized.rawValue:
-                AuthAPIService.fetchIDToken {_ in
-                    print("재발급 완료")
-                }
-                return .failure(.unAuthorized)
-                
-                
-            case APIErrorCode.notAcceptable.rawValue:
-                //406: 미가입회원 -> 로그인 화면(번호인증화면)
-                return .failure(.notAcceptable)
-                
-            case APIErrorCode.internalServerError.rawValue:
-                return .failure(.internalServerError)
-                
-            case APIErrorCode.developerError.rawValue:
-                return .failure(.developerError)
-                
             default:
                 return .failure(APIErrorCode(rawValue: statusCode ?? 700) ?? .unKnownError)
             }
@@ -156,28 +138,10 @@ struct ResponseData<Model: Codable> {
             }
             
         case .failure(let error):
-            
             let statusCode = error.response?.statusCode
-            print("API Error Code: \(error)")
-            
+            print("API Error Code: \(error.errorCode)")
             
             switch statusCode {
-                
-            // MARK: firebase error
-            case APIErrorCode.unAuthorized.rawValue:
-                AuthAPIService.fetchIDToken {_ in
-                }
-                return .failure(.unAuthorized)
-                
-            case APIErrorCode.notAcceptable.rawValue:
-                //406: 미가입회원 -> 로그인 화면(번호인증화면)
-                return .failure(.notAcceptable)
-                
-            case APIErrorCode.internalServerError.rawValue:
-                return .failure(.internalServerError)
-                
-            case APIErrorCode.developerError.rawValue:
-                return .failure(.developerError)
                 
             default:
                 return .failure(APIErrorCode(rawValue: statusCode ?? 700) ?? .unKnownError)

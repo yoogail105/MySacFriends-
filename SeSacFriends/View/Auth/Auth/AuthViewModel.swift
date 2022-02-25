@@ -104,5 +104,25 @@ class AuthViewModel {
             }
         }
     }
+    
+    func updateFCMToken(_ completion: ((Result<Bool, APIErrorCode>) -> Void)? = nil) {
+        checkNetworking()
+        let request = UpdateFCMToken(FCMtoken: UserDefaults.standard.FCMToken!)
+        UserAPIService.updateFCMToken(param: request) { User, error in
+            if error != nil {
+                switch error {
+                case .unAuthorized:
+                    self.onErrorHandling?(.unAuthorized)
+                case .notAcceptable:
+                    self.onErrorHandling?(.notAcceptable)
+                default:
+                    self.onErrorHandling?(.internalServerError)
+                    print("error: \(error)")
+                }
+            }
+        }
+    }
+        
+        
 }
 

@@ -17,7 +17,7 @@ class AuthVerificationCodeViewController: BaseViewController {
     let viewModel = AuthViewModel()
     let disposeBag = DisposeBag()
     
-    weak var coordinator: AuthCoordinator?
+    weak var coordinator: VerificationCoordinator?
     
     override func loadView() {
         self.view = mainView

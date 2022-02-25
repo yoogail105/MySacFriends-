@@ -15,7 +15,7 @@ class OnboardingViewController: BaseViewController  {
     let mainView = OnboardingView()
     let cardViewController = PageViewController()
     let disposBag = DisposeBag()
-    weak var coordinator: MainCoordinator?
+    weak var coordinator: AuthCoordinator?
     
     
     override func loadView() {

@@ -42,6 +42,12 @@ extension HomeCoordinator{
         rootViewController.viewModel.currentLongitude = long
         print("lat:\(lat), long: \(long)")
         self.navigationController.pushViewController(rootViewController, animated: true)
+    }
+    
+    func finish() {
+        parentCoordinator?.childDidFinish(self)
+        self.parentCoordinator?.childDidFinish(self.parentCoordinator)
+        self.parentCoordinator?.parentCoordinator?.start()
         
     }
 }

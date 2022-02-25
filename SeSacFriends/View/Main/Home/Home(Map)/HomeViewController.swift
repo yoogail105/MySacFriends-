@@ -130,18 +130,19 @@ class HomeViewController: UIViewController {
     
     func checkUser() {
         let authViewModel = AuthViewModel()
+        authViewModel.getUser()
         authViewModel.onErrorHandling = { error in
-            if error == .notAcceptable {
+            if error == .notAcceptable { //406
                 UserDefaults.standard.startMode = StartMode.auth.rawValue
                 print("로그인 새로 해야함")
-               // self.coordinator?.pushToAuthSignUp()
+                self.coordinator?.finish()
                 // 토스트 메세지: 로그인을 해주세요
             } else if error  == .unAuthorized {
                 print("errorHandling: 로그인 새로 해야함")
-                //self.coordinator?.pushToAuthSignUp()
+                
             }
         }
-        authViewModel.getUser()
+        
     }
     
     private func checkGenderStatus() {

@@ -19,19 +19,36 @@ class AuthCoordinator: Coordinator {
     }
     
     func start() {
-        let viewController = AuthViewController()
-        navigationController.pushViewController(viewController, animated: true)
-    }
-    
-    func pushToAuth() {
-        let rootViewController = AuthViewController()
+        navigationController.viewControllers.removeAll()
+        let rootViewController = OnboardingViewController()
         rootViewController.coordinator = self
         navigationController.pushViewController(rootViewController, animated: true)
     }
+    
+    func pushToVerification() {
+        navigationController.viewControllers.removeAll()
+        let child = VerificationCoordinator(navigationController: navigationController)
+        child.parentCoordinator = self
+        childCoordinators.append(child)
+        child.start()
+    }
+    
+    func pushToSignUp() {
+        navigationController.viewControllers.removeAll()
+        let child = SignUpCoordinator(navigationController: navigationController)
+        child.parentCoordinator = self
+        childCoordinators.append(child)
+        child.pushToName()
+    }
 
-    func finish() {
-        parentCoordinator?.childDidFinish(self)
-        self.parentCoordinator?.pushToAuthSignUp()
+    func childDidFinish(_ child: Coordinator?) {
+        for (index, coordinator) in childCoordinators.enumerated() {
+            if coordinator === child {
+                childCoordinators.remove(at: index)
+                break
+            }
+        }
+        
     }
    
 }

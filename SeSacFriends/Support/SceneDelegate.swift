@@ -30,10 +30,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             appCoordinator?.start()
         case .auth:
 //            appCoordinator?.start()
-            appCoordinator?.pushToAuth()
+            appCoordinator?.pushToVerification()
         case .signUp:
 //            appCoordinator?.start()
-            appCoordinator?.pushToAuthSignUp()
+            appCoordinator?.pushToSignUp()
         case .main:
             print("go to main")
             appCoordinator?.pushToMainTabBar()

@@ -114,6 +114,7 @@ class ProfileViewModel {
     
     func withdrawalUser(_ completion: ((Result<Bool, APIErrorCode>) -> Void)? = nil) {
         checkNetworking()
+        
         UserAPIService.withdrawalUser { user, result  in
             
             switch result {

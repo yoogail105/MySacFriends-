@@ -58,6 +58,7 @@ class QueueViewModel {
             return 0
         }
     }
+
     
     //onqueue
     func searchFriends(_ completion: ((Result<Bool, APIErrorCode>) -> Void)? = nil) {
