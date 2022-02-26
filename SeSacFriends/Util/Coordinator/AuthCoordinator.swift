@@ -42,6 +42,11 @@ class AuthCoordinator: NSObject, Coordinator, UINavigationControllerDelegate {
         childCoordinators.append(child)
         child.pushToName()
     }
+    
+    func finish() {
+        parentCoordinator?.childDidFinish(self)
+        parentCoordinator?.pushToMainTabBar()
+    }
    
     func childDidFinish(_ child: Coordinator?) {
         for (index, coordinator) in childCoordinators.enumerated() {
@@ -58,21 +63,14 @@ class AuthCoordinator: NSObject, Coordinator, UINavigationControllerDelegate {
             return
         }
 
-        // Check whether our view controller array already contains that view controller. If it does it means we’re pushing a different view controller on top rather than popping it, so exit.
         if navigationController.viewControllers.contains(fromViewController) {
             return
         }
 
-        // We’re still here – it means we’re popping the view controller, so we can check whether it’s a buy view controller
         if let AuthVerificationCodeViewController = fromViewController as? AuthVerificationCodeViewController {
-            // We're popping a buy view controller; end its coordinator
             print("AuthVerificationCodeViewController")
             childDidFinish(AuthVerificationCodeViewController.coordinator)
-            if AuthVerificationCodeViewController.alreadyExist {
-                self.pushToSignUp()
-            } else {
-                parentCoordinator?.childDidFinish(self)
-            }
+            
         }
     }
 }

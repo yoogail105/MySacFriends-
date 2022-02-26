@@ -19,21 +19,19 @@ class SignUpCoordinator: Coordinator {
     }
     
     func start() {
-        let viewController = AuthViewController()
-        navigationController.pushViewController(viewController, animated: true)
     }
     
-    func pushToSignUp() {
+    func pushToName() {
         let rootViewController = SignUpNicknameViewController()
         rootViewController.coordinator = self
         navigationController.pushViewController(rootViewController, animated: true)
     }
     
-    func pushToName() {
-        let rootViewController = SignUpNicknameViewController()
-        
-        navigationController.pushViewController(rootViewController, animated: true)
-    }
+//    func pushToSignUp() {
+//        let rootViewController = SignUpNicknameViewController()
+//        rootViewController.coordinator = self
+//        navigationController.pushViewController(rootViewController, animated: true)
+//    }
     
     
     func pushToBirth() {
@@ -62,8 +60,3 @@ class SignUpCoordinator: Coordinator {
     }
    
 }
-extension SignUpCoordinator {
-    
-    
-}
-

@@ -33,7 +33,7 @@ class AuthView: UIView {
     
     let textField: UITextField = {
         let textField = UITextField()
-        textField.placeholder = AuthText.phoneNumberPlaceholder.rawValue
+       
         textField.textColor = .black
         textField.autocorrectionType = .no
         
@@ -61,6 +61,7 @@ class AuthView: UIView {
     }
     
     func configuration() {
+        textField.placeholder = AuthText.phoneNumberPlaceholder.rawValue
         textField.keyboardType = .numberPad
         textField.becomeFirstResponder()
         
@@ -68,6 +69,8 @@ class AuthView: UIView {
         subLabel.isHidden = true
 
     }
+    
+
     
     func constraints() {
         [

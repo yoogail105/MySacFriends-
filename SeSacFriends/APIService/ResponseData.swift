@@ -46,7 +46,7 @@ struct ResponseData<Model: Codable> {
             print(commonResponse.result)
                 return .success(commonResponse.result)
         } catch {
-            print("실패")
+            print("서버 통신 실패")
             
             let statusCode = response.statusCode
             print("API Error Code: \(error)")
@@ -79,7 +79,7 @@ struct ResponseData<Model: Codable> {
             
         case .failure(let error):
             let statusCode = error.response?.statusCode
-            print("API Error Code: \(error.errorCode)")
+            print("모야 서버 통신 실패, API Error Code: \(error.errorCode)")
             
             switch statusCode {
                 
@@ -106,7 +106,7 @@ struct ResponseData<Model: Codable> {
                 let model = try JSONDecoder().decode(Model.self, from: response.data)
                 return .success(model)
             } catch {
-                print("실패")
+                print("서버 통신 실패")
                 
                 let statusCode = response.statusCode
                 print("API Error Code: \(error)")
@@ -139,7 +139,7 @@ struct ResponseData<Model: Codable> {
             
         case .failure(let error):
             let statusCode = error.response?.statusCode
-            print("API Error Code: \(error.errorCode)")
+            print("모야 서버 통신 실패, API Error Code: \(error.errorCode)")
             
             switch statusCode {
                 

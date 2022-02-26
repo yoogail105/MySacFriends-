@@ -30,7 +30,7 @@ class UserAPIService {
     static func signUp(param: SignUpRequest, _ completion: @escaping (User?, APIErrorCode?) -> Void) {
         provider.request(.signUp(param: param)) { result in
         
-            switch ResponseData<User>.processResponse(result) {
+            switch ResponseData<User>.processJSONResponse(result){
             case .success(let model):
                 print("signUp: \(model)")
                 return completion(model, nil)

@@ -90,7 +90,7 @@ class MainCoordinator: NSObject, Coordinator, UINavigationControllerDelegate {
         if let AuthVerificationCodeViewController = fromViewController as? AuthVerificationCodeViewController {
             print("AuthVerificationCodeViewController in MainCoordi")
             childDidFinish(AuthVerificationCodeViewController.coordinator)
-            self.pushToMainTabBar()
+           // self.pushToMainTabBar()
         }
     }
 }

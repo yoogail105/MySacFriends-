@@ -155,15 +155,17 @@ class AuthVerificationCodeViewController: BaseViewController {
             switch result {
             case .ok: //메인탭바로
                 self.alreadyExist = true
-                self.navigationController?.popViewController(animated: true)
+                self.coordinator?.finishToMain()
+                //self.navigationController?.popViewController(animated: true)
                 print("ok-> 메인탭바로")
             case .unAuthorized:
                 print(".unAuthorized")
                 // self.checkAlreadyExist()
             case .notAcceptable: // 회원가입화면응로
                 self.alreadyExist = false
+                self.coordinator?.finishToSignUp()
                 print("notacceptable-> 싸인업으로")
-                self.navigationController?.popViewController(animated: true)
+             //   self.navigationController?.popViewController(animated: true)
             case .networkError:
                 self.showToast(message: APIErrorMessage.networkError.rawValue)
             default:

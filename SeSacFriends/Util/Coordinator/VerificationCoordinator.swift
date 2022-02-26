@@ -25,17 +25,18 @@ class VerificationCoordinator: Coordinator {
     
     func pushToVerificationCode() {
         let rootViewController = AuthVerificationCodeViewController()
+        rootViewController.coordinator = self
         navigationController.pushViewController(rootViewController, animated: true)
     }
     
-    func didFinishBuying() {
-        parentCoordinator?.childDidFinish(self)
-    } 
     
-    
-    func finishForMain() {
-        parentCoordinator?.childDidFinish(self)
+    func finishToSignUp() {
+//        parentCoordinator?.childDidFinish(self)
+        parentCoordinator?.pushToSignUp()
     }
     
+    func finishToMain() {
+        parentCoordinator?.parentCoordinator?.pushToMainTabBar()
+    }
 }
 
