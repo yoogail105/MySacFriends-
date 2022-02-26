@@ -375,9 +375,9 @@ extension HomeViewController: MKMapViewDelegate {
         let pin = annotation as? CustomPointAnnotation
         let size = CGSize(width: 83, height: 83)
         UIGraphicsBeginImageContext(size)
-        let pinImage = UIImage(named: pin!.imageName)
+        let pinImage = UIImage(named: pin?.imageName ?? SesacIcon.face0.rawValue)
         
-        pinImage!.draw(in: CGRect(x: 0, y: 0, width: size.width, height: size.height))
+        pinImage?.draw(in: CGRect(x: 0, y: 0, width: size.width, height: size.height))
         let resizedImage = UIGraphicsGetImageFromCurrentImageContext()
         annotationView?.image = resizedImage
         
