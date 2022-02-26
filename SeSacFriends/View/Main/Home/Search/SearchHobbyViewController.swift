@@ -73,7 +73,6 @@ class SearchHobbyViewController: BaseViewController {
     }
     
     @objc func MyTapMethod(sender: UITapGestureRecognizer) {
-        print("터치함")
             self.searchBar.endEditing(true)
         }
     
@@ -212,8 +211,6 @@ extension SearchHobbyViewController: UICollectionViewDelegate, UICollectionViewD
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         switch section {
         case 0:
-            // 지금 주변에는
-            print("지금주변에는 갯수: ", viewModel.fromRecommendHobbyList.count + viewModel.friendsHobbyList.count)
             return viewModel.fromRecommendHobbyList.count + viewModel.friendsHobbyList.count
             
         default:
@@ -225,14 +222,10 @@ extension SearchHobbyViewController: UICollectionViewDelegate, UICollectionViewD
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         switch indexPath.section {
         case 0:
-            print("indexPaht:",indexPath.count)
             if indexPath.item <= self.viewModel.fromRecommendHobbyList.count-1 {
-                
-                print(indexPath.item)
                 return TitleCollectionViewCell.fittingSize(availableHeight: 32, name: viewModel.fromRecommendHobbyList[indexPath.item])
             } else {
-                print(indexPath.item)
-                return TitleCollectionViewCell.fittingSize(availableHeight: 32, name: viewModel.friendsHobbyList[indexPath.item])
+                return TitleCollectionViewCell.fittingSize(availableHeight: 32, name: viewModel.friendsHobbyList[indexPath.item - self.viewModel.fromRecommendHobbyList.count])
             }
         default:
             return TitleCollectionViewCell.fittingSize(availableHeight: 32, name: viewModel.myHobbyList[indexPath.item])
@@ -251,7 +244,7 @@ extension SearchHobbyViewController: UICollectionViewDelegate, UICollectionViewD
             } else {
                 guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TitleCollectionViewCell.identifier, for: indexPath) as? TitleCollectionViewCell else { return UICollectionViewCell() }
                 
-                cell.titleLabel.text = viewModel.friendsHobbyList[indexPath.item]
+                cell.titleLabel.text = viewModel.friendsHobbyList[indexPath.item - self.viewModel.fromRecommendHobbyList.count]
                 return cell
             }
             

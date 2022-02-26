@@ -18,6 +18,10 @@ class AuthVerificationCodeViewController: BaseViewController {
     let disposeBag = DisposeBag()
     
     weak var coordinator: VerificationCoordinator?
+    weak var authCoordinator: AuthCoordinator?
+    weak var mainCoordinator: MainCoordinator?
+    
+    var alreadyExist = false
     
     override func loadView() {
         self.view = mainView
@@ -110,7 +114,8 @@ class AuthVerificationCodeViewController: BaseViewController {
     // self.coordinator?.pushToAuthSignUp() : ok이면 화면이동하기
     func verifyButtonClicked() {
         print(#function)
-        // 1. firebase인증번호확인
+        self.viewModel.checkVerificationCode(verificationCode: mainView.numberTextField.text!)
+
         self.viewModel.onErrorHandling = { result in
             switch result {
             case .ok:
@@ -121,11 +126,12 @@ class AuthVerificationCodeViewController: BaseViewController {
                 print("알수없는 에러")
             }
         }
-        self.viewModel.checkVerificationCode(verificationCode: mainView.numberTextField.text!)
+        
     }
                             
     func getFirebaseIDToken() {
         print(#function)
+        self.viewModel.fetchIDToken()
         viewModel.onErrorHandling = { result in
             switch result {
             case .ok:
@@ -138,27 +144,32 @@ class AuthVerificationCodeViewController: BaseViewController {
                 print("알수없는 에러")
             }
         }
-        self.viewModel.fetchIDToken()
+        
     }
     
     func checkAlreadyExist() {
         print(#function)
-        viewModel.onErrorHandling = {result in
+        self.viewModel.getUser()
+        self.viewModel.onErrorHandling = { result in
+            print("checkAlready:onErrorHandling")
             switch result {
-            case .ok:
-                
-                print("self.coordinator?.pushToMainTabBar()")
+            case .ok: //메인탭바로
+                self.alreadyExist = true
+                self.navigationController?.popViewController(animated: true)
+                print("ok-> 메인탭바로")
             case .unAuthorized:
-                self.checkAlreadyExist()
-            case .notAcceptable:
-                self.coordinator?.finish()
+                print(".unAuthorized")
+                // self.checkAlreadyExist()
+            case .notAcceptable: // 회원가입화면응로
+                self.alreadyExist = false
+                print("notacceptable-> 싸인업으로")
+                self.navigationController?.popViewController(animated: true)
             case .networkError:
                 self.showToast(message: APIErrorMessage.networkError.rawValue)
             default:
                 self.showToast(message: APIErrorMessage.unKnownError.rawValue)
             }
         }
-        self.viewModel.getUser()
     }
     
     

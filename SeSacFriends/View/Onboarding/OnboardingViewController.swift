@@ -54,6 +54,6 @@ class OnboardingViewController: BaseViewController  {
     func toAuthView() {
         print("toAuthView")
         UserDefaults.standard.startMode = StartMode.auth.rawValue
-        coordinator?.pushToAuth()
+        coordinator?.pushToVerification()
     }
 }

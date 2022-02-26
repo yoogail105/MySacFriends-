@@ -34,8 +34,7 @@ class SignUpNicknameViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //coordinator = AuthCoordinator(navigationController: self.navigationController!)
-        
+        userDefaults.startMode = StartMode.onBoarding.rawValue
     }
     
     override func bind() {

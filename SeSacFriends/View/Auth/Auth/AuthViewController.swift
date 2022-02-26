@@ -31,6 +31,18 @@ class AuthViewController: BaseViewController {
         
     }
     
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.isNavigationBarHidden = true
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.navigationController?.isNavigationBarHidden = false
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -38,11 +50,7 @@ class AuthViewController: BaseViewController {
             self.showToast(message: NetworkErrorMessage.notConnected.rawValue)
         }
     }
-    
-    override func setupNavigationBar() {
-        navigationController?.navigationBar.isHidden = true
-    }
-    
+ 
     override func bind() {
         
         mainView.textField.rx.text
@@ -120,10 +128,7 @@ class AuthViewController: BaseViewController {
                 if error != nil {
                     return
                 }
-                //self.coordinator?.pushToAuthVerificationCode()
-                let vc = AuthVerificationCodeViewController()
-                self.navigationController?.pushViewController(vc, animated: true)
-                print("화면 옮기기")
+                self.coordinator?.pushToVerificationCode()
             }
         }
     }

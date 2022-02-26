@@ -84,23 +84,25 @@ class AuthViewModel {
     func getUser(_ completion: ((Result<Bool, APIErrorCode>) -> Void)? = nil) {
         checkNetworking()
         //later in the code
-        UserAPIService.login { user, result  in
-
-            switch result {
-            case .ok:
+        print(#function)
+        UserAPIService.login { user, error  in
+            
+            if error != nil {
+                switch error {
+                case .unAuthorized:
+                    self.onErrorHandling?(.unAuthorized)
+                case .notAcceptable:
+                    UserDefaults.standard.startMode = StartMode.signUp.rawValue
+                    self.onErrorHandling?(.notAcceptable)
+                default:
+                    self.onErrorHandling?(.internalServerError)
+                    
+                }
+            } else {
+                
                 UserDefaults.standard.startMode = StartMode.main.rawValue
                 print(UserDefaults.standard.startMode)
                 self.onErrorHandling?(.ok)
-                
-            case .unAuthorized:
-                self.onErrorHandling?(.unAuthorized)
-            case .notAcceptable:
-                UserDefaults.standard.startMode = StartMode.signUp.rawValue
-                self.onErrorHandling?(.notAcceptable)
-                
-            default:
-                self.onErrorHandling?(.internalServerError)
-                
             }
         }
     }
