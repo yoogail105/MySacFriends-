@@ -18,7 +18,7 @@ class VerificationCoordinator: Coordinator {
     }
     
     func start() {
-        let rootViewController = AuthVerificationCodeViewController()
+        let rootViewController = AuthViewController()
         rootViewController.coordinator = self
         navigationController.pushViewController(rootViewController, animated: true)
     }
@@ -26,6 +26,15 @@ class VerificationCoordinator: Coordinator {
     func pushToVerificationCode() {
         let rootViewController = AuthVerificationCodeViewController()
         navigationController.pushViewController(rootViewController, animated: true)
+    }
+    
+    func didFinishBuying() {
+        parentCoordinator?.childDidFinish(self)
+    } 
+    
+    
+    func finishForMain() {
+        parentCoordinator?.childDidFinish(self)
     }
     
 }

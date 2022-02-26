@@ -28,6 +28,7 @@ class MainCoordinator: NSObject, Coordinator, UINavigationControllerDelegate {
     }
     
     func pushToVerification() {
+        navigationController.delegate = self
         navigationController.viewControllers.removeAll()
         navigationController.isToolbarHidden = true
 
@@ -38,6 +39,7 @@ class MainCoordinator: NSObject, Coordinator, UINavigationControllerDelegate {
     }
     
     func pushToSignUp() {
+        navigationController.delegate = self
         navigationController.viewControllers.removeAll()
         navigationController.isToolbarHidden = true
         let child = AuthCoordinator(navigationController: navigationController)
@@ -47,6 +49,7 @@ class MainCoordinator: NSObject, Coordinator, UINavigationControllerDelegate {
     }
     
     func pushToMainTabBar() {
+        navigationController.delegate = self
         navigationController.viewControllers.removeAll()
         navigationController.isToolbarHidden = true
         let child = TabBarCoordinator(navigationController: navigationController)
@@ -81,7 +84,13 @@ class MainCoordinator: NSObject, Coordinator, UINavigationControllerDelegate {
         // We’re still here – it means we’re popping the view controller, so we can check whether it’s a buy view controller
         if let onboardingViewController = fromViewController as? OnboardingViewController {
             // We're popping a buy view controller; end its coordinator
+            print("onbardingViewControllerFinish")
             childDidFinish(onboardingViewController.coordinator)
+        }
+        if let AuthVerificationCodeViewController = fromViewController as? AuthVerificationCodeViewController {
+            print("AuthVerificationCodeViewController in MainCoordi")
+            childDidFinish(AuthVerificationCodeViewController.coordinator)
+            self.pushToMainTabBar()
         }
     }
 }
