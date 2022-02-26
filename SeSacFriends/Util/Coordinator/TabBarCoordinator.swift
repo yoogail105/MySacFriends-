@@ -9,7 +9,7 @@ import UIKit
 
 
 
-class TabBarCoordinator: Coordinator {
+class TabBarCoordinator: NSObject, Coordinator {
     
     weak var parentCoordinator: MainCoordinator?
     
@@ -21,8 +21,9 @@ class TabBarCoordinator: Coordinator {
     }
     
     func start() {
-        
+        navigationController.delegate = self
         navigationController.navigationBar.isHidden = true
+        
         let tabBarController = UITabBarController()
         
         let homeBarItem = UITabBarItem(title: TabBarTitle.home.rawValue, image: UIImage(named: TabBarIcon.homeInact.rawValue)?.withRenderingMode(.alwaysOriginal), selectedImage: UIImage(named: TabBarIcon.homeAct.rawValue)?.withRenderingMode(.alwaysOriginal))
@@ -67,4 +68,27 @@ class TabBarCoordinator: Coordinator {
         
     }
     
+}
+
+extension TabBarCoordinator: UINavigationControllerDelegate {
+    func navigationController(_ navigationController: UINavigationController, didShow viewController: UIViewController, animated: Bool) {
+    
+        guard let fromViewController = navigationController.transitionCoordinator?.viewController(forKey: .from) else {
+            return
+        }
+        if navigationController.viewControllers.contains(fromViewController) {
+            return
+        }
+        
+        if let withdrawalViewController = fromViewController as? withdrawalViewController {
+            // We're popping a buy view controller; end its coordinator
+            print("onbardingViewControllerFinish")
+            childDidFinish(withdrawalViewController.coordinator)
+        }
+        
+        if let MyPageViewController = fromViewController as? MyPageViewController {
+            print("AuthVerificationCodeViewController in MainCoordi")
+            childDidFinish(MyPageViewController.coordinator)
+        }
+    }
 }

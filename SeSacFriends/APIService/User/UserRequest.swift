@@ -33,6 +33,7 @@ struct UpdateFCMToken: Codable {
     }
     
 }
+
 //post
 struct UpdateMyPageRequest: Codable {
     var searchable: Int

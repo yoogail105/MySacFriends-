@@ -53,10 +53,8 @@ class SignUpCoordinator: Coordinator {
         navigationController.pushViewController(rootViewController, animated: true)
     }
 
-    func finish() {
-        parentCoordinator?.childDidFinish(self)
-        self.parentCoordinator?.childDidFinish(self.parentCoordinator)
-        self.parentCoordinator?.parentCoordinator?.start()
+    func finishForMainTabBar() {
+        self.parentCoordinator?.parentCoordinator?.pushToMainTabBar()
     }
    
 }

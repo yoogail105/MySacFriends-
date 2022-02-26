@@ -41,9 +41,9 @@ class UserAPIService {
     }
     
     // 회원 삭제하기 -> FCM 토큰 강제 갱신해줘야 한다.
-    static func withdrawalUser(_ completion: @escaping (User?, APIErrorCode?) -> Void) {
+    static func withdrawalUser(_ completion: @escaping (String?, APIErrorCode?) -> Void) {
         provider.request(.withdraw) { result in
-            switch ResponseData<User>.processResponse(result) {
+            switch ResponseData<String>.processResponse(result) {
             case .success(let model):
                 print("signUp: \(model)")
                 return completion(model, nil)
@@ -54,9 +54,9 @@ class UserAPIService {
     }
     
     // FCM토큰 업데이트
-    static func updateFCMToken(param: UpdateFCMToken, _ completion: @escaping (User?, APIErrorCode?) -> Void) {
+    static func updateFCMToken(param: UpdateFCMToken, _ completion: @escaping (String?, APIErrorCode?) -> Void) {
         provider.request(.updateFCMToken(param: param)) { result in
-            switch ResponseData<User>.processResponse(result) {
+            switch ResponseData<String>.processResponse(result) {
             case .success(let model):
                 print("updateFCMToken: \(model)")
                 return completion(model, nil)
@@ -80,22 +80,17 @@ class UserAPIService {
     }
     
     // 내정보 업데이트
-    static func updateMyPage(searchable: Int, ageMin: Int, ageMax: Int, gender: Int, hobby: String, completion: @escaping (User?, APIErrorCode?) -> Void) {
-        
-        var request = URLRequest(url: Endpoint.updateMyPage.url)
-        request.httpMethod = Method.POST.rawValue
-        
-        let idToken = UserDefaults.standard.idToken!
-        request.setValue(idToken, forHTTPHeaderField: HTTPString.idtoken.rawValue)
-        request.setValue(HTTPHeaderValue.contentType.rawValue, forHTTPHeaderField: HTTPString.ContentType.rawValue)
-        
-        request.httpBody = "\(UserBodyPara.searchable.rawValue)=\(searchable)&\(UserBodyPara.ageMin.rawValue)=\(ageMin)&\(UserBodyPara.ageMax)=\(ageMax)&\(UserBodyPara.gender.rawValue)=\(gender)&\(UserBodyPara.hobby.rawValue)=\(hobby)".data(using: .utf8, allowLossyConversion: false)
-        
-        print( "내가 보낸 정보는: \(UserBodyPara.searchable.rawValue)=\(searchable)&\(UserBodyPara.ageMin.rawValue)=\(ageMin)&\(UserBodyPara.ageMax)=\(ageMax)&\(UserBodyPara.gender.rawValue)=\(gender)&\(UserBodyPara.hobby.rawValue)=\(hobby)")
-        
-        
-        
-        URLSession.request(endpoint: request, completion: completion)
-    }
     
+    static func updateMyPage(param: UpdateMyPageRequest, _ completion: @escaping (String?, APIErrorCode?) -> Void) {
+        
+        provider.request(.updateMyPage(param: param)) { result in
+        
+            switch ResponseData<String>.processResponse(result){
+            case .success(let model):
+                return completion(model, nil)
+            case .failure(let error):
+                return completion(nil, error)
+            }
+        }
+    }
 }

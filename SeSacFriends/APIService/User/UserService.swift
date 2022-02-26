@@ -33,7 +33,7 @@ extension UserService: TargetType {
         case .updateFCMToken:
             return "user/update_fcm_token"
         case .updateMyPage:
-            return "usr/update/mypage"
+            return "user/update/mypage"
         }
     }
     

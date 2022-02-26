@@ -32,12 +32,12 @@ final class QueueAPIService {
     }
     
     // queue
-    static func requestFindHobbyFriends2(param: QueueRequest, completion: @escaping (Friends?, APIErrorCode?) -> Void) {
+    static func requestFindHobbyFriends2(param: QueueRequest, completion: @escaping (String?, APIErrorCode?) -> Void) {
         
         provider.request(.requestFindHobbyFriends(param: param)) { result in
             
             print("결과:", result)
-            switch ResponseData<Friends>.processResponse(result) {
+            switch ResponseData<String>.processResponse(result) {
             case .success(let model):
                 return completion(model, nil)
             case .failure(let error):
@@ -60,10 +60,10 @@ final class QueueAPIService {
         }
     }
     
-    static func requestTogether(param: HobbyRequest, completion: @escaping (Friends?, APIErrorCode?) -> Void) {
+    static func requestTogether(param: HobbyRequest, completion: @escaping (String?, APIErrorCode?) -> Void) {
         
         provider.request(.hobbyRequest(param: param)) { result in
-            switch ResponseData<Friends>.processResponse(result) {
+            switch ResponseData<String>.processResponse(result) {
             case .success(let model):
                 return completion(model, nil)
             case .failure(let error):
@@ -72,10 +72,10 @@ final class QueueAPIService {
         }
     }
     
-    static func acceptTogether(param: HobbyRequest, completion: @escaping (Friends?, APIErrorCode?) -> Void) {
+    static func acceptTogether(param: HobbyRequest, completion: @escaping (String?, APIErrorCode?) -> Void) {
         
         provider.request(.hobbyAccept(param: param)) { result in
-            switch ResponseData<Friends>.processResponse(result) {
+            switch ResponseData<String>.processResponse(result) {
             case .success(let model):
                 return completion(model, nil)
             case .failure(let error):

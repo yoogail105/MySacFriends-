@@ -29,6 +29,8 @@ class OnboardingViewController: BaseViewController  {
         
         UserDefaults.standard.startMode = StartMode.onBoarding.rawValue
         
+        UserDefaults.standard.register()
+        
         addChild(cardViewController)
         cardViewController.view.translatesAutoresizingMaskIntoConstraints = false
         mainView.pageView.addSubview(cardViewController.view)

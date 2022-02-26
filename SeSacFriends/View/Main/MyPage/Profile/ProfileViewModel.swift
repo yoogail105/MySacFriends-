@@ -68,46 +68,36 @@ class ProfileViewModel {
         }
     }
     
-    func getUser2(_ completion: ((Result<Bool, APIErrorCode>) -> Void)? = nil) {
+    func updateMypage( _ completion: ((Result<Bool, APIErrorCode>) -> Void)? = nil) {
+    
         checkNetworking()
-        UserAPIService.login { user, result  in
+        
+        let request = UpdateMyPageRequest(searchable: searchableObserver.value, ageMin: profileData.ageMin, ageMax: profileData.ageMax, gender: genderObserver.value, hobby: hobbyObserer.value)
+        print("updateMypgae:\(request)")
+        UserAPIService.updateMyPage(param: request) { result, error in
             
-                switch result {
-                    
-                case .ok:
-                    self.profileData.searchable = user?.searchable ?? 0
-                    self.profileData.ageMin = user?.ageMin ?? 18
-                    self.profileData.ageMax = user?.ageMax ?? 65
-                    self.profileData.gender = user?.gender ?? UserDefaults.standard.gender
-                    self.profileData.hobby = user?.hobby ?? ""
-                    print("profiledata는 :", self.profileData)
-                    
-                    self.onErrorHandling?(.ok)
-                    
+    
+            if let error = error {
+                print("error")
+                switch error {
+                case .unAuthorized:
+                    self.onErrorHandling?(.unAuthorized)
+                    self.updateMypage()
                 case .notAcceptable:
-                    print("getUser: notAcceptable")
-                    UserDefaults.standard.startMode = StartMode.signUp.rawValue
                     self.onErrorHandling?(.notAcceptable)
-                    
                 default:
-                    print("getUser: internalServerError")
                     self.onErrorHandling?(.internalServerError)
                 }
-        }
-    }
-    
-    func updateMypage( _ completion: ((Result<Bool, APIErrorCode>) -> Void)? = nil) {
-        checkNetworking()
-        UserAPIService.updateMyPage(searchable: searchableObserver.value, ageMin: profileData.ageMin, ageMax: profileData.ageMax, gender: genderObserver.value, hobby: hobbyObserer.value) { user, result in
-            //print(result)
-            guard result != nil else {
-                return
+                
+            } else {
+                print("성공")
+                UserDefaults.standard.searchable = self.searchableObserver.value
+                UserDefaults.standard.gender = self.genderObserver.value
+                UserDefaults.standard.hobby = self.hobbyObserer.value
+                self.onErrorHandling?(.ok)
             }
-            print("저장 성공했습니다.")
             
-            UserDefaults.standard.searchable = self.searchableObserver.value
-            UserDefaults.standard.gender = self.genderObserver.value
-            UserDefaults.standard.hobby = self.hobbyObserer.value
+            
 
         }
     }
@@ -115,10 +105,20 @@ class ProfileViewModel {
     func withdrawalUser(_ completion: ((Result<Bool, APIErrorCode>) -> Void)? = nil) {
         checkNetworking()
         
-        UserAPIService.withdrawalUser { user, result  in
-            
-            switch result {
-            case .ok:
+        UserAPIService.withdrawalUser { user, error  in
+            if let error = error {
+            switch error {
+           
+            case .notAcceptable:
+                print("로그인정보가 없습니다. ->  온보딩화면으로")
+                UserDefaults.standard.startMode = StartMode.onBoarding.rawValue
+                self.onErrorHandling?(.notAcceptable)
+            default:
+                let error = String(describing: error)
+                print("알 수 없는 error: \(error)")
+                self.onErrorHandling?(.internalServerError)
+            }
+            } else {
                 AuthAPIService.deleteUserAuth {
                     print("파이어베이스 사용자 삭제 성공")
                 }
@@ -127,13 +127,6 @@ class ProfileViewModel {
                 print("탈퇴:\(UserDefaults.standard.nickname)")
                 print("탈퇴 성공: 온보딩화면으로")
                 self.onErrorHandling?(.ok)
-            case .notAcceptable:
-                print("로그인정보가 없습니다. ->  온보딩화면으로")
-                UserDefaults.standard.startMode = StartMode.onBoarding.rawValue
-                self.onErrorHandling?(.notAcceptable)
-            default:
-                let error = String(describing: result)
-                print("알 수 없는 error: \(error)")
             }
         }
     }

@@ -20,41 +20,34 @@ import Moya
 struct ResponseData<Model: Codable> {
     struct CommonResponse: Codable {
         let result: Model
-
+        
     }
     
-    static func processResponse(_ result: Result<Response, MoyaError>) -> Result<Model?, APIErrorCode> {
+    static func processResponse(_ result: Result<Response, MoyaError>) -> Result<String?, APIErrorCode> {
         
         print("모야 Result: \(result)")
         switch result {
             
         case .success(let response):
             
-            do {
-                print("statusCode: \(response.statusCode)")
-                let str = String(decoding: response.data, as: UTF8.self)
-                print("data: \(str)")
-                print("requeste: \(String(describing: response.request))")
-                print("response: \(String(describing: response.response))")
-                print("debug: \(response.debugDescription)")
-                //let str = Str ing(decoding: response.data, as: UTF8.self)
-            //    print("data: ",str)
+            print("statusCode: \(response.statusCode)")
+            let str = String(decoding: response.data, as: UTF8.self)
+            print("data: \(str)")
+            print("requeste: \(String(describing: response.request))")
+            print("response: \(String(describing: response.response))")
+            print("debug: \(response.debugDescription)")
             
-            _ = try response.filterSuccessfulStatusCodes()
-
-            let commonResponse = try JSONDecoder().decode(CommonResponse.self, from: response.data)
-            print(commonResponse.result)
-                return .success(commonResponse.result)
-        } catch {
-            print("서버 통신 실패")
             
             let statusCode = response.statusCode
-            print("API Error Code: \(error)")
+            print("API Error Code: \(response.debugDescription)")
             
             
             switch statusCode {
+            case APIErrorCode.ok.rawValue:
+                print("성공:",response.data)
+                return .success(str)
                 
-            // MARK: firebase error
+                // MARK: firebase error
             case APIErrorCode.unAuthorized.rawValue:
                 AuthAPIService.fetchIDToken {_ in
                     print("토큰 새로 발급함")
@@ -74,8 +67,8 @@ struct ResponseData<Model: Codable> {
                 
             default:
                 return .failure(APIErrorCode(rawValue: statusCode ) ?? .unKnownError)
+                
             }
-        }
             
         case .failure(let error):
             let statusCode = error.response?.statusCode
@@ -114,7 +107,7 @@ struct ResponseData<Model: Codable> {
                 
                 switch statusCode {
                     
-                // MARK: firebase error
+                    // MARK: firebase error
                 case APIErrorCode.unAuthorized.rawValue:
                     AuthAPIService.fetchIDToken {_ in
                         print("토큰 새로 발급함")

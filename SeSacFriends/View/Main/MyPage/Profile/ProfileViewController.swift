@@ -224,17 +224,23 @@ final class ProfileViewController: BaseViewController {
     }
     
     override func back() {
-        showToastWithAction(message: ProfileViewText.backButtonClicked.rawValue) {
-            self.navigationController?.popViewController(animated: true)
-        }
+        coordinator?.finish()
     }
     
     @objc func saveButtonClicked() {
         
-        viewModel.updateMypage() {_ in
-            self.showToast(message: ProfileViewText.saveButtonClicked.rawValue)
+        viewModel.updateMypage()
+        viewModel.onErrorHandling = { result in
+            switch result {
+            case .ok:
+                self.showToast(message: ProfileViewText.saveButtonClicked.rawValue)
+            case .notAcceptable:
+                print("홈화면으로")
+            default:
+                self.showToast(message: APIErrorMessage.unKnownError.rawValue)
+            }
+            
         }
-        //api 보내기
        
     }
     
@@ -260,14 +266,7 @@ final class ProfileViewController: BaseViewController {
     
     func withdrawal() {
         print(#function)
-        
-        //self.coordinator?.pushToWithdrawal()
-        
-        let vc = withdrawalViewController()
-        vc.modalPresentationStyle = .overCurrentContext
-        vc.modalTransitionStyle = .crossDissolve
-        present(vc, animated: true, completion: nil)
-       
+        self.coordinator?.pushToWithdrawal()
     }
 }
 

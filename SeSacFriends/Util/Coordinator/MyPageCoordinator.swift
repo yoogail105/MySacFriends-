@@ -32,18 +32,23 @@ class MyPageCoordinator: Coordinator {
     
     func pushToProfile() {
         let rootViewController = ProfileViewController()
+        rootViewController.coordinator = self
         self.navigationController.pushViewController(rootViewController, animated: true)
     }
     
     func pushToWithdrawal() {
-        print("코디네이터")
         let rootViewController = withdrawalViewController()
-        self.navigationController.pushViewController(rootViewController, animated: true)
+        rootViewController.coordinator = self
+        rootViewController.modalPresentationStyle = .overCurrentContext
+        rootViewController.modalTransitionStyle = .crossDissolve
+        self.navigationController.present(rootViewController, animated: true, completion: nil)
     }
     
-    func pushToOnboarding() {
+    func finish() {
+        self.navigationController.popViewController(animated: true)
+    }
+    func finishToOnboarding() {
         print("코디네이터")
-        let rootViewController = OnboardingViewController()
-        self.navigationController.pushViewController(rootViewController, animated: true)
+        parentCoordinator?.parentCoordinator?.start()
     }
 }

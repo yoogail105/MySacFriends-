@@ -124,31 +124,33 @@ class GenderViewController: BaseViewController {
     }
     
     private func signUpServer() {
+        viewModel.postSignUp()
         viewModel.onErrorHandling = { result in
             
             switch result {
             case .ok:
-                self.moveToNext()
+                self.coordinator?.finishForMainTabBar()
                 
             case .created:
                 self.showToastWithAction(message: APIErrorMessage.alreadyExisted.rawValue) {
-                    self.moveToNext()
+                    self.coordinator?.finishForMainTabBar()
                     // self.coordinator?.pushToMainTabBar()
                 }
             case .invalidRequest:
                 self.showToastWithAction(message: APIErrorMessage.invalidNickname.rawValue) {
-                    self.coordinator?.pushToEmail()
+                    self.coordinator?.pushToName()
                 }
             case .unAuthorized:
                 self.signUpServer()
             case .networkError:
                 self.showToast(message: APIErrorMessage.networkError.rawValue)
+                
             default:
                 self.showToast(message: "알 수 없는 오류가 생겼습니다.\n다시 버튼을 눌러주세요.")
             }
         }
             
-        viewModel.postSignUp()
+        
         
     }
     
@@ -158,7 +160,7 @@ class GenderViewController: BaseViewController {
 //        
 //        //print("gender: \(userDefaults.gender)")
 //        //print("fcm: \()")
-        coordinator?.finish()
+//        coordinator?.finish()
     
         
     }
