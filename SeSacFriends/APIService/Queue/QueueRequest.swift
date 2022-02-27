@@ -11,15 +11,15 @@ import Foundation
 struct QueueRequest: Codable {
     var type: Int
     var region: Int
-    var lat: Double
     var long: Double
+    var lat: Double
     var hf: [String]
     
-    init(type: Int, region: Int, lat: Double, long: Double, hf: [String]) {
+    init(type: Int, region: Int, long: Double, lat: Double, hf: [String]) {
         self.type = type
         self.region = region
-        self.lat = long
-        self.long = lat
+        self.lat = lat
+        self.long = long
         self.hf = hf
     }
 }

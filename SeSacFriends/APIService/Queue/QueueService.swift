@@ -69,7 +69,7 @@ extension QueueService: TargetType {
                 "lat": param.lat,
                 "long": param.long,
                 "hf": param.hf
-            ], encoding: URLEncoding.default)
+            ], encoding: URLEncoding(arrayEncoding: .noBrackets))
             
         case .onQueue(let param):
             return .requestParameters(parameters: [
