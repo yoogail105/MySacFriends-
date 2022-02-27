@@ -18,6 +18,11 @@ enum HobbyViewText: String {
     case emptyFriendsTitle = "아쉽게도 주변에 새싹이 없어요ㅠ"
     case emptyRequestTitle = "아직 받은 요청이 없어요ㅠ"
     case emptyPageSubtitle = "취미를 변경하거나 조금만 더 기다려 주세요!"
-    
-    
+}
+
+
+enum FindText: String {
+    case nearByFriends = "주변 새싹"
+    case receivedRequests = "받은 요청"
+    case stopFinding = "찾기 중단"
 }

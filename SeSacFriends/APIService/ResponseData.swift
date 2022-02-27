@@ -50,8 +50,7 @@ struct ResponseData<Model: Codable> {
                 // MARK: firebase error
             case APIErrorCode.unAuthorized.rawValue:
                 AuthAPIService.fetchIDToken {_ in
-                    print("토큰 새로 발급함")
-                    
+                    print("id 토큰 새로 발급함")
                 }
                 return .failure(.unAuthorized)
                 

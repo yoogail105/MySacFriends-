@@ -58,6 +58,7 @@ class TabBarCoordinator: NSObject, Coordinator {
         navigationController.pushViewController(tabBarController, animated: true)
     }
     
+    
     func childDidFinish(_ child: Coordinator?) {
         for (index, coordinator) in childCoordinators.enumerated() {
             if coordinator === child {

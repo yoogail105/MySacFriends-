@@ -33,6 +33,7 @@ class HomeCoordinator: Coordinator {
 }
 
 extension HomeCoordinator{
+
     
     func pushToSearchHobby(lat: Double, long: Double) {
         print(#function)
@@ -42,6 +43,29 @@ extension HomeCoordinator{
         rootViewController.viewModel.currentLongitude = long
         print("lat:\(lat), long: \(long)")
         self.navigationController.pushViewController(rootViewController, animated: true)
+    }
+    
+    func pushToFindFriends() {
+        let rootViewController = FindViewController()
+        rootViewController.coordinator = self
+        self.navigationController.pushViewController(rootViewController, animated: true)
+    }
+    
+    func pushToChatting() {
+        let rootViewController = ChattingViewController()
+        rootViewController.coordinator = self
+        self.navigationController.pushViewController(rootViewController, animated: true)
+    }
+    
+    // coordinator 간 전환으로 변경하기
+    func finishForGender() {
+        let rootViewController = ProfileViewController()
+        rootViewController.coordinator = MyPageCoordinator()
+        self.navigationController.pushViewController(rootViewController, animated: true)
+    }
+    
+    func finishToOnboarding() {
+        parentCoordinator?.parentCoordinator?.start()
     }
     
     func finish() {

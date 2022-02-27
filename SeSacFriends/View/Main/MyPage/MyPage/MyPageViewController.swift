@@ -92,8 +92,6 @@ extension MyPageViewController: UITableViewDelegate, UITableViewDataSource {
         if indexPath.row == 0 {
             
             coordinator?.pushToProfile()
-//            let vc = ProfileViewController()
-//            self.navigationController?.pushViewController(vc, animated: true)
         }
     
         

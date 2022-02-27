@@ -49,6 +49,10 @@ class ProfileViewModel {
                 UserDefaults.standard.startMode = StartMode.signUp.rawValue
                 self.onErrorHandling?(.notAcceptable)
                 
+            case .unAuthorized:
+                self.getUser()
+                self.onErrorHandling?(.unAuthorized)
+                
             default:
                 print("getUser: internalServerError")
                 self.onErrorHandling?(.internalServerError)
@@ -63,10 +67,34 @@ class ProfileViewModel {
             self.profileData.ageMax = user.ageMax
             self.profileData.gender = user.gender
             self.profileData.hobby = user.hobby
+            
+            if user.FCMtoken != UserDefaults.standard.FCMToken! {
+                
+            }
             print("profiledata는 :", self.profileData)
             self.onErrorHandling?(.ok)
         }
     }
+    
+    func updateFCMToken( _ completion: ((Result<Bool, APIErrorCode>) -> Void)? = nil) {
+    
+        checkNetworking()
+        
+        let request = UpdateFCMToken(FCMtoken: UserDefaults.standard.FCMToken!)
+        
+        UserAPIService.updateFCMToken(param: request) { result, error in
+            if let error = error {
+                switch error {
+                default:
+                    self.onErrorHandling?(.internalServerError)
+                }
+            } else {
+                print("fcm토큰 갱신 성공")
+            }
+        }
+    }
+    
+   
     
     func updateMypage( _ completion: ((Result<Bool, APIErrorCode>) -> Void)? = nil) {
     

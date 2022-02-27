@@ -157,8 +157,7 @@ class SearchHobbyViewController: BaseViewController {
             switch result {
             case .ok:
                 print("화면이동함")
-                let vc = FindViewController()
-                self.navigationController?.pushViewController(vc, animated: true)
+                self.coordinator?.pushToFindFriends()
             case .unAuthorized:
                 self.searchButtonClicked()
             case .created:

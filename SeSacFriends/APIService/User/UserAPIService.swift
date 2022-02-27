@@ -65,20 +65,6 @@ class UserAPIService {
             }
         }
     }
-    
-    static func updateFCMToken(completion: @escaping (User?, APIErrorCode?) -> Void) {
-        
-        var request = URLRequest(url: Endpoint.updateFCMToken.url)
-        request.httpMethod = Method.PUT.rawValue
-        
-        let idToken = UserDefaults.standard.idToken!
-        request.setValue(idToken, forHTTPHeaderField: HTTPString.idtoken.rawValue)
-        request.setValue(HTTPHeaderValue.contentType.rawValue, forHTTPHeaderField: HTTPString.ContentType.rawValue)
-        
-        URLSession.requestWithCodable(endpoint: request, completion: completion)
-        
-    }
-    
     // 내정보 업데이트
     
     static func updateMyPage(param: UpdateMyPageRequest, _ completion: @escaping (String?, APIErrorCode?) -> Void) {

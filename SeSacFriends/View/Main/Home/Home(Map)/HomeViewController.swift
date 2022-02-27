@@ -88,7 +88,8 @@ class HomeViewController: UIViewController {
         
         Observable.merge(
             mainView.totalButton.rx.tap.map { _ in SelectedGender.total},
-            mainView.manButton.rx.tap.map { _ in SelectedGender.man},
+            mainView.manButton.rx.tap.map { _ in
+                SelectedGender.man},
             mainView.womanButton.rx.tap.map { _ in SelectedGender.woman}
         ).bind(to: viewModel.genderObservable)
             .disposed(by: disposeBag)
@@ -138,7 +139,8 @@ class HomeViewController: UIViewController {
                 self.coordinator?.finish()
                 // 토스트 메세지: 로그인을 해주세요
             } else if error  == .unAuthorized {
-                print("errorHandling: 로그인 새로 해야함")
+                print("errorHandling: id토큰 새로 발급했음")
+                
                 
             }
         }
@@ -149,8 +151,9 @@ class HomeViewController: UIViewController {
         print("젠더",userDefaults.gender)
         if self.userDefaults.gender == -1 {
             self.showToastWithAction(message: HomeViewToast.genderError.rawValue) {
-                let vc = ProfileViewController()
-                self.navigationController?.pushViewController(vc, animated: true)
+                self.coordinator?.finishForGender()
+//                let vc = ProfileViewController()
+//                self.navigationController?.pushViewController(vc, animated: true)
             }
         } else {
             print(#function)
@@ -172,8 +175,6 @@ class HomeViewController: UIViewController {
         print(#function)
         UserDefaults.standard.matchingStatus = MatchingStatus.ing.rawValue
         coordinator?.pushToSearchHobby(lat: viewModel.currentLatitude, long: viewModel.currentLongitude)
-//        let vc = SearchHobbyViewController()
-//        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     private func findMyLocation() {
@@ -348,8 +349,8 @@ extension HomeViewController: CLLocationManagerDelegate {
     
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
         checkUsersLocationServicesAuthorization()
-        print(#function)
-        updateFriends()
+        print("location did change", #function)
+        //fupdateFriends()
     }
 }
 

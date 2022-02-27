@@ -97,23 +97,10 @@ final class QueueAPIService {
         }
     }
     
-    
-    static func stopFindingHobbyFriends( completion: @escaping (Friends?, APIErrorCode?) -> Void) {
+    static func stopSearchFriends( completion: @escaping (String?, APIErrorCode?) -> Void) {
         
         provider.request(.stopFindingHobbyFriends) { result in
-            switch ResponseData<Friends>.processJSONResponse(result) {
-            case .success(let model):
-                return completion(model, nil)
-            case .failure(let error):
-                return completion(nil, error)
-            }
-        }
-    }
-    
-    static func stopSearchFriends( completion: @escaping (Friends?, APIErrorCode?) -> Void) {
-        
-        provider.request(.stopFindingHobbyFriends) { result in
-            switch ResponseData<Friends>.processJSONResponse(result) {
+            switch ResponseData<String>.processResponse(result) {
             case .success(let model):
                 return completion(model, nil)
             case .failure(let error):

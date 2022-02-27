@@ -57,8 +57,6 @@ final class withdrawalViewController: UIViewController {
             case .ok, .notAcceptable:
                 print("회원탈퇴완료되었습니다. 뷰컨")
                 self.coordinator?.finishToOnboarding()
-//                let vc = OnboardingViewController()
-//                self.navigationController?.pushViewController(vc, animated: true)
             case .unAuthorized:
                 self.okButtonClicked()
             case .networkError:

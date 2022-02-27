@@ -11,6 +11,10 @@ enum NetworkErrorMessage: String {
     case notConnected = "네트워크 연결이 원활하지 않습니다. 연결상태 확인 후 다시 시도해 주세요!"
 }
 
+enum notAcceptable: String {
+    case notAcceptableUser = "오류가 발생했습니다.\n다시 로그인 해주세요."
+}
+
 enum requestVerificationCodeToast: String {
     case isValid = "전화 번호 인증 시작"
     case invalidPhoneFormat = "잘못된 전화번호 형식입니다."
@@ -54,4 +58,7 @@ enum AddMyHobbyToast: String {
     case numberLimit = "취미는 8개를 넘을 수 없어요."
 }
 
-
+enum FindingToast: String {
+    case alreadyMatched = "누군가와 취미를 함께하기로 약속하셨어요!"
+    
+}

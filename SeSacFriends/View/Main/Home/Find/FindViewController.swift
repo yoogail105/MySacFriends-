@@ -16,10 +16,11 @@ final class FindViewController: TabmanViewController {
     private var viewControllers: Array<UIViewController> = []
     
     let mainView = FindView()
+    let viewModel = FindViewModel()
+    weak var coordinator: HomeCoordinator?
     
     let changeButton = BaseButton().then {
         $0.buttonMode(.fill, title: HobbyViewText.changeHobby.rawValue)
-    
     }
     
     let refreshButton = BaseButton().then {
@@ -33,6 +34,16 @@ final class FindViewController: TabmanViewController {
     
     override func loadView() {
         self.view = mainView
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        tabBarController?.tabBar.isHidden = true
+        
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        tabBarController?.tabBar.isHidden = false
     }
     
     
@@ -73,11 +84,39 @@ final class FindViewController: TabmanViewController {
         let backButton = UIBarButtonItem(image: UIImage(named: AssetIcon.backArrow.rawValue), style: .done, target: self, action: #selector(back))
         self.navigationItem.leftBarButtonItem?.tintColor = UIColor.black
         self.navigationItem.leftBarButtonItem = backButton
-        self.navigationItem.leftBarButtonItem?.tintColor = UIColor.black
+        
+        let stopButton = UIBarButtonItem(title: FindText.stopFinding.rawValue, style: .done, target: self, action: #selector(stopFindingButtonClicked))
+        self.navigationItem.rightBarButtonItem = stopButton
+        self.navigationItem.rightBarButtonItem?.tintColor = UIColor.black
+        
     }
     
     @objc func back() {
         self.navigationController?.popViewController(animated: true)
+    }
+    
+    @objc func stopFindingButtonClicked() {
+        viewModel.stopFinding()
+        viewModel.onErrorHandling = { result in
+            switch result {
+            case .ok:
+                self.coordinator?.startPush()
+                
+            case .created:
+                self.showToastWithAction(message: FindingToast.alreadyMatched.rawValue) {
+                    self.coordinator?.pushToChatting()
+                }
+                print("notacceptable")
+            case .notAcceptable:
+                self.showToastWithAction(message: notAcceptable.notAcceptableUser.rawValue) {
+                    self.coordinator?.finishToOnboarding()
+                }
+            default:
+                self.showToast(message: APIErrorMessage.unKnownError.rawValue)
+            }
+            
+        }
+        
     }
     
   
