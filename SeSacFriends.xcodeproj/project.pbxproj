@@ -118,10 +118,11 @@
 		23BE83F227B724C000416C6E /* ResponseData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23BE83F127B724C000416C6E /* ResponseData.swift */; };
 		23BE83F427B7AC9C00416C6E /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23BE83F327B7AC9C00416C6E /* UserService.swift */; };
 		23BE83F627B7AE4600416C6E /* UserRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23BE83F527B7AE4600416C6E /* UserRequest.swift */; };
+		23C41EA827CE90AE00922A56 /* ReceivedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23C41EA727CE90AE00922A56 /* ReceivedView.swift */; };
 		23C97FC527ADC36A0087A239 /* AlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23C97FC427ADC36A0087A239 /* AlertView.swift */; };
 		23CC363A27BC68CC005FE3F0 /* MyQueueState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23CC363927BC68CC005FE3F0 /* MyQueueState.swift */; };
 		23CC363C27BC6D4F005FE3F0 /* NearByNearByViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23CC363B27BC6D4F005FE3F0 /* NearByNearByViewController.swift */; };
-		23CC363E27BC6DA0005FE3F0 /* RequestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23CC363D27BC6DA0005FE3F0 /* RequestViewController.swift */; };
+		23CC363E27BC6DA0005FE3F0 /* ReceivedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23CC363D27BC6DA0005FE3F0 /* ReceivedViewController.swift */; };
 		23CC364027BC9953005FE3F0 /* CollectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23CC363F27BC9953005FE3F0 /* CollectionHeaderView.swift */; };
 		23CC364227BCA9D7005FE3F0 /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23CC364127BCA9D7005FE3F0 /* NetworkMonitor.swift */; };
 		5C93FDF7CAC2E24622416FBC /* Pods_SeSacFriends.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9567CF4BC81C9EA3D52C0EEB /* Pods_SeSacFriends.framework */; };
@@ -242,10 +243,11 @@
 		23BE83F127B724C000416C6E /* ResponseData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseData.swift; sourceTree = "<group>"; };
 		23BE83F327B7AC9C00416C6E /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		23BE83F527B7AE4600416C6E /* UserRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRequest.swift; sourceTree = "<group>"; };
+		23C41EA727CE90AE00922A56 /* ReceivedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceivedView.swift; sourceTree = "<group>"; };
 		23C97FC427ADC36A0087A239 /* AlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertView.swift; sourceTree = "<group>"; };
 		23CC363927BC68CC005FE3F0 /* MyQueueState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQueueState.swift; sourceTree = "<group>"; };
 		23CC363B27BC6D4F005FE3F0 /* NearByNearByViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearByNearByViewController.swift; sourceTree = "<group>"; };
-		23CC363D27BC6DA0005FE3F0 /* RequestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestViewController.swift; sourceTree = "<group>"; };
+		23CC363D27BC6DA0005FE3F0 /* ReceivedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceivedViewController.swift; sourceTree = "<group>"; };
 		23CC363F27BC9953005FE3F0 /* CollectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionHeaderView.swift; sourceTree = "<group>"; };
 		23CC364127BCA9D7005FE3F0 /* NetworkMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMonitor.swift; sourceTree = "<group>"; };
 		2A124371AB832A99FA8DE1C1 /* Pods-SeSacFriends.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SeSacFriends.release.xcconfig"; path = "Target Support Files/Pods-SeSacFriends/Pods-SeSacFriends.release.xcconfig"; sourceTree = "<group>"; };
@@ -326,11 +328,11 @@
 			isa = PBXGroup;
 			children = (
 				23439AE827BB2A0900F79318 /* FindViewController.swift */,
-				23A851B027CB9433005FFC7F /* ChattingViewController.swift */,
 				23A851AE27CB8867005FFC7F /* FindViewModel.swift */,
 				23B7A36427C476FE00B9CED3 /* NearByView.swift */,
+				23C41EA727CE90AE00922A56 /* ReceivedView.swift */,
 				23CC363B27BC6D4F005FE3F0 /* NearByNearByViewController.swift */,
-				23CC363D27BC6DA0005FE3F0 /* RequestViewController.swift */,
+				23CC363D27BC6DA0005FE3F0 /* ReceivedViewController.swift */,
 				23439AEA27BB2A0F00F79318 /* FindView.swift */,
 			);
 			path = Find;
@@ -409,6 +411,7 @@
 				233D799227B8DF3600BA0671 /* Friends */,
 				233D799127B8DF2600BA0671 /* Shop */,
 				232FCFFB27B1022F00A2558C /* Home */,
+				23C41EA627CE8B5700922A56 /* Chat */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -652,6 +655,14 @@
 				23BE83EF27B70F4700416C6E /* QueueRequest.swift */,
 			);
 			path = Queue;
+			sourceTree = "<group>";
+		};
+		23C41EA627CE8B5700922A56 /* Chat */ = {
+			isa = PBXGroup;
+			children = (
+				23A851B027CB9433005FFC7F /* ChattingViewController.swift */,
+			);
+			path = Chat;
 			sourceTree = "<group>";
 		};
 		23CC363727BC6781005FE3F0 /* Auth */ = {
@@ -905,10 +916,11 @@
 				23439AE927BB2A0900F79318 /* FindViewController.swift in Sources */,
 				234CEC0D279AF61500983E20 /* PageViewController.swift in Sources */,
 				234CEC1B279C51C700983E20 /* Text.swift in Sources */,
-				23CC363E27BC6DA0005FE3F0 /* RequestViewController.swift in Sources */,
+				23CC363E27BC6DA0005FE3F0 /* ReceivedViewController.swift in Sources */,
 				234CEC0B279AB3D500983E20 /* UIView+Extension.swift in Sources */,
 				2323AEBA27A7048C00895CC7 /* NameTableViewCell.swift in Sources */,
 				236BE66E27BE6009008E4040 /* Coordinator.swift in Sources */,
+				23C41EA827CE90AE00922A56 /* ReceivedView.swift in Sources */,
 				236820D127B460D800C79EAC /* QueueViewModel.swift in Sources */,
 				23BE83F427B7AC9C00416C6E /* UserService.swift in Sources */,
 				23ADC14227AB1F3F00101C43 /* ReviewTableViewCell.swift in Sources */,

@@ -7,8 +7,8 @@
 
 import UIKit
 
-class RequestViewController: UIViewController {
-    let mainView = FindView()
+class ReceivedViewController: UIViewController {
+    let mainView = ReceivedView()
     
     
     override func loadView() {

@@ -201,7 +201,7 @@ class HomeViewController: UIViewController {
             
             case .unAuthorized:
                 print("재요청")
-//                self.updateFriends()
+                self.updateFriends()
             case .networkError:
                 self.showToast(message: APIErrorMessage.networkError.rawValue)
             default:
