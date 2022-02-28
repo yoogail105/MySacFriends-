@@ -10,6 +10,8 @@ import RxRelay
 import MapKit
 import Moya
 import RxSwift
+import RxCocoa
+import AVFoundation
 
 
 enum SelectedGender {
@@ -22,8 +24,8 @@ class QueueViewModel {
     var onErrorHandling: ((APIErrorCode) -> Void)?
     
     var totalFriends: [Friend] = []
+    var nearFriends: [Friend] = []
     var requestedFriends: [Friend] = []
-    
     
     var fromRecommendHobbyList: [String] = []
     var friendsHobbyList: [String] = []
@@ -58,7 +60,43 @@ class QueueViewModel {
             return 0
         }
     }
-
+    
+    func searchMatchedFriends(_ completion: ((Result<Bool, APIErrorCode>) -> Void)? = nil) {
+        checkNetworking()
+        print(#function)
+        var nearFriends: [Friend] = []
+        var requestedFriends: [Friend] = []
+        
+        let resultRegion = calculateRegion(lat: currentLatitude, long: currentLongitude)
+        let request = OnQueueRequest(region: resultRegion, lat: currentLatitude, long: currentLongitude)
+        
+        QueueAPIService.searchHobbyFriends(param: request) { friends, error in
+            
+            if let error = error {
+                // error != nil
+                print("error \(error)")
+            }
+            
+            if let friends = friends {
+                for friend in friends.fromQueueDB {
+                    // self.totalFriends.append(contentsOf: [friend])
+                    self.myHobbyList.forEach {
+                        if friend.hf.contains($0) {
+                            self.nearFriends.append(friend)
+                            print("appedn: \(friend.nick)")
+                            return
+                        }
+                    }
+                }
+                for requestedFriend in friends.fromQueueDBRequested {
+                    self.requestedFriends.append(contentsOf: [requestedFriend])
+                    
+                }
+            }
+        }
+    }
+    
+    
     
     //onqueue
     func searchFriends(_ completion: ((Result<Bool, APIErrorCode>) -> Void)? = nil) {
@@ -68,7 +106,6 @@ class QueueViewModel {
         requestedFriends = []
         fromRecommendHobbyList = []
         friendsHobbyList = []
-        myHobbyList = []
         
         let selectedGender = selectedGender(gender: genderObservable.value)
         let resultRegion = calculateRegion(lat: currentLatitude, long: currentLongitude)
@@ -88,15 +125,15 @@ class QueueViewModel {
                 }
             }
             
-            
             guard let friends = friends else {
                 return
             }
-
-        
+            
             print("searchHobbyFriends:", friends)
             for hobby in friends.fromRecommend {
-                self.fromRecommendHobbyList.append(contentsOf: [hobby])
+                if hobby != "" {
+                    self.fromRecommendHobbyList.append(contentsOf: [hobby])
+                }
             }
             
             switch self.genderObservable.value {
@@ -104,8 +141,10 @@ class QueueViewModel {
                 for friend in friends.fromQueueDB {
                     self.totalFriends.append(contentsOf: [friend])
                     for hobby in friend.hf {
+                        if hobby != "" {
                         if !self.friendsHobbyList.contains(hobby){
                             self.friendsHobbyList.append(hobby)
+                        }
                         }
                     }
                     
@@ -113,7 +152,9 @@ class QueueViewModel {
                 for requestedFriend in friends.fromQueueDBRequested {
                     self.requestedFriends.append(contentsOf: [requestedFriend])
                     for hobby in requestedFriend.hf {
+                        if hobby != "" {
                         self.friendsHobbyList.append(hobby)
+                        }
                     }
                 }
             default:
@@ -121,7 +162,9 @@ class QueueViewModel {
                     if friend.gender == selectedGender {
                         self.totalFriends.append(contentsOf: [friend])
                         for hobby in friend.hf {
+                            if hobby != "" {
                             self.friendsHobbyList.append(hobby)
+                            }
                         }
                     }
                 }
@@ -129,59 +172,57 @@ class QueueViewModel {
                     if requestedFriend.gender == selectedGender {
                         self.requestedFriends.append(contentsOf: [requestedFriend])
                         for hobby in requestedFriend.hf {
+                            if hobby != "" {
                             self.friendsHobbyList.append(hobby)
+                            }
                         }
                     }
                 }
             }
             self.onErrorHandling?(.ok)
-            
-            
-      
         }
     }
+    
+    
     
     func requestFindHobbyFriends(_ completion: ((Result<Bool, APIErrorCode>) -> Void)? = nil) {
         checkNetworking()
         
-        //        let latitude = latObservable.value
-        //        let longitude = longObservable.value
-        //        let resultRegion = calculateRegion(lat: latitude, long: longitude)
-        //
-        //        let request = QueueRequest(type: 2, region: resultRegion, lat: latitude, long: longitude, hf: self.myHobbyList)
-        //        QueueAPIService.requestFindHobbyFriends2(param: request, completion: {friends, error in
-        QueueAPIService.requestFindHobbyFriends { result, error in
+        let latitude = currentLatitude
+        let longitude = currentLongitude
+        let resultRegion = calculateRegion(lat: latitude, long: longitude)
+        
+        let request = QueueRequest(type: 2, region: resultRegion, long: longitude, lat: latitude, hf: self.myHobbyList)
+        print(request)
+        QueueAPIService.requestFindHobbyFriends2( param: request, completion: {result, error in
             
-            //            if error == nil {
-            //                self.onErrorHandling?(.ok)
-            //                return
-            //            }
-            print("requestFindHobbyFriends error: \(error?.rawValue)")
-            
-            switch error?.rawValue {
-            case 200:
+            if error != nil {
+                switch error?.rawValue {
+                case 201:
+                    self.onErrorHandling?(.created)
+                    return
+                case 203:
+                    self.onErrorHandling?(.firstPenalty)
+                    return
+                case 204:
+                    self.onErrorHandling?(.secondPenalty)
+                    return
+                case 205:
+                    self.onErrorHandling?(.finalPenalty)
+                    return
+                case 206:
+                    self.onErrorHandling?(.emptyGender)
+                    return
+                default:
+                    self.onErrorHandling?(.internalServerError)
+                    return
+                }
+            } else {
+                UserDefaults.standard.matchingStatus = MatchingStatus.ing.rawValue
                 self.onErrorHandling?(.ok)
                 return
-            case 201:
-                self.onErrorHandling?(.created)
-                return
-            case 203:
-                self.onErrorHandling?(.firstPenalty)
-                return
-            case 204:
-                self.onErrorHandling?(.secondPenalty)
-                return
-            case 205:
-                self.onErrorHandling?(.finalPenalty)
-                return
-            case 206:
-                self.onErrorHandling?(.emptyGender)
-                return
-            default:
-                self.onErrorHandling?(.internalServerError)
-                return
             }
-        }
+        })
     }
     
     func setFriendSesacImage(imgaeNumber: Int) -> String {
@@ -214,4 +255,32 @@ class QueueViewModel {
         
         return Int(region)!
     }
+    
+    func stopFinding(_ completion: ((Result<Bool, APIErrorCode>) -> Void)? = nil) {
+        
+        QueueAPIService.stopSearchFriends { result, error in
+            
+            if let error = error {
+                switch error {
+                case .created:
+                    self.onErrorHandling?(.created)
+                case .notAcceptable:
+                    self.onErrorHandling?(.notAcceptable)
+                case .unAuthorized:
+                    self.stopFinding()
+                    self.onErrorHandling?(.unAuthorized)
+                default:
+                    self.onErrorHandling?(.internalServerError)
+                }
+            } else {
+                UserDefaults.standard.matchingStatus = MatchingStatus.normal.rawValue
+                self.onErrorHandling?(.ok)
+            }
+            
+        }
+        
+    }
+    
+    
+    
 }
