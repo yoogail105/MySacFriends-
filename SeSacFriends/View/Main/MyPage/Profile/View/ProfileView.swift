@@ -15,6 +15,7 @@ class ProfileView: BaseUIView {
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.backgroundColor = .white
         $0.showsVerticalScrollIndicator = false
+        $0.showsHorizontalScrollIndicator = false
     }
     
     let contentView = UIView().then {

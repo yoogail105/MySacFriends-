@@ -7,12 +7,19 @@
 
 import UIKit
 import SnapKit
+import Then
 
 class FriendCardTableViewCell: UITableViewCell {
     
     static let identifier = "FriendCardTableViewCell"
+    let profileCardView = ProfileCardView().then {
+        $0.isFriend = true
     
-    let profileCardView = ProfileCardView()
+    }
+
+    let requestButton = BaseButton().then {
+        $0.setTitle(ProfileDetailText.request.rawValue, for: .normal)
+    }
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -24,20 +31,45 @@ class FriendCardTableViewCell: UITableViewCell {
     }
     
     func configureCell(row: Friend) {
+        /*
+        row.nick
+        row.reputation
+        row.reviews
+        
+         */
+        //row.sesac
+        //row.background
 //        profileCardView.headerView.backgroundImage = row.background
 //        profileCardView.headerView.userImage = row.sesac
-        profileCardView.headerView.userImage.image = UIImage(named: SesacIcon.face3.rawValue)
-
+        profileCardView.friend = row
+        profileCardView.tableView.reloadData()
+        
+        let userSesac = "\(SesacIcon.face.rawValue)\(row.sesac)"
+        let defaultSesac = SesacIcon.face0.rawValue
+        let userBackground = "\(BackgroundImage.back.rawValue)\(row.background)"
+        print("background: \(userBackground)")
+        let defaultBackground = BackgroundImage.back0.rawValue
+        
+        profileCardView.headerView.userImage.image = UIImage(named: (SesacIcon(rawValue: userSesac)?.rawValue) ?? defaultSesac)
+        profileCardView.headerView.backgroundImage.image = UIImage(named: (BackgroundImage(rawValue: userBackground)?.rawValue) ?? defaultBackground)
         
     }
     
     func constraints() {
         addSubview(profileCardView)
         
+        profileCardView.headerView.addSubview(requestButton)
+        requestButton.snp.makeConstraints {
+            $0.top.equalToSuperview().offset(12)
+            $0.trailing.equalToSuperview().offset(-12)
+            $0.height.equalTo(40)
+            $0.width.equalTo(80)
+        }
         profileCardView.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
     }
     
-}
 
+    
+}

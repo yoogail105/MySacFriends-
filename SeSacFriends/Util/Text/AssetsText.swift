@@ -51,6 +51,7 @@ enum TabBarIcon: String {
 }
 
 enum SesacIcon: String, CaseIterable {
+    case face = "sesac_face_"
     case face0 = "sesac_face_0"
     case face1 = "sesac_face_1"
     case face2 = "Oesac_face_2"
@@ -69,7 +70,16 @@ enum myPageMenuIcon: String, CaseIterable {
 
 enum BackgroundImage: String {
     case black = "sesac_bg_black"
-    case color = "sesac_bg_color"
+    case back = "sesac_background_"
+    case back0 = "sesac_background_0"
+    case back1 = "sesac_background_1"
+    case back2 = "sesac_background_2"
+    case back3 = "sesac_background_3"
+    case back4 = "sesac_background_4"
+    case back5 = "sesac_background_5"
+    case back6 = "sesac_background_6"
+    case back7 = "sesac_background_7"
+    case back8 = "sesac_background_8"
 }
 
 enum homeIcon: String {

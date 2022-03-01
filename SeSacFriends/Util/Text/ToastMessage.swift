@@ -32,11 +32,8 @@ enum FirebaseAuthErrorCodeToast: String {
 enum SignUpToast: String {
     case nicknameCountError = "닉네임은 1자 이상 10자 이내로 부탁드려요."
     case invalidNickname = "해당 닉네임은 사용할 수 없습니다."
-    
     case invalidBirth = "새싹친구는 만 17세 이상만 사용할 수 있습니다."
-    
     case invalidEmail = "이메일 형식이 올바르지 않습니다."
-    
 }
 
 enum RequestFriendToast: String {

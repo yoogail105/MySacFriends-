@@ -18,6 +18,7 @@ class NearByView: BaseUIView {
         $0.register(MyPageProfileTableViewCell.self, forCellReuseIdentifier: MyPageProfileTableViewCell.identifier)
     }
     
+    
     var sesacBlackImage = UIImageView().then {
         $0.image = UIImage(named: AssetIcon.sesacBlack.rawValue)
     }

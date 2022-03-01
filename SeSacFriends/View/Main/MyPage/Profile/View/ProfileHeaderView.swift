@@ -10,7 +10,7 @@ import UIKit
 import CoreText
 class ProfileHeaderView: BaseUIView {
     var backgroundImage = UIImageView().then {
-        $0.image = UIImage(named: BackgroundImage.color.rawValue)
+        $0.image = UIImage(named: BackgroundImage.back0.rawValue)
         $0.layer.cornerRadius = 8
         $0.clipsToBounds = true
     }

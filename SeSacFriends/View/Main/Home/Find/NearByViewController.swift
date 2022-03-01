@@ -19,6 +19,10 @@ class NearByViewController: BaseViewController {
         self.view = mainView
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        tabBarController?.tabBar.isHidden = false
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -70,7 +74,7 @@ class NearByViewController: BaseViewController {
 extension NearByViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         print("viewModel.nearFriends.count=\(viewModel?.nearFriends.count)")
-        return viewModel!.nearFriends.count
+        return viewModel!.nearFriendsObserver.value.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -87,7 +91,7 @@ extension NearByViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
 
-        return 500
+        return 510
     }
     
 }

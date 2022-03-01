@@ -9,6 +9,9 @@ import UIKit
 
 class ProfileCardView: BaseUIView {
     
+    var isFriend = false
+    var friend: Friend?
+    
     var sectionTitles: [String] = []
     var userTitles: [String] = []
     
@@ -17,9 +20,12 @@ class ProfileCardView: BaseUIView {
     
     let tableView = UITableView().then {
         $0.layer.cornerRadius = 8
+        $0.isScrollEnabled = false
         $0.clipsToBounds = true
         $0.layer.borderColor = UIColor.grayColor(.gray3).cgColor
         $0.layer.borderWidth = 1
+        $0.separatorStyle = .none
+        
     }
     
     let titleCollectionView: UICollectionView = {
@@ -115,11 +121,12 @@ extension ProfileCardView: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        print(indexPath)
         switch indexPath {
         case [0, 0]:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: NameTableViewCell.identifier, for: indexPath) as? NameTableViewCell else { return UITableViewCell()}
-            cell.label.text = UserDefaults.standard.nickname
+        
+                cell.label.text = friend?.nick ?? UserDefaults.standard.nickname
+          
             cell.selectionStyle = .none
             return cell
         case [1, 0]:
@@ -128,7 +135,11 @@ extension ProfileCardView: UITableViewDelegate, UITableViewDataSource {
             return cell
         case [2, 0]:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: ProfileCardReviewTableViewCell.identifier, for: indexPath) as? ProfileCardReviewTableViewCell else { return UITableViewCell()}
-            //cell.backgroundColor = .yellow
+            cell.label.text = friend?.reviews.first ?? ProfileDetailText.reviewPlaceholder.rawValue
+            if friend?.reviews.first == nil {
+                cell.label.textColor = UIColor.grayColor(.gray6)
+            }
+            
             cell.selectionStyle = .none
         
             return cell

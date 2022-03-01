@@ -27,7 +27,7 @@ class ProfileDetailView: BaseUIView {
     let withdrawalButton = UIButton()
     
     let backgroundImage = UIImageView().then {
-        $0.image = UIImage(named: BackgroundImage.color.rawValue)
+        $0.image = UIImage(named: BackgroundImage.back0.rawValue)
     }
     
     let userImage = UIImageView().then {
