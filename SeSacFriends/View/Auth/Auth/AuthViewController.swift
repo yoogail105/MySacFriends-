@@ -49,6 +49,10 @@ class AuthViewController: BaseViewController {
         if !NetworkMonitor.shared.isConnected {
             self.showToast(message: NetworkErrorMessage.notConnected.rawValue)
         }
+        
+        if userDefaults.FCMToken == nil {
+            viewModel.fetchFCMToken()
+        }
     }
  
     override func bind() {

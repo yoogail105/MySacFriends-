@@ -6,6 +6,8 @@
 //
 
 import Foundation
+
+import Firebase
 import RxSwift
 import RxRelay
 
@@ -124,7 +126,9 @@ class AuthViewModel {
             }
         }
     }
-        
-        
+    
+    func fetchFCMToken() {
+        checkNetworking()
+        AuthAPIService.fetchFCMToken()
+    }
 }
-

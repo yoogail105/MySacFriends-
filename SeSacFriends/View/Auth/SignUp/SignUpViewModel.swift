@@ -26,9 +26,21 @@ class SignUpViewModel {
         return nicknameObserver.map { $0 != "" ? true : false }
      }
     
+    func checkNetworking() {
+        if !NetworkMonitor.shared.isConnected {
+            self.onErrorHandling?(.networkError)
+            return
+        }
+    }
+    
     func postSignUp( _ completion: ((Result<Bool, APIErrorCode>) -> Void)? = nil) {
-        
-        let request = SignUpRequest(phoneNumber: UserDefaults.standard.phoneNumber, FCMtoken: UserDefaults.standard.FCMToken!, nick: UserDefaults.standard.nickname, birth: UserDefaults.standard.birth!, email: UserDefaults.standard.email, gender: UserDefaults.standard.gender)
+        checkNetworking()
+        let request = SignUpRequest(phoneNumber: UserDefaults.standard.phoneNumber,
+                                    FCMtoken: UserDefaults.standard.FCMToken!,
+                                    nick: UserDefaults.standard.nickname,
+                                    birth: UserDefaults.standard.birth!,
+                                    email: UserDefaults.standard.email,
+                                    gender: UserDefaults.standard.gender)
         
         UserAPIService.signUp(param: request) { user, error in
             print("postSignUp:\(error)")
@@ -60,6 +72,10 @@ class SignUpViewModel {
            
         }
     }
-
+    
+    func fetchFCMToken() {
+        checkNetworking()
+        AuthAPIService.fetchFCMToken()
+    }
 }
 

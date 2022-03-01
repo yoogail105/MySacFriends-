@@ -10,7 +10,7 @@ import UIKit
 class NearByViewController: UIViewController {
     
     let mainView = NearByView()
-    
+    let viewModel = FindViewController().viewModel
     
     override func loadView() {
         self.view = mainView
@@ -18,7 +18,11 @@ class NearByViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        addFriends()
     }
     
-    
+    func addFriends() {
+        print("viewmodel: \(viewModel.nearFriends)")
+    }
 }

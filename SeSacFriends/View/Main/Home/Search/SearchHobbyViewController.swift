@@ -50,7 +50,6 @@ class SearchHobbyViewController: BaseViewController {
         if let flowLayout = collectionView?.collectionViewLayout as? UICollectionViewFlowLayout {
               flowLayout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
             }
-//willShow
         
         collectionView?.register(CollectionHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: CollectionHeaderView.identifier)
         
@@ -97,8 +96,6 @@ class SearchHobbyViewController: BaseViewController {
                 self.showToast(message: APIErrorMessage.unKnownError.rawValue)
             }
         }
-    
-        
     }
     
     func setCollectionView() {
@@ -153,11 +150,12 @@ class SearchHobbyViewController: BaseViewController {
     
     func searchButtonClicked() {
         print("시작")
+        viewModel.requestFindHobbyFriends()
         viewModel.onErrorHandling = { result in
             switch result {
             case .ok:
                 print("화면이동함")
-                self.coordinator?.pushToFindFriends()
+                self.coordinator?.pushToFindFriends(lat: self.viewModel.currentLatitude, long: self.viewModel.currentLongitude, myHobbyList: self.viewModel.myHobbyList)
             case .unAuthorized:
                 self.searchButtonClicked()
             case .created:
@@ -177,7 +175,7 @@ class SearchHobbyViewController: BaseViewController {
             }
             
         }
-        viewModel.requestFindHobbyFriends()
+        
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){
@@ -214,6 +212,7 @@ extension SearchHobbyViewController: UICollectionViewDelegate, UICollectionViewD
             
         default:
             // 내가 하고 싶은
+            print(viewModel.myHobbyList.count)
             return viewModel.myHobbyList.count
         }
     }

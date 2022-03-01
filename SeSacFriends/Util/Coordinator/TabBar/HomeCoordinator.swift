@@ -33,6 +33,17 @@ class HomeCoordinator: Coordinator {
 }
 
 extension HomeCoordinator{
+    
+    func pushToMatchingMap(lat: Double, long: Double, myHobbyList: [String]) {
+        print(#function)
+        let rootViewController = HomeViewController()
+        rootViewController.coordinator = self
+        rootViewController.viewModel.currentLatitude = lat
+        rootViewController.viewModel.currentLongitude = long
+        rootViewController.viewModel.myHobbyList = myHobbyList
+        self.navigationController.pushViewController(rootViewController, animated: true)
+        
+    }
 
     
     func pushToSearchHobby(lat: Double, long: Double) {
@@ -41,22 +52,35 @@ extension HomeCoordinator{
         rootViewController.coordinator = self
         rootViewController.viewModel.currentLatitude = lat
         rootViewController.viewModel.currentLongitude = long
-        print("lat:\(lat), long: \(long)")
         self.navigationController.pushViewController(rootViewController, animated: true)
     }
     
-    func pushToFindFriends() {
-        let rootViewController = FindViewController()
+    func pushToSearchHobbyWithHobby(lat: Double, long: Double, myHobbyList: [String]) {
+        print(#function)
+        let rootViewController = SearchHobbyViewController()
         rootViewController.coordinator = self
+        rootViewController.viewModel.currentLatitude = lat
+        rootViewController.viewModel.currentLongitude = long
+        rootViewController.viewModel.myHobbyList = myHobbyList
         self.navigationController.pushViewController(rootViewController, animated: true)
     }
+    
+    func pushToFindFriends(lat: Double, long: Double, myHobbyList: [String]) {
+        print("랄라")
+        let rootViewController = FindViewController()
+        rootViewController.coordinator = self
+        rootViewController.viewModel.currentLatitude = lat
+        rootViewController.viewModel.currentLongitude = long
+        rootViewController.viewModel.myHobbyList = myHobbyList
+        self.navigationController.pushViewController(rootViewController, animated: true)
+    }
+
     
     func pushToChatting() {
         let rootViewController = ChattingViewController()
         rootViewController.coordinator = self
         self.navigationController.pushViewController(rootViewController, animated: true)
     }
-    
     // coordinator 간 전환으로 변경하기
     func finishForGender() {
         let rootViewController = ProfileViewController()
@@ -67,6 +91,8 @@ extension HomeCoordinator{
     func finishToOnboarding() {
         parentCoordinator?.parentCoordinator?.start()
     }
+    
+    
     
     func finish() {
         parentCoordinator?.childDidFinish(self)

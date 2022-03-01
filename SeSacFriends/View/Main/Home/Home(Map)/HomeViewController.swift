@@ -113,20 +113,20 @@ class HomeViewController: UIViewController {
             .disposed(by: disposeBag)
         
         //home뷰에서 알아서 바뀌나?
-        viewModel.matchingStatusObservable
-            .subscribe(onNext: { status in
-                var imageName = ""
-                switch status {
-                case .normal:
-                    imageName = homeIcon.finding.rawValue
-                case .done:
-                    imageName = homeIcon.message.rawValue
-                case .ing:
-                    imageName = homeIcon.search.rawValue
-                }
-                self.mainView.floatingButton.setImage(UIImage(named: imageName), for: .normal)
-            })
-            .disposed(by: disposeBag)
+//        viewModel.matchingStatusObservable
+//            .subscribe(onNext: { status in
+//                var imageName = ""
+//                switch status {
+//                case .normal:
+//                    imageName = homeIcon.finding.rawValue
+//                case .done:
+//                    imageName = homeIcon.message.rawValue
+//                case .ing:
+//                    imageName = homeIcon.search.rawValue
+//                }
+//                self.mainView.floatingButton.setImage(UIImage(named: imageName), for: .normal)
+//            })
+//            .disposed(by: disposeBag)
     }
     
     func checkUser() {
@@ -201,7 +201,7 @@ class HomeViewController: UIViewController {
             
             case .unAuthorized:
                 print("재요청")
-                self.updateFriends()
+                //self.updateFriends()
             case .networkError:
                 self.showToast(message: APIErrorMessage.networkError.rawValue)
             default:

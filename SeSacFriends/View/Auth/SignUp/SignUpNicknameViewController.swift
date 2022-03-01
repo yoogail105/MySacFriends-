@@ -35,6 +35,11 @@ class SignUpNicknameViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         userDefaults.startMode = StartMode.onBoarding.rawValue
+        
+        if userDefaults.FCMToken == nil {
+            viewModel.fetchFCMToken()
+        }
+
     }
     
     override func bind() {
@@ -79,6 +84,10 @@ class SignUpNicknameViewController: BaseViewController {
             })
             .disposed(by: disposeBag)
     
+        
+    }
+    
+    private func fetchFCMToken() {
         
     }
     

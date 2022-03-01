@@ -5,21 +5,26 @@
 //  Created by 성민주민주 on 2022/02/15.
 //
 
+
 import UIKit
+import RxSwift
+import RxCocoa
+
 import Tabman
 import Pageboy
-import Then
-import SnapKit
+
+
 
 final class FindViewController: TabmanViewController {
     
     private var viewControllers: Array<UIViewController> = []
     
     let mainView = FindView()
-    let viewModel = FindViewModel()
+    let viewModel = QueueViewModel()
     
     weak var coordinator: HomeCoordinator?
-
+    
+    let disposeBag = DisposeBag()
     override func loadView() {
         self.view = mainView
     }
@@ -39,6 +44,8 @@ final class FindViewController: TabmanViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupNavigationBar()
+        updateFriends()
+        
         
         let firstVC = NearByViewController()
         let secondVC = ReceivedViewController()
@@ -49,6 +56,9 @@ final class FindViewController: TabmanViewController {
         self.dataSource = self
         let bar = mainView.bar
         addBar(bar, dataSource: self, at: .top)
+        
+        bind()
+
         
     }
     
@@ -65,8 +75,9 @@ final class FindViewController: TabmanViewController {
         
     }
     
+    
     @objc func back() {
-        self.navigationController?.popViewController(animated: true)
+        coordinator?.pushToMatchingMap(lat: viewModel.currentLongitude, long: viewModel.currentLongitude, myHobbyList: viewModel.myHobbyList)
     }
     
     @objc func stopFindingButtonClicked() {
@@ -91,6 +102,43 @@ final class FindViewController: TabmanViewController {
             
         }
         
+    }
+    
+    func bind(){
+        mainView.changeButton.rx.tap
+            .bind {
+                self.changeHobby()
+            }
+            .disposed(by: disposeBag)
+        
+        mainView.refreshButton.rx.tap
+            .bind {
+                self.updateFriends()
+            }
+            .disposed(by: disposeBag)
+    }
+    
+    func changeHobby() {
+        viewModel.stopFinding()
+        viewModel.onErrorHandling = { result in
+            switch result {
+            case .ok:
+                self.coordinator?.pushToSearchHobbyWithHobby(lat: self.viewModel.currentLatitude, long: self.viewModel.currentLongitude, myHobbyList: self.viewModel.myHobbyList)
+            case .networkError:
+                self.showToast(message: APIErrorMessage.networkError.rawValue)
+            default:
+                self.showToast(message: APIErrorMessage.unKnownError.rawValue)
+            }
+            
+        }
+    }
+    
+    func updateFriends() {
+        viewModel.searchMatchedFriends()
+        viewModel.onErrorHandling = { result in
+            if result == .ok {
+                print("ok: result")}
+        }
     }
     
 }

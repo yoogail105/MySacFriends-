@@ -83,7 +83,6 @@ class QueueViewModel {
                     self.myHobbyList.forEach {
                         if friend.hf.contains($0) {
                             self.nearFriends.append(friend)
-                            print("appedn: \(friend.nick)")
                             return
                         }
                     }
@@ -280,7 +279,5 @@ class QueueViewModel {
         }
         
     }
-    
-    
     
 }

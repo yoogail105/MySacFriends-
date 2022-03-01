@@ -61,6 +61,7 @@ class HomeView: BaseUIView {
     let floatingButton = UIButton().then {
     
         var matchingStatus = MatchingStatus(rawValue: UserDefaults.standard.matchingStatus!)
+        print("matchingStatus: \(matchingStatus)")
         var imageName = ""
         
         switch matchingStatus {

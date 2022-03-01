@@ -129,6 +129,11 @@ class AuthAPIService {
             completion()
         }
    }
-
-
+    
+    static func fetchFCMToken() {
+        if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+            appDelegate.fetchFCMToken()
+            print("AuthViewModel: fetchFCMToken")
+        }
+    }
 }
