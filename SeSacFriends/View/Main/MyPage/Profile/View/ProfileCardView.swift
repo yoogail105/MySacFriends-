@@ -9,7 +9,6 @@ import UIKit
 
 class ProfileCardView: BaseUIView {
     
-    var isFriend = false
     var friend: Friend?
     
     var sectionTitles: [String] = []
@@ -136,6 +135,7 @@ extension ProfileCardView: UITableViewDelegate, UITableViewDataSource {
         case [2, 0]:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: ProfileCardReviewTableViewCell.identifier, for: indexPath) as? ProfileCardReviewTableViewCell else { return UITableViewCell()}
             cell.label.text = friend?.reviews.first ?? ProfileDetailText.reviewPlaceholder.rawValue
+            
             if friend?.reviews.first == nil {
                 cell.label.textColor = UIColor.grayColor(.gray6)
             }

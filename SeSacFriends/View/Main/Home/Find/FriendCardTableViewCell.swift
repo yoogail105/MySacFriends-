@@ -12,13 +12,12 @@ import Then
 class FriendCardTableViewCell: UITableViewCell {
     
     static let identifier = "FriendCardTableViewCell"
-    let profileCardView = ProfileCardView().then {
-        $0.isFriend = true
-    
-    }
+    let profileCardView = ProfileCardView()
 
     let requestButton = BaseButton().then {
         $0.setTitle(ProfileDetailText.request.rawValue, for: .normal)
+        $0.backgroundColor = UIColor.systemColor(.error)
+        $0.setTitleColor(.white, for: .normal)
     }
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -32,15 +31,10 @@ class FriendCardTableViewCell: UITableViewCell {
     
     func configureCell(row: Friend) {
         /*
-        row.nick
         row.reputation
         row.reviews
-        
-         */
-        //row.sesac
-        //row.background
-//        profileCardView.headerView.backgroundImage = row.background
-//        profileCardView.headerView.userImage = row.sesac
+        */
+
         profileCardView.friend = row
         profileCardView.tableView.reloadData()
         
