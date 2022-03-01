@@ -13,8 +13,9 @@ class FriendCardTableViewCell: UITableViewCell {
     
     static let identifier = "FriendCardTableViewCell"
     let profileCardView = ProfileCardView()
-
-    let requestButton = BaseButton().then {
+    var isReceicedView = false
+    
+    let button = BaseButton().then {
         $0.setTitle(ProfileDetailText.request.rawValue, for: .normal)
         $0.backgroundColor = UIColor.systemColor(.error)
         $0.setTitleColor(.white, for: .normal)
@@ -29,12 +30,16 @@ class FriendCardTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configureCell(row: Friend) {
+    func configureCell(row: Friend, status: Bool) {
         /*
         row.reputation
         row.reviews
         */
-
+        isReceicedView = status
+        if isReceicedView {
+            setButtonTitle()
+        }
+        
         profileCardView.friend = row
         profileCardView.tableView.reloadData()
         
@@ -48,12 +53,15 @@ class FriendCardTableViewCell: UITableViewCell {
         profileCardView.headerView.backgroundImage.image = UIImage(named: (BackgroundImage(rawValue: userBackground)?.rawValue) ?? defaultBackground)
         
     }
-    
+    func setButtonTitle() {
+        button.setTitle(ProfileDetailText.accept.rawValue, for: .normal)
+        button.backgroundColor = UIColor.systemColor(.success)
+    }
     func constraints() {
         addSubview(profileCardView)
         
-        profileCardView.headerView.addSubview(requestButton)
-        requestButton.snp.makeConstraints {
+        profileCardView.headerView.addSubview(button)
+        button.snp.makeConstraints {
             $0.top.equalToSuperview().offset(12)
             $0.trailing.equalToSuperview().offset(-12)
             $0.height.equalTo(40)

@@ -10,52 +10,62 @@ import UIKit
 
 class ReceivedView: BaseUIView {
     
-    let stackView = UIStackView().then {
-        $0.axis = .vertical
-        $0.spacing = 10
-        $0.alignment = .fill
-        $0.distribution = .equalSpacing
+    
+    let tableView = UITableView().then {
+        $0.rowHeight = UITableView.automaticDimension
+        $0.backgroundColor = .white
+        $0.separatorStyle = .singleLine
+        $0.register(MyPageProfileTableViewCell.self, forCellReuseIdentifier: MyPageProfileTableViewCell.identifier)
     }
     
     let sesacBlackImage = UIImageView().then {
         $0.image = UIImage(named: AssetIcon.sesacBlack.rawValue)
     }
     
-    let emptyFriendsTitle = UILabel().then {
+    let emptyTitle = UILabel().then {
         $0.text = HobbyViewText.emptyRequestTitle.rawValue
         $0.font = UIFont().Display1_R20
         $0.textColor = .black
     }
     
-    let emptyFriendsSubtitle = UILabel().then {
+    let emptySubtitle = UILabel().then {
         $0.text = HobbyViewText.emptyPageSubtitle.rawValue
         $0.font = UIFont().Title4_R14
         $0.textColor = UIColor.grayColor(.gray7)
     }
     
+    
+    
+    override func addViews() {
+        addSubview(tableView)
+        [sesacBlackImage, emptyTitle, emptySubtitle].forEach {
+            addSubview($0)
+        }
+    }
 
     override func constraints() {
         
-        [sesacBlackImage, emptyFriendsTitle, emptyFriendsSubtitle].forEach {
-            addSubview($0)
-        }
-        
-        
-        emptyFriendsTitle.snp.makeConstraints {
+        emptyTitle.snp.makeConstraints {
             $0.centerY.centerX.equalToSuperview()
         
         }
         
-        emptyFriendsSubtitle.snp.makeConstraints {
-            $0.top.equalTo(emptyFriendsTitle.snp.bottom).offset(8)
+        emptySubtitle.snp.makeConstraints {
+            $0.top.equalTo(emptyTitle.snp.bottom).offset(8)
             $0.centerX.equalToSuperview()
             
         }
         
         sesacBlackImage.snp.makeConstraints {
             $0.centerX.equalToSuperview()
-            $0.bottom.equalTo(emptyFriendsTitle.snp.top).offset(-32)
+            $0.bottom.equalTo(emptyTitle.snp.top).offset(-32)
             $0.width.height.equalTo(64)
+        }
+        
+        
+        tableView.snp.makeConstraints {
+            $0.top.leading.trailing.equalTo(self.safeAreaLayoutGuide)
+            $0.bottom.equalToSuperview().offset(-100)
         }
     }
     

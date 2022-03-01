@@ -15,24 +15,19 @@ class NearByViewController: BaseViewController {
     weak var viewModel: QueueViewModel?
     weak var tableView: UITableView?
     let disposeBag = DisposeBag()
+    
+    
     override func loadView() {
         self.view = mainView
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        tabBarController?.tabBar.isHidden = false
-    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tableView = mainView.tableView
-        tableView?.delegate = self
-        tableView?.dataSource = self
-        tableView?.register(FriendCardTableViewCell.self, forCellReuseIdentifier: FriendCardTableViewCell.identifier)
-        tableView?.register(NameTableViewCell.self, forCellReuseIdentifier: NameTableViewCell.identifier)
-        tableView?.register(TitleTableViewCell.self, forCellReuseIdentifier: TitleTableViewCell.identifier)
-        tableView?.register(ProfileCardReviewTableViewCell.self, forCellReuseIdentifier: ProfileCardReviewTableViewCell.identifier)
+        setTableView()
+       
     }
 
     override func bind() {
@@ -40,8 +35,8 @@ class NearByViewController: BaseViewController {
         viewModel?.nearFriendsObserver
             .map { $0.count != 0 ? true : false }
             .bind(to: self.mainView.sesacBlackImage.rx.isHidden,
-                  self.mainView.emptyFriendsTitle.rx.isHidden,
-                  self.mainView.emptyFriendsSubtitle.rx.isHidden
+                  self.mainView.emptyTitle.rx.isHidden,
+                  self.mainView.emptySubtitle.rx.isHidden
             )
             .disposed(by: disposeBag)
         
@@ -54,6 +49,15 @@ class NearByViewController: BaseViewController {
             .disposed(by: disposeBag)
     }
     
+    func setTableView() {
+        tableView = mainView.tableView
+        tableView?.delegate = self
+        tableView?.dataSource = self
+        tableView?.register(FriendCardTableViewCell.self, forCellReuseIdentifier: FriendCardTableViewCell.identifier)
+        tableView?.register(NameTableViewCell.self, forCellReuseIdentifier: NameTableViewCell.identifier)
+        tableView?.register(TitleTableViewCell.self, forCellReuseIdentifier: TitleTableViewCell.identifier)
+        tableView?.register(ProfileCardReviewTableViewCell.self, forCellReuseIdentifier: ProfileCardReviewTableViewCell.identifier)
+    }
     func updateFriends() {
         viewModel?.searchMatchedFriends()
         viewModel?.onErrorHandling = { result in
@@ -85,7 +89,7 @@ extension NearByViewController: UITableViewDelegate, UITableViewDataSource {
         
         let row = viewModel!.nearFriends[indexPath.row]
         print("tableView: ", row.nick)
-        cell.configureCell(row: row)
+        cell.configureCell(row: row, status: false)
         return cell
     }
     

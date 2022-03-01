@@ -21,6 +21,7 @@ enum ProfileDetailText: String {
     case review = "새싹 리뷰"
     case reviewPlaceholder = "첫 리뷰를 기다리는 중이에요!"
     case request = "요청하기"
+    case accept = "수락하기"
     
 }
 
