@@ -9,6 +9,7 @@ import UIKit
 
 class ReceivedViewController: UIViewController {
     let mainView = ReceivedView()
+    weak var viewModel: QueueViewModel?
     
     
     override func loadView() {

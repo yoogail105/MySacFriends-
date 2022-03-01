@@ -83,6 +83,7 @@
 		237B9F1A27A3DC16008A6E06 /* ProfileDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 237B9F1927A3DC16008A6E06 /* ProfileDetailView.swift */; };
 		237B9F1C27A3FB3F008A6E06 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 237B9F1B27A3FB3F008A6E06 /* ProfileViewController.swift */; };
 		237B9F2027A53F8A008A6E06 /* QueueAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 237B9F1F27A53F8A008A6E06 /* QueueAPIService.swift */; };
+		238983C827D223A700033AE2 /* FriendCardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 238983C727D223A700033AE2 /* FriendCardTableViewCell.swift */; };
 		2389E1B027967B1200BE68E3 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2389E1AF27967B1200BE68E3 /* MainViewController.swift */; };
 		2389E1B227967B9900BE68E3 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2389E1B127967B9900BE68E3 /* UIColor+Extension.swift */; };
 		2389E1C42796862A00BE68E3 /* UIFont+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2389E1C32796862A00BE68E3 /* UIFont+Extension.swift */; };
@@ -121,7 +122,7 @@
 		23C41EA827CE90AE00922A56 /* ReceivedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23C41EA727CE90AE00922A56 /* ReceivedView.swift */; };
 		23C97FC527ADC36A0087A239 /* AlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23C97FC427ADC36A0087A239 /* AlertView.swift */; };
 		23CC363A27BC68CC005FE3F0 /* MyQueueState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23CC363927BC68CC005FE3F0 /* MyQueueState.swift */; };
-		23CC363C27BC6D4F005FE3F0 /* NearByNearByViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23CC363B27BC6D4F005FE3F0 /* NearByNearByViewController.swift */; };
+		23CC363C27BC6D4F005FE3F0 /* NearByViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23CC363B27BC6D4F005FE3F0 /* NearByViewController.swift */; };
 		23CC363E27BC6DA0005FE3F0 /* ReceivedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23CC363D27BC6DA0005FE3F0 /* ReceivedViewController.swift */; };
 		23CC364027BC9953005FE3F0 /* CollectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23CC363F27BC9953005FE3F0 /* CollectionHeaderView.swift */; };
 		23CC364227BCA9D7005FE3F0 /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23CC364127BCA9D7005FE3F0 /* NetworkMonitor.swift */; };
@@ -205,6 +206,7 @@
 		237B9F1927A3DC16008A6E06 /* ProfileDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileDetailView.swift; sourceTree = "<group>"; };
 		237B9F1B27A3FB3F008A6E06 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		237B9F1F27A53F8A008A6E06 /* QueueAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueueAPIService.swift; sourceTree = "<group>"; };
+		238983C727D223A700033AE2 /* FriendCardTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendCardTableViewCell.swift; sourceTree = "<group>"; };
 		2389E1AC27967A3A00BE68E3 /* SeSacFriends.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SeSacFriends.entitlements; sourceTree = "<group>"; };
 		2389E1AF27967B1200BE68E3 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		2389E1B127967B9900BE68E3 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
@@ -246,7 +248,7 @@
 		23C41EA727CE90AE00922A56 /* ReceivedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceivedView.swift; sourceTree = "<group>"; };
 		23C97FC427ADC36A0087A239 /* AlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertView.swift; sourceTree = "<group>"; };
 		23CC363927BC68CC005FE3F0 /* MyQueueState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQueueState.swift; sourceTree = "<group>"; };
-		23CC363B27BC6D4F005FE3F0 /* NearByNearByViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearByNearByViewController.swift; sourceTree = "<group>"; };
+		23CC363B27BC6D4F005FE3F0 /* NearByViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearByViewController.swift; sourceTree = "<group>"; };
 		23CC363D27BC6DA0005FE3F0 /* ReceivedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceivedViewController.swift; sourceTree = "<group>"; };
 		23CC363F27BC9953005FE3F0 /* CollectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionHeaderView.swift; sourceTree = "<group>"; };
 		23CC364127BCA9D7005FE3F0 /* NetworkMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMonitor.swift; sourceTree = "<group>"; };
@@ -331,9 +333,10 @@
 				23A851AE27CB8867005FFC7F /* FindViewModel.swift */,
 				23B7A36427C476FE00B9CED3 /* NearByView.swift */,
 				23C41EA727CE90AE00922A56 /* ReceivedView.swift */,
-				23CC363B27BC6D4F005FE3F0 /* NearByNearByViewController.swift */,
+				23CC363B27BC6D4F005FE3F0 /* NearByViewController.swift */,
 				23CC363D27BC6DA0005FE3F0 /* ReceivedViewController.swift */,
 				23439AEA27BB2A0F00F79318 /* FindView.swift */,
+				238983C727D223A700033AE2 /* FriendCardTableViewCell.swift */,
 			);
 			path = Find;
 			sourceTree = "<group>";
@@ -836,7 +839,7 @@
 				232FCFFD27B1034900A2558C /* HomeViewModel.swift in Sources */,
 				2323AEAE27A557CA00895CC7 /* ProfileCardText.swift in Sources */,
 				236820CF27B4582600C79EAC /* HomeText.swift in Sources */,
-				23CC363C27BC6D4F005FE3F0 /* NearByNearByViewController.swift in Sources */,
+				23CC363C27BC6D4F005FE3F0 /* NearByViewController.swift in Sources */,
 				234CEC32279C95FF00983E20 /* SetEmailView.swift in Sources */,
 				23335719279DB2A90062A9E8 /* UserAPIService.swift in Sources */,
 				232FCFFA27B1022A00A2558C /* HomeView.swift in Sources */,
@@ -891,6 +894,7 @@
 				236BE67827BE60C5008E4040 /* ShopCoordinator.swift in Sources */,
 				236BE67C27BE6135008E4040 /* AuthCoordinator.swift in Sources */,
 				2389E1D32796A29F00BE68E3 /* AuthViewModel.swift in Sources */,
+				238983C827D223A700033AE2 /* FriendCardTableViewCell.swift in Sources */,
 				236BE67227BE6057008E4040 /* TabBarCoordinator.swift in Sources */,
 				23B7A36527C476FE00B9CED3 /* NearByView.swift in Sources */,
 				2308B0262799DEBF004145E2 /* ToastMessage.swift in Sources */,

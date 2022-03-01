@@ -19,16 +19,16 @@ final class FindViewController: TabmanViewController {
     
     private var viewControllers: Array<UIViewController> = []
     
-    let mainView = FindView()
+    var mainView = FindView()
     let viewModel = QueueViewModel()
     
     weak var coordinator: HomeCoordinator?
-    
     let disposeBag = DisposeBag()
+
+    
     override func loadView() {
         self.view = mainView
     }
-    
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -45,21 +45,21 @@ final class FindViewController: TabmanViewController {
         super.viewDidLoad()
         setupNavigationBar()
         updateFriends()
-        
+        print("FindViewController: ", viewModel.currentLatitude)
         
         let firstVC = NearByViewController()
         let secondVC = ReceivedViewController()
         
         viewControllers.append(firstVC)
+        firstVC.viewModel = viewModel
         viewControllers.append(secondVC)
+        secondVC.viewModel = viewModel
         
         self.dataSource = self
         let bar = mainView.bar
         addBar(bar, dataSource: self, at: .top)
         
         bind()
-
-        
     }
     
     func setupNavigationBar() {
@@ -116,6 +116,17 @@ final class FindViewController: TabmanViewController {
                 self.updateFriends()
             }
             .disposed(by: disposeBag)
+        
+
+//        
+//        viewModel.requestedFriendsObserver
+//            .map { !self.isFirstTab && $0.count == 0 ? false : true }
+//            .bind(to: self.mainView.sesacBlackImage.rx.isHidden,
+//                  self.mainView.emptyFriendsTitle.rx.isHidden,
+//                  self.mainView.emptyFriendsSubtitle.rx.isHidden
+//            )
+//            .disposed(by: disposeBag)
+        
     }
     
     func changeHobby() {
@@ -137,34 +148,34 @@ final class FindViewController: TabmanViewController {
         viewModel.searchMatchedFriends()
         viewModel.onErrorHandling = { result in
             if result == .ok {
-                print("ok: result")}
+            }
         }
     }
-    
 }
 
 
 extension FindViewController: PageboyViewControllerDataSource, TMBarDataSource {
     func barItem(for bar: TMBar, at index: Int) -> TMBarItemable {
         switch index {
-               case 0:
+        case 0:
             return TMBarItem(title: FindText.nearByFriends.rawValue)
-               case 1:
+            
+        case 1:
             return TMBarItem(title: FindText.receivedRequests.rawValue)
-               default:
-                   return TMBarItem(title: "\(index)")
-               }
+        default:
+            return TMBarItem(title: "\(index)")
+        }
     }
     
     func numberOfViewControllers(in pageboyViewController: PageboyViewController) -> Int {
         return viewControllers.count
     }
-
+    
     func viewController(for pageboyViewController: PageboyViewController,
                         at index: PageboyViewController.PageIndex) -> UIViewController? {
         return viewControllers[index]
     }
-
+    
     func defaultPage(for pageboyViewController: PageboyViewController) -> PageboyViewController.Page? {
         return nil
     }

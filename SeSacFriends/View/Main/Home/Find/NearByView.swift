@@ -9,36 +9,47 @@ import UIKit
 
 class NearByView: BaseUIView {
     
-    let stackView = UIStackView().then {
-        $0.axis = .vertical
-        $0.spacing = 10
-        $0.alignment = .fill
-        $0.distribution = .equalSpacing
+    var isEmpty = true
+    
+    let tableView = UITableView().then {
+        $0.rowHeight = UITableView.automaticDimension
+        $0.backgroundColor = .white
+        $0.separatorStyle = .singleLine
+        $0.register(MyPageProfileTableViewCell.self, forCellReuseIdentifier: MyPageProfileTableViewCell.identifier)
     }
     
-    let sesacBlackImage = UIImageView().then {
+    var sesacBlackImage = UIImageView().then {
         $0.image = UIImage(named: AssetIcon.sesacBlack.rawValue)
     }
     
-    let emptyFriendsTitle = UILabel().then {
-        $0.text = HobbyViewText.emptyFriendsTitle.rawValue
+    var emptyFriendsTitle = UILabel().then {
+        // $0.text = HobbyViewText.emptyFriendsTitle.rawValue
         $0.font = UIFont().Display1_R20
         $0.textColor = .black
     }
     
-    let emptyFriendsSubtitle = UILabel().then {
+    var emptyFriendsSubtitle = UILabel().then {
         $0.text = HobbyViewText.emptyPageSubtitle.rawValue
         $0.font = UIFont().Title4_R14
         $0.textColor = UIColor.grayColor(.gray7)
     }
     
-
+    
+    
+    override func addViews() {
+            addSubview(tableView)
+    }
+    
+    override func configuration() {
+        backgroundColor = .clear
+    }
+    
+//
     override func constraints() {
         
         [sesacBlackImage, emptyFriendsTitle, emptyFriendsSubtitle].forEach {
             addSubview($0)
         }
-        
         
         emptyFriendsTitle.snp.makeConstraints {
             $0.centerY.centerX.equalToSuperview()
@@ -55,6 +66,11 @@ class NearByView: BaseUIView {
             $0.centerX.equalToSuperview()
             $0.bottom.equalTo(emptyFriendsTitle.snp.top).offset(-32)
             $0.width.height.equalTo(64)
+        }
+
+        tableView.snp.makeConstraints {
+            $0.top.leading.trailing.equalTo(self.safeAreaLayoutGuide)
+            $0.bottom.equalToSuperview().offset(-100)
         }
     }
     

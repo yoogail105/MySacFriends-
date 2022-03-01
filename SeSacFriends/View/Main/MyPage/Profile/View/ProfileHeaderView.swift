@@ -9,13 +9,13 @@ import UIKit
 
 import CoreText
 class ProfileHeaderView: BaseUIView {
-    let backgroundImage = UIImageView().then {
+    var backgroundImage = UIImageView().then {
         $0.image = UIImage(named: BackgroundImage.color.rawValue)
         $0.layer.cornerRadius = 8
         $0.clipsToBounds = true
     }
     
-    let userImage = UIImageView().then {
+    var userImage = UIImageView().then {
         $0.image = UIImage(named: SesacIcon.face1.rawValue)
     }
     

@@ -20,7 +20,7 @@ class FindView: BaseUIView {
         $0.buttons.customize { button in
             button.selectedTintColor =  UIColor.brandColor(.green)
             button.tintColor = UIColor.grayColor(.gray6)
-               }
+        }
         $0.layout.contentMode = .fit
         $0.indicator.tintColor = UIColor.brandColor(.green)
         $0.indicator.overscrollBehavior = .bounce
@@ -31,19 +31,21 @@ class FindView: BaseUIView {
     }
     
     let refreshButton = BaseButton().then {
-
+        $0.backgroundColor = .white
         $0.setImage(UIImage(systemName: "arrow.clockwise"), for: .normal)
         $0.tintColor = UIColor.brandColor(.green)
         $0.layer.borderWidth = 1
         $0.layer.borderColor = UIColor.brandColor(.green).cgColor
     }
     
-
-    override func constraints() {
+    override func addViews() {
+        
         [changeButton, refreshButton].forEach {
             addSubview($0)
         }
-        
+    }
+    
+    override func constraints() {
         
         changeButton.snp.makeConstraints {
             $0.leading.equalToSuperview().offset(16)

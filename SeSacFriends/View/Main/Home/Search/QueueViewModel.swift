@@ -24,9 +24,11 @@ class QueueViewModel {
     var onErrorHandling: ((APIErrorCode) -> Void)?
     
     var totalFriends: [Friend] = []
+    var nearFriendsObserver = BehaviorRelay<[Friend]>(value: [Friend]())
+    var requestedFriendsObserver = BehaviorRelay<[Friend]>(value: [Friend]())
+    var isUpdate = BehaviorRelay<Bool>(value: false)
     var nearFriends: [Friend] = []
     var requestedFriends: [Friend] = []
-    
     var fromRecommendHobbyList: [String] = []
     var friendsHobbyList: [String] = []
     var myHobbyList: [String] = []
@@ -64,11 +66,15 @@ class QueueViewModel {
     func searchMatchedFriends(_ completion: ((Result<Bool, APIErrorCode>) -> Void)? = nil) {
         checkNetworking()
         print(#function)
-        var nearFriends: [Friend] = []
-        var requestedFriends: [Friend] = []
+        nearFriends = []
+        requestedFriends = []
+        isUpdate.accept(false)
+        self.removeData(observer: nearFriendsObserver)
+        self.removeData(observer: requestedFriendsObserver)
         
         let resultRegion = calculateRegion(lat: currentLatitude, long: currentLongitude)
         let request = OnQueueRequest(region: resultRegion, lat: currentLatitude, long: currentLongitude)
+        print(request)
         
         QueueAPIService.searchHobbyFriends(param: request) { friends, error in
             
@@ -82,16 +88,27 @@ class QueueViewModel {
                     // self.totalFriends.append(contentsOf: [friend])
                     self.myHobbyList.forEach {
                         if friend.hf.contains($0) {
+                            self.nearFriendsObserver
+                                .accept(self.nearFriendsObserver.value + [friend])
                             self.nearFriends.append(friend)
+                            print(friend.nick)
                             return
                         }
                     }
                 }
+                
                 for requestedFriend in friends.fromQueueDBRequested {
+                    print("requestedFriend: \(requestedFriend)")
+                    self.requestedFriendsObserver
+                        .accept(self.requestedFriendsObserver.value + [requestedFriend])
                     self.requestedFriends.append(contentsOf: [requestedFriend])
-                    
                 }
+                
+                print("myHobby: \(self.myHobbyList), nearBy: \(self.nearFriends), received: \(self.requestedFriends)")
             }
+            
+            self.isUpdate.accept(true)
+            self.onErrorHandling?(.ok)
         }
     }
     
@@ -278,6 +295,12 @@ class QueueViewModel {
             
         }
         
+    }
+    
+    func removeData(observer: BehaviorRelay<[Friend]>) {
+        var array = observer.value
+        array.removeAll()
+        observer.accept(array)
     }
     
 }
