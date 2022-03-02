@@ -1,5 +1,5 @@
 //
-//  NearBy.swift
+//  NearByViewController.swift
 //  SeSacFriends
 //
 //  Created by 성민주민주 on 2022/02/16.
@@ -11,10 +11,11 @@ import RxSwift
 
 class NearByViewController: BaseViewController {
     
-    let mainView = NearByView()
+    let mainView = FriendsListView()
     weak var viewModel: QueueViewModel?
     weak var tableView: UITableView?
     let disposeBag = DisposeBag()
+    weak var coordinator: HomeCoordinator?
     
     
     override func loadView() {
@@ -59,6 +60,7 @@ class NearByViewController: BaseViewController {
         tableView?.register(ProfileCardReviewTableViewCell.self, forCellReuseIdentifier: ProfileCardReviewTableViewCell.identifier)
     }
     func updateFriends() {
+        view.addSubview(AlertView())
         viewModel?.searchMatchedFriends()
         viewModel?.onErrorHandling = { result in
             if result == .ok {
@@ -74,8 +76,8 @@ class NearByViewController: BaseViewController {
     }
     
     func requestTogeter(uid: String) {
-        viewModel?.requestTogether(uid: uid)
         
+        viewModel?.requestTogether(uid: uid)
         viewModel?.onErrorHandling = { result in
             switch result {
             case .ok:
@@ -86,7 +88,7 @@ class NearByViewController: BaseViewController {
             case .invalidRequest:
                 self.showToast(message: TogetherToast.invalidRequest.rawValue)
             default:
-                self.showToast(message: APIErrorMessage.unKnownError.rawValue) 
+                self.showToast(message: APIErrorMessage.unKnownError.rawValue)
             }
         }
     }
@@ -112,7 +114,7 @@ extension NearByViewController: UITableViewDelegate, UITableViewDataSource {
         cell.configureCell(row: row, status: false)
         let uid = row.uid
         cell.buttonAction = {
-            self.requestTogeter(uid: uid)
+            self.coordinator?.pushToRequestAcceptAlert(mode: true, uid: uid)
         }
         return cell
     }

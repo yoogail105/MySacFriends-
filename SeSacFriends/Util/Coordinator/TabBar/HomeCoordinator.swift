@@ -75,6 +75,14 @@ extension HomeCoordinator{
         self.navigationController.pushViewController(rootViewController, animated: true)
     }
 
+
+    func pushToRequestAcceptAlert(mode: Bool, uid: String) {
+        let rootViewController = RequsetAcceptViewController()
+        rootViewController.coordinator = self
+        rootViewController.isRequest = mode
+        rootViewController.uid = uid
+        self.navigationController.pushViewController(rootViewController, animated: true)
+    }
     
     func pushToChatting() {
         let rootViewController = ChattingViewController()

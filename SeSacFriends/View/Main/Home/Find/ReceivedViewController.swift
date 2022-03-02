@@ -10,10 +10,11 @@ import RxCocoa
 import RxSwift
 
 class ReceivedViewController: BaseViewController {
-    let mainView = NearByView()
+    let mainView = FriendsListView()
     weak var viewModel: QueueViewModel?
     weak var tableView: UITableView?
     let disposeBag = DisposeBag()
+    weak var coordinator: HomeCoordinator?
     
     
     override func loadView() {
@@ -92,7 +93,7 @@ extension ReceivedViewController: UITableViewDelegate, UITableViewDataSource {
         
         let uid = row.uid
         cell.buttonAction = {
-            self.acceptTogeter(uid: uid)
+            self.coordinator?.pushToRequestAcceptAlert(mode: false, uid: uid)
         }
         return cell
     }

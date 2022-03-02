@@ -11,6 +11,9 @@ enum AlertText: String {
     case withdrawalTitle = "정말 탈퇴하시겠습니까?"
     case withdrawalSubtitle = "탈퇴하시면 새싹 프렌즈를 이용할 수 없어요ㅠ"
     
+    case requestTitle = "취미 같이 하기를 요청할게요!"
+    case requestSubTitle = "요청이 수락되면 30분 후에 리뷰를 남길 수 있어요"
+    
     case acceptTogetherTitle = "취미 같이 하기를 수락할까요?"
     case acceptTogetherSubtitle = "요청을 수락하면 채팅창에서 대화를 나눌 수 있어요"
     
@@ -25,6 +28,8 @@ enum AlertText: String {
     case requestLocationPermissionTitle = "위치 서비스를 사용할 수 없습니다."
     case requestLocationPermissionSubtitle = "현재 위치를 기반으로 주변에 있는 새싹 친구들을 검색하고, 취미를 공유하기 위해서 위치 정보에 대한 접근 허용이 필요합니다."
     case moveToSetting = "설정으로 이동"
+    
+   
 
 }
 
