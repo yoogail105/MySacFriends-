@@ -20,7 +20,7 @@ import Foundation
 // hobbyRequest: 201, 202새싹찾기중단
 // hobbyaccep: 201, 202상대방새싹찾기중단한상태, 203,
 // myqueuestatse: 201
-// rate: 리뷰작성:
+// rate: 리뷰작성: 
 // dodge: 201 잘못된 otheruid 취미약속취소
 //
 

@@ -14,7 +14,7 @@ class FriendCardTableViewCell: UITableViewCell {
     static let identifier = "FriendCardTableViewCell"
     let profileCardView = ProfileCardView()
     var isReceicedView = false
-    
+    var buttonAction: (() -> Void) = {}
     let button = BaseButton().then {
         $0.setTitle(ProfileDetailText.request.rawValue, for: .normal)
         $0.backgroundColor = UIColor.systemColor(.error)
@@ -24,6 +24,7 @@ class FriendCardTableViewCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         constraints()
+        setButtonEvent()
     }
     
     required init?(coder: NSCoder) {
@@ -58,7 +59,7 @@ class FriendCardTableViewCell: UITableViewCell {
         button.backgroundColor = UIColor.systemColor(.success)
     }
     func constraints() {
-        addSubview(profileCardView)
+        contentView.addSubview(profileCardView)
         
         profileCardView.headerView.addSubview(button)
         button.snp.makeConstraints {
@@ -72,6 +73,13 @@ class FriendCardTableViewCell: UITableViewCell {
         }
     }
     
+    func setButtonEvent() {
+        button.addTarget(self, action: #selector(requestButtonClicked), for: .touchUpInside)
+    }
+    
+    @objc func requestButtonClicked() {
+     buttonAction()
+    }
 
     
 }

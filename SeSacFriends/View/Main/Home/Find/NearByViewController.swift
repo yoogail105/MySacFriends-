@@ -72,6 +72,12 @@ class NearByViewController: BaseViewController {
             }
         }
     }
+    
+    func requestTogeter(uid: String) {
+        viewModel?.requestTogether(uid: uid)
+    }
+    
+   
 
 }
 
@@ -90,6 +96,10 @@ extension NearByViewController: UITableViewDelegate, UITableViewDataSource {
         let row = viewModel!.nearFriends[indexPath.row]
         print("tableView: ", row.nick)
         cell.configureCell(row: row, status: false)
+        let uid = row.uid
+        cell.buttonAction = {
+            self.requestTogeter(uid: uid)
+        }
         return cell
     }
     
