@@ -275,6 +275,45 @@ class QueueViewModel {
         }
     }
     
+    func acceptTogether(uid: String, _ completion: ((Result<Bool, APIErrorCode>) -> Void)? = nil) {
+        checkNetworking()
+        
+        let request = HobbyRequest(otheruid: uid)
+        QueueAPIService.acceptTogether(param: request) { result, error in
+            if error != nil {
+                switch error?.rawValue {
+                case 201:
+                    print("상대방이 이미 다른사람과 매칭됨")
+                    self.onErrorHandling?(.created)
+                    return
+                case 202:
+                    print("상대방이 같이하기 중단")
+                    self.onErrorHandling?(.invalidRequest)
+                    return
+                case 203:
+                    print("앗! 누군가가 나의 취미 함께 하기를 수락하였어요! myQueuestate호출")
+                    self.onErrorHandling?(.firstPenalty)
+                    return
+                    
+                case 401:
+                    print("토큰만료됨")
+                    self.onErrorHandling?(.unAuthorized)
+                    return
+                case 406:
+                    print("미가입회원")
+                    self.onErrorHandling?(.notAcceptable)
+                    return
+                default:
+                    self.onErrorHandling?(.internalServerError)
+                    return
+                }
+            } else {
+                print("요청완료")
+                    self.onErrorHandling?(.ok)
+            }
+        }
+    }
+    
     func setFriendSesacImage(imgaeNumber: Int) -> String {
         switch imgaeNumber {
         case 1:

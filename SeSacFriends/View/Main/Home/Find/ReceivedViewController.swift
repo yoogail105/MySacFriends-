@@ -55,6 +55,10 @@ class ReceivedViewController: BaseViewController {
         tableView?.register(TitleTableViewCell.self, forCellReuseIdentifier: TitleTableViewCell.identifier)
         tableView?.register(ProfileCardReviewTableViewCell.self, forCellReuseIdentifier: ProfileCardReviewTableViewCell.identifier)
     }
+    
+    func acceptTogeter(uid: String) {
+        viewModel?.requestTogether(uid: uid)
+    }
 }
 
 extension ReceivedViewController: UITableViewDelegate, UITableViewDataSource {
@@ -70,8 +74,11 @@ extension ReceivedViewController: UITableViewDelegate, UITableViewDataSource {
         }
         
         let row = viewModel!.requestedFriendsObserver.value[indexPath.row]
-        print("tableView: ", row.nick)
         cell.configureCell(row: row, status: true)
+        let uid = row.uid
+        cell.buttonAction = {
+            self.acceptTogeter(uid: uid)
+        }
         return cell
     }
     
