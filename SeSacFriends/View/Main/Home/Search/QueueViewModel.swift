@@ -308,7 +308,7 @@ class QueueViewModel {
                     return
                 }
             } else {
-                print("요청완료")
+                print("수락완료")
                     self.onErrorHandling?(.ok)
             }
         }

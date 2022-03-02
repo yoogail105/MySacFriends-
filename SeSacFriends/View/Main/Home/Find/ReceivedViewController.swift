@@ -57,7 +57,7 @@ class ReceivedViewController: BaseViewController {
     }
     
     func acceptTogeter(uid: String) {
-        viewModel?.requestTogether(uid: uid)
+        viewModel?.acceptTogether(uid: uid)
     }
 }
 
@@ -75,6 +75,7 @@ extension ReceivedViewController: UITableViewDelegate, UITableViewDataSource {
         
         let row = viewModel!.requestedFriendsObserver.value[indexPath.row]
         cell.configureCell(row: row, status: true)
+        
         let uid = row.uid
         cell.buttonAction = {
             self.acceptTogeter(uid: uid)
