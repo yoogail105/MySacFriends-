@@ -77,8 +77,10 @@ class NearByViewController: BaseViewController {
     
     func requestTogeter(uid: String) {
         
-        viewModel?.requestTogether(uid: uid)
+//        viewModel?.requestTogether(uid: uid)
+        print("리퀘시트:", viewModel?.onErrorHandling)
         viewModel?.onErrorHandling = { result in
+            print("리퀘스트: \(result)")
             switch result {
             case .ok:
                 self.showToast(message: TogetherToast.requestSuccess.rawValue)
@@ -114,7 +116,15 @@ extension NearByViewController: UITableViewDelegate, UITableViewDataSource {
         cell.configureCell(row: row, status: false)
         let uid = row.uid
         cell.buttonAction = {
-            self.coordinator?.pushToRequestAcceptAlert(mode: true, uid: uid)
+            let vc = RequestAcceptViewController()
+            vc.viewModel = self.viewModel
+            vc.isRequest = true
+            vc.uid = uid
+            vc.modalPresentationStyle = .overCurrentContext
+            vc.modalTransitionStyle = .crossDissolve
+            self.present(vc, animated: true, completion: nil)
+//            self.coordinator?.pushToRequestAcceptAlert(mode: true, uid: uid)
+            self.requestTogeter(uid: uid)
         }
         return cell
     }

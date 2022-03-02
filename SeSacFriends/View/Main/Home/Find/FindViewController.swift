@@ -38,13 +38,21 @@ final class FindViewController: TabmanViewController {
         updateFriends()
         print("FindViewController: ", viewModel.currentLatitude)
         
+        
         let firstVC = NearByViewController()
         let secondVC = ReceivedViewController()
         
+//        let near = coordinator?.pushToNear()
+//        let received = coordinator?.pushToReceived()
+//
         viewControllers.append(firstVC)
         firstVC.viewModel = viewModel
+        firstVC.coordinator = coordinator
         viewControllers.append(secondVC)
         secondVC.viewModel = viewModel
+        secondVC.coordinator = coordinator
+        
+    
         
         self.dataSource = self
         let bar = mainView.bar

@@ -65,6 +65,20 @@ extension HomeCoordinator{
         self.navigationController.pushViewController(rootViewController, animated: true)
     }
     
+    func pushToNear() -> UIViewController {
+        let rootViewController = NearByViewController()
+        rootViewController.coordinator = self
+        return rootViewController
+    }
+    
+    func pushToReceived() -> UIViewController {
+        let rootViewController = ReceivedViewController()
+        rootViewController.coordinator = self
+        rootViewController.viewModel
+        return rootViewController
+        
+    }
+    
     func pushToFindFriends(lat: Double, long: Double, myHobbyList: [String]) {
         print("랄라")
         let rootViewController = FindViewController()
@@ -77,11 +91,13 @@ extension HomeCoordinator{
 
 
     func pushToRequestAcceptAlert(mode: Bool, uid: String) {
-        let rootViewController = RequsetAcceptViewController()
+        let rootViewController = RequestAcceptViewController()
         rootViewController.coordinator = self
         rootViewController.isRequest = mode
         rootViewController.uid = uid
-        self.navigationController.pushViewController(rootViewController, animated: true)
+        rootViewController.modalPresentationStyle = .overCurrentContext
+        rootViewController.modalTransitionStyle = .crossDissolve
+        self.navigationController.present(rootViewController, animated: true, completion: nil)
     }
     
     func pushToChatting() {
@@ -100,12 +116,11 @@ extension HomeCoordinator{
         parentCoordinator?.parentCoordinator?.start()
     }
     
-    
-    
+
     func finish() {
         parentCoordinator?.childDidFinish(self)
         self.parentCoordinator?.childDidFinish(self.parentCoordinator)
-        self.parentCoordinator?.parentCoordinator?.start()
+        //self.parentCoordinator?.parentCoordinator?.start()
         
     }
 }

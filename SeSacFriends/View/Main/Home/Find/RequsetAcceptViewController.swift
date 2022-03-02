@@ -9,11 +9,11 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-final class RequsetAcceptViewController: BaseViewController {
+final class RequestAcceptViewController: BaseViewController {
     
     
     let mainView = AlertView()
-    let viewModel = QueueViewModel()
+    weak var viewModel: QueueViewModel?
     weak var coordinator: HomeCoordinator?
     var isRequest = true
     var uid = ""
@@ -29,6 +29,7 @@ final class RequsetAcceptViewController: BaseViewController {
     }
     
     private func setupAlert() {
+        mainView.backgroundColor = .clear
         var title = ""
         var subtitle = ""
         switch isRequest {
@@ -47,43 +48,77 @@ final class RequsetAcceptViewController: BaseViewController {
     override func bind() {
         mainView.okButton.rx.tap
             .subscribe(onNext: {
-                self.requestTogeter(uid: self.uid)
+                self.okButtonClicked()
+            })
+        mainView.cancelButton.rx.tap
+            .subscribe(onNext: {
+                self.cancelButtonClicked()
             })
     }
     
-    func requestTogeter(uid: String) {
-        
-        viewModel.requestTogether(uid: uid)
-        viewModel.onErrorHandling = { result in
-            switch result {
-            case .ok:
-                self.showToast(message: TogetherToast.requestSuccess.rawValue)
-            case .created:
-                print("hobbyaccept호출")
-                self.acceptTogeter(uid: uid)
-
-            case .invalidRequest:
-                self.showToast(message: TogetherToast.invalidRequest.rawValue)
-            default:
-                self.showToast(message: APIErrorMessage.unKnownError.rawValue)
-            }
-        }
+    func requestTogether(uid: String) {
+        viewModel?.requestTogether(uid: uid)
+//        viewModel.onErrorHandling = { result in
+//            switch result {
+//            case .ok:
+//                self.showToast(message: TogetherToast.requestSuccess.rawValue)
+//            case .created:
+//                print("hobbyaccept호출")
+//                self.acceptTogeter(uid: uid)
+//
+//            case .invalidRequest:
+//                self.showToast(message: TogetherToast.invalidRequest.rawValue)
+//            default:
+//                self.showToast(message: APIErrorMessage.unKnownError.rawValue)
+//            }
+//        }
     }
     
     func acceptTogeter(uid: String) {
-        viewModel.acceptTogether(uid: uid)
-        viewModel.onErrorHandling = { result in
-            switch result {
-            case .ok:
-                print("채팅화면으로 이동")
-            case .created:
-                self.showToast(message: TogetherToast.created.rawValue)
-            case .invalidRequest:
-                self.showToast(message: TogetherToast.invalidRequest.rawValue)
-            case .firstPenalty:
-                self.showToast(message: TogetherToast.alreadyMatched.rawValue)
-            default:
-                self.showToast(message: APIErrorMessage.unKnownError.rawValue)
+        viewModel?.acceptTogether(uid: uid)
+//        viewModel?.onErrorHandling = { result in
+//            switch result {
+//            case .ok:
+//                print("채팅화면으로 이동")
+//            case .created:
+//                self.showToast(message: TogetherToast.created.rawValue)
+//            case .invalidRequest:
+//                self.showToast(message: TogetherToast.invalidRequest.rawValue)
+//            case .firstPenalty:
+//                self.showToast(message: TogetherToast.alreadyMatched.rawValue)
+//            default:
+//                self.showToast(message: APIErrorMessage.unKnownError.rawValue)
+//            }
+//        }
+    }
+    
+    func okButtonClicked() {
+        self.dismiss(animated: true) {
+            switch self.isRequest {
+            case true:
+                print("사라짐")
+                self.requestTogether(uid: self.uid)
+            case false:
+                self.acceptTogeter(uid: self.uid)
             }
         }
-    }}
+//        self.dismiss(animated: true, completion: nil)
+//        coordinator?.finish()
+        //        coordinator.pushtofi
+        //        self.dismiss(animated: true) {
+        //            switch self.isRequest {
+        //            case true:
+        //                print("사라짐")
+        //                self.requestTogether(uid: self.uid)
+        //            case false:
+        //                self.acceptTogeter(uid: self.uid)
+        //            }
+        //        }
+    }
+    
+    func cancelButtonClicked() {
+        self.dismiss(animated: true, completion: nil)
+    }
+}
+
+

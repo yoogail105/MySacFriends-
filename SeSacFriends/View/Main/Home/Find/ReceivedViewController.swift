@@ -58,7 +58,7 @@ class ReceivedViewController: BaseViewController {
     }
     
     func acceptTogeter(uid: String) {
-        viewModel?.acceptTogether(uid: uid)
+//       viewModel?.acceptTogether(uid: uid)
         viewModel?.onErrorHandling = { result in
             switch result {
             case .ok:
@@ -78,12 +78,10 @@ class ReceivedViewController: BaseViewController {
 
 extension ReceivedViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print("viewModel.nearFriends.count=\(viewModel?.requestedFriends.count)")
         return viewModel!.requestedFriendsObserver.value.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        print(#function)
         guard let cell = tableView.dequeueReusableCell(withIdentifier: FriendCardTableViewCell.identifier, for: indexPath) as? FriendCardTableViewCell else {
             return UITableViewCell()
         }
@@ -93,7 +91,15 @@ extension ReceivedViewController: UITableViewDelegate, UITableViewDataSource {
         
         let uid = row.uid
         cell.buttonAction = {
-            self.coordinator?.pushToRequestAcceptAlert(mode: false, uid: uid)
+                let vc = RequestAcceptViewController()
+                vc.viewModel = self.viewModel
+                vc.isRequest = false
+                vc.uid = uid
+                vc.modalPresentationStyle = .overCurrentContext
+                vc.modalTransitionStyle = .crossDissolve
+                self.present(vc, animated: true, completion: nil)
+                self.acceptTogeter(uid: uid)
+//            self.coordinator?.pushToRequestAcceptAlert(mode: false, uid: uid)
         }
         return cell
     }

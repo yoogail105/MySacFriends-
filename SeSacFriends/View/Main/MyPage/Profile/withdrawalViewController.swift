@@ -24,8 +24,6 @@ final class withdrawalViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-       // coordinator = MainCoordinator(navigationController: self.navigationController ?? UINavigationController())
-        
         configure()
         bind()
     }
@@ -51,6 +49,7 @@ final class withdrawalViewController: UIViewController {
     }
     
     func okButtonClicked() {
+        self.viewModel.withdrawalUser()
         viewModel.onErrorHandling = { result in
             print(#function)
             switch result {
@@ -65,7 +64,7 @@ final class withdrawalViewController: UIViewController {
                 self.showToast(message: APIErrorMessage.unKnownError.rawValue)
             }
         }
-        self.viewModel.withdrawalUser()
+        
     }
     
     func cancelButtonClicked() {
