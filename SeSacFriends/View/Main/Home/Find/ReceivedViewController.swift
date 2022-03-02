@@ -58,6 +58,20 @@ class ReceivedViewController: BaseViewController {
     
     func acceptTogeter(uid: String) {
         viewModel?.acceptTogether(uid: uid)
+        viewModel?.onErrorHandling = { result in
+            switch result {
+            case .ok:
+                print("채팅화면으로 이동")
+            case .created:
+                self.showToast(message: TogetherToast.created.rawValue)
+            case .invalidRequest:
+                self.showToast(message: TogetherToast.invalidRequest.rawValue)
+            case .firstPenalty:
+                self.showToast(message: TogetherToast.alreadyMatched.rawValue)
+            default:
+                self.showToast(message: APIErrorMessage.unKnownError.rawValue)
+            }
+        }
     }
 }
 

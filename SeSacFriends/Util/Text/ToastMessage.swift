@@ -57,5 +57,11 @@ enum AddMyHobbyToast: String {
 
 enum FindingToast: String {
     case alreadyMatched = "누군가와 취미를 함께하기로 약속하셨어요!"
-    
+}
+
+enum TogetherToast: String {
+    case requestSuccess = "취미 함께 하기 요청을 보냈습니다."
+    case created = "상대방이 이미 다른 사람과 취미를 함께하는 중입니다."
+    case invalidRequest = "상대방이 취미 함께 하기를 그만두었습니다."
+    case alreadyMatched = "앗! 누군가가 나의 취미 함께 하기를 수락하였어요!"
 }

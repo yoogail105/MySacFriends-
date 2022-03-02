@@ -75,6 +75,20 @@ class NearByViewController: BaseViewController {
     
     func requestTogeter(uid: String) {
         viewModel?.requestTogether(uid: uid)
+        
+        viewModel?.onErrorHandling = { result in
+            switch result {
+            case .ok:
+                self.showToast(message: TogetherToast.requestSuccess.rawValue)
+            case .created:
+                print("hobbyaccept호출")
+                self.viewModel?.acceptTogether(uid: uid)
+            case .invalidRequest:
+                self.showToast(message: TogetherToast.invalidRequest.rawValue)
+            default:
+                self.showToast(message: APIErrorMessage.unKnownError.rawValue) 
+            }
+        }
     }
     
    
