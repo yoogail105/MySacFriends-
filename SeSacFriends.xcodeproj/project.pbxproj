@@ -60,6 +60,7 @@
 		234E5FA427978FE700F5D2BB /* AuthVerificationCodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 234E5FA327978FE700F5D2BB /* AuthVerificationCodeView.swift */; };
 		234E5FA627987EE900F5D2BB /* UIButton+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 234E5FA527987EE900F5D2BB /* UIButton+Extension.swift */; };
 		234E5FAA27988F8D00F5D2BB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 234E5FA927988F8D00F5D2BB /* GoogleService-Info.plist */; };
+		2359D73C27E1DB23008E24D0 /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2359D73B27E1DB23008E24D0 /* ChatView.swift */; };
 		236820C627B441B800C79EAC /* MyPageProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 236820C527B441B800C79EAC /* MyPageProfileTableViewCell.swift */; };
 		236820CA27B4579500C79EAC /* SearchHobbyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 236820C927B4579500C79EAC /* SearchHobbyView.swift */; };
 		236820CC27B457A400C79EAC /* SearchHobbyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 236820CB27B457A400C79EAC /* SearchHobbyViewController.swift */; };
@@ -183,6 +184,7 @@
 		234E5FA327978FE700F5D2BB /* AuthVerificationCodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthVerificationCodeView.swift; sourceTree = "<group>"; };
 		234E5FA527987EE900F5D2BB /* UIButton+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extension.swift"; sourceTree = "<group>"; };
 		234E5FA927988F8D00F5D2BB /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		2359D73B27E1DB23008E24D0 /* ChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatView.swift; sourceTree = "<group>"; };
 		236820C527B441B800C79EAC /* MyPageProfileTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageProfileTableViewCell.swift; sourceTree = "<group>"; };
 		236820C927B4579500C79EAC /* SearchHobbyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchHobbyView.swift; sourceTree = "<group>"; };
 		236820CB27B457A400C79EAC /* SearchHobbyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchHobbyViewController.swift; sourceTree = "<group>"; };
@@ -672,6 +674,7 @@
 			isa = PBXGroup;
 			children = (
 				23A851B027CB9433005FFC7F /* ChattingViewController.swift */,
+				2359D73B27E1DB23008E24D0 /* ChatView.swift */,
 			);
 			path = Chat;
 			sourceTree = "<group>";
@@ -831,6 +834,7 @@
 			files = (
 				234CEC1D279C61F700983E20 /* NicknameView.swift in Sources */,
 				23C97FC527ADC36A0087A239 /* AlertView.swift in Sources */,
+				2359D73C27E1DB23008E24D0 /* ChatView.swift in Sources */,
 				234CEC20279C729800983E20 /* AssetsText.swift in Sources */,
 				236BE67A27BE60EC008E4040 /* MyPageCoordinator.swift in Sources */,
 				2323AEBE27A71F7300895CC7 /* TitleCollectionViewCell.swift in Sources */,

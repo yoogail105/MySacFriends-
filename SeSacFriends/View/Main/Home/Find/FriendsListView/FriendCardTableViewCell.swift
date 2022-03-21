@@ -44,6 +44,7 @@ class FriendCardTableViewCell: UITableViewCell {
         profileCardView.friend = row
         profileCardView.tableView.reloadData()
         
+        
         let userSesac = "\(SesacIcon.face.rawValue)\(row.sesac)"
         let defaultSesac = SesacIcon.face0.rawValue
         let userBackground = "\(BackgroundImage.back.rawValue)\(row.background)"

@@ -8,6 +8,7 @@
 import Foundation
 
 enum AssetIcon: String {
+    case send
     case backArrow = "arrow"
     case antenna
     case bell

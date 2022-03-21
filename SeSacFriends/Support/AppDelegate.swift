@@ -27,7 +27,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         } else if #available(iOS 14.0, *) {
             appearance.backgroundColor = .white
             tabBar.standardAppearance = appearance
-            tabBar.tintColor = abrandColor(.green)
+            tabBar.tintColor = UIColor.brandColor(.green)
         }
         UITabBar.appearance().tintColor = UIColor.brandColor(.green)
         UITabBar.appearance().unselectedItemTintColor = UIColor.grayColor(.gray6)

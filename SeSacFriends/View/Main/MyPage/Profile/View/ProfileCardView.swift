@@ -24,7 +24,6 @@ class ProfileCardView: BaseUIView {
         $0.layer.borderColor = UIColor.grayColor(.gray3).cgColor
         $0.layer.borderWidth = 1
         $0.separatorStyle = .none
-        
     }
     
     let titleCollectionView: UICollectionView = {
@@ -131,6 +130,7 @@ extension ProfileCardView: UITableViewDelegate, UITableViewDataSource {
         case [1, 0]:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: TitleTableViewCell.identifier, for: indexPath) as? TitleTableViewCell else { return UITableViewCell()}
             cell.selectionStyle = .none
+            cell.friend = friend
             return cell
         case [2, 0]:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: ProfileCardReviewTableViewCell.identifier, for: indexPath) as? ProfileCardReviewTableViewCell else { return UITableViewCell()}

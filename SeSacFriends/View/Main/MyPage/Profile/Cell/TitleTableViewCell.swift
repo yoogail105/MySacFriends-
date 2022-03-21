@@ -13,6 +13,8 @@ class TitleTableViewCell: UITableViewCell {
     
     static let identifier = "ProfileCardTitleTableViewCell"
     
+    var friend: Friend?
+    
     var collectionView: UICollectionView = {
         let flowLayout = UICollectionViewFlowLayout()
         let collectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: flowLayout)
@@ -97,6 +99,10 @@ extension TitleTableViewCell: UICollectionViewDelegate, UICollectionViewDataSour
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TitleCollectionViewCell.identifier, for: indexPath) as? TitleCollectionViewCell else { return UICollectionViewCell() }
         
         cell.titleLabel.text = userTitles[indexPath.row]
+        if self.friend?.reputation[indexPath.row] != 0 {
+            cell.contentView.backgroundColor = UIColor.brandColor(.green)
+            cell.titleLabel.textColor = UIColor.white
+        }
         return cell
     }
     

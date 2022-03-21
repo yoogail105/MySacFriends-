@@ -11,6 +11,8 @@ import SnapKit
 class TitleCollectionViewCell: UICollectionViewCell {
     static let identifier = "TitleCollectionViewCell"
     
+    
+    
     static func fittingSize(availableHeight: CGFloat, name: String?) -> CGSize {
      let cell = TitleCollectionViewCell()
         cell.setTitle(name: name)

@@ -9,11 +9,12 @@ import UIKit
 import RxSwift
 
 class HobbyTableViewCell: UITableViewCell {
+    static let identifier = "HobbyTableViewCell"
+    
     
     // MARK: - Initialization
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-
     }
     
     required init?(coder: NSCoder) {
