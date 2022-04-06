@@ -583,11 +583,11 @@
 		23ADC14527AB746100101C43 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				234DC38D27AD9B5A00132A36 /* ProfileViewModel.swift */,
 				237B9F1B27A3FB3F008A6E06 /* ProfileViewController.swift */,
+				232FCFF527B0B2CF00A2558C /* withdrawalViewController.swift */,
 				23ADC14827AC299C00101C43 /* View */,
 				23ADC14627AB748200101C43 /* Cell */,
-				234DC38D27AD9B5A00132A36 /* ProfileViewModel.swift */,
-				232FCFF527B0B2CF00A2558C /* withdrawalViewController.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -609,8 +609,8 @@
 		23ADC14827AC299C00101C43 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				237B9F1927A3DC16008A6E06 /* ProfileDetailView.swift */,
 				23ADC14327AB2EED00101C43 /* ProfileView.swift */,
+				237B9F1927A3DC16008A6E06 /* ProfileDetailView.swift */,
 				2323AEB727A6F53D00895CC7 /* ProfileHeaderView.swift */,
 				2323AEB527A6F2E500895CC7 /* ProfileCardView.swift */,
 			);

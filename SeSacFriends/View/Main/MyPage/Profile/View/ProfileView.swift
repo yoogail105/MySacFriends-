@@ -20,7 +20,7 @@ class ProfileView: BaseUIView {
     
     let contentView = UIView().then {
         $0.translatesAutoresizingMaskIntoConstraints = false
-        $0.backgroundColor = .clear
+        $0.backgroundColor = .white
     }
 
     let cardView = ProfileCardView()
@@ -45,12 +45,13 @@ class ProfileView: BaseUIView {
 
         contentView.snp.makeConstraints {
             $0.edges.equalToSuperview()
+            $0.width.equalToSuperview()
         }
         
     
         cardView.snp.makeConstraints {
             $0.top.leading.trailing.equalToSuperview()
-            $0.height.equalTo(500)
+            $0.height.equalTo(524)
         }
 
         detailView.snp.makeConstraints {

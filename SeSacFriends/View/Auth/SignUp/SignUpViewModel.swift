@@ -26,6 +26,8 @@ class SignUpViewModel {
         return nicknameObserver.map { $0 != "" ? true : false }
      }
     
+    
+    
     func checkNetworking() {
         if !NetworkMonitor.shared.isConnected {
             self.onErrorHandling?(.networkError)

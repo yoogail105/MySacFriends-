@@ -1,6 +1,5 @@
 PODS:
   - Alamofire (5.5.0)
-  - Differentiator (5.0.0)
   - Firebase/Auth (8.12.1):
     - Firebase/CoreOnly
     - FirebaseAuth (~> 8.12.0)
@@ -69,16 +68,11 @@ PODS:
     - nanopb/encode (= 2.30908.0)
   - nanopb/decode (2.30908.0)
   - nanopb/encode (2.30908.0)
-  - NMapsMap (3.14.1)
   - Pageboy (3.6.2)
   - PromisesObjC (2.0.0)
   - RxCocoa (6.5.0):
     - RxRelay (= 6.5.0)
     - RxSwift (= 6.5.0)
-  - RxDataSources (5.0.0):
-    - Differentiator (~> 5.0)
-    - RxCocoa (~> 6.0)
-    - RxSwift (~> 6.0)
   - RxRelay (6.5.0):
     - RxSwift (= 6.5.0)
   - RxSwift (6.5.0)
@@ -93,9 +87,7 @@ DEPENDENCIES:
   - Firebase/Messaging
   - IQKeyboardManagerSwift
   - Moya (~> 15.0)
-  - NMapsMap
   - RxCocoa (= 6.5.0)
-  - RxDataSources (~> 5.0)
   - RxSwift (= 6.5.0)
   - SnapKit (~> 5.0.0)
   - SwiftLint
@@ -105,7 +97,6 @@ DEPENDENCIES:
 SPEC REPOS:
   trunk:
     - Alamofire
-    - Differentiator
     - Firebase
     - FirebaseAuth
     - FirebaseCore
@@ -118,11 +109,9 @@ SPEC REPOS:
     - IQKeyboardManagerSwift
     - Moya
     - nanopb
-    - NMapsMap
     - Pageboy
     - PromisesObjC
     - RxCocoa
-    - RxDataSources
     - RxRelay
     - RxSwift
     - SnapKit
@@ -132,7 +121,6 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   Alamofire: 1c4fb5369c3fe93d2857c780d8bbe09f06f97e7c
-  Differentiator: e8497ceab83c1b10ca233716d547b9af21b9344d
   Firebase: 580d09e8edafc3073ebf09c03fd42e4d80d35fe9
   FirebaseAuth: 5250d7bdba35e57cc34ec7ddc525f82b2757f2a0
   FirebaseCore: 8138de860a90ca7eec5e324da5788fb0ebf1d93c
@@ -145,11 +133,9 @@ SPEC CHECKSUMS:
   IQKeyboardManagerSwift: 6e839c575c4aa1078d58a596e41244e77abe918f
   Moya: 138f0573e53411fb3dc17016add0b748dfbd78ee
   nanopb: a0ba3315591a9ae0a16a309ee504766e90db0c96
-  NMapsMap: 79bae4e0d7cc5214dd6dabdb95687a1356616556
   Pageboy: cf121b9dd48c63f3f281b2a9ec93d02e0f23879b
   PromisesObjC: 68159ce6952d93e17b2dfe273b8c40907db5ba58
   RxCocoa: 94f817b71c07517321eb4f9ad299112ca8af743b
-  RxDataSources: aa47cc1ed6c500fa0dfecac5c979b723542d79cf
   RxRelay: 1de1523e604c72b6c68feadedd1af3b1b4d0ecbd
   RxSwift: 5710a9e6b17f3c3d6e40d6e559b9fa1e813b2ef8
   SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
@@ -157,6 +143,6 @@ SPEC CHECKSUMS:
   Tabman: 792ac76fd1ec95af175c93db880a3c47cabedc91
   Then: acfe0be7e98221c6204e12f8161459606d5d822d
 
-PODFILE CHECKSUM: 15b55d5e4778fa4a66d920ef144cac87486730f9
+PODFILE CHECKSUM: 39a903b2026e945c6b667ffb53f10237874ceb7e
 
-COCOAPODS: 1.11.2
+COCOAPODS: 1.11.3

@@ -131,7 +131,7 @@ extension NearByViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
 
-        return 510
+        return 534
     }
     
 }

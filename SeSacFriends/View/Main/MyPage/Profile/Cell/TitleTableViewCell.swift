@@ -39,7 +39,6 @@ class TitleTableViewCell: UITableViewCell {
         
         collectionView.register(TitleCollectionViewCell.self, forCellWithReuseIdentifier: TitleCollectionViewCell.identifier)
         
-        collectionView.collectionViewLayout = layout()
         constraints()
     }
     
@@ -58,34 +57,9 @@ class TitleTableViewCell: UITableViewCell {
         }
     }
     
-    private func layout() -> UICollectionViewLayout {
-        return UICollectionViewCompositionalLayout { [weak self] sectionNumber, environment -> NSCollectionLayoutSection?  in
-            guard let self = self else { return nil }
-            return self.createBasicTypeSection()
-        }
-    }
-    
-    private func createBasicTypeSection() -> NSCollectionLayoutSection {
-        
-        //item
-        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.5), heightDimension: .absolute(32))
-        let item = NSCollectionLayoutItem(layoutSize: itemSize)
-        item.contentInsets = .init(top: 4, leading: 4, bottom: 4, trailing: 4)
-        
-        // group
-        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(200))
-        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitem: item, count: 2)
-        // layout
-        let section = NSCollectionLayoutSection(group: group)
-        section.orthogonalScrollingBehavior = .none
-        section.contentInsets = .init(top: 0, leading: 0, bottom: 0, trailing: 0)
-        
-        return section
-    }
-    
 }
 
-extension TitleTableViewCell: UICollectionViewDelegate, UICollectionViewDataSource {
+extension TitleTableViewCell: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
@@ -99,12 +73,26 @@ extension TitleTableViewCell: UICollectionViewDelegate, UICollectionViewDataSour
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TitleCollectionViewCell.identifier, for: indexPath) as? TitleCollectionViewCell else { return UICollectionViewCell() }
         
         cell.titleLabel.text = userTitles[indexPath.row]
-        if self.friend?.reputation[indexPath.row] != 0 {
-            cell.contentView.backgroundColor = UIColor.brandColor(.green)
+        
+        guard let count = self.friend?.reputation[indexPath.row] else {
+            return cell
+        }
+        
+        if (self.friend?.reputation[indexPath.row])! != 0 {
+            print("reputation: \(self.friend?.reputation[indexPath.row])")
+            cell.backgroundColor = UIColor.brandColor(.green)
             cell.titleLabel.textColor = UIColor.white
         }
+        
         return cell
     }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let width = collectionView.frame.width * 0.45
+        
+        return CGSize(width: width, height: 32)
+    }
+
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let sectionName = userTitles[indexPath.row]

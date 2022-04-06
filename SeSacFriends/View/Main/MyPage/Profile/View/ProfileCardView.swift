@@ -152,7 +152,7 @@ extension ProfileCardView: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         switch indexPath {
         case [1,0]:
-            return CGFloat(32 * (userTitles.count / 2) + 24)
+            return CGFloat(32 * (userTitles.count / 2) + 48)
         default:
             return UITableView.automaticDimension
         }

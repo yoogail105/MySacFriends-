@@ -20,7 +20,8 @@ class ProfileViewModel {
                        ageMin:18,
                        ageMax: 20,
                        gender: 1,
-                       hobby: "Codingding")
+                       hobby: "Codingding",
+                       reputation: [0, 0, 0, 0, 0, 0, 0, 0, 0])
 
     
     var searchableObserver = BehaviorRelay<Int>(value: 0)
@@ -67,6 +68,7 @@ class ProfileViewModel {
             self.profileData.ageMax = user.ageMax
             self.profileData.gender = user.gender
             self.profileData.hobby = user.hobby
+            self.profileData.reputation = user.reputation
             
             if user.FCMtoken != UserDefaults.standard.FCMToken! {
                 

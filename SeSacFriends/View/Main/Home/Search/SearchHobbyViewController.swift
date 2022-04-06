@@ -8,7 +8,6 @@
 import UIKit
 import RxSwift
 import RxCocoa
-import RxDataSources
 
 
 
@@ -23,7 +22,7 @@ class SearchHobbyViewController: BaseViewController {
     
     weak var coordinator: HomeCoordinator?
     
-
+    
     override func loadView() {
         self.view = mainView
         
@@ -43,15 +42,15 @@ class SearchHobbyViewController: BaseViewController {
         collectionView?.delegate = self
         
         if let flowLayout = collectionView?.collectionViewLayout as? UICollectionViewFlowLayout {
-              flowLayout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
-            }
+            flowLayout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
+        }
         
         collectionView?.register(CollectionHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: CollectionHeaderView.identifier)
         
         collectionView?.register(RecommendCollectionViewCell.self, forCellWithReuseIdentifier: RecommendCollectionViewCell.identifier)
         collectionView?.register(TitleCollectionViewCell.self, forCellWithReuseIdentifier: TitleCollectionViewCell.identifier)
         collectionView?.register(TitleWithXCollectionViewCell.self, forCellWithReuseIdentifier: TitleWithXCollectionViewCell.identifier)
-    
+        
         let singleTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(MyTapMethod))
         singleTapGestureRecognizer.numberOfTapsRequired = 1
         singleTapGestureRecognizer.isEnabled = true
@@ -67,10 +66,10 @@ class SearchHobbyViewController: BaseViewController {
     }
     
     @objc func MyTapMethod(sender: UITapGestureRecognizer) {
-            self.searchBar.endEditing(true)
-        }
+        self.searchBar.endEditing(true)
+    }
     
-
+    
     func updateHobby() {
         print(#function)
         viewModel.searchFriends()
@@ -81,10 +80,10 @@ class SearchHobbyViewController: BaseViewController {
                 print("friendsHobbyList",self.viewModel.friendsHobbyList)
                 print("fromRecommendHobbyList",self.viewModel.fromRecommendHobbyList)
                 self.collectionView?.reloadData()
-            
+                
             case .unAuthorized:
                 print("재요청")
-//                self.updateFriends()
+                //                self.updateFriends()
             case .networkError:
                 self.showToast(message: APIErrorMessage.networkError.rawValue)
             default:
@@ -94,7 +93,7 @@ class SearchHobbyViewController: BaseViewController {
     }
     
     func setCollectionView() {
-       
+        
     }
     
     override func bind() {
@@ -124,7 +123,7 @@ class SearchHobbyViewController: BaseViewController {
                         self.searchBar.text = ""
                         hobbiesArray?.forEach({
                             if $0 != "", !self.viewModel.myHobbyList.contains($0) {
-                            self.viewModel.myHobbyList.append($0)
+                                self.viewModel.myHobbyList.append($0)
                             }
                         })
                         self.collectionView?.reloadData()
@@ -174,7 +173,7 @@ class SearchHobbyViewController: BaseViewController {
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){
-    self.view.endEditing(true)
+        self.view.endEditing(true)
     }
     
     
@@ -186,19 +185,19 @@ extension SearchHobbyViewController: UICollectionViewDelegate, UICollectionViewD
         return 2
     }
     
-
+    
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-         guard let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: CollectionHeaderView.identifier, for: indexPath) as? CollectionHeaderView else {
-             return UICollectionReusableView()
-         }
+        guard let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: CollectionHeaderView.identifier, for: indexPath) as? CollectionHeaderView else {
+            return UICollectionReusableView()
+        }
         switch indexPath.section {
         case 0:
             headerView.sectionNameLabel.text = HobbyViewText.collectionViewHeader01.rawValue
         default:
             headerView.sectionNameLabel.text = HobbyViewText.collectionViewHeader02.rawValue
         }
-         return headerView
-     }
+        return headerView
+    }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         switch section {
@@ -223,7 +222,7 @@ extension SearchHobbyViewController: UICollectionViewDelegate, UICollectionViewD
         default:
             return TitleCollectionViewCell.fittingSize(availableHeight: 32, name: viewModel.myHobbyList[indexPath.item])
         }
-
+        
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -242,11 +241,11 @@ extension SearchHobbyViewController: UICollectionViewDelegate, UICollectionViewD
             }
             
         default:
-           
+            
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TitleWithXCollectionViewCell.identifier, for: indexPath) as? TitleWithXCollectionViewCell else { return UICollectionViewCell() }
-                cell.titleLabel.text = viewModel.myHobbyList[indexPath.item]
+            cell.titleLabel.text = viewModel.myHobbyList[indexPath.item]
             return cell
-            }
+        }
         
         
     }
@@ -282,27 +281,28 @@ extension SearchHobbyViewController: UICollectionViewDelegate, UICollectionViewD
         default:
             collectionView.deleteItems(at: [IndexPath(row: row, section: 1)])
             self.viewModel.myHobbyList.remove(at: row)
-
+            
         }
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-           
-           let width: CGFloat = collectionView.frame.width
-           let height: CGFloat = 18
-           return CGSize(width: width, height: height)
-       }
-       
-       func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-           
-           return UIEdgeInsets.init(top: 16, left: 0, bottom: 16, right: 0)
-       }
+        
+        let width: CGFloat = collectionView.frame.width
+        let height: CGFloat = 18
+        return CGSize(width: width, height: height)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        
+        return UIEdgeInsets.init(top: 16, left: 0, bottom: 16, right: 0)
+    }
     
 }
+
 extension SearchHobbyViewController: UIScrollViewDelegate {
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView){
-            self.searchBar.endEditing(true)
-        }
+        self.searchBar.endEditing(true)
+    }
 }
 
 

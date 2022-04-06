@@ -32,7 +32,7 @@ class TitleCollectionViewCell: UICollectionViewCell {
     }
     
     override func layoutSubviews() {
-        contentView.backgroundColor = .white
+        //contentView.backgroundColor = .white
     }
     
     private override init(frame: CGRect) {
