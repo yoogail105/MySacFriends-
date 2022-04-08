@@ -37,7 +37,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             appCoordinator?.pushToMainTabBar()
         }
 
+        
         appWindow.rootViewController = navigationController
+//        appWindow.rootViewController = ChattingViewController()
         appWindow.makeKeyAndVisible()
         
         window = appWindow
