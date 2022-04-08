@@ -24,6 +24,9 @@ final class FindViewController: TabmanViewController {
     
     weak var coordinator: HomeCoordinator?
     let disposeBag = DisposeBag()
+    
+    var timeTrigger = true
+    var realTime = Timer()
 
     
     override func loadView() {
@@ -59,6 +62,7 @@ final class FindViewController: TabmanViewController {
         addBar(bar, dataSource: self, at: .top)
         
         bind()
+        startRepeatCheckUserStatus()
     }
     
     func setupNavigationBar() {
@@ -101,6 +105,38 @@ final class FindViewController: TabmanViewController {
             
         }
         
+    }
+    
+    func startRepeatCheckUserStatus() {
+        print(#function)
+        realTime = Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(checkUserStatus), userInfo: nil, repeats: true)
+    }
+    
+    @objc func checkUserStatus() {
+        print(#function)
+        viewModel.checkUserStatus()
+        viewModel.onErrorHandling = { result in
+            switch result {
+            case .ok:
+                let myStatus = self.viewModel.myStatus
+                if myStatus?.matched == 1 {
+                    
+                    let partner = myStatus?.matchedNick
+                    self.showToastWithAction(message: "partner" +  UserStatusToast.alreadyMatched.rawValue) {
+                        self.coordinator?.pushToChatting()
+                    }
+                }
+                 return
+            case .created:
+                self.realTime.invalidate()
+                self.showToastWithAction(message: UserStatusToast.alreayDone.rawValue) {
+                    self.coordinator?.startPush()
+                }
+                
+            default:
+                self.showToast(message: APIErrorMessage.unKnownError.rawValue)
+            }
+        }
     }
     
     func bind(){

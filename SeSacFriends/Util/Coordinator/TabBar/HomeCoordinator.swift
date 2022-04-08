@@ -119,7 +119,6 @@ extension HomeCoordinator{
 
     func finish() {
         parentCoordinator?.childDidFinish(self)
-        self.parentCoordinator?.childDidFinish(self.parentCoordinator)
         //self.parentCoordinator?.parentCoordinator?.start()
         
     }

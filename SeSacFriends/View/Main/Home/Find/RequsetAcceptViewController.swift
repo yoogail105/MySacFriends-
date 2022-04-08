@@ -58,24 +58,25 @@ final class RequestAcceptViewController: BaseViewController {
     
     func requestTogether(uid: String) {
         viewModel?.requestTogether(uid: uid)
-//        viewModel.onErrorHandling = { result in
-//            switch result {
-//            case .ok:
-//                self.showToast(message: TogetherToast.requestSuccess.rawValue)
-//            case .created:
-//                print("hobbyaccept호출")
-//                self.acceptTogeter(uid: uid)
-//
-//            case .invalidRequest:
-//                self.showToast(message: TogetherToast.invalidRequest.rawValue)
-//            default:
-//                self.showToast(message: APIErrorMessage.unKnownError.rawValue)
-//            }
-//        }
+        viewModel?.onErrorHandling = { result in
+            switch result {
+            case .ok:
+                self.showToast(message: TogetherToast.requestSuccess.rawValue)
+            case .created:
+                print("hobbyaccept호출")
+                self.acceptTogeter(uid: uid)
+
+            case .invalidRequest:
+                self.showToast(message: TogetherToast.invalidRequest.rawValue)
+            default:
+                self.showToast(message: APIErrorMessage.unKnownError.rawValue)
+            }
+        }
     }
     
     func acceptTogeter(uid: String) {
         viewModel?.acceptTogether(uid: uid)
+        
 //        viewModel?.onErrorHandling = { result in
 //            switch result {
 //            case .ok:

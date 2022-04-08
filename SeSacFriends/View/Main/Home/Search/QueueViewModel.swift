@@ -36,6 +36,7 @@ class QueueViewModel {
     let disposeBag = DisposeBag()
     
     var userData: Friends?
+    var myStatus: MyQueueState?
     
     var currentLatitude = 37.51781675120152
     var currentLongitude = 126.92983890550006
@@ -329,8 +330,35 @@ class QueueViewModel {
         }
     }
     
-    func checkUserStatus() {
+    func checkUserStatus(_ completion: ((Result<Bool, APIErrorCode>) -> Void)? = nil) {
+        checkNetworking()
         
+        QueueAPIService.myQueueStatus { result, error in
+            
+            if error != nil {
+                switch error?.rawValue {
+                case 201:
+                    UserDefaults.standard.matchingStatus = MatchingStatus.normal.rawValue
+                    self.onErrorHandling?(.created)
+                    return
+                case 401:
+                    print("토큰만료됨")
+                    self.onErrorHandling?(.unAuthorized)
+                    return
+                case 406:
+                    print("미가입회원")
+                    self.onErrorHandling?(.notAcceptable)
+                    return
+                default:
+                    self.onErrorHandling?(.internalServerError)
+                    return
+                }
+            } else {
+                self.myStatus = result
+                UserDefaults.standard.matchingStatus = MatchingStatus.done.rawValue
+                self.onErrorHandling?(.ok)
+            }
+        }
     }
     
     // 10자리로 변환하는 함수

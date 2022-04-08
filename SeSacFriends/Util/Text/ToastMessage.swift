@@ -65,3 +65,15 @@ enum TogetherToast: String {
     case invalidRequest = "상대방이 취미 함께 하기를 그만두었습니다."
     case alreadyMatched = "앗! 누군가가 나의 취미 함께 하기를 수락하였어요!"
 }
+
+enum UserStatusToast: String {
+    // 새싹찾기 화면, matched = 1
+    case matched = "님과 매칭되셨습니다. 잠시 후 채팅방으로 이동합니다"
+    case alreadyMatched = "상대방도 취미 함께 하기 요청을 했습니다. 채팅방으로 이동합니다"
+    case  acceptRequest = "채팅방으로 이동합니다"
+    // 채팅화면, dodged가 1이거나 reviewed가 1
+    case alreayDone = "취미 함께하기가 종료되어 채팅을 전송할 수 없습니다"
+    
+    //201
+    case stopFinding = "오랜 시간 동안 매칭 되지 않아 새싹 친구 찾기를 그만둡니다"
+}

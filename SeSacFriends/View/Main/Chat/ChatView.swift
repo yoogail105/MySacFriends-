@@ -51,6 +51,6 @@ class ChatView: BaseUIView {
     }
     
     override func constraints() {
-        
+        self.backgroundColor = UIColor.brandColor(.yellowgreen)
     }
 }

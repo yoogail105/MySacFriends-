@@ -28,6 +28,7 @@ class NearByViewController: BaseViewController {
         super.viewDidLoad()
         
         setTableView()
+    
        
     }
 
@@ -59,7 +60,9 @@ class NearByViewController: BaseViewController {
         tableView?.register(TitleTableViewCell.self, forCellReuseIdentifier: TitleTableViewCell.identifier)
         tableView?.register(ProfileCardReviewTableViewCell.self, forCellReuseIdentifier: ProfileCardReviewTableViewCell.identifier)
     }
+    
     func updateFriends() {
+        print(#function)
         view.addSubview(AlertView())
         viewModel?.searchMatchedFriends()
         viewModel?.onErrorHandling = { result in
@@ -112,7 +115,6 @@ extension NearByViewController: UITableViewDelegate, UITableViewDataSource {
         }
         
         let row = viewModel!.nearFriends[indexPath.row]
-        print("tableView: ", row.nick)
         cell.configureCell(row: row, status: false)
         let uid = row.uid
         cell.buttonAction = {

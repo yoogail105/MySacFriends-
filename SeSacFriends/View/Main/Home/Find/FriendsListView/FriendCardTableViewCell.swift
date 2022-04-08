@@ -48,7 +48,6 @@ class FriendCardTableViewCell: UITableViewCell {
         let userSesac = "\(SesacIcon.face.rawValue)\(row.sesac)"
         let defaultSesac = SesacIcon.face0.rawValue
         let userBackground = "\(BackgroundImage.back.rawValue)\(row.background)"
-        print("background: \(userBackground)")
         let defaultBackground = BackgroundImage.back0.rawValue
         
         profileCardView.headerView.userImage.image = UIImage(named: (SesacIcon(rawValue: userSesac)?.rawValue) ?? defaultSesac)

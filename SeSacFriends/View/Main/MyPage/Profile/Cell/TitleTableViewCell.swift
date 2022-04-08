@@ -79,7 +79,6 @@ extension TitleTableViewCell: UICollectionViewDelegate, UICollectionViewDataSour
         }
         
         if (self.friend?.reputation[indexPath.row])! != 0 {
-            print("reputation: \(self.friend?.reputation[indexPath.row])")
             cell.backgroundColor = UIColor.brandColor(.green)
             cell.titleLabel.textColor = UIColor.white
         }

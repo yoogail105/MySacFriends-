@@ -11,6 +11,13 @@ class ChattingViewController: BaseViewController {
     
     
     weak var coordinator: HomeCoordinator?
+    let mainView = ChatView()
+    let viewModel = ChatViewModel()
+    
+    override func loadView() {
+        self.view = mainView
+    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()

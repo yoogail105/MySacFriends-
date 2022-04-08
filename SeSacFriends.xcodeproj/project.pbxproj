@@ -29,6 +29,7 @@
 		2333572D27A08D630062A9E8 /* APIErrorMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2333572C27A08D630062A9E8 /* APIErrorMessage.swift */; };
 		2333572F27A09EF20062A9E8 /* MyPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2333572E27A09EF20062A9E8 /* MyPageView.swift */; };
 		2333573227A09FCE0062A9E8 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2333573127A09FCE0062A9E8 /* MainView.swift */; };
+		23366D5B27FF059000C22E22 /* ChatViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23366D5A27FF059000C22E22 /* ChatViewModel.swift */; };
 		233D799527B9272900BA0671 /* CustomPointAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 233D799427B9272900BA0671 /* CustomPointAnnotation.swift */; };
 		233D799927B9ADAA00BA0671 /* TitleWithXCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 233D799827B9ADAA00BA0671 /* TitleWithXCollectionViewCell.swift */; };
 		233D799D27B9B50100BA0671 /* HobbyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 233D799C27B9B50100BA0671 /* HobbyTableViewCell.swift */; };
@@ -153,6 +154,7 @@
 		2333572C27A08D630062A9E8 /* APIErrorMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIErrorMessage.swift; sourceTree = "<group>"; };
 		2333572E27A09EF20062A9E8 /* MyPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageView.swift; sourceTree = "<group>"; };
 		2333573127A09FCE0062A9E8 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		23366D5A27FF059000C22E22 /* ChatViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewModel.swift; sourceTree = "<group>"; };
 		233D799427B9272900BA0671 /* CustomPointAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPointAnnotation.swift; sourceTree = "<group>"; };
 		233D799827B9ADAA00BA0671 /* TitleWithXCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleWithXCollectionViewCell.swift; sourceTree = "<group>"; };
 		233D799C27B9B50100BA0671 /* HobbyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HobbyTableViewCell.swift; sourceTree = "<group>"; };
@@ -675,6 +677,7 @@
 			children = (
 				23A851B027CB9433005FFC7F /* ChattingViewController.swift */,
 				2359D73B27E1DB23008E24D0 /* ChatView.swift */,
+				23366D5A27FF059000C22E22 /* ChatViewModel.swift */,
 			);
 			path = Chat;
 			sourceTree = "<group>";
@@ -870,6 +873,7 @@
 				2333572D27A08D630062A9E8 /* APIErrorMessage.swift in Sources */,
 				2333571D279DED330062A9E8 /* BirthTextFieldView.swift in Sources */,
 				234E5FA427978FE700F5D2BB /* AuthVerificationCodeView.swift in Sources */,
+				23366D5B27FF059000C22E22 /* ChatViewModel.swift in Sources */,
 				2399604527965760001C8EA4 /* AuthViewController.swift in Sources */,
 				2389E1DB2796B6FF00BE68E3 /* UserDefaults+Extension.swift in Sources */,
 				234CEC34279C971F00983E20 /* EmailViewController.swift in Sources */,

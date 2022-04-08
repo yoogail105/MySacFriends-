@@ -14,7 +14,7 @@ extension UIViewController {
         let toast = UIAlertController(title: nil, message: message, preferredStyle: .alert)
         
         self.present(toast, animated: true)
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             self.dismiss(animated: true)
         }
     }
@@ -23,7 +23,7 @@ extension UIViewController {
         let toast = UIAlertController(title: nil, message: message, preferredStyle: .alert)
         
         self.present(toast, animated: true)
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             self.dismiss(animated: true, completion: action )
         }
     }
@@ -38,7 +38,7 @@ extension UIViewController {
         
         self.present(alert, animated: true)
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
             self.dismiss(animated: true) {
                 self.navigationController?.popViewController(animated: true)
             }
