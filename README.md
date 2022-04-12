@@ -1,22 +1,41 @@
 # MySacFriends-
-🌱SeSAC Service level Project
 
-### ✔︎ MySacFriends?
+### 🌱 MySacFriends?
+
 나의 주변에 있는, 공통된 관심사를 가진 친구를 찾아보자!
 
-### ✔︎ 프레임워크 & 디자인패턴 & 기술스택
-🔥도전과제
+✔ 위치 기반 로그인 사용자 표시
 
+✔ 회원가입시 전화번호 인증
+
+✔ 공통된 취미 가진 사용자 검색
+
+✔ 유저 매칭 및 알림
+
+✔ 사용자 정보 수정 및 회원탈퇴
+
+
+
+## ✔︎ 프레임워크 & 디자인패턴 & 기술스택
+
+- Swift
 - UIKit
-- programmatically UI
-- MVVM Model
-- RxSwift
+- MVVM - C Model
+- SnapKit, Then을 이용한 programmatically UI, Autolayout 구현
+- RxSwift, RxCocoa
+- Firebase Auth, Firebase Cloud Message
+- Moya
+- Swagger, Insomnia, Figma, Confluence
 
-### ✔︎ 개발일지
-| Date     | Dev Log                                                      | Daily Scrum Link |
-| -------- | ------------------------------------------------------------ | ---------------- |
-| 22-01-17 | ✔︎FirebaseAuth 휴대폰 인증 구현(임시)<br />　∙ 휴대폰 번호 입력시 올바른 포맷으로 변경하여 전달<br /><br />✔︎ MVVM 패턴 공부(https://www.youtube.com/watch?v=M58LqynqQHc)<br />⇢ RxSwfit 공부(https://youtu.be/iHKBNYMWd5I) |                  |
-| 22-01-18 | ✔︎ RxSwfit 공부(https://youtu.be/iHKBNYMWd5I)<br /><br />⇢ 휴대폰 번호 인증 화면<br />　∙ Figma에 따라 휴대폰 인증 UI 구현<br />　∙ 📌RxSwift, MVVM패턴 유의<br />　∙ 휴대폰 번호, 인증코드 정규식 처리<br />　∙ 올바른 번호 & 코드 입력 시 firebase 회원 등록 완료<br /> |                  |
-| 22-01-19 | ✔︎ 모듈화!<br />　∙ 재사용에 용이하도록 UIColor, UIFont, Image 등 정리<br />　∙ BaseViewController, BaseUIView, BaseButton 등 정리<br /><br />⇢ 휴대폰 번호 인증 화면<br /> |                  |
-| 22-01-20 | ⇢ 휴대폰 번호 인증 화면<br /><br />　∙ 📌휴대폰번호, 인증 코드의 유효성에 따라 Toast 메세지 및 화면 전환 구현<br />　∙ 📌휴대폰번호, 인증 코드의 유효성에 따라 Button tap event RxSwift로 처리<br />　∙ 🔺FirebaseAuth 인증번호 재요청 시 오류<br /> |                  |
-| 22-01-21 | ✔︎ 시작 화면 분기 처리<br />　∙ 온보딩, 휴대폰 번호 인증,  UI <br /><br />⇢ 온보딩 화면<br />　∙ 온보딩뷰 UI<br />　∙ 📌UIPageViewController |                  |
+
+
+## ✔︎ Issues
+
+- [유저의 조건에 따른 다양한 시작 화면에 대한 분기처리](https://github.com/yoogail105/MySacFriends-/blob/1f135d3c6edd12a9e7bf189bc8a021122ae3ca3a/DevLog/%5B22.01.22%5D%20StartView%20%EB%B6%84%EA%B8%B0%20%EC%B2%98%EB%A6%AC.md)
+- [MVVM 패턴과 Error Handling](DevLog/[22.01.26] MVVM과 Error 코드 처리.md)
+- [Coordinator 패턴과 TabBar](https://github.com/yoogail105/MySacFriends-/blob/1f135d3c6edd12a9e7bf189bc8a021122ae3ca3a/DevLog/%5B22.01.27%5D%20Coordnator%20%ED%8C%A8%ED%84%B4.md)
+- [ScrollView 오류](https://github.com/yoogail105/MySacFriends-/blob/1f135d3c6edd12a9e7bf189bc8a021122ae3ca3a/DevLog/%5B22.02.03%5D%20ScrollView%20%EC%98%A4%EB%A5%98%20%ED%95%B4%EA%B2%B0.md)
+- [버튼 클릭 시 어노테이션 이미지 업데이트 안되는 오류](https://github.com/yoogail105/MySacFriends-/blob/1f135d3c6edd12a9e7bf189bc8a021122ae3ca3a/DevLog/%5B22.02.13%5D%20Daily%20Scrum.md)
+- [Moya를 통한 네트워크 사용과 반복되는 Error Handling](https://github.com/yoogail105/MySacFriends-/blob/1f135d3c6edd12a9e7bf189bc8a021122ae3ca3a/DevLog/%5B22.02.11%5D%20Moya.md)
+- [Timer()로 API 반복 호출하기](https://github.com/yoogail105/MySacFriends-/blob/1f135d3c6edd12a9e7bf189bc8a021122ae3ca3a/DevLog/%5B22.04.07%5D%20Timer()%20API%20%EB%B0%98%EB%B3%B5%20%ED%98%B8%EC%B6%9C%ED%95%98%EA%B8%B0.md)
+- [네트워크 변경 감지](https://velog.io/@yoogail/네트워크-변경-감지)
