@@ -32,7 +32,7 @@
 ## ✔︎ Issues
 
 - [유저의 조건에 따른 다양한 시작 화면에 대한 분기처리](https://github.com/yoogail105/MySacFriends-/blob/1f135d3c6edd12a9e7bf189bc8a021122ae3ca3a/DevLog/%5B22.01.22%5D%20StartView%20%EB%B6%84%EA%B8%B0%20%EC%B2%98%EB%A6%AC.md)
-- [MVVM 패턴과 Error Handling](DevLog/[22.01.26] MVVM과 Error 코드 처리.md)
+- [MVVM 패턴과 Error Handling](https://github.com/yoogail105/MySacFriends-/blob/1f135d3c6edd12a9e7bf189bc8a021122ae3ca3a/DevLog/%5B22.01.26%5D%20MVVM%EA%B3%BC%20Error%20%EC%BD%94%EB%93%9C%20%EC%B2%98%EB%A6%AC.md)
 - [Coordinator 패턴과 TabBar](https://github.com/yoogail105/MySacFriends-/blob/1f135d3c6edd12a9e7bf189bc8a021122ae3ca3a/DevLog/%5B22.01.27%5D%20Coordnator%20%ED%8C%A8%ED%84%B4.md)
 - [ScrollView 오류](https://github.com/yoogail105/MySacFriends-/blob/1f135d3c6edd12a9e7bf189bc8a021122ae3ca3a/DevLog/%5B22.02.03%5D%20ScrollView%20%EC%98%A4%EB%A5%98%20%ED%95%B4%EA%B2%B0.md)
 - [버튼 클릭 시 어노테이션 이미지 업데이트 안되는 오류](https://github.com/yoogail105/MySacFriends-/blob/1f135d3c6edd12a9e7bf189bc8a021122ae3ca3a/DevLog/%5B22.02.13%5D%20Daily%20Scrum.md)
