@@ -8,9 +8,8 @@
 - 회원가입시 전화번호 인증공통된 취미 가진 사용자 검색
 - 유저 매칭 및 알림
 - 사용자 정보 수정 및 회원탈퇴
-
-
 <br/>
+
 ## ✔︎ 프레임워크 & 디자인패턴 & 기술스택
 
 - Swift
@@ -21,9 +20,8 @@
 - Firebase Auth, Firebase Cloud Message
 - Moya
 - Swagger, Insomnia, Figma, Confluence
-
-
 <br/>
+
 ## ✔︎ Issues
 
 - [유저의 조건에 따른 다양한 시작 화면에 대한 분기처리](https://github.com/yoogail105/MySacFriends-/blob/1f135d3c6edd12a9e7bf189bc8a021122ae3ca3a/DevLog/%5B22.01.22%5D%20StartView%20%EB%B6%84%EA%B8%B0%20%EC%B2%98%EB%A6%AC.md)
