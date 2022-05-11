@@ -16,23 +16,19 @@ class UserAPIService {
     
     static func login(_ completion: @escaping (User?, APIErrorCode?) -> Void) {
         provider.request(.signIn) { result in
-        
             switch ResponseData<User>.processJSONResponse(result) {
             case .success(let model):
-                print("login: \(model)")
                 return completion(model, nil)
             case .failure(let error):
                 return completion(nil, error)
             }
         }
     }
-
+    
     static func signUp(param: SignUpRequest, _ completion: @escaping (User?, APIErrorCode?) -> Void) {
         provider.request(.signUp(param: param)) { result in
-        
             switch ResponseData<User>.processJSONResponse(result){
             case .success(let model):
-                print("signUp: \(model)")
                 return completion(model, nil)
             case .failure(let error):
                 return completion(nil, error)
@@ -45,7 +41,6 @@ class UserAPIService {
         provider.request(.withdraw) { result in
             switch ResponseData<String>.processResponse(result) {
             case .success(let model):
-                print("signUp: \(model)")
                 return completion(model, nil)
             case .failure(let error):
                 return completion(nil, error)
@@ -58,7 +53,6 @@ class UserAPIService {
         provider.request(.updateFCMToken(param: param)) { result in
             switch ResponseData<String>.processResponse(result) {
             case .success(let model):
-                print("updateFCMToken: \(model)")
                 return completion(model, nil)
             case .failure(let error):
                 return completion(nil, error)
@@ -66,11 +60,8 @@ class UserAPIService {
         }
     }
     // 내정보 업데이트
-    
     static func updateMyPage(param: UpdateMyPageRequest, _ completion: @escaping (String?, APIErrorCode?) -> Void) {
-        
         provider.request(.updateMyPage(param: param)) { result in
-        
             switch ResponseData<String>.processResponse(result){
             case .success(let model):
                 return completion(model, nil)

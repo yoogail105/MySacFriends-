@@ -9,8 +9,6 @@ import Foundation
 import FirebaseAuth
 import CoreMedia
 
-
-
 class AuthAPIService {
     static func sendVerificationCode(phoneNumber: String, completion: @escaping (APIErrorMessage?) -> Void ) {
         
@@ -19,9 +17,7 @@ class AuthAPIService {
                 print(phoneNumber)
                 if  error != nil {
                     if let errCode = AuthErrorCode(rawValue: error!._code) {
-                        
                         switch errCode {
-                            
                         case .tooManyRequests:
                             completion(.tooManyRequests)
                             print("너무 많은 요청")
@@ -29,11 +25,9 @@ class AuthAPIService {
                             print("Create User Error: \(error!)")
                             completion(.failed)
                         }
-
                     }
                     return
                 }
-                
                 UserDefaults.standard.authVerificationID = verificationID!
                 completion(nil)
             }
@@ -55,11 +49,11 @@ class AuthAPIService {
         Auth.auth().signIn(with: credential) { authResult, error in
             if let error = error {
                 completion(.verificationCodeError)
-             
-                    if let _ = AuthErrorCode(rawValue: error._code) {
-                        print("check verification User Error: \(error)")
-                        
-                    }
+                
+                if let _ = AuthErrorCode(rawValue: error._code) {
+                    print("check verification User Error: \(error)")
+                    
+                }
                 let authError = error as NSError
                 if authError.code == AuthErrorCode.secondFactorRequired.rawValue {
                     // The user is a multi-factor user. Second factor challenge is required.
@@ -96,7 +90,7 @@ class AuthAPIService {
             completion(.ok)
         }
     }
-
+    
     // 사용자 삭제
     static func deleteUserAuth(completion: @escaping () ->  Void) {
         let user = Auth.auth().currentUser
@@ -110,12 +104,12 @@ class AuthAPIService {
         }
         
     }
-
-
-   static func fetchUserData(completion: @escaping () -> Void) {
-       
+    
+    
+    static func fetchUserData(completion: @escaping () -> Void) {
+        
         Auth.auth().addStateDidChangeListener { auth, user in
-
+            
             if user != nil {
                 //로그인 된 상태
                 print("로그인 되어있음")
@@ -123,12 +117,12 @@ class AuthAPIService {
                 //로그인 안된상태
                 print("로그인 되어있지 않음")
             }
-        //let currentUid = Auth.auth().currentUser?.uid
-        //guard let currentUid = currentUid else { return }
-        
+            //let currentUid = Auth.auth().currentUser?.uid
+            //guard let currentUid = currentUid else { return }
+            
             completion()
         }
-   }
+    }
     
     static func fetchFCMToken() {
         if let appDelegate = UIApplication.shared.delegate as? AppDelegate {

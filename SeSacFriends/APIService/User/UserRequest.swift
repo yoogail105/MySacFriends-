@@ -31,7 +31,6 @@ struct UpdateFCMToken: Codable {
     internal init(FCMtoken: String) {
         self.FCMtoken = FCMtoken
     }
-    
 }
 
 //post

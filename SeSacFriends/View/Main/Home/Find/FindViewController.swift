@@ -169,7 +169,8 @@ final class FindViewController: TabmanViewController {
         viewModel.onErrorHandling = { result in
             switch result {
             case .ok:
-                self.coordinator?.pushToSearchHobbyWithHobby(lat: self.viewModel.currentLatitude, long: self.viewModel.currentLongitude, myHobbyList: self.viewModel.myHobbyList)
+                self.coordinator?.pushToSearchHobby(lat: self.viewModel.currentLatitude, long: self.viewModel.currentLongitude, myHobbyList: self.viewModel.myHobbyList)
+//                self.coordinator?.pushToSearchHobbyWithHobby(lat: self.viewModel.currentLatitude, long: self.viewModel.currentLongitude, myHobbyList: self.viewModel.myHobbyList)
             case .networkError:
                 self.showToast(message: APIErrorMessage.networkError.rawValue)
             default:

@@ -228,14 +228,10 @@ extension URLSession {
                 
                 print("통신ok")
                 return completion(nil, .ok)
-                
-                                                     
-                
-                
             }
-        }}
-            
-            
+        }
+    }
+
 }
 
 

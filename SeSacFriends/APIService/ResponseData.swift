@@ -8,19 +8,9 @@
 import Foundation
 import Moya
 
-//static func defaultErrorHandling(_ result: MoyaError) -> APIErrorCode) {
-//    switch result {
-//    case .failure(let error):
-//    default:
-//        return
-//    }
-//    
-//}
-
 struct ResponseData<Model: Codable> {
     struct CommonResponse: Codable {
         let result: Model
-        
     }
     
     static func processResponse(_ result: Result<Response, MoyaError>) -> Result<String?, APIErrorCode> {
@@ -110,12 +100,10 @@ struct ResponseData<Model: Codable> {
                 case APIErrorCode.unAuthorized.rawValue:
                     AuthAPIService.fetchIDToken {_ in
                         print("토큰 새로 발급함")
-                        
                     }
                     return .failure(.unAuthorized)
                     
                 case APIErrorCode.notAcceptable.rawValue:
-                    //406: 미가입회원 -> 로그인 화면(번호인증화면)
                     return .failure(.notAcceptable)
                     
                 case APIErrorCode.internalServerError.rawValue:
@@ -132,9 +120,7 @@ struct ResponseData<Model: Codable> {
         case .failure(let error):
             let statusCode = error.response?.statusCode
             print("모야 서버 통신 실패, API Error Code: \(error.errorCode)")
-            
             switch statusCode {
-                
             default:
                 return .failure(APIErrorCode(rawValue: statusCode ?? 700) ?? .unKnownError)
             }
