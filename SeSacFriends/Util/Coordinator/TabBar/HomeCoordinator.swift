@@ -26,10 +26,8 @@ class HomeCoordinator: Coordinator {
         homeViewController.title = TabBarTitle.home.rawValue
         homeViewController.coordinator = self
         navigationController.setViewControllers([homeViewController], animated: false)
-        
         return navigationController
     }
-    
 }
 
 extension HomeCoordinator{
@@ -42,26 +40,17 @@ extension HomeCoordinator{
         rootViewController.viewModel.currentLongitude = long
         rootViewController.viewModel.myHobbyList = myHobbyList
         self.navigationController.pushViewController(rootViewController, animated: true)
-        
     }
 
-    
-    func pushToSearchHobby(lat: Double, long: Double) {
+    func pushToSearchHobby(lat: Double, long: Double, myHobbyList: [String]?) {
         print(#function)
         let rootViewController = SearchHobbyViewController()
         rootViewController.coordinator = self
         rootViewController.viewModel.currentLatitude = lat
         rootViewController.viewModel.currentLongitude = long
-        self.navigationController.pushViewController(rootViewController, animated: true)
-    }
-    
-    func pushToSearchHobbyWithHobby(lat: Double, long: Double, myHobbyList: [String]) {
-        print(#function)
-        let rootViewController = SearchHobbyViewController()
-        rootViewController.coordinator = self
-        rootViewController.viewModel.currentLatitude = lat
-        rootViewController.viewModel.currentLongitude = long
-        rootViewController.viewModel.myHobbyList = myHobbyList
+        if let hobbbyList = myHobbyList {
+            rootViewController.viewModel.myHobbyList = hobbbyList
+        }
         self.navigationController.pushViewController(rootViewController, animated: true)
     }
     
@@ -74,13 +63,11 @@ extension HomeCoordinator{
     func pushToReceived() -> UIViewController {
         let rootViewController = ReceivedViewController()
         rootViewController.coordinator = self
-        rootViewController.viewModel
         return rootViewController
         
     }
     
     func pushToFindFriends(lat: Double, long: Double, myHobbyList: [String]) {
-        print("랄라")
         let rootViewController = FindViewController()
         rootViewController.coordinator = self
         rootViewController.viewModel.currentLatitude = lat

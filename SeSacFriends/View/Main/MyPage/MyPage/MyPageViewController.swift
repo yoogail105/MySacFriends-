@@ -42,21 +42,11 @@ final class MyPageViewController: BaseViewController {
         
         tableView.dataSource = self
         tableView.delegate = self
-
-    }
-    
-    override func bind() {
-        
-    }
-    
-    override func setupNavigationBar() {
-
     }
     
     func getProfileData() {
         self.viewModel.getUser()
     }
-    
 }
 
 extension MyPageViewController: UITableViewDelegate, UITableViewDataSource {
@@ -69,7 +59,6 @@ extension MyPageViewController: UITableViewDelegate, UITableViewDataSource {
         if row == 0 {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: MyPageProfileTableViewCell.identifier, for: indexPath) as? MyPageProfileTableViewCell else {
             return UITableViewCell() }
-            
             
             cell.selectionStyle = .none
             return cell
@@ -90,11 +79,8 @@ extension MyPageViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.row == 0 {
-            
             coordinator?.pushToProfile()
         }
-    
-        
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

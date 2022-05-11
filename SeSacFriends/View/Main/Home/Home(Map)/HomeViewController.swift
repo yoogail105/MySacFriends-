@@ -175,7 +175,8 @@ class HomeViewController: UIViewController {
     func moveToSearching() {
         print(#function)
         UserDefaults.standard.matchingStatus = MatchingStatus.ing.rawValue
-        coordinator?.pushToSearchHobby(lat: viewModel.currentLatitude, long: viewModel.currentLongitude)
+        
+        coordinator?.pushToSearchHobby(lat: viewModel.currentLatitude, long: viewModel.currentLongitude, myHobbyList: nil)
     }
     
     private func findMyLocation() {
@@ -287,7 +288,7 @@ class HomeViewController: UIViewController {
     func moveToProfile() {
         print("profile")
         view.addSubview(AlertView())
-        coordinator?.pushToSearchHobby(lat: viewModel.currentLatitude, long: viewModel.currentLongitude)
+        coordinator?.pushToSearchHobby(lat: viewModel.currentLatitude, long: viewModel.currentLongitude, myHobbyList: nil)
     }
     
 }
